@@ -1,0 +1,52 @@
+{
+  // Playwright API tesztek futtatasa a szerkesztobol: Terminal -> Run Task...
+  // (vagy Ctrl+Shift+P -> "Tasks: Run Task"). A portable Node 22-t a PATH-ra teszi.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Playwright: tesztek listazasa (nincs halozat)",
+      "type": "shell",
+      "command": "npx.cmd",
+      "args": ["playwright", "test", "--list"],
+      "options": {
+        "cwd": "${workspaceFolder}/[03] projects/portal-odata-ic-szervizek/04_ASSETS/playwright",
+        "env": { "PATH": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64;${env:PATH}" }
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Playwright: olvaso tesztek (IC_002 GET)",
+      "type": "shell",
+      "command": "npx.cmd",
+      "args": ["playwright", "test"],
+      "options": {
+        "cwd": "${workspaceFolder}/[03] projects/portal-odata-ic-szervizek/04_ASSETS/playwright",
+        "env": { "PATH": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64;${env:PATH}" }
+      },
+      "problemMatcher": [],
+      "group": { "kind": "test", "isDefault": true }
+    },
+    {
+      "label": "Playwright: UI mod",
+      "type": "shell",
+      "command": "npx.cmd",
+      "args": ["playwright", "test", "--ui"],
+      "options": {
+        "cwd": "${workspaceFolder}/[03] projects/portal-odata-ic-szervizek/04_ASSETS/playwright",
+        "env": { "PATH": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64;${env:PATH}" }
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Playwright: riport megnyitasa",
+      "type": "shell",
+      "command": "npx.cmd",
+      "args": ["playwright", "show-report"],
+      "options": {
+        "cwd": "${workspaceFolder}/[03] projects/portal-odata-ic-szervizek/04_ASSETS/playwright",
+        "env": { "PATH": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64;${env:PATH}" }
+      },
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+# The default model to use.
+# Options: "gpt-5.2-codex" (Standard), "gpt-5.3-codex" (Newest), "gpt-5.1-codex-mini" (Cheaper/Faster
+# model = "gpt-5.5-codex"
+
+# How hard the model thinks before answering (for models that support reasoning).
+# Options: "low", "medium" (default), "high", "xhigh"
+# Use "high" for complex refactors, "low" for quick syntax questions.
+# model_reasoning_effort = "medium"
+
+# The communication style of the assistant.
+# Options: "friendly" (default), "pragmatic" (concise, less chatty), "none"
+# personality = "pragmatic"
+
+
+
+
+
+# How citations (file links) in the chat response should open.
+# Options: "vscode", "cursor", "windsurf", "vscode-insiders", "none"
+# file_opener = "vscode"
+
+# Controls which environment variables are passed to the agent's shell.
+# By default, Codex scrubs secrets to prevent leaks.
+# inherit = "all" # Default: Pass everything except known secrets.
+# Or use this to be strict and only pass specific variables:
+# include_only = ["PATH", "HOME", "TERM"]
+
+[mcp_servers.sap-abap-adt]
+command = 'C:\Users\T13214\Documents\work\CS HANA\runtimes\node-v22.22.2-win-x64\node.exe'
+args = ['C:\Users\T13214\Documents\work\CS HANA\mcp\mcp-abap-adt\bin\mcp-abap-adt.js', "--transport=stdio", '--env-path=C:\Users\T13214\Documents\work\CS HANA\mcp\mcp-abap-adt\.env']
+startup_timeout_sec = 30.0
+tool_timeout_sec = 90.0
+
+[mcp_servers.sap-abap-adt.tools.GetInactiveObjects]
+approval_mode = "approve"
+
+[mcp_servers.sap-abap-adt.tools.ReadClass]
+approval_mode = "approve"
+
+[mcp_servers.sap-abap-adt.tools.UpdateClass]
+approval_mode = "approve"
+
+[mcp_servers.sap-abap-adt.tools.ActivateObjects]
+approval_mode = "approve"

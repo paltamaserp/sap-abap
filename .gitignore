@@ -1,0 +1,9 @@
+# SAP MCP kapcsolati titkok — soha ne kerüljön verziókövetésbe
+.env
+.env.*
+
+# Kivétel: a titok nélküli minta követhető (csak placeholder értékek)
+!.env.example
+
+# macOS junk
+.DS_Store

@@ -1,0 +1,6 @@
+{
+  // REST Client (humao.rest-client) - portal OData szervizek tesztelese.
+  // On-premise SAP HTTPS tanusitvany gyakran belso CA-tol van; ha a rendszer
+  // tanusitvanya ervenyes, ez a sor torolheto.
+  "rest-client.verifyRemoteCert": false
+}

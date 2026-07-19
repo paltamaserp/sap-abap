@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "sap-crm-dev": {
+      "command": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64\\node.exe",
+      "args": [
+        "C:\\Users\\T13214\\AppData\\Local\\mcp-abap-adt-server\\node_modules\\@mcp-abap-adt\\core\\bin\\mcp-abap-adt.js"
+      ],
+      "env": {
+        "MCP_ENV_PATH": "C:\\Users\\T13214\\Documents\\work\\CS HANA ICP\\.env.crm-dev"
+      }
+    },
+    "sap-ecc-dev": {
+      "command": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64\\node.exe",
+      "args": [
+        "C:\\Users\\T13214\\AppData\\Local\\mcp-abap-adt-server\\node_modules\\@mcp-abap-adt\\core\\bin\\mcp-abap-adt.js"
+      ],
+      "env": {
+        "MCP_ENV_PATH": "C:\\Users\\T13214\\Documents\\work\\CS HANA ICP\\.env.ecc-dev"
+      }
+    }
+  }
+}
