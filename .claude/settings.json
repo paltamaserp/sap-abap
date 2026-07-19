@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(gh repo *)",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(git push *)",
+      "Bash(git ls-remote *)"
     ]
   }
 }
