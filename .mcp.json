@@ -1,21 +1,21 @@
 {
   "mcpServers": {
     "sap-crm-dev": {
-      "command": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64\\node.exe",
+      "command": "/Users/paltamasdevcomp/.nvm/versions/node/v22.7.0/bin/node",
       "args": [
-        "C:\\Users\\T13214\\AppData\\Local\\mcp-abap-adt-server\\node_modules\\@mcp-abap-adt\\core\\bin\\mcp-abap-adt.js"
+        "/Users/paltamasdevcomp/.nvm/versions/node/v22.7.0/lib/node_modules/@mcp-abap-adt/core/bin/mcp-abap-adt.js"
       ],
       "env": {
-        "MCP_ENV_PATH": "C:\\Users\\T13214\\Documents\\work\\CS HANA ICP\\.env.crm-dev"
+        "MCP_ENV_PATH": "/Users/paltamasdevcomp/Downloads/Munka/sap_abap/.env.crm-dev"
       }
     },
     "sap-ecc-dev": {
-      "command": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64\\node.exe",
+      "command": "/Users/paltamasdevcomp/.nvm/versions/node/v22.7.0/bin/node",
       "args": [
-        "C:\\Users\\T13214\\AppData\\Local\\mcp-abap-adt-server\\node_modules\\@mcp-abap-adt\\core\\bin\\mcp-abap-adt.js"
+        "/Users/paltamasdevcomp/.nvm/versions/node/v22.7.0/lib/node_modules/@mcp-abap-adt/core/bin/mcp-abap-adt.js"
       ],
       "env": {
-        "MCP_ENV_PATH": "C:\\Users\\T13214\\Documents\\work\\CS HANA ICP\\.env.ecc-dev"
+        "MCP_ENV_PATH": "/Users/paltamasdevcomp/Downloads/Munka/sap_abap/.env.ecc-dev"
       }
     }
   }

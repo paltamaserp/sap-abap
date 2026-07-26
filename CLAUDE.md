@@ -41,6 +41,9 @@ ABAP-kód írásakor vagy ellenőrzésekor a névkonvenciók, kódolási szabvá
 tekintetében olvasd el a `[02] context/oneERP ABAP Development Guideline_V 22 00 published.pdf` dokumentumot.
 
 ## Skillek
-A `.claude/skills/` alatt két projekt-skill él (session-újraindítás után aktiválódnak):
+A `.claude/skills/` alatt három projekt-skill él (session-újraindítás után aktiválódnak):
 - `saphana-abap-hana-guidelines` — általános ABAP / HANA / ADT munka, az oneERP guideline-nal.
 - `sap-developer-skillset` — SAP Gateway / OData, CRM / IS-U kompetenciák és a portál-projekt konvenciói.
+- `abap-code-review` — minőségi kapu ABAP objektumokra: **ATC + ABAP Unit**, MCP-n futtatva.
+  Hívás: `/abap-code-review`. ABAP objektum módosítása után fel kell ajánlani.
+  (`/code-review ultra` billed és kizárólag a felhasználó indítja — soha ne hívd.)

@@ -1,0 +1,109 @@
+### =============================================================================
+### MINTA .http — masold at IC_00x_<szerviz>.http nevre es szabd a szervizedre.
+###
+### Elofeltetel:
+###   1. VSCode extension: humao.rest-client
+###   2. A repo gyokereben legyen kitoltott .env  (lasd .env.example)
+###      A titkokat a {{$dotenv ...}} olvassa — SOHA ne ird be ide.
+###
+### Hasznalat: minden "###" blokk folott megjelenik a "Send Request" link.
+### =============================================================================
+
+@host     = {{$dotenv SAP_URL}}
+@client   = {{$dotenv SAP_CLIENT}}
+@user     = {{$dotenv SAP_USERNAME}}
+@pass     = {{$dotenv SAP_PASSWORD}}
+
+# A szerviz neve — ezt csereld a sajatodra (pl. ZEPT_PT_ACCOUNT_SRV).
+@srv      = ZEPT_..._SRV
+@baseUrl  = {{host}}sap/opu/odata/sap/{{srv}}
+
+
+### -----------------------------------------------------------------------------
+### 1) Service document — el-e a szerviz, jo-e az auth?
+### -----------------------------------------------------------------------------
+# @name serviceDoc
+GET {{baseUrl}}/?sap-client={{client}}&$format=json
+Authorization: Basic {{user}}:{{pass}}
+Accept: application/json
+
+
+### -----------------------------------------------------------------------------
+### 2) $metadata — entitasok, property-k, tipusok ellenorzese
+### -----------------------------------------------------------------------------
+GET {{baseUrl}}/$metadata?sap-client={{client}}
+Authorization: Basic {{user}}:{{pass}}
+
+
+### -----------------------------------------------------------------------------
+### 3) CSRF token lekerese (GET + X-CSRF-Token: Fetch)
+###    A valasz headerebol a token es a cookie a kesobbi POST-hoz kell.
+###    Hivatkozas: {{csrf.response.headers.x-csrf-token}}
+### -----------------------------------------------------------------------------
+# @name csrf
+GET {{baseUrl}}/?sap-client={{client}}
+Authorization: Basic {{user}}:{{pass}}
+X-CSRF-Token: Fetch
+
+
+### -----------------------------------------------------------------------------
+### 4) EntitySet olvasas (GET) — lapozas, szures, rendezes
+### -----------------------------------------------------------------------------
+GET {{baseUrl}}/AccountSet?sap-client={{client}}&$top=5&$format=json
+Authorization: Basic {{user}}:{{pass}}
+Accept: application/json
+
+
+### -----------------------------------------------------------------------------
+### 5) Egy entitas kulccsal (GET) — a kulcs formatuma a $metadata-bol
+### -----------------------------------------------------------------------------
+GET {{baseUrl}}/AccountSet('0000000001')?sap-client={{client}}&$format=json
+Authorization: Basic {{user}}:{{pass}}
+Accept: application/json
+
+
+### -----------------------------------------------------------------------------
+### 6) Szures + navigacio (GET)
+### -----------------------------------------------------------------------------
+GET {{baseUrl}}/AccountSet?sap-client={{client}}&$filter=Bukrs eq '1000'&$orderby=Name asc&$top=10&$format=json
+Authorization: Basic {{user}}:{{pass}}
+Accept: application/json
+
+
+### -----------------------------------------------------------------------------
+### 7) Letrehozas (POST) — CSRF token + cookie a 3) blokkbol
+###    FONTOS: eloszor a "csrf" blokkot kuldd el, csak utana ezt.
+### -----------------------------------------------------------------------------
+POST {{baseUrl}}/AccountSet?sap-client={{client}}
+Authorization: Basic {{user}}:{{pass}}
+X-CSRF-Token: {{csrf.response.headers.x-csrf-token}}
+Cookie: {{csrf.response.headers.set-cookie}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Bukrs": "1000",
+  "Name": "Teszt Ugyfel"
+}
+
+
+### -----------------------------------------------------------------------------
+### 8) Modositas (MERGE) — OData V2-ben MERGE a reszleges update
+### -----------------------------------------------------------------------------
+MERGE {{baseUrl}}/AccountSet('0000000001')?sap-client={{client}}
+Authorization: Basic {{user}}:{{pass}}
+X-CSRF-Token: {{csrf.response.headers.x-csrf-token}}
+Cookie: {{csrf.response.headers.set-cookie}}
+Content-Type: application/json
+
+{
+  "Name": "Modositott nev"
+}
+
+
+### -----------------------------------------------------------------------------
+### 9) Function import (GET vagy POST — a $metadata m:HttpMethod-ja donti el)
+### -----------------------------------------------------------------------------
+GET {{baseUrl}}/GetStatus?sap-client={{client}}&Partner='0000000001'&$format=json
+Authorization: Basic {{user}}:{{pass}}
+Accept: application/json

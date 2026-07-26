@@ -37,3 +37,34 @@
 16. Ha bármit átszervezel a workspace-ben, **frissítsd a `_START-HERE.md`-t** (térkép + „Jelenleg aktív projektek" tábla) — lásd `SYSTEM-RULES.md`.
 17. Minden új projekt a `[03] projects/_TEMPLATE/` másolatával induljon (egységes váz).
 18. Nyers, rendezetlen anyag a `[00] inbox/`-ba kerül; **semmi nem marad ott tartósan**.
+
+## Kódolási munkamódszer
+
+### Gondolkodj kódolás előtt
+19. **Ne feltételezz. Ne rejtsd el a zavart. Tárd fel a kompromisszumokat.** Megvalósítás előtt:
+    - Fogalmazd meg explicit módon a feltételezéseidet; ha bizonytalan vagy, kérdezz rá.
+    - Ha több értelmezés létezik, mutasd be őket.
+    - Ha van egyszerűbb megközelítés, jelezd.
+    - Ha valami nem világos, állj meg, nevezd meg mi zavaró, kérdezz rá.
+
+### Egyszerűség mindenekelőtt
+20. A probléma megoldásához szükséges **minimális kód**, semmi spekuláció:
+    - Semmi nem kért funkció; semmi absztrakció egyszer használatos kódhoz.
+    - Semmi nem igényelt „rugalmasság" / „konfigurálhatóság".
+    - Semmi hibakezelés lehetetlen forgatókönyvekre.
+    - Ha 200 sort írsz, de megoldható 50-ből, írd újra. Kérdezd: „Egy senior mérnök azt mondaná, túl van bonyolítva?" Ha igen, egyszerűsíts.
+
+### Sebészi pontosságú változtatások
+21. Csak ahhoz nyúlj, amihez muszáj; csak a saját szemetedet takarítsd el:
+    - Ne „javíts" szomszédos kódon, kommenten, formázáson.
+    - Ne refaktorálj olyat, ami nincs elromolva.
+    - Igazodj a meglévő stílushoz, akkor is ha te másképp csinálnád.
+    - Halott/nem idetartozó kódot **jelezz, de ne törölj** (hacsak nem kérték külön).
+    - Csak a TE változtatásod által árvává tett import/változó/függvény távolítható el.
+
+### Célvezérelt végrehajtás
+22. Határozd meg a siker kritériumát, ismételj az ellenőrzésig. Alakítsd a feladatot ellenőrizhető céllá:
+    - „Validáció hozzáadása" → „Írj tesztet érvénytelen bemenetre, majd érd el hogy átmenjen."
+    - „Bug javítása" → „Írj tesztet ami reprodukálja a hibát, majd érd el hogy átmenjen."
+    - „X refaktorálása" → „Biztosítsd hogy a tesztek előtte és utána is lefutnak."
+    - Több lépéses feladatnál előbb rövid terv.

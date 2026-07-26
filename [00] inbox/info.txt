@@ -1,0 +1,6 @@
+
+Én választom prefix alapján. Neked csak mondani kell melyik rendszer kell:
+"olvasd be CRM-ből a ZCL_... class-t" → CRM prefix
+"ECC-ben nézd meg a tábla tartalmát" → ECC prefix
+
+
