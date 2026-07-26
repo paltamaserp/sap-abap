@@ -13,35 +13,38 @@ Két konvenció, projektfüggő:
 
 1. **Beágyazott (SAP natív, ajánlott)** — a teszt-osztály a tesztelt osztály
    *Local Test Classes* include-jában (`CLASS ..._TEST DEFINITION FOR TESTING`).
-   Egy objektum, egy transzport. Export: a DAO `.abap` végén jelenik meg.
+   Egy objektum, egy transzport. Export: a tesztelt osztály `.abap` végén
+   jelenik meg.
 
 2. **Külön export-fájl** — ha a teszt láthatóságát külön akarod verziózni:
-   `ZCL_EPT_<xxx>_DAO_TEST.abap` a DAO mellett.
+   `ZCL_<PREFIX>_<OBJEKTUM>_TEST.abap` a tesztelt osztály mellett.
 
-### Minta beágyazott teszt (Test Double-lel)
+A `<PREFIX>` a projekt saját prefixe — lásd `00_BRIEF.md`, Kulcs-konvenciók.
+
+### Minta beágyazott teszt
 
 ```abap
-CLASS ltc_account_dao DEFINITION FOR TESTING
+CLASS ltc_<objektum> DEFINITION FOR TESTING
   DURATION SHORT RISK LEVEL HARMLESS.
   PRIVATE SECTION.
-    DATA mo_cut TYPE REF TO zcl_ept_account_dao.  " code under test
+    DATA mo_cut TYPE REF TO zcl_<prefix>_<objektum>.  " code under test
     METHODS setup.
-    METHODS get_account_returns_data FOR TESTING.
+    METHODS <mit_vizsgal> FOR TESTING.
 ENDCLASS.
 
-CLASS ltc_account_dao IMPLEMENTATION.
+CLASS ltc_<objektum> IMPLEMENTATION.
   METHOD setup.
     mo_cut = NEW #( ).
   ENDMETHOD.
-  METHOD get_account_returns_data.
+  METHOD <mit_vizsgal>.
     " GIVEN / WHEN / THEN
     cl_abap_unit_assert=>assert_not_initial( act = ... msg = '...' ).
   ENDMETHOD.
 ENDCLASS.
 ```
 
-- DB/hívás izoláláshoz **Test Seam** vagy interfész-mock (a DAO már interfész mögött van:
-  `ZCL_IF_DAO`).
+- DB/hívás izoláláshoz **Test Seam** vagy interfész-mock. Ha a tesztelt osztály
+  interfész mögött van, a mock azon keresztül adható be (konstruktor-injektálás).
 - `DURATION SHORT`, `RISK LEVEL HARMLESS` alapból; DB-t érintő tesztnél emeld.
 - ATC (statikus ellenőrzés) az oneERP guideline szerint kötelező quality gate a
   kiajánlás előtt — az AUnit mellé, nem helyette.

@@ -1,9 +1,13 @@
 /**
- * MINTA spec — masold at IC_00x_<szerviz>.spec.ts nevre es szabd a szervizedre.
+ * MINTA spec — masold at <feladatkod>_<szerviz>.spec.ts nevre es szabd a
+ * szervizedre. Ezt a fajlt ne szerkeszd.
  *
- * Konvencio: egy .spec.ts egy szerviz vagy egy IC_xxx feladat.
+ * Konvencio: egy .spec.ts egy szerviz vagy egy <feladatkod> feladat.
  * Futtatas:  npm run test:list   (nincs halozat, csak listaz)
  *            npm test            (eles hivas a .env-ben megadott rendszerre)
+ *
+ * A lenti konstansok PLACEHOLDER-ek — masolas utan toltsd ki oket a szerviz
+ * $metadata-ja alapjan. Kitoltes nelkul a tesztek listazodnak, de elszallnak.
  */
 import { test, expect, APIRequestContext } from '@playwright/test';
 import {
@@ -15,8 +19,18 @@ import {
   writeHeaders,
 } from '../utils/sap';
 
-// A tesztelt entitas — csereld a sajatodra.
-const ENTITY_SET = 'AccountSet';
+/** A tesztelt EntitySet neve a $metadata-bol, pl. 'BusinessPartnerSet'. */
+const ENTITY_SET = '<EntitySet>';
+
+/** Egy szuresre alkalmas mezo es a vart erteke. */
+const FILTER_FIELD = '<Mezo>';
+const FILTER_VALUE = '<ertek>';
+
+/** Letrehozashoz kuldott minta-rekord (a kotelezo mezokkel). */
+const NEW_RECORD: Record<string, string> = {
+  '<Mezo1>': '<ertek1>',
+  '<Mezo2>': '<ertek2>',
+};
 
 let ctx: APIRequestContext;
 
@@ -28,7 +42,7 @@ test.afterAll(async () => {
   await ctx.dispose();
 });
 
-test.describe('IC_000 — szerviz alapellenorzes', () => {
+test.describe('Szerviz alapellenorzes', () => {
   test('a service document elerheto (auth + szerviz-nev jo)', async () => {
     const res = await ctx.get(withClient(''));
     expect(res.status(), 'service document nem 200').toBe(200);
@@ -44,7 +58,7 @@ test.describe('IC_000 — szerviz alapellenorzes', () => {
   });
 });
 
-test.describe('IC_000 — olvaso hivasok', () => {
+test.describe('Olvaso hivasok', () => {
   test('EntitySet lekerdezes visszaad sorokat', async () => {
     const res = await ctx.get(withClient(`${ENTITY_SET}?$top=5`));
     expect(res.status()).toBe(200);
@@ -55,13 +69,14 @@ test.describe('IC_000 — olvaso hivasok', () => {
   });
 
   test('$filter szukiti az eredmenyt', async () => {
-    // A filter-mezot a $metadata alapjan csereld.
-    const res = await ctx.get(withClient(`${ENTITY_SET}?$filter=Bukrs eq '1000'&$top=10`));
+    const res = await ctx.get(
+      withClient(`${ENTITY_SET}?$filter=${FILTER_FIELD} eq '${FILTER_VALUE}'&$top=10`),
+    );
     expect(res.status()).toBe(200);
 
-    const rows = odataResults<{ Bukrs?: string }>(await res.json());
+    const rows = odataResults<Record<string, unknown>>(await res.json());
     for (const row of rows) {
-      expect(row.Bukrs).toBe('1000');
+      expect(row[FILTER_FIELD]).toBe(FILTER_VALUE);
     }
   });
 
@@ -75,24 +90,25 @@ test.describe('IC_000 — olvaso hivasok', () => {
  * Iro tesztek: alapbol kihagyva, mert adatot modositanak a rendszerben.
  * Engedelyezd (skip -> describe), ha van dedikalt teszt-mandant es teszt-adat.
  */
-test.describe.skip('IC_000 — iro hivasok (CSRF)', () => {
+test.describe.skip('Iro hivasok (CSRF)', () => {
   test('POST letrehoz egy entitast', async () => {
     const csrf = await fetchCsrf(ctx);
 
     const res = await ctx.post(withClient(ENTITY_SET), {
       headers: writeHeaders(csrf),
-      data: { Bukrs: '1000', Name: 'Playwright teszt' },
+      data: NEW_RECORD,
     });
 
     expect(res.status(), await res.text()).toBe(201);
-    const [created] = odataResults<{ Name?: string }>(await res.json());
-    expect(created.Name).toBe('Playwright teszt');
+    const [created] = odataResults<Record<string, unknown>>(await res.json());
+    const [firstField] = Object.keys(NEW_RECORD);
+    expect(created[firstField]).toBe(NEW_RECORD[firstField]);
   });
 
   test('CSRF token nelkul a POST 403-at ad', async () => {
     const res = await ctx.post(withClient(ENTITY_SET), {
       headers: { 'Content-Type': 'application/json' },
-      data: { Bukrs: '1000', Name: 'Nincs token' },
+      data: NEW_RECORD,
     });
     expect(res.status()).toBe(403);
   });

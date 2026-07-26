@@ -27,7 +27,7 @@
       "windows": {
         "options": {
           "env": {
-            "PATH": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64;${env:PATH}"
+            "PATH": "${env:SAP_NODE_PATH};${env:PATH}"
           }
         }
       },
@@ -44,7 +44,7 @@
       "windows": {
         "options": {
           "env": {
-            "PATH": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64;${env:PATH}"
+            "PATH": "${env:SAP_NODE_PATH};${env:PATH}"
           }
         }
       },
@@ -61,7 +61,7 @@
       "windows": {
         "options": {
           "env": {
-            "PATH": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64;${env:PATH}"
+            "PATH": "${env:SAP_NODE_PATH};${env:PATH}"
           }
         }
       },
@@ -79,7 +79,7 @@
       "windows": {
         "options": {
           "env": {
-            "PATH": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64;${env:PATH}"
+            "PATH": "${env:SAP_NODE_PATH};${env:PATH}"
           }
         }
       },
@@ -96,7 +96,7 @@
       "windows": {
         "options": {
           "env": {
-            "PATH": "C:\\Users\\T13214\\AppData\\Local\\node-v22.23.1-win-x64;${env:PATH}"
+            "PATH": "${env:SAP_NODE_PATH};${env:PATH}"
           }
         }
       },

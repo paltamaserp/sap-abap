@@ -46,7 +46,7 @@ Két eszköz, minden projekt `04_ASSETS/` mappájában (a `_TEMPLATE`-ből örö
 
 ### REST Client — kézi, verziózott hívások
 
-`humao.rest-client` VSCode extension. Minta: `04_ASSETS/rest-client/IC_000_minta.http`
+`humao.rest-client` VSCode extension. Minta: `04_ASSETS/rest-client/_TEMPLATE.http`
 
 9 blokk: service document, `$metadata`, CSRF fetch, GET (set / kulcsos / `$filter`),
 POST, MERGE, function import.
@@ -54,13 +54,17 @@ POST, MERGE, function import.
 Titok: a repo gyökerében lévő `.env`-ből, `{{$dotenv SAP_URL}}` hivatkozással.
 A `.env` gitignore-olt, csak a `.env.example` verziózódik.
 
+Az auth egy közös `@auth` változóban (`Basic {{user}} {{pass}}`, **szóközzel** —
+a `user:pass` forma változó-behelyettesítés után nem megbízható). Az író
+blokkokba **nem írunk `Cookie:` sort**: a REST Client közös cookie jar-t tart.
+
 ### Playwright — automatizált API-tesztek
 
 `request` API, nem böngésző. CI-be tehető. Mappa: `04_ASSETS/playwright/`
 
 ```
 playwright.config.ts   → baseURL a .env-ből, TLS, reporter
-tests/*.spec.ts        → egy .spec.ts szerviz / IC_xxx feladatonként
+tests/_TEMPLATE.spec.ts → minta; egy .spec.ts szerviz / feladatonként
 utils/sap.ts           → auth, sap-client, CSRF, OData V2 unwrap
 ```
 
@@ -74,8 +78,13 @@ npm test                  # éles hívás
 npm run typecheck         # tsc --noEmit
 ```
 
+> **Két `.env` van, szándékosan:** a Playwright a saját
+> `04_ASSETS/playwright/.env`-jét olvassa (projektenként más rendszer/mandant),
+> a REST Client a repo gyökerében lévőt (ad-hoc kézi hívás).
+
 VSCode-ból: **Terminal → Run Task…** — a task rákérdez a projekt mappanevére.
-Cross-platform (macOS/Linux `npm`, Windowson portable Node 22 a PATH-ra).
+macOS/Linux alatt a rendszer `npm`-je fut. Windowson portable Node-hoz állítsd be
+a **`SAP_NODE_PATH`** környezeti változót; ha nincs, a rendszer `npm`-je fut.
 
 Élő böngészőhöz külön: `mcp__plugin_playwright_playwright__*` MCP tool-ok.
 

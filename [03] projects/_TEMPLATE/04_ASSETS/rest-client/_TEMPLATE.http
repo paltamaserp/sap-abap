@@ -1,10 +1,16 @@
 ### =============================================================================
-### MINTA .http — masold at IC_00x_<szerviz>.http nevre es szabd a szervizedre.
+### MINTA .http — masold at <feladatkod>_<szerviz>.http nevre es szabd a
+### szervizedre. Ezt a fajlt ne szerkeszd.
+###
+### A <> jelolt ertekek PLACEHOLDER-ek: masolas utan mind ki kell tolteni,
+### addig a keresek nem futnak le. Ez szandekos.
 ###
 ### Elofeltetel:
 ###   1. VSCode extension: humao.rest-client
 ###   2. A repo gyokereben legyen kitoltott .env  (lasd .env.example)
 ###      A titkokat a {{$dotenv ...}} olvassa — SOHA ne ird be ide.
+###      FIGYELEM: a Playwright SAJAT .env-et hasznal
+###      (04_ASSETS/playwright/.env) — a ketto szandekosan kulon.
 ###
 ### Hasznalat: minden "###" blokk folott megjelenik a "Send Request" link.
 ### =============================================================================
@@ -14,96 +20,116 @@
 @user     = {{$dotenv SAP_USERNAME}}
 @pass     = {{$dotenv SAP_PASSWORD}}
 
-# A szerviz neve — ezt csereld a sajatodra (pl. ZEPT_PT_ACCOUNT_SRV).
-@srv      = ZEPT_..._SRV
+# Basic auth egy helyen — ne duplikaljuk 9 blokkban.
+# A REST Client a "Basic <user> <pass>" (szokozzel elvalasztott) alakot varja;
+# a "user:pass" forma valtozo-behelyettesites utan nem megbizhato.
+@auth     = Basic {{user}} {{pass}}
+
+# A szerviz neve — a projekt sajat prefixevel (lasd 00_BRIEF.md).
+@srv      = Z<PREFIX>_<SZERVIZ>_SRV
 @baseUrl  = {{host}}sap/opu/odata/sap/{{srv}}
+
+# A tesztelt EntitySet es egy kulcs-ertek — a $metadata (2. blokk) alapjan toltsd ki.
+@entity   = <EntitySet>
+@key      = <kulcs-ertek>
 
 
 ### -----------------------------------------------------------------------------
 ### 1) Service document — el-e a szerviz, jo-e az auth?
+###    Ez fut le a placeholderek kitoltese elott is (csak @srv kell hozza).
 ### -----------------------------------------------------------------------------
 # @name serviceDoc
 GET {{baseUrl}}/?sap-client={{client}}&$format=json
-Authorization: Basic {{user}}:{{pass}}
+Authorization: {{auth}}
 Accept: application/json
 
 
 ### -----------------------------------------------------------------------------
 ### 2) $metadata — entitasok, property-k, tipusok ellenorzese
+###    INNEN toltsd ki a fenti @entity / @key erteket es a lenti mezoneveket.
 ### -----------------------------------------------------------------------------
 GET {{baseUrl}}/$metadata?sap-client={{client}}
-Authorization: Basic {{user}}:{{pass}}
+Authorization: {{auth}}
 
 
 ### -----------------------------------------------------------------------------
 ### 3) CSRF token lekerese (GET + X-CSRF-Token: Fetch)
-###    A valasz headerebol a token es a cookie a kesobbi POST-hoz kell.
-###    Hivatkozas: {{csrf.response.headers.x-csrf-token}}
+###    A valasz headerebol a token kell az iro hivasokhoz:
+###      {{csrf.response.headers.x-csrf-token}}
+###
+###    A session cookie-t a REST Client MAGA tartja (kozos cookie jar), ezert
+###    az iro blokkokban nincs "Cookie:" sor. Ha a jar ki van kapcsolva
+###    (rest-client.rememberCookiesForSubsequentRequests = false), a valasz
+###    Set-Cookie fejlecebol csak a "nev=ertek" reszt masold be kezzel —
+###    az attributumok (Path, HttpOnly, Secure) NEM valok a Cookie headerbe.
+###    Programozott valtozat: ../playwright/utils/sap.ts -> fetchCsrf()
 ### -----------------------------------------------------------------------------
 # @name csrf
 GET {{baseUrl}}/?sap-client={{client}}
-Authorization: Basic {{user}}:{{pass}}
+Authorization: {{auth}}
 X-CSRF-Token: Fetch
 
 
 ### -----------------------------------------------------------------------------
-### 4) EntitySet olvasas (GET) — lapozas, szures, rendezes
+### 4) EntitySet olvasas (GET) — lapozas
 ### -----------------------------------------------------------------------------
-GET {{baseUrl}}/AccountSet?sap-client={{client}}&$top=5&$format=json
-Authorization: Basic {{user}}:{{pass}}
+GET {{baseUrl}}/{{entity}}?sap-client={{client}}&$top=5&$format=json
+Authorization: {{auth}}
 Accept: application/json
 
 
 ### -----------------------------------------------------------------------------
 ### 5) Egy entitas kulccsal (GET) — a kulcs formatuma a $metadata-bol
+###    Tobb kulcsmezonel: {{entity}}(Mezo1='a',Mezo2='b')
 ### -----------------------------------------------------------------------------
-GET {{baseUrl}}/AccountSet('0000000001')?sap-client={{client}}&$format=json
-Authorization: Basic {{user}}:{{pass}}
+GET {{baseUrl}}/{{entity}}('{{key}}')?sap-client={{client}}&$format=json
+Authorization: {{auth}}
 Accept: application/json
 
 
 ### -----------------------------------------------------------------------------
-### 6) Szures + navigacio (GET)
+### 6) Szures + rendezes (GET) — a mezoneveket a $metadata-bol csereld
 ### -----------------------------------------------------------------------------
-GET {{baseUrl}}/AccountSet?sap-client={{client}}&$filter=Bukrs eq '1000'&$orderby=Name asc&$top=10&$format=json
-Authorization: Basic {{user}}:{{pass}}
+GET {{baseUrl}}/{{entity}}?sap-client={{client}}&$filter=<Mezo> eq '<ertek>'&$orderby=<Mezo> asc&$top=10&$format=json
+Authorization: {{auth}}
 Accept: application/json
 
 
 ### -----------------------------------------------------------------------------
-### 7) Letrehozas (POST) — CSRF token + cookie a 3) blokkbol
+### 7) Letrehozas (POST) — CSRF token a 3) blokkbol
 ###    FONTOS: eloszor a "csrf" blokkot kuldd el, csak utana ezt.
+###    A session cookie-t a REST Client automatikusan viszi (lasd 3. blokk).
+###    FIGYELEM: ez ADATOT MODOSIT — csak teszt-mandanton futtasd.
 ### -----------------------------------------------------------------------------
-POST {{baseUrl}}/AccountSet?sap-client={{client}}
-Authorization: Basic {{user}}:{{pass}}
+POST {{baseUrl}}/{{entity}}?sap-client={{client}}
+Authorization: {{auth}}
 X-CSRF-Token: {{csrf.response.headers.x-csrf-token}}
-Cookie: {{csrf.response.headers.set-cookie}}
 Content-Type: application/json
 Accept: application/json
 
 {
-  "Bukrs": "1000",
-  "Name": "Teszt Ugyfel"
+  "<Mezo1>": "<ertek1>",
+  "<Mezo2>": "<ertek2>"
 }
 
 
 ### -----------------------------------------------------------------------------
 ### 8) Modositas (MERGE) — OData V2-ben MERGE a reszleges update
+###    FIGYELEM: ez ADATOT MODOSIT — csak teszt-mandanton futtasd.
 ### -----------------------------------------------------------------------------
-MERGE {{baseUrl}}/AccountSet('0000000001')?sap-client={{client}}
-Authorization: Basic {{user}}:{{pass}}
+MERGE {{baseUrl}}/{{entity}}('{{key}}')?sap-client={{client}}
+Authorization: {{auth}}
 X-CSRF-Token: {{csrf.response.headers.x-csrf-token}}
-Cookie: {{csrf.response.headers.set-cookie}}
 Content-Type: application/json
 
 {
-  "Name": "Modositott nev"
+  "<Mezo>": "<uj-ertek>"
 }
 
 
 ### -----------------------------------------------------------------------------
 ### 9) Function import (GET vagy POST — a $metadata m:HttpMethod-ja donti el)
 ### -----------------------------------------------------------------------------
-GET {{baseUrl}}/GetStatus?sap-client={{client}}&Partner='0000000001'&$format=json
-Authorization: Basic {{user}}:{{pass}}
+GET {{baseUrl}}/<FunctionImport>?sap-client={{client}}&<Parameter>='<ertek>'&$format=json
+Authorization: {{auth}}
 Accept: application/json

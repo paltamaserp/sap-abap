@@ -12,6 +12,15 @@
 - **Következő lépés:** <…>
 - **Nyitott kérdés:** <…>
 - **Érintett objektumok:** <…>
+- **Rendszer:** ECC / CRM
+
+### Teszt / Review
+
+A `/abap-code-review` kapu utolsó futásai (a skill ide írja az eredményt):
+
+- **Utolsó ATC:** <ÉÉÉÉ-HH-NN> — <objektum> — <eredmény>
+- **Utolsó ABAP Unit:** <ÉÉÉÉ-HH-NN> — <objektum> — <eredmény>
+- **Utolsó OData teszt:** <ÉÉÉÉ-HH-NN> — <szerviz> — <eredmény>
 
 ---
 

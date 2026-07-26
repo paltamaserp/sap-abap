@@ -38,14 +38,20 @@ Az ABAP objektumokat az **ABAP ADT MCP** (`fr0ster/mcp-abap-adt`) szerveren kere
 Egy projekt belső váza:
 ```
 [03] projects/<projekt>/
+├── README.md       → hogyan indíts új projektet (checklist)
 ├── 00_BRIEF.md     → cél · miért · „kész” kritérium  (ezt olvasd elsőként)
 ├── 01_SOURCES/     → bemenetek: dump-ok, ADT export, jegyzetek
 ├── 02_NOTES/       → munkajegyzetek
 ├── 03_DRAFTS/      → WIP verziók, iterációk
-├── 04_ASSETS/      → diagramok, képek, mellékletek
+├── 04_ASSETS/      → mellékletek + teszt-eszközök
+│   ├── abap/         → WIP .abap export
+│   ├── playwright/   → automatizált OData API-tesztek
+│   └── rest-client/  → kézi .http hívások
 ├── 05_FINAL/       → kész eredmény, mielőtt outputs-ba kerül
 └── _LOG.md         → döntésnapló — EZT olvasd, hogy folytatni tudd a munkát
 ```
+
+Teszt- és review-eszközök: `[01] system/TESTING-TOOLS.md`.
 
 ---
 
