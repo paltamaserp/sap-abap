@@ -39,7 +39,9 @@ test.beforeAll(async () => {
 });
 
 test.afterAll(async () => {
-  await ctx.dispose();
+  // Optional chaining: ha a beforeAll elszallt (pl. hianyos .env), a ctx
+  // undefined — e nelkul egy masodik hiba elfedne az igazi okot.
+  await ctx?.dispose();
 });
 
 test.describe('Szerviz alapellenorzes', () => {

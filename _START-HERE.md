@@ -1,4 +1,4 @@
-# _START-HERE.md — a workspace bejárata
+# \_START-HERE.md — a workspace bejárata
 
 > Ezt olvasd el **ELŐSZÖR**, minden session elején. Itt a térkép és az olvasási sorrend.
 > Ha bármit átszervezel a workspace-ben, **ezt a fájlt is frissítsd.**
@@ -36,6 +36,7 @@ Az ABAP objektumokat az **ABAP ADT MCP** (`fr0ster/mcp-abap-adt`) szerveren kere
 ```
 
 Egy projekt belső váza:
+
 ```
 [03] projects/<projekt>/
 ├── README.md       → hogyan indíts új projektet (checklist)
@@ -70,11 +71,10 @@ Adj kevesebb okot a találgatásra. Ennyi az egész.
 
 ## Jelenleg aktív projektek
 
-| Projekt | Státusz | ClickUp |
-|---|---|---|
-| `crm-uk-history-szurok` (CS_013) | WIP | CS_013 |
-| `agent-inbox-szurok` (CS_014) | REVIEW | CS_014 |
-| `funkcio-interface-export` (ZISU_PT_FUNC_INT_DOWN) | FINAL | — |
-| `portal-odata-ic-szervizek` (IKT / IC_xxx) | WIP | — |
+## Státuszok: REVIEW, WIP, FINAL,
+
+| Projekt        | Státusz | ClickUp |
+| -------------- | ------- | ------- |
+| `_TEMPLATE` () | WIP     |         |
 
 > Tartsd ezt a táblát naprakészen — ez a leggyorsabb áttekintés rólad és Claude-nak is.
