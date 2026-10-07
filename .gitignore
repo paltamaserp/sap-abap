@@ -7,3 +7,6 @@
 
 # macOS junk
 .DS_Store
+
+# Claude Code — gépfüggő, személyes beállítás
+.claude/settings.local.json

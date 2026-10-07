@@ -1,0 +1,19 @@
+{
+  "name": "sap-odata-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SAP Gateway / OData API tesztek Playwright request API-val",
+  "scripts": {
+    "test": "playwright test",
+    "test:list": "playwright test --list",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@types/node": "^22.10.0",
+    "dotenv": "^16.4.7",
+    "typescript": "^5.9.3"
+  }
+}
