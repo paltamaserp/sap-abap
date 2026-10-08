@@ -1,0 +1,22 @@
+A Stock ID nem létezik!
+A stock lezárt, csak megjelenítés lehetséges
+Nincs kijelölt sor
+Mentés sikeres
+Mentés sikertelen
+A DC már engedélyezve van
+DC engedélyezés sikeres
+DC engedélyezés sikertelen
+Engedélyezett sorok száma: &1
+Kizárt sorok száma: &1
+A DC még nincs engedélyezve
+Engedélyezés visszavétele sikeres
+Engedélyezés visszavétele sikertelen
+&1 kizárva: &2 &3
+&1 kizárása visszavonva
+DC zárolás kód &1 nem létezik.
+DC zárolási szöveghez DC zárolási kódot is meg kell adni!
+DC kész, a stock nem módosítható
+A &1 stockhoz nincs adat
+A szelekció kibővült az azonos borítékba kerülő nyomtatványokkal.
+Ha megadott összeget, akkor adjon meg pénznemet is.
+A kizárt rekordok száma: &1.

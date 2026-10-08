@@ -1,0 +1,75 @@
+057	Ha megadott összeget, akkor adjon meg pénznemet is.
+058	Ha megadott EUR összeget, akkor adjon meg EUR pénznemet is.
+059	A kizárt rekordok száma: &1.
+060	QM zárolás kód &1 nem létezik.
+061	Ha QM zárolás szöveget ad meg, akkor adjon meg QM zárolás kódot is!
+062	Engedélyezett nyomtatási sorok száma: & db.
+063	Túl nagy rekordszám! Kérem szűkítse a szelekciót!
+064	Hiba történt a fájl letöltése során.
+065	A fájl letöltése sikeresen befejeződött.
+100	----DUNNING nyomtatási hibák
+101	Nincs bizonylatszám (OPDUN) a &1 COKEY-nál. Nem nyomtatható!
+102	Nem lett űrlap formátum meghatáorzva &1-bizszám, &2/&3.
+103	Felszólítási bizonylat sztornózva lett! &1.
+104	MAZE DIFF - DUNNING->CONSTRUCTOR Bizonylat - &1
+105	NO MAZE - DUNNING->CONSTRUCTOR Bizonylat - &1
+106	NO FKKEPOS - DUNNING->CONSTRUCTOR Bizonylat - &1
+107	PU5 rendszerben nem releváns! Bizonylat - &1
+110	Nem érkezett PDF az Inspire-től! (&/&)
+117	Emailes kiküldésnél nincs email cím megadva az üzleti partnerben. &1
+118	A & számkör & intervalluma megtelt.
+119	A & számkör & intervalluma hibás !
+120	Érvénytelen nyomtatás! Válasszon INSPIRE alapú nyomtatót!
+200	Felhasználó megszakította!
+300	A program nem aktualizál, csak elemzés módban fut!
+301	A &1 spool id behozásra került.
+302	Nem sikerült a &1 spool id-t behozni.
+303	Bináris Xstring-be konvertálás megtörtént.
+304	Bináris Xstringbe konvertálás nem sikerült!
+305	XML adatok olvashatóvá váltása megtörtént.
+306	XML adatok olvashatóvá váltása nem sikerült!
+307	Utolsó EXBILLDOCNO száma: &1.
+308	Nincs EXBILLDOCNO a fájlban. Inkonzisztencia!
+309	Bináris Text formátumba konvertálása megtörtént.
+310	Bináris Text formátumba konvertálása nem sikerült!
+311	Belső hiba - STRING_REVERSEFM-ben!
+312	Az XML utolsó tagje </EONFORMS>.
+313	Az XML utolsó tagje </EONDOC>.
+314	Teljes állomány elkészült. A dump utána jöhetett létre.
+315	A szálban a spoolba mentés lezárult, de nem történt állomány lezárása!
+316	A spool töltése során merült fel a dump.
+317	Számlabizonylatról van szó!
+318	Az utolsó bizonylat &1 nem aktualizálódott az ERDK-ban!
+319	Az utolsó bizonylat &1 nem aktualizálódott az EITERDK-ban!
+320	Az utolsó bizonylat &1 nem aktualizálódott a ZRP_SLOG táblában!
+321	Az utolsó bizonylat &1 nem aktualizálódott a ZEBFT_PR_DCQM táblában!
+322	&1
+323	Nem aktualizálódott a file az ZEVFT_PR_MSSFILE táblában!
+324	Az utolsó bizonylat &1 aktualizálódott a ZRP_SLOG táblában!
+325	Az utolsó bizonylat &1 aktualizálódott a ZEBFT_PR_DCQM táblában!
+326	Levelezéskonténerről van szó!
+327	DFKKCOH táblabejegyzés megtalálva! COKEY - &1.
+328	DFKKCOH táblabejegyzés nincs meg! COKEY - &1.
+329	DFKKCOH nyomtatás dátuma nem aktualizálódott.
+330	Aktualizálás elindul!
+331	ERDK aktualizálás megtörtént. Számla &1. Dátum: &2.
+332	EITERDK-t töröltük. Számla: &1.
+333	DFKKCOH aktualizálás megtörtént. COKEY: &1. Dátum: &2.
+334	ZPR_SLOG tábla törlésre került. Dokumentum: &1.
+335	ZEBFT_PR_DCQM tábla törlésre került. Dokumentum: &1.
+336	Spool utolsó bizonylata törlésre került.
+337	</EONFORMS> tag hozzáadásra került.
+338	ZEBFT_PR_MSSFILE mentésre került.
+339	Utolsó bizonylat aktualizálódott az ERDK-ban. Számla &1. Nyomt Dát: &2.
+340	EITERDK tábla törlésre került. Számla &1
+341	DFKKCOH-ba a nyomtatás dátuma beírásra került. COKEY: &1. Nyomt Dát: &2.
+342	XML-ből törlésre került a &1 exbilldocno-hoz tartozó Eondoc.
+343	Utolsó egy borítékba (&1) tartozó exbilldocnok &2.
+344	Nincs akutalizálandó!
+345	ZEBFT_PR_MSSFILE-ba írt filenév: &1!
+346	A ZEBFT_PR_MSSFILE táblában van bejegyzés.
+347	ZEBFT_PR_MSSFILE táblában nincs bejegyzés.
+348	ZEBFT_PR_MSSFILE már van bejegyzés. A spoolt már feldolgoztuk!
+349	Belső hiba a "SCMS_STRING_TO_XSTRING" funkciós modulban.
+350	ZEBFT_PD_MSSFILE tábla zárolva!
+355	ZPR_SLOG2 tábla törlésre került. Dokumentum: &1.

@@ -1,0 +1,45 @@
+000	& & & &
+001	A/Az & dokumentumtípus beállítása hiányzik
+002	A metadatok struktúra nem lehet üres
+003	Az Inspire nem adta vissza a PDF állományt.
+004	Dokumentum attribútumainak AB írása nem sikerült (&1)
+005	XML AB írása nem sikerült (&1)
+006	A/Az &1 rendszer &2 mandantjában nincs beállítva a logikai port
+007	Hiba történt a PDF megjelenítés közben (& bizonylat)
+008	A/Az & bizonylat nyomtatása során hiba történt
+009	A/Az & nyomtatási paraméter nincs karbantartva
+010	A/Az & vállalathoz tartsa karban a nyomdai kódot
+011	A/Az &1 csekktípushoz és &2 űrlaphoz nem határozható meg receptúra
+012	Hiba történt a dokumentumazonosító előállításakor &1 biz., &2 szfsz.
+013	A/Az &1/&2 eljáráshoz és szinthez nincs dokumentumtípus beállítva
+014	A/Az & nyomtató Inspire felé történő nyomtatáson nem megfelelő
+015	A/Az & nyomtató tömeges nyomtatáshoz nem megfelelő
+016	Hiba történt a & fogyasztási hely cím meghatározása közben
+017	A/Az &1 biz. esetén a &2 biz. fajtához nincs számlamegnevezés beállítva
+018	A/Az & mértékegység konverziója hiányzik a beállításokból
+019	A/Az &1 vállalat nem létezik a rendszerben
+020	A/Az &1 vállalathoz tartozó &2 címszám nem létezik
+021	A/Az &1 vállalathoz nincs beállítva cégjegyzékszám
+022	A/Az &1 vállalathoz és &2 diszpócsoporthoz nincs beállítva bankszámlaszám
+023	A/Az &1 vállalathoz és &2 bankulcshoz tartozó beállítások hiányosak
+024	Levelezési cím hiányzik: &1 ért. szervezet, &2 ért. iroda.
+025	levelezési konténer üres
+026	A/Az @ bizonylat nem létezik
+027	A levelezési konténerben nincs töltve a bizonylatszám
+028	A/Az & levelezésfajta beállítása hiányos
+029	Stock tábla írása sikertelen (stock: &1)
+030	Hiba történt Inspire híváskor
+031	Stock &1 átadása sikeresen megtörtént Inspire felé
+032	A/Az &1 bizonylat (&2) &3 csomagba került
+033	NAV-osz &1 elsz.bizonylathoz számla nem található!
+034	A/Az & bizonylat nem létezik
+035	A/Az & bizonylat nyomtatásakor hiba lépett föl
+036	Nem adott meg szelekciós feltételt
+037	A &1 számkör &2 intervalluma megtelt.
+038	A &1 számkör &2 intervalluma hibás!
+039	A/Az &1 beállító táblából hiányzik a &2 érték
+040	Boriték azonosító tábla írása nem sikerült
+041	Arvhív linket tartalmazó tábla (zprt_arch_link) írása nem sikerült
+042	Emailes kiküldésnél nincs email cím megadva az szfsz-en. &1
+043	A/AZ &1 bizonylat már nyomtatva lett (&2). Kérem, használja az archívot
+044	Státusz váltás nem megengedett &1-ről &2-re

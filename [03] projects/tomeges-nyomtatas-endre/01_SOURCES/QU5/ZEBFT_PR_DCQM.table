@@ -1,0 +1,50 @@
+ZEBFT_PR_DCQM
+DC/QM funkciók alaptáblája
+----------------------------
+MANDT	MANDT	CLNT	3	0	Mandant
+EXBILLDOCNO	ZEBFD_PR_EXBILLDOCNO	CHAR	20	0	Nyomtatási egyedi azonosító - nyomtatáshoz
+ENVELOPE	ZEBFD_PR_ENVELOP	CHAR	20	0	Boritékolási csoportosító kód - nyomtatáshoz
+VKONT	VKONT_KK	CHAR	12	0	Szerződéses folyószámla száma
+PYMET	PYMET_KK	CHAR	1	0	Fizetési mód
+ERDAT	ERDAT	DATS	8	0	Rekord létrehozásának dátuma
+ERTIM	UZEIT	TIMS	6	0	Napszak
+ERNAM	ERNAM	CHAR	12	0	Az objektumot létrehozó ügyintéző neve
+POST_CODE1	AD_PSTCD1	CHAR	10	0	Helység irányítószáma
+BUKRS	BUKRS	CHAR	4	0	Vállalat
+DOC_TYPE	ZBCD_DOCTY	CHAR	4	0	Dokumentumfajta
+DOC_CAT	ZEBFD_PR_DOCCAT	CHAR	1	0	Dokumentum kategória
+OPBEL	E_PRINTDOC	CHAR	12	0	Számlázási bizonylat nyomtatási bizonylata
+AMNT	BETRW_KK	CURR	13	2	Összeg a tranzakció pénznemében előjellel
+WAERS	BLWAE_KK	CUKY	5	0	Tranzakciós pénznem
+AMNT_EUR	ZEBFD_PR_AMNT_EUR	CURR	13	2	Összeg EUR-ban
+WAERS_EUR	WAERS	CUKY	5	0	Pénznemkulcs
+DESTINATION	ZEBFD_PR_DESTINATION	CHAR	2	0	Nyomtatás célja - nyomtatáshoz
+COPRI	COPRI_KK	DATS	8	0	Kiviteli dátum
+GPART	BU_PARTNER	CHAR	10	0	Üzletipartner-szám
+DUEDATE	FAEDN_KK	DATS	8	0	Nettó esedékességi dátum
+BANKACCOUNTNUM	GTBANKA	CHAR	80	0	Bank Account
+GIRO	ZECAD_GIRO	CHAR	13	0	GIRO kód
+NAME1	AD_NAME1	CHAR	40	0	1. név
+SYSID	SYSYSID	CHAR	8	0	Az SAP-rendszer neve
+LAND1	LAND1	CHAR	3	0	Országkulcs
+AB	ABZEITSCH	DATS	8	0	Dátum, amikortól érvényes egy időszelet
+BIS	BISZEITSCH	DATS	8	0	Időszelet érvényességének záró dátuma
+TARIFTYP	TARIFTYP	CHAR	10	0	Tarifatípus
+AKLASSE	AKLASSE	CHAR	4	0	Elszámolási osztály
+SPARTE	SPARTE	CHAR	2	0	Termékcsoport
+ZBIZCAT	/SAPCE/IU_BBHUBIZCAT	CHAR	4	0	IS-U HU bizonylatfajta
+MAHNS	MAHNS_KK	NUMC	2	0	Felszólítási szint
+MAHNV	MAHNV_KK	CHAR	2	0	Felszólítási eljárás
+FORM	ZEBFD_PR_FORMNAME	CHAR	30	0	FORM név INSPIRE számára
+COTYP	COTYP_KK	CHAR	4	0	Levelezésfajta
+FILENAME	ZEBFD_PR_FILENAME	CHAR	100	0	Nyomtatási filenév
+ENVKEY	ZEBFD_PR_KEY	CHAR	100	0	Egyedi boritékot meghatározó kulcs
+CHEQNUMBR	ZEBFD_PR_CHEQNUMBR	CHAR	7	0	Csekksorszám CDV nélkül
+BLOCK_DC	ZEBFD_PR_BLOCK_DC	CHAR	2	0	Kizárási DC ok
+BLOCK_QM	ZEBFD_PR_BLOCK_QM	CHAR	2	0	Kizárási QM ok
+COKEY	COKEY_KK	CHAR	36	0	Levelezéskulcs
+REGMAILNUMBER	ZEBFD_PR_REGMAILNUMBER	CHAR	16	0	Ragszám
+TCOC	ZEBFB_PR_TCOC	CHAR	5	0	TC/OC kód
+MCODE	ZEBFB_PR_MCODE	CHAR	5	0	Gyártókód
+OPBUK_PR	ZEBFD_PR_OPBUKPR	CHAR	3	0	Válllatkód nyomdának
+COUNTER	ZEBFD_PR_COUNTER	INT4	10	0	Számláló

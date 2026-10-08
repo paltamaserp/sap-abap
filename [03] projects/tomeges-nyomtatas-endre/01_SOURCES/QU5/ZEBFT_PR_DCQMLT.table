@@ -1,0 +1,7 @@
+ZEBFT_PR_DCQMLT
+DC/QM funkciók alaptáblája - hosszú szöveg
+-------------------------------
+MANDT	MANDT	CLNT	3	0	Mandant
+EXBILLDOCNO	ZEBFD_PR_EXBILLDOCNO	CHAR	20	0	Nyomtatási egyedi azonosító - nyomtatáshoz
+BLOCK_DC_TEXT	ZEBFD_PR_BLOCK_DC_TEXT	CHAR	255	0	Kizárási DC ok hosszú szöveg
+BLOCK_QM_TEXT	ZEBFD_PR_BLOCK_QM_TEXT	CHAR	255	0	Kizárási QM ok hosszú szöveg

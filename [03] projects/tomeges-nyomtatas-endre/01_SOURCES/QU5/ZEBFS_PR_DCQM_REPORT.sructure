@@ -1,0 +1,48 @@
+ZEBFS_PR_DCQM_REPORT
+DC/QM funkciók ALV struktúra
+----------------------------
+EXBILLDOCNO	1 Típus	ZEBFD_PR_EXBILLDOCNO	CHAR	20	0	Nyomtatási egyedi azonosító - nyomtatáshoz
+BLOCK_DC	1 Típus	ZEBFD_PR_BLOCK_DC	CHAR	2	0	Kizárási DC ok
+BLOCK_DC_TEXT	1 Típus	ZEBFD_PR_BLOCK_DC_TEXT	CHAR	255	0	Kizárási DC ok hosszú szöveg
+BLOCK_QM	1 Típus	ZEBFD_PR_BLOCK_QM	CHAR	2	0	Kizárási QM ok
+BLOCK_QM_TEXT	1 Típus	ZEBFD_PR_BLOCK_QM_TEXT	CHAR	255	0	Kizárási QM ok hosszú szöveg
+ENVELOPE	1 Típus	ZEBFD_PR_ENVELOP	CHAR	20	0	Boritékolási csoportosító kód - nyomtatáshoz
+VKONT	1 Típus	VKONT_KK	CHAR	12	0	Szerződéses folyószámla száma
+PYMET	1 Típus	PYMET_KK	CHAR	1	0	Fizetési mód
+ERDAT	1 Típus	ERDAT	DATS	8	0	Rekord létrehozásának dátuma
+ERTIM	1 Típus	UZEIT	TIMS	6	0	Napszak
+ERNAM	1 Típus	ERNAM	CHAR	12	0	Az objektumot létrehozó ügyintéző neve
+POST_CODE1	1 Típus	AD_PSTCD1	CHAR	10	0	Helység irányítószáma
+BUKRS	1 Típus	BUKRS	CHAR	4	0	Vállalat
+DOC_TYPE	1 Típus	ZBCD_DOCTY	CHAR	4	0	Dokumentumfajta
+OPBEL	1 Típus	E_PRINTDOC	CHAR	12	0	Számlázási bizonylat nyomtatási bizonylata
+AMNT	1 Típus	BETRW_KK	CURR	13	2	Összeg a tranzakció pénznemében előjellel
+WAERS	1 Típus	BLWAE_KK	CUKY	5	0	Tranzakciós pénznem
+AMNT_EUR	1 Típus	ZEBFD_PR_AMNT_EUR	CURR	13	2	Összeg EUR-ban
+WAERS_EUR	1 Típus	WAERS	CUKY	5	0	Pénznemkulcs
+DESTINATION	1 Típus	ZEBFD_PR_DESTINATION	CHAR	2	0	Nyomtatás célja - nyomtatáshoz
+COPRI	1 Típus	COPRI_KK	DATS	8	0	Kiviteli dátum
+GPART	1 Típus	BU_PARTNER	CHAR	10	0	Üzletipartner-szám
+DUEDATE	1 Típus	FAEDN_KK	DATS	8	0	Nettó esedékességi dátum
+BANKACCOUNTNUM	1 Típus	GTBANKA	CHAR	80	0	Bank Account
+GIRO	1 Típus	ZECAD_GIRO	CHAR	13	0	GIRO kód
+NAME1	1 Típus	NAME1	CHAR	30	0	Név
+SYSID	1 Típus	SYSYSID	CHAR	8	0	Az SAP-rendszer neve
+LAND1	1 Típus	LAND1	CHAR	3	0	Országkulcs
+STATUS	1 Típus	CHAR1	CHAR	1	0	Egykarakteres kód
+ERROR_CODE	1 Típus	CHAR1	CHAR	1	0	Egykarakteres kód
+AB	1 Típus	ABZEITSCH	DATS	8	0	Dátum, amikortól érvényes egy időszelet
+BIS	1 Típus	BISZEITSCH	DATS	8	0	Időszelet érvényességének záró dátuma
+TARIFTYP	1 Típus	TARIFTYP	CHAR	10	0	Tarifatípus
+AKLASSE	1 Típus	AKLASSE	CHAR	4	0	Elszámolási osztály
+SPARTE	1 Típus	SPARTE	CHAR	2	0	Termékcsoport
+MAHNS	1 Típus	MAHNS_KK	NUMC	2	0	Felszólítási szint
+MAHNV	1 Típus	MAHNV_KK	CHAR	2	0	Felszólítási eljárás
+ZBIZCAT	1 Típus	/SAPCE/IU_BBHUBIZCAT	CHAR	4	0	IS-U HU bizonylatfajta
+COTYP	1 Típus	COTYP_KK	CHAR	4	0	Levelezésfajta
+FILENAME	1 Típus	ZEBFD_PR_FILENAME	CHAR	100	0	Nyomtatási filenév
+FORM	1 Típus	ZEBFD_PR_FORMNAME	CHAR	30	0	FORM név INSPIRE számára
+REGMAILNUMBER	1 Típus	ZEBFD_PR_REGMAILNUMBER	CHAR	16	0	Ragszám
+COUNTER	1 Típus	ZEBFD_PR_COUNTER	INT4	10	0	Számláló
+CHANGED	1 Típus	FLAG	CHAR	1	0	Általános flag
+HANDLE_STYLE	1 Típus	LVC_T_STYL		0	0	ALV-Control: cellák stílustáblája

@@ -1,0 +1,47 @@
+ZPRT_DCQM
+Dokumentumok tömeges nyomtatás
+----------------------------
+MANDT	MANDT	CLNT	3	0	0	Mandant
+DOC_NO	ZPRD_DOC_NO	CHAR	20	0	0	Dokumentum azonosító
+ENVELOPE	ZPRD_ENVELOPE_ID	CHAR	9	0	0	Boríték azonosító
+PYMET	PYMET_KK	CHAR	1	0	0	Fizetési mód
+DOC_CAT	ZPRD_DOC_CAT	CHAR	1	0	0	Dokumentum kategória
+AMNT	BETRW_KK	CURR	13	2	0	Összeg a tranzakció pénznemében előjellel
+WAERS	BLWAE_KK	CUKY	5	0	0	Tranzakciós pénznem
+DUEDATE	FAEDN_KK	DATS	8	0	0	Nettó esedékességi dátum
+BANKACCOUNTNUM	ZPRD_BANKNUM	CHAR	35	0	0	Bankszámlaszám
+GIRO	ZECAD_GIRO	CHAR	13	0	0	Szolgáltatókód - Bank
+NAME1	AD_NAME1	CHAR	40	0	0	1. név
+SYSID	SYSYSID	CHAR	8	0	0	Az SAP-rendszer neve
+LAND1	LAND1	CHAR	3	0	0	Ország-/régiókulcs
+AB	ABZEITSCH	DATS	8	0	0	Dátum, amikortól érvényes egy időszelet
+BIS	BISZEITSCH	DATS	8	0	0	Időszelet érvényességének záró dátuma
+TARIFTYP	TARIFTYP	CHAR	10	0	0	Tarifatípus
+AKLASSE	AKLASSE	CHAR	4	0	0	Elszámolási osztály
+ZBIZCAT	/SAPCE/IU_BBHUBIZCAT	CHAR	4	0	0	IS-U HU bizonylatfajta
+MAHNS	MAHNS_KK	NUMC	2	0	0	Felszólítási szint
+MAHNV	MAHNV_KK	CHAR	2	0	0	Felszólítási eljárás
+FORM	ZPRD_INSPIRE_FORMNAME	CHAR	30	0	0	FORM név INSPIRE számára
+COTYP	COTYP_KK	CHAR	4	0	0	Levelezésfajta
+PACKAGE_ID	ZPRD_PACKAGE_ID	NUMC	10	0	0	Nyomtatási csomag azonosító (spool)
+CHEQNUMBR	ZPRD_PR_CHEQNUMBR	CHAR	7	0	0	Csekksorszám CDV nélkül
+BLOCK_DC	ZPRD_PR_BLOCK_DC	CHAR	2	0	0	Kizárási DC ok
+BLOCK_QM	ZPRD_PR_BLOCK_QM	CHAR	2	0	0	Kizárási QM ok
+COKEY	COKEY_KK	CHAR	36	0	0	Levelezéskulcs
+REGMAILNUMBER	ZPRD_REGMAILNUMBER	CHAR	16	0	0	Ragszám
+OPBUK_PR	ZPRD_PR_OPBUKPR	CHAR	3	0	0	Válllatkód nyomdának
+AKTYP	AKTYP_KK	CHAR	4	0	0	Tömeges tevékenység fajtája
+LAUFD	LAUFD_KK	DATS	8	0	0	Dátumazonosító
+LAUFI	LAUFI_KK	CHAR	6	0	0	Futásazonosító
+PRD_STOCK_ID	ZPRD_STOCK_ID	NUMC	10	0	0	Stock azonosító
+PRDSPOOL	ZEDMD_PRDSPOOL	CHAR	12	0	0	QUEUE + Stock azonosító
+PRDFILE	ZEDMD_PRDFILE	CHAR	4	0	0	PRD File
+COUNTER	ZPRD_PR_COUNTER	INT4	10	0	0	Számláló
+.INCLUDE	ZPRS_CREATE_DATA	STRU	0	0	0	Rekord létrehozás
+CRUSER	CRUSER	CHAR	12	0	0	Létrehozó
+CRDATE	CRDATE	DATS	8	0	0	A létrehozás dátuma
+CRTIME	CREATETIME	TIMS	6	0	0	Létrehozás időpontja
+.INCLUDE	ZPRS_UPDATE_DATA	STRU	0	0	0	Adatok módosítása
+CHUSER	CHUSER	CHAR	12	0	0	Módosító
+CHDATE	CHDATE	DATS	8	0	0	Módosítás dátuma
+CHTIME	UPTIM	TIMS	6	0	0	Utolsó módosítás időpontja

@@ -1,0 +1,23 @@
+ZEBFT_PR_MSSFILE
+Tömeges nyomtatás fájljai
+----------------------------------
+MANDT	MANDT	CLNT	3	0	Mandant
+FILENAME	ZEBFD_PR_FILENAME	CHAR	100	0	Nyomtatási filenév
+ERDAT	ERDAT	DATS	8	0	Rekord létrehozásának dátuma
+ERTIM	ERZEIT	TIMS	6	0	Rekord létrehozásának időpontja
+ERNAM	ERNAM	CHAR	12	0	Az objektumot létrehozó ügyintéző neve
+STOCK_ID	ZEBFD_PR_STOCK_ID	CHAR	10	0	Stock ID
+TRIGGER_DATE	ZEBFD_PR_TRIGGER_DATE	DATS	8	0	Trigger dátum
+TRIGGER_TIME	ZEBFD_PR_TRIGGER_TIME	TIMS	6	0	Trigger Idő
+TRIGGER_UNAME	ZEBFD_PR_TRIGGER_UNAME	CHAR	12	0	Trigger létrehozó felhasználó
+AKTYP	AKTYP_KK	CHAR	4	0	Tömeges tevékenység fajtája
+LAUFD	LAUFD_KK	DATS	8	0	Dátumazonosító
+LAUFI	LAUFI_KK	CHAR	6	0	Kiegészítő azonosítójellemző
+DOC_TYPE	ZBCD_DOCTY	CHAR	4	0	Dokumentumfajta
+COTYP	COTYP_KK	CHAR	4	0	Levelezésfajta
+SPOOL_ID	RSPOID	INT4	10	0	Spool: spool-kérelemszám
+TCODE	TCODE	CHAR	20	0	Tranzakciókód
+SEND_STATUS	ZEBFD_PR_SPOOL_STATUS	CHAR	1	0	Inspire : Spool elküldésének státusza
+SEND_DATE	DATUM	DATS	8	0	Dátum
+SEND_TIME	UZEIT	TIMS	6	0	Napszak
+SEND_XML	ZEBF_PR_SPOOL_RAWSTRING	RAWSTRING	0	0	Inspire: Spool XML rawstring

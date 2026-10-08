@@ -1,0 +1,122 @@
+diff --git a/ZPR_DCQM_EXCLUDE.abap b/ZPR_DCQM_EXCLUDE.abap
+index 95f3283..61c412d 100644
+--- a/ZPR_DCQM_EXCLUDE.abap
++++ b/ZPR_DCQM_EXCLUDE.abap
+@@ -129,29 +129,28 @@ ENDCLASS.                    "lcl_layout_f4 IMPLEMENTATION
+ * Konstansok
+ *---------------------------------------------------------------*
+ * Üzenetek (ZPR)
+-* ⚠️ TODO: a számok még a QU5 ZEBF_PR számai! A ZPR-ben felvett új
+-* számokra cserélendők.
+-* Amíg ez nincs kész, a program rossz szövegeket jelenít meg.
+-* ⚠️ A GENERIC (000) feltételezés: ZPR 000 = '&1 &2 &3 &4' (a régi
+-* DHC-kód így használta) - SE91-ben ellenőrizendő.
++* DC üzenetek: ZPR 045-066; az általános üzenet ZPR 000.
++* A DC üzeneteket a riport használata előtt SE91-ben fel kell venni.
++* Az üzenetszámok a 2026.10.08-i DHC-export alapján szabadok.
++* Általános üzenet: ZPR 000 = '& & & &' (négy helyettesítő).
+ CONSTANTS:
+   gc_msgid TYPE symsgid VALUE 'ZPR',
+   BEGIN OF gc_msgno,
+-    generic         TYPE symsgno VALUE '000', "&1 &2 &3 &4
+-    stock_not_found TYPE symsgno VALUE '020', "A Stock ID nem létezik!
+-    stock_closed    TYPE symsgno VALUE '021', "A stock lezárt, csak megjelenítés lehetséges
+-    no_row_selected TYPE symsgno VALUE '023', "Nincs kijelölt sor
+-    save_ok         TYPE symsgno VALUE '024', "Mentés sikeres
+-    save_failed     TYPE symsgno VALUE '025', "Mentés sikertelen
+-    row_excluded    TYPE symsgno VALUE '044', "&1 kizárva: &2 &3
+-    row_released    TYPE symsgno VALUE '045', "&1 kizárása visszavonva
+-    dc_code_unknown TYPE symsgno VALUE '046', "DC zárolás kód &1 nem létezik.
+-    dc_text_no_code TYPE symsgno VALUE '047', "Ha DC zárolás szöveget ad meg, akkor adjon meg DC zárolás kódot is!
+-    dc_completed    TYPE symsgno VALUE '048', "DC kész, a stock nem módosítható
+-    no_data         TYPE symsgno VALUE '054', "A &1 stockhoz nincs adat
+-    sel_extended    TYPE symsgno VALUE '056', "A szelekció ki lett bővítve (egy borítékba kerülő nyomtatványok megjelennek)
+-    amount_no_curr  TYPE symsgno VALUE '057', "Ha megadott összeget, akkor adjon meg pénznemet is.
+-    excluded_count  TYPE symsgno VALUE '059', "A kizárt rekordok száma: &1.
++    generic         TYPE symsgno VALUE '000', "& & & &
++    stock_not_found TYPE symsgno VALUE '045', "A Stock ID nem létezik!
++    stock_closed    TYPE symsgno VALUE '046', "A stock lezárt, csak megjelenítés lehetséges
++    no_row_selected TYPE symsgno VALUE '047', "Nincs kijelölt sor
++    save_ok         TYPE symsgno VALUE '048', "Mentés sikeres
++    save_failed     TYPE symsgno VALUE '049', "Mentés sikertelen
++    row_excluded    TYPE symsgno VALUE '058', "&1 kizárva: &2 &3
++    row_released    TYPE symsgno VALUE '059', "&1 kizárása visszavonva
++    dc_code_unknown TYPE symsgno VALUE '060', "DC zárolás kód &1 nem létezik.
++    dc_text_no_code TYPE symsgno VALUE '061', "DC zárolási szöveghez DC zárolási kódot is meg kell adni!
++    dc_completed    TYPE symsgno VALUE '062', "DC kész, a stock nem módosítható
++    no_data         TYPE symsgno VALUE '063', "A &1 stockhoz nincs adat
++    sel_extended    TYPE symsgno VALUE '064', "A szelekció kibővült az azonos borítékba kerülő nyomtatványokkal.
++    amount_no_curr  TYPE symsgno VALUE '065', "Ha megadott összeget, akkor adjon meg pénznemet is.
++    excluded_count  TYPE symsgno VALUE '066', "A kizárt rekordok száma: &1.
+   END OF gc_msgno.
+ 
+ * Alkalmazásnapló
+@@ -564,7 +563,7 @@ FORM select_data .
+ 
+   IF lv_plus_lines GT 0.
+     MESSAGE ID gc_msgid TYPE 'I' NUMBER gc_msgno-sel_extended.
+-*   A szelekció ki lett bővítve (egy borítékba kerülő nyomtatványok megjelennek)
++*   A szelekció kibővült az azonos borítékba kerülő nyomtatványokkal.
+   ENDIF.
+ 
+ ENDFORM.                    " SELECT_DATA
+@@ -1546,7 +1545,7 @@ FORM check_entered_data CHANGING cv_ok TYPE abap_bool.
+       cv_ok = abap_false.
+       MESSAGE ID gc_msgid TYPE 'S' NUMBER gc_msgno-dc_text_no_code
+               DISPLAY LIKE 'E'.
+-*     Ha DC zárolás szöveget ad meg, akkor adjon meg DC zárolás kódot is!
++*     DC zárolási szöveghez DC zárolási kódot is meg kell adni!
+       RETURN.
+     ENDIF.
+   ENDLOOP.
+@@ -1589,7 +1588,7 @@ FORM check_entered_data_popup TABLES pt_fields STRUCTURE sval
+     ps_error-msgid = gc_msgid.
+     ps_error-msgty = 'E'.
+     ps_error-msgno = gc_msgno-dc_text_no_code.
+-*   Ha DC zárolás szöveget ad meg, akkor adjon meg DC zárolás kódot is!
++*   DC zárolási szöveghez DC zárolási kódot is meg kell adni!
+   ENDIF.
+ 
+ ENDFORM.                    " CHECK_ENTERED_DATA_POPUP
+diff --git a/ZPR_DC_FRAME.abap b/ZPR_DC_FRAME.abap
+index 97c6860..5d01f0b 100644
+--- a/ZPR_DC_FRAME.abap
++++ b/ZPR_DC_FRAME.abap
+@@ -32,23 +32,23 @@ REPORT zpr_dc_frame MESSAGE-ID zpr.
+ * Konstansok
+ *---------------------------------------------------------------*
+ * Üzenetek (ZPR)
+-* ⚠️ TODO: a számok még a QU5 ZEBF_PR számai! A ZPR-ben felvett új
+-* számokra cserélendők (ugyanaz a leképezés, mint ZPR_DCQM_EXCLUDE-ban).
++* DC üzenetek: ZPR 045-066; az általános üzenet ZPR 000.
++* A DC üzeneteket a riport használata előtt SE91-ben fel kell venni.
+ CONSTANTS:
+   gc_msgid TYPE symsgid VALUE 'ZPR',
+   BEGIN OF gc_msgno,
+-    generic          TYPE symsgno VALUE '000', "&1 &2 &3 &4
+-    stock_not_found  TYPE symsgno VALUE '020', "A Stock ID nem létezik!
+-    stock_closed     TYPE symsgno VALUE '021', "A stock lezárt, csak megjelenítés lehetséges
+-    dc_already_done  TYPE symsgno VALUE '026', "A DC már engedélyezve van
+-    release_ok       TYPE symsgno VALUE '027', "DC engedélyezés sikeres
+-    release_failed   TYPE symsgno VALUE '028', "DC engedélyezés sikertelen
+-    count_released   TYPE symsgno VALUE '029', "Engedélyezett sorok száma: &1
+-    count_excluded   TYPE symsgno VALUE '030', "Kizárt sorok száma: &1
+-    dc_not_done      TYPE symsgno VALUE '031', "A DC még nincs engedélyezve
+-    revoke_ok        TYPE symsgno VALUE '032', "Engedélyezés visszavétele sikeres
+-    revoke_failed    TYPE symsgno VALUE '033', "Engedélyezés visszavétele sikertelen
+-    dc_completed     TYPE symsgno VALUE '048', "DC kész, a stock nem módosítható
++    generic          TYPE symsgno VALUE '000', "& & & &
++    stock_not_found  TYPE symsgno VALUE '045', "A Stock ID nem létezik!
++    stock_closed     TYPE symsgno VALUE '046', "A stock lezárt, csak megjelenítés lehetséges
++    dc_already_done  TYPE symsgno VALUE '050', "A DC már engedélyezve van
++    release_ok       TYPE symsgno VALUE '051', "DC engedélyezés sikeres
++    release_failed   TYPE symsgno VALUE '052', "DC engedélyezés sikertelen
++    count_released   TYPE symsgno VALUE '053', "Engedélyezett sorok száma: &1
++    count_excluded   TYPE symsgno VALUE '054', "Kizárt sorok száma: &1
++    dc_not_done      TYPE symsgno VALUE '055', "A DC még nincs engedélyezve
++    revoke_ok        TYPE symsgno VALUE '056', "Engedélyezés visszavétele sikeres
++    revoke_failed    TYPE symsgno VALUE '057', "Engedélyezés visszavétele sikertelen
++    dc_completed     TYPE symsgno VALUE '062', "DC kész, a stock nem módosítható
+   END OF gc_msgno.
+ 
+ * Alkalmazásnapló

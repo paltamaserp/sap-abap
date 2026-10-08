@@ -1,0 +1,6 @@
+ZEBFC_PR_DCCOD
+DC kizárás kódjai
+-------------------------------
+MANDT	MANDT	CLNT	3	0	Mandant
+BLOCK_DC	ZEBFD_PR_BLOCK_DC	CHAR	2	0	Kizárási DC ok
+DESCR40	TEXT40	CHAR	40	0	40 karakteres szöveg

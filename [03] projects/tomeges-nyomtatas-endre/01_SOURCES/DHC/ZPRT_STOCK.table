@@ -1,0 +1,26 @@
+ZPRT_STOCK
+Nyomtatás stock
+------------------------
+MANDT	MANDT	CLNT	3	0	0	Mandant
+STOCK_ID	ZPRD_STOCK_ID	NUMC	10	0	0	Stock azonosító
+.INCLUDE	ZPRS_CREATE_DATA	STRU	0	0	0	Rekord létrehozás
+CRUSER	CRUSER	CHAR	12	0	0	Létrehozó
+CRDATE	CRDATE	DATS	8	0	0	A létrehozás dátuma
+CRTIME	CREATETIME	TIMS	6	0	0	Létrehozás időpontja
+.INCLUDE	ZPRS_UPDATE_DATA	STRU	0	0	0	Adatok módosítása
+CHUSER	CHUSER	CHAR	12	0	0	Módosító
+CHDATE	CHDATE	DATS	8	0	0	Módosítás dátuma
+CHTIME	UPTIM	TIMS	6	0	0	Utolsó módosítás időpontja
+STATUS	ZPRD_STOCK_STATUS	CHAR	2	0	0	Stock státusz
+ERDAT	ERDAT	DATS	8	0	0	Rekord létrehozásának dátuma
+ERNAM	ERNAM	CHAR	12	0	0	Az objektumot létrehozó ügyintéző neve
+ERTIM	ERZEIT	TIMS	6	0	0	A rekord hozzáadásának időpontja
+CLOSED	ZPRD_CLOSED	CHAR	1	0	0	Stock ID lezárva
+ERDAT_CLO	ZPRD_ERDAT_CLO	DATS	8	0	0	Stock ID engedélyezésenek dátuma
+ERNAM_CLO	ZPRD_ERNAM_CLO	CHAR	12	0	0	Stock ID engedélyező User ID
+ERTIM_CLO	ZPRD_ERZEIT_CLO	TIMS	6	0	0	Stock ID engedélyezésenek ideje
+PRIORITY	ZPRD_PRIORITY	NUMC	2	0	0	Stock prioritás
+DCCOMPL	ZPRD_DCCOMPL	CHAR	1	0	0	DC kész
+QMCOMPL	ZPRD_QMCOMPL	CHAR	1	0	0	QM kész
+NOTEST	ZPRD_NOTEST	CHAR	1	0	0	Tesztben nem teszt
+STOCK_STATUS_ER	ZPRD_STOCK_STATUS_ER	CHAR	1	0	0	Stock Státusz hiba
