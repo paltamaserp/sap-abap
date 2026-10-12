@@ -4,7 +4,6 @@ REPORT zpr_dc_frame MESSAGE-ID zpr.
 *& Report ZPR_DC_FRAME
 *---------------------------------------------------------------*
 * Rövid leírás: Data Control(DC): Műveletek - keretprogram
-*               (QU5 ZEBF_PR_DC_FRAME átvétele)
 * Projekt:      CSHANA 2026
 * Fejlesztő:    <USER>
 *
