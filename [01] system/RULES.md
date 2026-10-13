@@ -19,6 +19,12 @@
 7. **Konzervatív, SAP-kompatibilis** ABAP-mintákat használj, hacsak nem kérek újabb szintaxist vagy konkrét release-célt.
 8. SAP-ból tükrözött objektumnevek (`ZCL_…`, `ZXWEB_…`, `ZEPTS_…`, `ZIFC_…`) **nem nevezhetők át** — egyezniük kell az ADT-objektummal.
 
+### SAP-kapcsolati hiba utáni leállás
+
+A felhasználó kifejezett utasítása (2026-10-13): az SAP ADT-kapcsolat első sikertelen elérése után **ne használd tovább az érintett kapcsolatot**, csak jelezd, hogy nem érhető el. HTTP 401, más hitelesítési/kapcsolati hiba vagy elérési timeout után nincs automatikus újrapróbálás, más SAP-eszközre váltás vagy közvetett kerülőút. A leállás a későbbi körökre és munkamenetekre is érvényes.
+
+Új elérési kísérlet csak a felhasználó kifejezett újrapróbálási kérésére történhet, egy alkalommal; sikertelenség esetén ismét le kell állni. Helyi exportból folytatható az engedélyezett munka, az aktív SAP-állapot ellenőrizetlenségének jelzésével. Az automatikus jóváhagyási ellenőrzés elutasítása nem friss SAP-válasz; ezt külön, pontosan kell jelezni.
+
 ## Biztonság
 
 9. **Soha** ne tárolj SAP jelszót, tokent vagy más titkot markdown-ban vagy repository-forrásban.

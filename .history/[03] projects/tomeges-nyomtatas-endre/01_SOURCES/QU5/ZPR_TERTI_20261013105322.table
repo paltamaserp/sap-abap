@@ -1,0 +1,14 @@
+MANDT	MANDT	CLNT	3	0	Mandant
+ZISU_RAGSZAM_128	ZEDMD_RAGSZAM_128	CHAR	16	0	Tértivevények és bizonylatok
+ENVELOPE_ID	Z_ENVID	CHAR	9	0	Boríték azonosító
+EXBILLDOCNO	EXBILLDOCNO	CHAR	20	0	Külső bizonylatszám
+EXTNU	ZEDMD_EXTNU	CHAR	2	0	Külső ismétlésszámláló
+OPBEL	OPBEL_KK	CHAR	12	0	Bizonylat száma FI-CA-ban
+DOC_TYPE		CHAR	4	0	Dokumentum típusa
+ZISU_RAG_DATUM	ZISU_RAG_DATUM	DATS	8	0	Tértivevény Felvétel kelte
+ZISU_RAG_STATUS		CHAR	1	0	Tértivevény státusza
+ZISU_VISSZ_DATUM	ZISU_VISSZA_DATUM	DATS	8	0	Posta által visszaküldött dátum..
+BETOLT_DATUM	ZEDMD_BETOLT_DATUM	DATS	8	0	Betöltés dátum
+VISSZAERK_DATUM	ZEDMD_VISERK_DATUM	DATS	8	0	Visszaérkezett tértivevény betöltésének dátuma
+ZISU_F064_FELT		CHAR	1	0	A ZISU_F064 tábla feltöltve
+IV_ZSORT_RFC_ID	ZEMDD_RFC_ID	CHAR	9	0	Csomag azonosító

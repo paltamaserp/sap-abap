@@ -11,6 +11,12 @@ DDL) — verziózáshoz, diffeléshez.
   az ABAP Unit konvencióról).
 - Diff a SAP-beli előző verzióhoz: `Get*VersionDiff` MCP tool.
 
+## Stocklezárási riport
+
+A `ZPR_STOCK_REPORT` teljes helyi WIP forrása a két include-dal és a 0100 flow logicjával itt található. A felhasználó által választott állapotmodell: `STATUS = QM` → `STATUS = CL`, `CLOSED = X`; ragszámkezelés: `ZPR_TERTI` és `ZISU_F064`.
+
+[Bemásolási útmutató és függőségek](2026-10-13_stock-report-dhc-bemasolas_WIP.md). Helyi szerkezeti/mezőellenőrzés történt, SAP-fordítás és teszt nem; az SAP-kapcsolatot nem használtuk.
+
 ## A DC riport DDIC-előfeltételei
 
 A `ZPR_DCQM_EXCLUDE` a megvalósítási terv L1–L7 objektumait igényli.
