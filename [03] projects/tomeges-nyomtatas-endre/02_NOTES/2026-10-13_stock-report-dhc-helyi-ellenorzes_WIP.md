@@ -20,7 +20,8 @@ A teljes DHC-riport és a két include, valamint a 0100 flow logic helyi forrás
 |---|---|
 | Logikai port / proxy létrehozása hibás | A `SEND_PRIORITY` hibás eredménnyel tér vissza, nincs `SAVE_RELEASE`; a hívás-elindult jelző még üres |
 | Külső válasz `SUCCESS` nem X | Hibás eredmény, nincs ragszámtörlés vagy stocklezárás |
-| Külső hívás közben kivétel | Hibás eredmény és bizonytalanállapot-jelző; újraküldés tiltása |
+| Külső application fault | Külön `CX_AI_APPLICATION_FAULT` ág: hibás eredmény, hívás- és külsősiker-jelző törlése, naplózás és visszatérés; nincs helyi lezárás/ragszámtörlés vagy új tartós tiltás |
+| Külső hívás közben más kivétel | Hibás eredmény és bizonytalanállapot-jelző; újraküldés tiltása |
 | Külső siker | Kizárólag itt lesz `GV_REMOTE_SUCCESS = X` és sikeres az eredmény |
 | Helyi ragszám-/stockmentés hibás | Rollback, bizonytalanállapot-jelző; a stock nincs sikeresnek jelölve |
 | Helyi mentés sikeres | Közös commit után lesz `GV_SAVED = X`; a naplóhiba külön eredmény |
@@ -28,6 +29,8 @@ A teljes DHC-riport és a két include, valamint a 0100 flow logic helyi forrás
 | A megjelenített adatok változtak | Az adott kísérlet leáll a külső hívás előtt; friss lista jelenik meg |
 
 A táblázat forrásvizsgálat eredménye; egyik ág sem futott SAP-ban.
+
+A 2026-10-13-i application fault módosítás célzott helyi ellenőrzése: a külön CATCH ág a `CX_ROOT` elé került, a hívásjelzők a naplózás előtt törlődnek, és a RETURN megakadályozza a sikerág elérését. A forrás összevetése alapján kizárólag ez az ág került a riportba; a korábbi üresboríték-módosítás és a többi hibakezelés megmaradt. SAP-szintaxisellenőrzés és futó teszt nem történt.
 
 ## Az ellenőrzés korlátai
 

@@ -11,6 +11,12 @@ DDL) — verziózáshoz, diffeléshez.
   az ABAP Unit konvencióról).
 - Diff a SAP-beli előző verzióhoz: `Get*VersionDiff` MCP tool.
 
+## Messenger e-mailstátusz-lekérdezés
+
+A `ZPR_MESSAGEQUEUE_QUERY` a QU5 `ZBC_PRN_MESSAGEQUEUE_QUERY` alapján készült helyi WIP DHC-változat. A meglévő `ZPR_SLOG_EMAIL` transzparens táblát és a felhasználó által létrehozott `ZPRB_SLOG_EMAIL` táblatípust használja. A zárolási hívások `EZPR_SLOG_EMAIL`-re épülnek, CHAR 14 időmezőkezeléssel és CHAR255 hibaüzenettel. Proxyillesztő, ALV-include, 0100 flow logic, opcionális e-mailküldő regisztrációs include és kilenc ABAP Unit-teszt tartozik hozzá. A korábbi új táblaspecifikáció kivezetve.
+
+[Bemásolási és integrációs útmutató](2026-10-13_messagequeue-dhc-bemasolas_WIP.md). A valódi Inspire WSDL-ből generált proxy/típusok és a logikai port előfeltételek; a tervezett proxynevek az illesztőben egyeztetendők. SAP-fordítás és teszt nem történt, az aktív DHC-állapot nincs ellenőrizve.
+
 ## Stocklezárási riport
 
 A `ZPR_STOCK_REPORT` teljes helyi WIP forrása a két include-dal és a 0100 flow logicjával itt található. A felhasználó által választott állapotmodell: `STATUS = QM` → `STATUS = CL`, `CLOSED = X`; ragszámkezelés: `ZPR_TERTI` és `ZISU_F064`.

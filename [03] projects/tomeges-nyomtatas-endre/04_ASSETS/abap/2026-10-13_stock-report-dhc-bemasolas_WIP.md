@@ -135,10 +135,11 @@ A riport `S_TCODE` ellenőrzést végez erre a tranzakcióra indításkor és en
 
 - A `SEND_PRIORITY` belépéskor hibásnak tekinti az eredményt. Csak `PARAMETERS-SUCCESS = X` válasz állítja sikeresre. A logikai port meghatározásának vagy a proxy létrehozásának hibája után nincs ragszámtörlés és stocklezárás.
 - A prioritás/igenlő megerősítés után stockzár következik. A stock, a darabszám és a kizárási lista a zár alatt újraolvasásra kerül. Ha a megjelenített lista megváltozott, új jóváhagyás szükséges; az adott kísérlet nem hívja az Inspire-t.
-- A stockhoz tartozó üres borítékazonosítóval kizárt dokumentumot a riport nem küldi az interfészre. Ezt az adatot előbb rendezni kell.
+- A stockhoz tartozó üres borítékazonosítóval kizárt dokumentum is bekerül az Inspire-nek küldött borítéklistába, a QU5 mintájára. A lista rendezése és deduplikálása után egy üres bejegyzés marad. A dokumentumazonosító kötelező; a TERTI-keresés üres borítékértékkel is boríték + dokumentum szerint történik.
 - A ragszámok ellenőrzése a külső hívás előtt történik, és a sikeres külső válasz után újra összevetjük őket a törlési listával. Az együttműködő íróknak ugyanazt a stockzárat kell használniuk.
 - A ragszámtörlések és a stockmentés közös helyi LUW-ban történnek; hibánál rollback. A `ZCL_PR_STOCK=>UPDATE_STATUS` saját commitja nem kerül a folyamat közepére.
-- Ha a külső hívás már elindult, de kivétellel zárult, vagy a külső siker után a helyi mentés elbukott, a stock **`STOCK_STATUS_ER = X`** jelzést kap. Ettől a stock nem lesz lezárt, de a riport tiltja az újraküldést.
+- A `CX_AI_APPLICATION_FAULT` külön kezelt, biztos üzleti visszautasítás: naplózás és sikertelen visszatérés, helyi lezárás és ragszámtörlés nélkül. A hívás- és külsősiker-jelző törlődik, a riport nem állít bizonytalanállapot-jelzőt és nem ment tartós újraküldési tiltást. A hiba javítása után a lezárás kézzel újraindítható. A riport közvetlenül hívja a proxyt; ezt az ágat a `SEND_PRIORITY`, nem a `ZCL_PR_STOCK=>CLOSE_STOCK` kezeli.
+- Ha a külső hívás már elindult, de más kivétellel zárult, vagy a külső siker után a helyi mentés elbukott, a stock **`STOCK_STATUS_ER = X`** jelzést kap. Ettől a stock nem lesz lezárt, de a riport tiltja az újraküldést.
 - A hibajelzőt csak az Inspire tényleges állapotának tisztázása és a helyi/külső állapot rendezése után szabad feloldani. A riportnak nincs automatikus visszanyitási vagy hibajelző-törlési gombja. Ha a hibajelző mentése is elbukik, az adott riportfutásban a tiltás megmarad, a napló/státusz pedig kéri, hogy a stockot ne küldjék újra ellenőrzés nélkül.
 - A SAP rollback a külső rendszer műveletét nem vonja vissza. Külső idempotencia-szerződés vagy állapotlekérdezés nélkül a riport ezt a bizonytalan állapotot megjelöli és leállítja.
 - A naplózás a helyi üzleti commit/rollback után történik. Naplóhiba esetén a sikeres stocklezárást nem állítjuk sikertelennek, de külön hibát jelez a státuszsor.
@@ -164,8 +165,9 @@ Minimum funkcionális ellenőrzés:
 2. F4, kiválasztott ALV-variáns, fejléc és `COUNTER = 1` sorösszegzés.
 3. Csak DC-kizárás, csak QM-kizárás, több dokumentum egy borítékban: teljes és duplikációmentes borítéklista.
 4. Proxy-létrehozási hiba: nincs külső hívás, ragszámtörlés, stocklezárás vagy bizonytalanállapot-jelző.
-5. Külső üzleti elutasítás: nincs helyi lezárás. Hívás közbeni kivétel: nincs helyi lezárás, az újraküldés tiltva.
+5. Külső üzleti elutasítás (`SUCCESS` nem X vagy `CX_AI_APPLICATION_FAULT`): nincs helyi lezárás, ragszámtörlés vagy új tartós újraküldési tiltás. Hívás közbeni más kivétel: nincs helyi lezárás, az újraküldés tiltva.
 6. Külső siker és helyi mentési hiba: rollback és `STOCK_STATUS_ER = X`; újraküldés tiltva.
 7. Siker: a ragszámrekordok és a stockmezők egyeznek az elvárt eredménnyel; napló az SLG1 `ZPR_MASS / STOCK` alatt.
 8. Zárütközés, a megjelenítés óta megváltozott adatok, prioritáspopup megszakítása: nincs külső hívás.
-9. Hibás/hiányzó ragszámtábla, üres boríték, ragszám–TERTI eltérés: megállás az Inspire-hívás előtt.
+9. Hibás/hiányzó ragszámtábla, üres dokumentumazonosító, ragszám–TERTI eltérés: megállás az Inspire-hívás előtt.
+10. Üres borítékazonosítójú kizárt sor: önmagában nem állítja meg a futást, az üres érték bekerül a proxykérésbe. Több ilyen sor esetén egy üres borítékbejegyzés marad; a ragszámellenőrzések továbbra is érvényesek.

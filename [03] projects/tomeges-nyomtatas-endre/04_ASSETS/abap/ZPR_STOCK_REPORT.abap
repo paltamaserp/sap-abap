@@ -1,5 +1,5 @@
 *&---------------------------------------------------------------------*
-*& Report ZPR_STOCK_REPORT
+*& Report ZPR_STOCK_REPORT másnéven: ZPR_CLOSE_STOCK
 *& Final stock release and Inspire notification
 *&---------------------------------------------------------------------*
 REPORT zpr_stock_report MESSAGE-ID zpr.
@@ -512,9 +512,9 @@ FORM prepare_regmail CHANGING ct_regmail TYPE ty_regmail_table.
   CHECK gv_error = abap_false.
   TRY.
       LOOP AT gt_alv INTO ls_alv.
-        IF ls_alv-doc_no IS INITIAL OR ls_alv-envelope IS INITIAL.
+        IF ls_alv-doc_no IS INITIAL.
           gv_error = abap_true.
-          PERFORM add_message USING 'E' 'Hiányzó dokumentum vagy boríték:'
+          PERFORM add_message USING 'E' 'Hiányzó dokumentumazonosító:'
             ls_alv-doc_no ls_alv-envelope.
           RETURN.
         ENDIF.
@@ -561,11 +561,6 @@ FORM send_priority.
   gv_error = abap_true.
   CLEAR: gv_call_started, gv_remote_success.
   LOOP AT gt_alv INTO ls_alv.
-    IF ls_alv-envelope IS INITIAL.
-      PERFORM add_message USING 'E' 'A kizárt sor borítékazonosítója üres:'
-        ls_alv-doc_no space.
-      RETURN.
-    ENDIF.
     CLEAR ls_envelope.
     ls_envelope-envelope_id = ls_alv-envelope.
     APPEND ls_envelope TO lt_envelopes.
@@ -589,6 +584,16 @@ FORM send_priority.
       gv_call_started = abap_true.
       lo_proxy->eon_dcqmcompleted(
         EXPORTING input = ls_input IMPORTING output = ls_output ).
+
+    CATCH cx_ai_application_fault INTO lr_error.
+      gv_error = abap_true.
+      CLEAR: gv_call_started, gv_remote_success.
+      PERFORM add_exception USING lr_error.
+      PERFORM add_message USING 'E'
+        'Az Inspire elutasította a lezárást:'
+        p_stokid space.
+      RETURN.
+      
     CATCH cx_root INTO lr_error.
       PERFORM add_exception USING lr_error.
       IF gv_call_started = abap_true.
