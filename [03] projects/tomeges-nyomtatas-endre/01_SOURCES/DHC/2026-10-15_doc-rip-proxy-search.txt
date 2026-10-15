@@ -1,0 +1,7 @@
+name	type	description	package
+ZPR_CO_EON_FORMS_QUERY_PRINTHO	CLAS/OC	Proxy Class (generated)	ZPR_WS
+ZPR_EON_FORMS_QUERY_PRINTHOUS1	TABL/DS	Proxy Structure (generated)	ZPR_WS
+ZPR_EON_FORMS_QUERY_PRINTHOUS2	TABL/DS	Proxy Structure (generated)	ZPR_WS
+ZPR_EON_FORMS_QUERY_PRINTHOUS3	TABL/DS	Proxy Structure (generated)	ZPR_WS
+ZPR_EON_FORMS_QUERY_PRINTHOUSE	TABL/DS	Proxy Structure (generated)	ZPR_WS
+ZPR_EON_FORMS_QUERY_PRINTH_TAB	TTYP/DA	Proxy Table Type (generated)	ZPR_WS

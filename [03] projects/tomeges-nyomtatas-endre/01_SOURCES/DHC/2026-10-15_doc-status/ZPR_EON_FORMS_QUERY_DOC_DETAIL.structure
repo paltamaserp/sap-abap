@@ -1,0 +1,8 @@
+@EndUserText.label : 'Proxy Structure (generated)'
+@AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
+define structure zpr_eon_forms_query_doc_detail {
+
+  controller : prxctrltab;
+  d          : zpr_string_tab;
+
+}

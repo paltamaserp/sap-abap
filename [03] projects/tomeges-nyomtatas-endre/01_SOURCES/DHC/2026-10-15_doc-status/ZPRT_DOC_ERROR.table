@@ -1,0 +1,13 @@
+@EndUserText.label : 'Nyomtatás - Dokumentum hiba log'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #DISPLAY
+define table zprt_doc_error {
+
+  key mandt       : mandt not null;
+  key exbilldocno : zprd_doc_no not null;
+  error_code      : zprd_error_code;
+  error_text      : zprd_error_text;
+
+}

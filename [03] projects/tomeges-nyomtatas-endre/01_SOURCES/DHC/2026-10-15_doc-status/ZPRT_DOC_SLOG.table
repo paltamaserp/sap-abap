@@ -1,0 +1,13 @@
+@EndUserText.label : 'Nyomtatás - dokumentum státusz log'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #DISPLAY
+define table zprt_doc_slog {
+
+  key mandt       : mandt not null;
+  key exbilldocno : zprd_doc_no not null;
+  key timestamp   : zprd_tstmp not null;
+  status          : zprd_status_code;
+
+}

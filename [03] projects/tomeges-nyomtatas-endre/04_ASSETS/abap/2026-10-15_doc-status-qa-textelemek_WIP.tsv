@@ -1,0 +1,5 @@
+ID	Szöveg
+101	Nincs jogosultsága a ZPR_DOC_STATUS tranzakcióhoz.
+102	Az ismételt lekérdezéshez adjon meg stockot.
+103	Nincs a kiválasztásnak megfelelő lezárt stock.
+104	A feldolgozás naplója nem teljes; ellenőrizze az SLG1/SM13 naplót.

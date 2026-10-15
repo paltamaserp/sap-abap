@@ -1,0 +1,26 @@
+@EndUserText.label : 'F064: Tértivevény adatok; customer corr.container..'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zisu_f064 {
+
+  key mandt        : mandt not null;
+  key zisu_ragszam : char16 not null;
+  zisu_ragszam_128 : char16;
+  cotyp            : cotyp_kk;
+  bukrs            : bukrs;
+  gpart            : gpart_kk;
+  vkont            : vkont_kk;
+  vtref            : vtref_kk;
+  mdrkd            : mdrkd_kk;
+  laufd            : laufd_kk;
+  laufi            : mlfid_kk;
+  zisu_rag_datum   : zisu_rag_datum;
+  zisu_rag_status  : zisu_rag_status;
+  zisu_vissz_datum : zisu_vissza_datum;
+  atvdat           : zeca_rd_atvdat;
+  mahnv            : mahnv_kk;
+  mazae            : mazae_kk;
+
+}

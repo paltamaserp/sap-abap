@@ -1,0 +1,25 @@
+{
+  "tool": "@abaplint/core",
+  "version": "2.120.60",
+  "abapVersion": "7.54",
+  "files": [
+    "ZPR_DOC_RIP.abap",
+    "ZPR_DOC_RIP_DATA.abap",
+    "ZPR_DOC_RIP_PROXY.abap",
+    "ZPR_DOC_RIP_DISPLAY.abap",
+    "ZPR_DOC_RIP_O01.abap",
+    "ZPR_DOC_RIP_I01.abap",
+    "ZPR_DOC_RIP_TESTS.abap"
+  ],
+  "issues": [],
+  "checks": {
+    "includeResolution": true,
+    "formResolution": true,
+    "alvCatalogFields": 24,
+    "noQu5Dependency": true,
+    "noDatabaseWrite": true,
+    "unitTestSources": 6,
+    "activeDefinitionFieldNames": true
+  },
+  "limitation": "Parser and local structural checks only. No SAP type check, ATC, ABAP Unit execution, GUI test or Inspire call."
+}

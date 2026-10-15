@@ -1,0 +1,70 @@
+{
+  "ds_proxy_search": {
+    "content": [
+      {
+        "type": "text",
+        "text": "name\ttype\tdescription\tpackage\nZPR_CO_EON_FORMS_QUERY_DOC_DET\tCLAS/OC\tProxy Class (generated)\tZPR_WS\nZPR_CO_EON_QUERY_DOC_BARCODES\tCLAS/OC\tProxy Class (generated)\tZPR_WS\nZPR_EON_FORMS_QUERY_DOC_DETAI1\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_EON_FORMS_QUERY_DOC_DETAI2\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_EON_FORMS_QUERY_DOC_DETAI3\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_EON_FORMS_QUERY_DOC_DETAIL\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_EON_QUERY_DOC_BARCODES_RE1\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_EON_QUERY_DOC_BARCODES_REQ\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_EON_QUERY_DOC_BARCODES_RES\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_TEON_QUERY_DOC_BARCODES_R1\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_TEON_QUERY_DOC_BARCODES_R2\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_TEON_QUERY_DOC_BARCODES_RE\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_TEON_QUERY_DOC_BARCODE_TAB\tTTYP/DA\tProxy Table Type (generated)\tZPR_WS"
+      }
+    ]
+  },
+  "ds_locks": {
+    "content": [
+      {
+        "type": "text",
+        "text": "name\ttype\tdescription\tpackage\nEZPRC_FIGY_LOG\tENQU/DL\tZPRC_FIGY_LOG Lock object\tZPR_DDIC\nEZPRT_ALAPNY_LOG\tENQU/DL\tZPRT_ALAPNY_LOG tábla zárolási objektuma\tZPR_DDIC\nEZPRT_CSEKK_FEJ\tENQU/DL\tKézi csekk fejadatok LO\tZPR_DDIC\nEZPRT_FUT_LOG\tENQU/DL\tZPRT_FUT_LOG table lock\tZPR_DDIC\nEZPRT_HIBA_LOG\tENQU/DL\tZPRT_HIBA_LOG Lock object\tZPR_DDIC\nEZPRT_MARKETING\tENQU/DL\tZPRT_MARKETING lockobject\tZPR_DDIC\nEZPRT_STOCK\tENQU/DL\tNyomtatás stock\tZPR_DDIC"
+      }
+    ]
+  },
+  "ds_status_objects": {
+    "content": [
+      {
+        "type": "text",
+        "text": "name\ttype\tdescription\tpackage\nZPRD_SEND_STATUS\tDTEL/DE\tEmail státusz kódja\tZPR_DDIC\nZPRD_STATUS\tDTEL/DE\tStátusz - nyomtatáshoz\tZPR_DDIC\nZPRD_STATUS_2\tDTEL/DE\tStátusz\tZPR_DDIC\nZPRD_STATUS_2\tDOMA/DD\tStátusz\tZPR_DDIC\nZPRD_STATUS_CODE\tDTEL/DE\tNyomtatás státuszkód\tZPR_DDIC\nZPRD_STATUS_CODE\tDOMA/DD\tNyomtatás státuszkód\tZPR_DDIC\nZPRD_STOCK_STATUS\tDTEL/DE\tStock státusz\tZPR_DDIC\nZPRD_STOCK_STATUS\tDOMA/DD\tStock státusz\tZPR_DDIC\nZPRD_STOCK_STATUS_ER\tDTEL/DE\tStock Státusz hiba\tZPR_DDIC\nZPRS_STATUS\tTABL/DS\tStátusz\tZPR_DDIC\nZPR_EON_QUERY_MESSENGER_STATU1\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_EON_QUERY_MESSENGER_STATU2\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_EON_QUERY_MESSENGER_STATUS\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_STATUS\tPROG/P\tStátusz riport\tZPR_FUNC\nZPR_STATUS\tTRAN/T\tStátusz riport\tZPR_FUNC\nZPR_STATUS_REPORT_C01\tPROG/I\tInclude ZPR_STATUS_REPORT_C01\tZPR_FUNC\nZPR_STATUS_REPORT_C02\tPROG/I\tInclude ZPR_STATUS_REPORT_C02\tZPR_FUNC\nZPR_STATUS_REPORT_TOP\tPROG/I\tInclude ZPR_STATUS_REPORT_TOP\tZPR_FUNC\nZPR_TEON_QUERY_MESSENGER_STAT1\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_TEON_QUERY_MESSENGER_STAT2\tTABL/DS\tProxy Structure (generated)\tZPR_WS\nZPR_TEON_QUERY_MESSENGER_STATU\tTABL/DS\tProxy Structure (generated)\tZPR_WS"
+      }
+    ]
+  },
+  "ds_bc_search": {
+    "content": []
+  },
+  "ds_push_search": {
+    "content": []
+  },
+  "ds_eszla_search": {
+    "content": []
+  },
+  "ds_cert_alternatives": {
+    "content": []
+  },
+  "ds_push_alternatives": {
+    "content": [
+      {
+        "type": "text",
+        "text": "name\ttype\tdescription\tpackage\nZIFS_PUSH_ID\tTABL/DS\tPush üzenet azonosítók\tZIF_DDIC"
+      }
+    ]
+  },
+  "ds_eszla_alternatives": {
+    "content": [
+      {
+        "type": "text",
+        "text": "name\ttype\tdescription\tpackage\nZECAS_ELORESZLA_LIST_ALV\tTABL/DS\tElőreszámla lista ALV\tZECA_DDIC\nZECA_ELORESZLA_LISTA\tPROG/P\tElőreszámla lista\tZECA_FUNC\nZECA_ELORESZLA_LISTA\tTRAN/T\tElőreszámla lista\tZECA_FUNC"
+      }
+    ]
+  },
+  "ds_lock_fm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "name\ttype\tdescription\tpackage\nENQUEUE_EZPRT_STOCK\tFUGR/FF\tEnqueue-zár igénylése EZPRT_STOCK objektumhoz\t$ENQ"
+      }
+    ]
+  },
+  "ds_existing_status": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"program_name\": \"ZPR_STATUS_REPORT_C02\",\n  \"version\": \"active\",\n  \"source_code\": null,\n  \"metadata\": null\n}"
+      }
+    ]
+  }
+}

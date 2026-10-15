@@ -1,0 +1,36 @@
+@EndUserText.label : 'Nyomtatási dokumentum'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #DISPLAY
+define table zprt_doc_log {
+
+  @AbapCatalog.foreignKey.screenCheck : true
+  key mandt : mandt not null
+    with foreign key t000
+      where mandt = zprt_doc_log.mandt;
+  key guid  : sysuuid_c32 not null;
+  doc_no    : zprd_doc_no;
+  include zprs_control_data
+    @AbapCatalog.foreignKey.keyType : #KEY
+    @AbapCatalog.foreignKey.screenCheck : true
+    extend channel :
+      with foreign key [0..*,1] zprc_channel
+        where mandt = zprt_doc_log.mandt
+          and channel = zprt_doc_log.channel
+    @AbapCatalog.foreignKey.keyType : #KEY
+    @AbapCatalog.foreignKey.screenCheck : true
+    extend doc_type :
+      with foreign key [0..*,1] zprc_doc_type
+        where mandt = zprt_doc_log.mandt
+          and doc_type = zprt_doc_log.doc_type
+    @AbapCatalog.foreignKey.keyType : #KEY
+    @AbapCatalog.foreignKey.screenCheck : true
+    extend printer :
+      with foreign key [0..*,1] tsp03
+        where padest = zprt_doc_log.printer;
+  include zprs_business_data;
+  include zprs_create_data;
+  include zprs_update_data;
+
+}

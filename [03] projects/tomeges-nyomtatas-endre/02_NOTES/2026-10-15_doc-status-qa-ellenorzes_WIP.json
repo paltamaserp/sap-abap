@@ -1,0 +1,19 @@
+{
+  "patches": [
+    "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-qa-uzenetek_WIP.diff",
+    "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-qa-tablamuveletek_WIP.diff"
+  ],
+  "forwardApplication": "byte-identical to final source and TSV",
+  "reverseApplication": "byte-identical to original baseline; TSV removed",
+  "messageTextSymbols": [
+    "101",
+    "102",
+    "103",
+    "104"
+  ],
+  "activeMessageLiterals": 0,
+  "tertiSelectionUnchanged": true,
+  "tertiFullKeyDelete": true,
+  "handleInsert": true,
+  "limitations": "Local checks only; no SAP QA/ATC, text pool maintenance or DDIC index verification."
+}

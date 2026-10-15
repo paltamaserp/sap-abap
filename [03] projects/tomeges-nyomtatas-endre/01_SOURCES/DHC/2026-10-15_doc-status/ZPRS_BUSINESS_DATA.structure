@@ -1,0 +1,12 @@
+@EndUserText.label : 'Üzleti partner szintű adatok'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+define structure zprs_business_data {
+
+  vkont  : vkont_kk;
+  gpart  : gpart_kk;
+  waers  : waers;
+  sparte : sparte;
+  bukrs  : bukrs;
+  opbel  : opbel_kk;
+
+}

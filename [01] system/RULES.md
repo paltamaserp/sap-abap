@@ -74,3 +74,6 @@ A felhasználó kifejezett utasítása (2026-10-13): az SAP ADT-kapcsolat első 
     - „Bug javítása" → „Írj tesztet ami reprodukálja a hibát, majd érd el hogy átmenjen."
     - „X refaktorálása" → „Biztosítsd hogy a tesztek előtte és utána is lefutnak."
     - Több lépéses feladatnál előbb rövid terv.
+
+### ABAP QA-tanulságok
+23. ABAP-forrás készítése és módosítása előtt olvasd el és alkalmazd az [ABAP-QA-CHECKLIST.md](ABAP-QA-CHECKLIST.md) szabályait: fordítható MESSAGE-szövegek, táblatípushoz illő beszúrás és a kiválasztás üzleti hatókörét megőrző index-/adatbázis-kezelés. A nyitott QA-találatokat és az SAP-ban még nem ellenőrzött javításokat külön jelezd.

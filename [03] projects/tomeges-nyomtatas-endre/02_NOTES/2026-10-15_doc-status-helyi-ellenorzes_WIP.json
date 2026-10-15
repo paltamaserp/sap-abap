@@ -1,0 +1,21 @@
+{
+  "tool": "@abaplint/core",
+  "version": "2.120.60",
+  "abapVersion": "7.54",
+  "sourceFiles": [
+    "ZPR_DOC_STATUS.abap"
+  ],
+  "issues": [],
+  "checks": {
+    "formResolution": true,
+    "standaloneSource": true,
+    "activeLegacyDependencies": false,
+    "originalBranchesPreservedAsComments": 3,
+    "snapshotFieldNames": true,
+    "proxyFieldNames": true,
+    "originalPayloadColumns": 18,
+    "timestampStatusOrder": "RCBQOXPLGSADEV",
+    "unitTestSources": 13
+  },
+  "limitations": "Parser and local source/schema-name checks only. No SAP type check, ATC, ABAP Unit execution, business DB operations, ArchiveLink or Inspire calls."
+}

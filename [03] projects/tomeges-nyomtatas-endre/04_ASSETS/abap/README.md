@@ -3,6 +3,9 @@
 Ide kerül a **munka közbeni** `.abap` export (osztály, report, függvénymodul,
 DDL) — verziózáshoz, diffeléshez.
 
+Az ABAP Unit-tesztinclude-ok a `test/` almappában találhatók:
+[ZPR_MQ_TESTS](test/ZPR_MQ_TESTS.abap) és [ZPR_DOC_RIP_TESTS](test/ZPR_DOC_RIP_TESTS.abap).
+
 - Az ABAP objektum **igazi helye a SAP rendszer**; a `.abap` fájl csak másolat.
   Az igazság forrása az ADT / MCP-n olvasott aktív verzió.
 - Fájlnév a SAP objektum neve: `ZCL_<PREFIX>_<OBJEKTUM>.abap`. A `<PREFIX>` a
@@ -22,6 +25,18 @@ A `ZPR_MESSAGEQUEUE_QUERY` a QU5 `ZBC_PRN_MESSAGEQUEUE_QUERY` alapján készült
 A `ZPR_STOCK_REPORT` teljes helyi WIP forrása a két include-dal és a 0100 flow logicjával itt található. A felhasználó által választott állapotmodell: `STATUS = QM` → `STATUS = CL`, `CLOSED = X`; ragszámkezelés: `ZPR_TERTI` és `ZISU_F064`.
 
 [Bemásolási útmutató és függőségek](2026-10-13_stock-report-dhc-bemasolas_WIP.md). Helyi szerkezeti/mezőellenőrzés történt, SAP-fordítás és teszt nem; az SAP-kapcsolatot nem használtuk.
+
+## Nyomdai ellenőrző riport
+
+A `ZPR_DOC_RIP` a QU5 `ZEBF_PR_DOC_RIP` helyi WIP DHC-változata: stockonként és PR/IN csatornánként hasonlítja össze a SAP dokumentum-/borítékszámokat az Inspire fájladataival, részletes ALV-listával. A hat include, a 0100 flow logic és hat Unit-teszt forrása itt található. Az aktív proxy és a szükséges táblák/struktúrák MCP-vel csak olvasva ellenőrizve; SAP-objektum létrehozása/módosítása és tesztfuttatás nem történt.
+
+[Bemásolás, adatleképezés, logikai port és ellenőrzések](2026-10-15_doc-rip-dhc-bemasolas_WIP.md).
+
+## Dokumentumstátuszok lekérése
+
+A `ZPR_DOC_STATUS.abap` a QU5 `ZEBF_PR_DOC_STATUS` helyi WIP DHC-megfelelője, egyetlen ABAP-forrásban, beágyazott tiszta Unit-tesztekkel. A státusz-/hibamentés, ArchiveLink-kezelés és ragszámtörlés DHC-táblákra épül. A felhasználó kérésére az e-számla-, számlahitelesítési és push-ágak teljes eredeti forrása jelölve, kikommentezve megmaradt. A DOC_SLOG időbélyegkulcsának ütközése hibát ad, nem ír felül másik státuszt.
+
+[Bemásolás, kikapcsolt ágak, adatmodell és ellenőrzések](2026-10-15_doc-status-dhc-bemasolas_WIP.md). MCP-vel csak olvasás történt; a helyi parser hibamentes, SAP-fordítás és tesztfuttatás nincs.
 
 ## A DC riport DDIC-előfeltételei
 

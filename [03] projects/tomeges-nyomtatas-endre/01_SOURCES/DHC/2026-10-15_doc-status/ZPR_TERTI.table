@@ -1,0 +1,26 @@
+@EndUserText.label : 'Tértivevények és bizonylatok'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zpr_terti {
+
+  key mandt            : mandt not null;
+  key zisu_ragszam_128 : zedmd_ragszam_128 not null;
+  key envelope_id      : z_envid not null;
+  key exbilldocno      : exbilldocno not null;
+  key extnu            : zedmd_extnu not null;
+  opbel                : opbel_kk not null;
+  @EndUserText.label : 'Dokumentum típusa'
+  doc_type             : abap.char(4) not null;
+  zisu_rag_datum       : zisu_rag_datum not null;
+  @EndUserText.label : 'Tértivevény státusza'
+  zisu_rag_status      : abap.char(1) not null;
+  zisu_vissz_datum     : zisu_vissza_datum not null;
+  betolt_datum         : zedmd_betolt_datum not null;
+  visszaerk_datum      : zedmd_viserk_datum not null;
+  @EndUserText.label : 'A ZISU_F064 tábla feltöltve'
+  zisu_f064_felt       : abap.char(1) not null;
+  iv_zsort_rfc_id      : zemdd_rfc_id;
+
+}

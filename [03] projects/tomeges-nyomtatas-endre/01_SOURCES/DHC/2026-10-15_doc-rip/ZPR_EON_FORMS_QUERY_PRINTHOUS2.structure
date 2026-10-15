@@ -1,0 +1,11 @@
+@EndUserText.label : 'Proxy Structure (generated)'
+@AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
+define structure zpr_eon_forms_query_printhous2 {
+
+  controller       : prxctrltab;
+  success          : xsdboolean;
+  info             : abap.string(0);
+  error_code       : abap.string(0);
+  out_file_details : zpr_eon_forms_query_printh_tab;
+
+}

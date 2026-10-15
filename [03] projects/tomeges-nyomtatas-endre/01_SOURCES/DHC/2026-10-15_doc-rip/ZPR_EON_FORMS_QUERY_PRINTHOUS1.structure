@@ -1,0 +1,22 @@
+@EndUserText.label : 'Proxy Structure (generated)'
+@AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
+define structure zpr_eon_forms_query_printhous1 {
+
+  controller    : prxctrltab;
+  sap_system    : abap.string(0);
+  sap_mandant   : abap.string(0);
+  stock_id      : abap.string(0);
+  send_datetime : abap.string(0);
+  out_file      : abap.string(0);
+  destination   : abap.string(0);
+  status_ok     : xsdboolean;
+  env_no        : abap.int4;
+  doc_no        : abap.int4;
+  page_no       : abap.int4;
+  sheet_no      : abap.int4;
+  mark_no1      : abap.int4;
+  mark_no2      : abap.int4;
+  mark_no3      : abap.int4;
+  mark_no4      : abap.int4;
+
+}

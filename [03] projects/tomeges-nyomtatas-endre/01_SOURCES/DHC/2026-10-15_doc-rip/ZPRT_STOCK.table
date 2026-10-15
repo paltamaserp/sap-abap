@@ -1,0 +1,27 @@
+@EndUserText.label : 'Nyomtatás stock'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #DISPLAY
+define table zprt_stock {
+
+  key mandt       : mandt not null;
+  key stock_id    : zprd_stock_id not null;
+  include zprs_create_data;
+  include zprs_update_data;
+  xml_file_name   : fileextern;
+  status          : zprd_stock_status;
+  erdat           : erdat;
+  ernam           : ernam;
+  ertim           : erzeit;
+  closed          : zprd_closed;
+  erdat_clo       : zprd_erdat_clo;
+  ernam_clo       : zprd_ernam_clo;
+  ertim_clo       : zprd_erzeit_clo;
+  priority        : zprd_priority;
+  dccompl         : zprd_dccompl;
+  qmcompl         : zprd_qmcompl;
+  notest          : zprd_notest;
+  stock_status_er : zprd_stock_status_er;
+
+}

@@ -54,6 +54,8 @@ Egy projekt belső váza:
 
 Teszt- és review-eszközök: `[01] system/TESTING-TOOLS.md`.
 
+A `tomeges-nyomtatas-endre` projekt ABAP Unit-tesztinclude-jai a `04_ASSETS/abap/test/` almappában találhatók.
+
 ---
 
 ## Aranyszabály
@@ -76,5 +78,6 @@ Adj kevesebb okot a találgatásra. Ennyi az egész.
 | Projekt        | Státusz | ClickUp |
 | -------------- | ------- | ------- |
 | `_TEMPLATE` () | WIP     |         |
+| `tomeges-nyomtatas-endre` | WIP | |
 
 > Tartsd ezt a táblát naprakészen — ez a leggyorsabb áttekintés rólad és Claude-nak is.

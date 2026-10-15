@@ -1,0 +1,23 @@
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap" "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap"
+--- "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap"
+@@ -638,9 +638,7 @@ FORM save_regmail USING is_document TYPE ty_document
+       INSERT ls_terti-zisu_ragszam_128 INTO TABLE lt_regmail.
+     ENDIF.
+   ENDLOOP.
+-  DELETE FROM zpr_terti
+-    WHERE envelope_id = is_document-envelope
+-      AND exbilldocno = is_document-doc_no.
++  DELETE zpr_terti FROM TABLE lt_terti.
+   IF sy-subrc <> 0.
+     cv_error = 'A dokumentum tértivevény-sorainak törlése sikertelen.'.
+     RETURN.
+@@ -737,7 +735,7 @@ ENDFORM.
+ 
+ FORM close_log.
+   DATA lt_handles TYPE bal_t_logh.
+-  APPEND gv_log_handle TO lt_handles.
++  INSERT gv_log_handle INTO TABLE lt_handles.
+   CALL FUNCTION 'BAL_DB_SAVE'
+     EXPORTING i_t_log_handle = lt_handles
+     EXCEPTIONS log_not_found = 1 save_not_allowed = 2

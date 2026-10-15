@@ -1,0 +1,49 @@
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap" "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap"
+--- "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap"
+@@ -89,7 +89,7 @@ ENDCLASS.
+ INITIALIZATION.
+   AUTHORITY-CHECK OBJECT 'S_TCODE' ID 'TCD' FIELD 'ZPR_DOC_STATUS'.
+   IF sy-subrc <> 0.
+-    MESSAGE 'Nincs jogosultsága a ZPR_DOC_STATUS tranzakcióhoz.' TYPE 'I'.
++    MESSAGE text-101 TYPE 'I'.
+     LEAVE PROGRAM.
+   ENDIF.
+   CASE sy-sysid.
+@@ -106,7 +106,7 @@ INITIALIZATION.
+ 
+ AT SELECTION-SCREEN.
+   IF p_stat = abap_true AND so_stock[] IS INITIAL.
+-    MESSAGE 'Az ismételt lekérdezéshez adjon meg stockot.' TYPE 'E'.
++    MESSAGE text-102 TYPE 'E'.
+   ENDIF.
+ 
+ START-OF-SELECTION.
+@@ -259,7 +259,7 @@ FORM run.
+   SELECT * FROM zprt_stock INTO TABLE gt_stock
+     WHERE stock_id IN so_stock AND closed = abap_true.
+   IF gt_stock IS INITIAL.
+-    MESSAGE 'Nincs a kiválasztásnak megfelelő lezárt stock.' TYPE 'S'.
++    MESSAGE text-103 TYPE 'S'.
+     RETURN.
+   ENDIF.
+   PERFORM open_log CHANGING lv_error.
+@@ -761,7 +761,7 @@ FORM close_log.
+     ENDIF.
+   ENDIF.
+   IF gv_log_error = abap_true.
+-    MESSAGE 'A feldolgozás naplója nem teljes; ellenőrizze az SLG1/SM13 naplót.'
++    MESSAGE text-104
+         TYPE 'S' DISPLAY LIKE 'E'.
+   ENDIF.
+ ENDFORM.
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-qa-textelemek_WIP.tsv" "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-qa-textelemek_WIP.tsv"
+new file mode 100644
+--- /dev/null
++++ "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-qa-textelemek_WIP.tsv"
+@@ -0,0 +1,5 @@
++ID	Szöveg
++101	Nincs jogosultsága a ZPR_DOC_STATUS tranzakcióhoz.
++102	Az ismételt lekérdezéshez adjon meg stockot.
++103	Nincs a kiválasztásnak megfelelő lezárt stock.
++104	A feldolgozás naplója nem teljes; ellenőrizze az SLG1/SM13 naplót.

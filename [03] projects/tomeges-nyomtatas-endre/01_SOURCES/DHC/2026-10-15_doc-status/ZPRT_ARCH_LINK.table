@@ -1,0 +1,16 @@
+@EndUserText.label : 'Arrchív linkek átmeneti tárolója'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zprt_arch_link {
+
+  key mandt        : mandt not null;
+  key doc_no       : zprd_doc_no not null;
+  opbel            : e_printdoc;
+  xsapobject       : saeanwdid;
+  xsapdocumenttype : saeobjart;
+  xsapobjectid     : saeobjid;
+  xsapdocid        : saeardoid;
+
+}

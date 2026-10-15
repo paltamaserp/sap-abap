@@ -1,0 +1,14 @@
+@EndUserText.label : 'Nyomtatást vezérlő adatok'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+define structure zprs_control_data {
+
+  doc_type     : zprd_doc_type;
+  to_dig_sign  : zprd_to_dig_sign;
+  to_archive   : zprd_to_archive;
+  only_archive : zprd_only_archive;
+  archived     : zprd_archived;
+  printer      : rspopname;
+  channel      : zprd_channel;
+  envelope_id  : zprd_envelope_id;
+
+}

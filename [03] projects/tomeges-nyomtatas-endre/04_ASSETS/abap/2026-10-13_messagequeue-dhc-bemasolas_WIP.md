@@ -18,7 +18,7 @@ Státusz: WIP. A felhasználó megerősítette, hogy a `ZPR_SLOG_EMAIL` transzpa
 1. Meglévő `ZPR_SLOG_EMAIL` tábla, a létrehozott `ZPRB_SLOG_EMAIL` táblatípus, valamint az `EZPR_SLOG_EMAIL` zárobjektum és generált FM-ek legyenek aktívak.
 2. A `ZPRB_SLOG_EMAIL` sortípusa `ZPR_SLOG_EMAIL`, táblakategóriája **STANDARD TABLE** legyen. A kód APPEND/SORT/BINARY SEARCH műveleteket használ. A felhasználó a létrehozást jelezte; a definíció aktív visszaolvasása nem történt.
 3. Generált Inspire consumer proxy, request/response típusok és logikai port: lásd az alábbi leképezést.
-4. Az include-ok teljes forrását vedd fel: [ZPR_MQ_PROXY](ZPR_MQ_PROXY.abap), [ZPR_MQ_DISPLAY](ZPR_MQ_DISPLAY.abap), [ZPR_MQ_TESTS](ZPR_MQ_TESTS.abap), majd a [ZPR_MESSAGEQUEUE_QUERY](ZPR_MESSAGEQUEUE_QUERY.abap) főprogrammal együtt ellenőrizd és aktiváld őket. Az include-ok a főprogramban definiált típusokat/osztályokat használják; nem önálló programok.
+4. Az include-ok teljes forrását vedd fel: [ZPR_MQ_PROXY](ZPR_MQ_PROXY.abap), [ZPR_MQ_DISPLAY](ZPR_MQ_DISPLAY.abap), [ZPR_MQ_TESTS](test/ZPR_MQ_TESTS.abap), majd a [ZPR_MESSAGEQUEUE_QUERY](ZPR_MESSAGEQUEUE_QUERY.abap) főprogrammal együtt ellenőrizd és aktiváld őket. Az include-ok a főprogramban definiált típusokat/osztályokat használják; nem önálló programok.
 5. A 0100 képernyő, GUI-státusz, cím és tranzakció aktiválása.
 
 A csomagot/transzportot a meglévő DHC fejlesztési rend szerint válaszd. A QU5 források és a stock/DC riportok ebben a feladatban nem módosultak.

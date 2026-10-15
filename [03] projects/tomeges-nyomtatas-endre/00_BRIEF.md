@@ -37,6 +37,7 @@
 - `02_NOTES/` — munkajegyzetek.
 - `03_DRAFTS/` — WIP verziók, iterációk.
 - `04_ASSETS/abap/` — WIP `.abap` export.
+- `04_ASSETS/abap/test/` — WIP ABAP Unit-tesztinclude-ok.
 - `04_ASSETS/playwright/` — automatizált OData API-tesztek.
 - `04_ASSETS/rest-client/` — kézi `.http` hívások.
 - `05_FINAL/` — kész eredmény (mielőtt `[04] outputs/`-ba kerül).

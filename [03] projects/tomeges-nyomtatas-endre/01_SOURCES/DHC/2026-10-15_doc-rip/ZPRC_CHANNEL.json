@@ -1,0 +1,124 @@
+{
+  "sql_query": "SELECT * FROM ZPRC_CHANNEL",
+  "row_number": 30,
+  "execution_time": 0.21,
+  "total_rows": 0,
+  "columns": [
+    {
+      "name": "MANDT",
+      "type": "C",
+      "description": "Mandant",
+      "length": 3
+    },
+    {
+      "name": "CHANNEL",
+      "type": "C",
+      "description": "Nyomtat. csat",
+      "length": 2
+    },
+    {
+      "name": "PRINTING_MODE",
+      "type": "C",
+      "description": "Nyomt. mód",
+      "length": 1
+    },
+    {
+      "name": "WEB",
+      "type": "C",
+      "description": "WEB",
+      "length": 1
+    },
+    {
+      "name": "PRINTING_TYPE",
+      "type": "C",
+      "description": "Nyomt. pap. vagy el.",
+      "length": 1
+    }
+  ],
+  "rows": [
+    {
+      "MANDT": "100",
+      "CHANNEL": "CK",
+      "PRINTING_MODE": "M",
+      "WEB": "Q",
+      "PRINTING_TYPE": "E"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "EM",
+      "PRINTING_MODE": "M",
+      "WEB": "M",
+      "PRINTING_TYPE": "E"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "IN",
+      "PRINTING_MODE": "M",
+      "WEB": "Q",
+      "PRINTING_TYPE": "P"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "LK",
+      "PRINTING_MODE": "L",
+      "WEB": "M",
+      "PRINTING_TYPE": "E"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "LM",
+      "PRINTING_MODE": "L",
+      "WEB": "Z",
+      "PRINTING_TYPE": "E"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "LO",
+      "PRINTING_MODE": "L",
+      "WEB": "N",
+      "PRINTING_TYPE": "P"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "LP",
+      "PRINTING_MODE": "L",
+      "WEB": "Z",
+      "PRINTING_TYPE": "E"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "LS",
+      "PRINTING_MODE": "L",
+      "WEB": "N",
+      "PRINTING_TYPE": "E"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "PO",
+      "PRINTING_MODE": "M",
+      "WEB": null,
+      "PRINTING_TYPE": "E"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "PR",
+      "PRINTING_MODE": "M",
+      "WEB": null,
+      "PRINTING_TYPE": "P"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "PV",
+      "PRINTING_MODE": "M",
+      "WEB": null,
+      "PRINTING_TYPE": "E"
+    },
+    {
+      "MANDT": "100",
+      "CHANNEL": "SF",
+      "PRINTING_MODE": null,
+      "WEB": null,
+      "PRINTING_TYPE": null
+    }
+  ]
+}
