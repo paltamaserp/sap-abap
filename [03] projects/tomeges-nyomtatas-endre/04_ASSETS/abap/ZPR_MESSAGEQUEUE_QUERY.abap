@@ -1,8 +1,23 @@
-*&---------------------------------------------------------------------*
-*& Report ZPR_MESSAGEQUEUE_QUERY
-*& Query Messenger email status and persist confirmed results.
-*&---------------------------------------------------------------------*
-REPORT zpr_messagequeue_query.
+REPORT zpr_messagequeue_query
+*MESSAGE-ID zpr.
+.
+*********************************************************************
+* Report: ZPR_MESSAGEQUEUE_QUERY
+* Leírás:
+* Query Messenger email status and persist confirmed results.
+*--------------------------------------------------------------------
+* Modulfelelos: <XY>
+* Tanácsadó:
+* Programozó:   Pál Tamás
+* Dátum, kérelem: 2026.10.13
+* --------------------------------------------------------------------
+* Módosítások:
+* <dátum>, <programozó>, <kérelem>, <comment azonosító>
+*          <rövid leírás>
+**********************************************************************
+* 13.10.2026 11:42:02    X0134  Létrehozás
+*--------------------------------------------------------------------*
+
 
 INCLUDE <icon>.
 
@@ -20,7 +35,8 @@ CONSTANTS: gc_tcode TYPE sytcode VALUE 'ZPR_MQ_QUERY',
            gc_missing_text TYPE zpr_slog_email-error_message
              VALUE 'Hét napon belül nem érkezett státusz a Messengertől.'.
 
-PARAMETERS p_lport TYPE prx_logical_port_name OBLIGATORY.
+PARAMETERS p_lport TYPE prx_logical_port_name NO-DISPLAY.
+
 
 DATA: gt_pending TYPE ty_email_tab,
       gt_response TYPE ty_email_tab,
@@ -109,16 +125,11 @@ INCLUDE zpr_mq_proxy.
 INCLUDE zpr_mq_display.
 
 INITIALIZATION.
-  CASE sy-sysid.
-    WHEN 'DHC'.
-      p_lport = 'LOGPORT_QMS_DEV'.
-    WHEN 'QHC'.
-      p_lport = 'LOGPORT_QMS_QA'.
-    WHEN 'PHC'.
-      p_lport = 'LOGPORT_QMS_UAT'.
-    WHEN OTHERS.
-      CLEAR p_lport.
-  ENDCASE.
+  zcl_pr_output_management=>get_logical_port_name(
+    RECEIVING
+      rv_logical_port_name =  p_lport                " Logikai portnév
+  ).
+
 
   AUTHORITY-CHECK OBJECT 'S_TCODE' ID 'TCD' FIELD gc_tcode.
   IF sy-subrc <> 0.

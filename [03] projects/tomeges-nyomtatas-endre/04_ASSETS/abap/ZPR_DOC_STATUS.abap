@@ -44,6 +44,7 @@ TYPES ty_slog_tab TYPE STANDARD TABLE OF zprt_doc_slog WITH DEFAULT KEY.
 TYPES: BEGIN OF ty_document,
          guid         TYPE zprt_dcqm-guid,
          doc_no       TYPE zprt_dcqm-doc_no,
+         package_id   TYPE zprt_dcqm-package_id,
          log_doc_no   TYPE zprt_doc_log-doc_no,
          envelope     TYPE zprt_dcqm-envelope,
          doc_cat      TYPE zprt_dcqm-doc_cat,
@@ -78,11 +79,10 @@ CLASS lcl_response DEFINITION FINAL.
     CLASS-METHODS parse
       IMPORTING iv_line TYPE string
       EXPORTING es_response TYPE ty_response ev_error TYPE string.
-    CLASS-METHODS print_refs
+    CLASS-METHODS print_file
       IMPORTING iv_channel TYPE clike iv_doc_cat TYPE clike
                 iv_filename TYPE string
-      EXPORTING ev_spool TYPE zprt_dcqm-prdspool
-                ev_file TYPE zprt_dcqm-prdfile
+      EXPORTING ev_file TYPE zprt_dcqm-prdfile
                 ev_change TYPE abap_bool ev_error TYPE string.
 ENDCLASS.
 
@@ -192,16 +192,15 @@ CLASS lcl_response IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 
-  METHOD print_refs.
+  METHOD print_file.
     DATA: lt_parts TYPE STANDARD TABLE OF string,
-          lv_stock TYPE string,
-          lv_queue TYPE string,
           lv_file TYPE string,
           lv_text TYPE string,
           lv_limit TYPE i,
           lv_lines TYPE i.
-    CLEAR: ev_spool, ev_file, ev_change, ev_error.
-    CHECK iv_channel = 'PR' OR iv_channel = 'IN'.
+    CLEAR: ev_file, ev_change, ev_error.
+    " PACKAGE_ID already identifies the spool; only PRDFILE is derived.
+    CHECK iv_channel = 'PR'.
     CHECK iv_filename IS NOT INITIAL.
     SPLIT iv_filename AT '_' INTO TABLE lt_parts.
     DESCRIBE TABLE lt_parts LINES lv_lines.
@@ -211,43 +210,18 @@ CLASS lcl_response IMPLEMENTATION.
     ENDIF.
     READ TABLE lt_parts INTO lv_text INDEX 6.
     CHECK lv_text IS NOT INITIAL.
-    IF iv_channel = 'IN'.
-      READ TABLE lt_parts INTO lv_stock INDEX 8.
-      READ TABLE lt_parts INTO lv_queue INDEX 9.
-    ELSE.
-      lv_stock = lv_text.
-      READ TABLE lt_parts INTO lv_queue INDEX 7.
-      READ TABLE lt_parts INTO lv_file INDEX 8.
-    ENDIF.
-    IF lv_stock IS INITIAL OR lv_stock CN '0123456789' OR
-       strlen( lv_stock ) > 10 OR lv_queue IS INITIAL.
-      ev_error = 'Az Inspire-fájlnévből nem képezhető nyomtatási spool.'.
+    READ TABLE lt_parts INTO lv_file INDEX 8.
+    IF lv_file IS INITIAL.
+      ev_error = 'Hiányzó fájlsorszám az Inspire-fájlnévben.'.
       RETURN.
     ENDIF.
-    SHIFT lv_stock LEFT DELETING LEADING '0'.
-    IF lv_stock IS INITIAL.
-      lv_stock = '0'.
-    ENDIF.
-    CONCATENATE lv_stock lv_queue INTO lv_text SEPARATED BY '_'.
-    DESCRIBE FIELD ev_spool LENGTH lv_limit IN CHARACTER MODE.
+    CONCATENATE iv_doc_cat lv_file INTO lv_text SEPARATED BY '_'.
+    DESCRIBE FIELD ev_file LENGTH lv_limit IN CHARACTER MODE.
     IF strlen( lv_text ) > lv_limit.
-      ev_error = 'A nyomtatási spool értéke túl hosszú a PRDSPOOL mezőhöz.'.
+      ev_error = 'A nyomtatási fájl értéke túl hosszú a PRDFILE mezőhöz.'.
       RETURN.
     ENDIF.
-    ev_spool = lv_text.
-    IF iv_channel = 'PR'.
-      IF lv_file IS INITIAL.
-        ev_error = 'Hiányzó fájlsorszám az Inspire-fájlnévben.'.
-        RETURN.
-      ENDIF.
-      CONCATENATE iv_doc_cat lv_file INTO lv_text SEPARATED BY '_'.
-      DESCRIBE FIELD ev_file LENGTH lv_limit IN CHARACTER MODE.
-      IF strlen( lv_text ) > lv_limit.
-        ev_error = 'A nyomtatási fájl értéke túl hosszú a PRDFILE mezőhöz.'.
-        RETURN.
-      ENDIF.
-      ev_file = lv_text.
-    ENDIF.
+    ev_file = lv_text.
     ev_change = abap_true.
   ENDMETHOD.
 ENDCLASS.
@@ -326,15 +300,17 @@ FORM process_locked_stock USING iv_stock TYPE zprt_stock-stock_id.
     PERFORM add_log USING 'E' iv_stock space 'A stock már nem lezárt.'.
     RETURN.
   ENDIF.
-  " DCQM and DOC_LOG share the GUID assigned at document creation.
-  SELECT dcqm~guid dcqm~doc_no doclog~doc_no AS log_doc_no
+  " Stock membership is defined by PACKAGE; DOC_LOG shares the DCQM GUID.
+  SELECT dcqm~doc_no dcqm~package_id doclog~doc_no AS log_doc_no
          dcqm~envelope dcqm~doc_cat doclog~channel doclog~doc_type
          doclog~opbel doclog~bukrs doclog~sparte
     FROM zprt_dcqm AS dcqm
+    INNER JOIN zprt_package AS package
+      ON package~package_id = dcqm~package_id
     LEFT OUTER JOIN zprt_doc_log AS doclog
       ON doclog~guid = dcqm~guid AND doclog~doc_no = dcqm~doc_no
     INTO CORRESPONDING FIELDS OF TABLE lt_document
-    WHERE dcqm~prd_stock_id = iv_stock.
+    WHERE package~stock_id = iv_stock.
   IF lt_document IS INITIAL.
     PERFORM add_log USING 'I' iv_stock space 'A stockhoz nincs dokumentum.'.
     RETURN.
@@ -516,15 +492,18 @@ FORM save_document USING iv_stock TYPE zprt_stock-stock_id
         ls_old TYPE zprt_doc_slog,
         ls_slog TYPE zprt_doc_slog,
         ls_error TYPE zprt_doc_error,
-        lv_spool TYPE zprt_dcqm-prdspool,
         lv_file TYPE zprt_dcqm-prdfile,
         lv_change TYPE abap_bool,
         lv_guid TYPE zprt_dcqm-guid,
         lv_detail TYPE string.
   CLEAR cv_error.
-  SELECT SINGLE guid FROM zprt_dcqm INTO lv_guid
-    WHERE guid = is_document-guid AND doc_no = is_document-doc_no
-      AND prd_stock_id = iv_stock.
+  SELECT SINGLE dcqm~guid FROM zprt_dcqm AS dcqm
+    INNER JOIN zprt_package AS package
+      ON package~package_id = dcqm~package_id
+    INTO lv_guid
+    WHERE dcqm~guid = is_document-guid AND dcqm~doc_no = is_document-doc_no
+      AND dcqm~package_id = is_document-package_id
+      AND package~stock_id = iv_stock.
   IF sy-subrc <> 0.
     cv_error = 'A dokumentum stock-hozzárendelése megváltozott.'.
     RETURN.
@@ -537,11 +516,11 @@ FORM save_document USING iv_stock TYPE zprt_stock-stock_id
       RETURN.
     ENDIF.
   ENDLOOP.
-  lcl_response=>print_refs(
+  lcl_response=>print_file(
     EXPORTING iv_channel = is_document-channel
               iv_doc_cat = is_document-doc_cat
               iv_filename = is_response-filename
-    IMPORTING ev_spool = lv_spool ev_file = lv_file
+    IMPORTING ev_file = lv_file
               ev_change = lv_change ev_error = cv_error ).
   CHECK cv_error IS INITIAL.
 
@@ -562,17 +541,14 @@ FORM save_document USING iv_stock TYPE zprt_stock-stock_id
     ENDIF.
   ENDIF.
   IF lv_change = abap_true.
-    IF is_document-channel = 'PR'.
-      UPDATE zprt_dcqm SET prdspool = lv_spool prdfile = lv_file
-                          chuser = sy-uname chdate = sy-datum chtime = sy-uzeit
-        WHERE guid = is_document-guid AND doc_no = is_document-doc_no
-          AND prd_stock_id = iv_stock.
-    ELSE.
-      UPDATE zprt_dcqm SET prdspool = lv_spool
-                          chuser = sy-uname chdate = sy-datum chtime = sy-uzeit
-        WHERE guid = is_document-guid AND doc_no = is_document-doc_no
-          AND prd_stock_id = iv_stock.
-    ENDIF.
+    " Preserve the existing package/spool assignment.
+    UPDATE zprt_dcqm SET prdfile = lv_file
+                        chuser = sy-uname chdate = sy-datum chtime = sy-uzeit
+      WHERE guid = is_document-guid AND doc_no = is_document-doc_no
+        AND package_id = is_document-package_id
+        AND EXISTS ( SELECT * FROM zprt_package AS package
+          WHERE package~package_id = is_document-package_id
+            AND package~stock_id = iv_stock ).
     IF sy-subrc <> 0.
       cv_error = 'A DHC nyomtatási hivatkozások mentése sikertelen.'.
       RETURN.
@@ -806,6 +782,7 @@ CLASS ltc_response DEFINITION FINAL FOR TESTING
     METHODS base_printout_refs FOR TESTING.
     METHODS no_output_file FOR TESTING.
     METHODS oversized_refs FOR TESTING.
+    METHODS legacy_spool_ignored FOR TESTING.
 ENDCLASS.
 
 CLASS ltc_response IMPLEMENTATION.
@@ -938,37 +915,34 @@ CLASS ltc_response IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD print_shop_refs.
-    DATA: lv_spool TYPE zprt_dcqm-prdspool,
-          lv_file TYPE zprt_dcqm-prdfile,
+    DATA: lv_file TYPE zprt_dcqm-prdfile,
           lv_change TYPE abap_bool, lv_error TYPE string.
-    lcl_response=>print_refs(
+    lcl_response=>print_file(
       EXPORTING iv_channel = 'PR' iv_doc_cat = 'A'
         iv_filename = 'a_b_c_d_e_0000000123_1_02_end'
-      IMPORTING ev_spool = lv_spool ev_file = lv_file
+      IMPORTING ev_file = lv_file
                 ev_change = lv_change ev_error = lv_error ).
     cl_abap_unit_assert=>assert_initial( act = lv_error ).
-    cl_abap_unit_assert=>assert_equals( act = lv_spool exp = '123_1' ).
     cl_abap_unit_assert=>assert_equals( act = lv_file exp = 'A_02' ).
     cl_abap_unit_assert=>assert_equals( act = lv_change exp = abap_true ).
   ENDMETHOD.
 
   METHOD base_printout_refs.
-    DATA: lv_spool TYPE zprt_dcqm-prdspool,
-          lv_file TYPE zprt_dcqm-prdfile,
+    DATA: lv_file TYPE zprt_dcqm-prdfile,
           lv_change TYPE abap_bool, lv_error TYPE string.
-    lcl_response=>print_refs(
+    lcl_response=>print_file(
       EXPORTING iv_channel = 'IN' iv_doc_cat = 'A'
         iv_filename = 'a_b_c_d_e_x_y_0000000123_2_end'
-      IMPORTING ev_spool = lv_spool ev_file = lv_file
+      IMPORTING ev_file = lv_file
                 ev_change = lv_change ev_error = lv_error ).
     cl_abap_unit_assert=>assert_initial( act = lv_error ).
-    cl_abap_unit_assert=>assert_equals( act = lv_spool exp = '123_2' ).
     cl_abap_unit_assert=>assert_initial( act = lv_file ).
+    cl_abap_unit_assert=>assert_initial( act = lv_change ).
   ENDMETHOD.
 
   METHOD no_output_file.
     DATA: lv_change TYPE abap_bool, lv_error TYPE string.
-    lcl_response=>print_refs(
+    lcl_response=>print_file(
       EXPORTING iv_channel = 'PR' iv_doc_cat = 'A'
                 iv_filename = 'DHC_100_stock_doc.xml'
       IMPORTING ev_change = lv_change ev_error = lv_error ).
@@ -978,12 +952,25 @@ CLASS ltc_response IMPLEMENTATION.
 
   METHOD oversized_refs.
     DATA: lv_change TYPE abap_bool, lv_error TYPE string.
-    lcl_response=>print_refs(
+    lcl_response=>print_file(
       EXPORTING iv_channel = 'PR' iv_doc_cat = 'A'
-        iv_filename = 'a_b_c_d_e_0000000123_12345678901_02_end'
+        iv_filename = 'a_b_c_d_e_0000000123_1_123_end'
       IMPORTING ev_change = lv_change ev_error = lv_error ).
     cl_abap_unit_assert=>assert_not_initial( act = lv_error ).
     cl_abap_unit_assert=>assert_initial( act = lv_change ).
+  ENDMETHOD.
+
+  METHOD legacy_spool_ignored.
+    DATA: lv_file TYPE zprt_dcqm-prdfile,
+          lv_change TYPE abap_bool, lv_error TYPE string.
+    lcl_response=>print_file(
+      EXPORTING iv_channel = 'PR' iv_doc_cat = 'A'
+        iv_filename = 'a_b_c_d_e_notnumeric_12345678901234567890_02_end'
+      IMPORTING ev_file = lv_file
+                ev_change = lv_change ev_error = lv_error ).
+    cl_abap_unit_assert=>assert_initial( act = lv_error ).
+    cl_abap_unit_assert=>assert_equals( act = lv_file exp = 'A_02' ).
+    cl_abap_unit_assert=>assert_equals( act = lv_change exp = abap_true ).
   ENDMETHOD.
 ENDCLASS.
 

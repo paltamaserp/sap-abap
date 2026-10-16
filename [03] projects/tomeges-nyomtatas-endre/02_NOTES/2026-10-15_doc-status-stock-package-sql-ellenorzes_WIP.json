@@ -1,0 +1,15 @@
+{
+  "tool": "node:sqlite",
+  "clauses": "FROM/WHERE clauses extracted from current ABAP source",
+  "checks": {
+    "multiplePackagesInStock": true,
+    "ignoresDcqmPrdStockId": true,
+    "excludesOtherStockMissingAndUnassignedPackages": true,
+    "emptyStock": true,
+    "validAssignmentUpdatesFileAndPreservesPackage": true,
+    "wrongStockBlocked": true,
+    "reassignedPackageBlocked": true,
+    "changedDocumentPackageBlocked": true
+  },
+  "limitations": "Single-client relational SQL model only. No ABAP parser, DDIC type check, SAP execution, ABAP Unit or lock/concurrency simulation."
+}

@@ -1,0 +1,16 @@
+{
+  "patch": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-stock-package-kapcsolat_WIP.diff",
+  "baseline": "local source after spool change, immediately before stock-package relationship change",
+  "forwardApplication": "byte-identical to modified ABAP source",
+  "reverseApplication": "byte-identical to original local baseline",
+  "whitespaceCheck": "passed",
+  "hunks": 3,
+  "limitations": "Local patch checks only; no SAP calls or ABAP runtime execution.",
+  "combinedPatchSequence": {
+    "patches": [
+      "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-package-id-spool_WIP.diff",
+      "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-stock-package-kapcsolat_WIP.diff"
+    ],
+    "forwardAndReverse": "byte-identical to current source and pre-spool baseline"
+  }
+}

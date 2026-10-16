@@ -56,6 +56,8 @@ Teszt- és review-eszközök: `[01] system/TESTING-TOOLS.md`.
 
 A `tomeges-nyomtatas-endre` projekt ABAP Unit-tesztinclude-jai a `04_ASSETS/abap/test/` almappában találhatók.
 
+A projekt `05_FINAL/abap/` almappája a felhasználó által ide kért MCP-forrásokat, DDIC-definíciókat, ADT-metaadatokat és exportjegyzéket tartalmazza. A 2026-10-16-i export 24 objektum / 34 fájl, WIP; az UI-alobjektumok és a teljes függőséghalmaz nélkül. Az aktuális teljességet az ottani README és manifeszt jelzi.
+
 ---
 
 ## Aranyszabály

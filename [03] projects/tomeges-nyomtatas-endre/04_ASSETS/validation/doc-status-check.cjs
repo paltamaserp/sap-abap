@@ -1,18 +1,21 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert/strict');
-const core = require(process.argv[2]);
+const core = process.argv[2] ? require(process.argv[2]) : null;
 const project = path.resolve(__dirname, '../..');
 const source = fs.readFileSync(path.join(project, '04_ASSETS/abap/ZPR_DOC_STATUS.abap'), 'utf8');
 const original = fs.readFileSync(path.join(project, '01_SOURCES/QU5/ZEBF_PR_DOC_STATUS.abap'), 'utf8');
 const active = source.split(/\r?\n/).filter(l => !/^\s*\*/.test(l))
   .map(l => l.replace(/".*$/, '')).join('\n');
-const config = core.Config.getDefault(core.Version.v754).get();
-config.rules = {parser_error: true};
-const registry = new core.Registry(new core.Config(JSON.stringify(config)));
-registry.addFile(new core.MemoryFile('zpr_doc_status.prog.abap', source));
-registry.parse();
-const issues = registry.findIssues().map(i => ({row: i.getStart().getRow(), message: i.getMessage()}));
+let issues = null;
+if (core) {
+  const config = core.Config.getDefault(core.Version.v754).get();
+  config.rules = {parser_error: true};
+  const registry = new core.Registry(new core.Config(JSON.stringify(config)));
+  registry.addFile(new core.MemoryFile('zpr_doc_status.prog.abap', source));
+  registry.parse();
+  issues = registry.findIssues().map(i => ({row: i.getStart().getRow(), message: i.getMessage()}));
+}
 const forms = new Set([...active.matchAll(/^FORM\s+(\w+)/gmi)].map(m => m[1].toLowerCase()));
 for (const m of active.matchAll(/\bPERFORM\s+(\w+)/gi)) assert(forms.has(m[1].toLowerCase()), 'Missing FORM: ' + m[1]);
 assert(!/^\s*INCLUDE\s+/mi.test(active), 'Unexpected source include');
@@ -45,9 +48,15 @@ for (const f of tableFields.get('zprs_business_data')) tableFields.get('zprt_doc
 for (const m of active.matchAll(/\b(zprt_doc_slog|zprt_doc_error|zprt_arch_link|zpr_terti|zisu_f064|zprt_dcqm|zprt_doc_log|zprt_stock|zprs_control_data|zprs_business_data)-(\w+)/gi)) {
   assert(tableFields.get(m[1].toLowerCase()).has(m[2].toLowerCase()), 'Unknown snapshot field: ' + m[0]);
 }
-for (const m of active.matchAll(/\b(dcqm|doclog)~(\w+)/gi)) {
-  const table = m[1].toLowerCase() === 'dcqm' ? 'zprt_dcqm' : 'zprt_doc_log';
-  assert(tableFields.get(table).has(m[2].toLowerCase()), 'Unknown SQL join field: ' + m[0]);
+// PACKAGE fields are confirmed by the user mapping and local CREATE_STOCK;
+// there is no active PACKAGE DDIC export in this workspace.
+const aliases = new Map([
+  ['dcqm', tableFields.get('zprt_dcqm')],
+  ['doclog', tableFields.get('zprt_doc_log')],
+  ['package', new Set(['package_id', 'stock_id'])],
+]);
+for (const m of active.matchAll(/\b(dcqm|doclog|package)~(\w+)/gi)) {
+  assert(aliases.get(m[1].toLowerCase()).has(m[2].toLowerCase()), 'Unknown SQL join field: ' + m[0]);
 }
 const req = fields(schema, 'ZPR_EON_FORMS_QUERY_DOC_DETAI3.structure');
 const resp = fields(schema, 'ZPR_EON_FORMS_QUERY_DOC_DETAI2.structure');
@@ -62,16 +71,37 @@ assert.equal(oldFields.length, 18);
 const order = oldFields.slice(2, 16).map(s => s.replace('tstmp_', '').toUpperCase()).join('');
 assert(source.includes("VALUE '" + order + "'"));
 const tests = [...active.matchAll(/METHODS\s+(\w+)\s+FOR TESTING/gi)].length;
-assert.equal(tests, 13);
+assert.equal(tests, 14);
+assert(!/\b(?:prdspool|ev_spool|lv_spool|print_refs)\b/i.test(active), 'Legacy spool derivation remains');
+assert(/dcqm~package_id/i.test(active), 'Package ID not loaded');
+assert(/package_id\s+TYPE\s+zprt_dcqm-package_id/i.test(active), 'Package ID type missing');
+assert(!/\bprd_stock_id\b/i.test(active), 'Direct DCQM-stock relationship remains');
+assert.equal([...active.matchAll(/INNER JOIN zprt_package AS package/gi)].length, 2);
+assert.equal([...active.matchAll(/ON package~package_id = dcqm~package_id/gi)].length, 2);
+assert.equal([...active.matchAll(/(?:WHERE|AND) package~stock_id = iv_stock/gi)].length, 3);
+assert(/dcqm~package_id = is_document-package_id/i.test(active));
+const dcqmUpdates = [...active.matchAll(/UPDATE zprt_dcqm\b[\s\S]*?\./gi)].map(m => m[0]);
+assert.equal(dcqmUpdates.length, 1);
+assert(/SET prdfile = lv_file/i.test(dcqmUpdates[0]));
+assert(/AND package_id = is_document-package_id/i.test(dcqmUpdates[0]));
+assert(/AND EXISTS \( SELECT \* FROM zprt_package AS package\s+WHERE package~package_id = is_document-package_id\s+AND package~stock_id = iv_stock \)/i.test(dcqmUpdates[0]));
+assert(!/\b(?:package_id|prd_stock_id)\s*=/i.test(dcqmUpdates[0].split(/\bWHERE\b/i)[0]));
 const result = {
-  tool: '@abaplint/core', version: core.Registry.abaplintVersion(), abapVersion: '7.54',
+  tool: core ? '@abaplint/core' : 'local source/schema checks',
+  version: core ? core.Registry.abaplintVersion() : null,
+  abapVersion: core ? '7.54' : null, parserPerformed: Boolean(core),
   sourceFiles: ['ZPR_DOC_STATUS.abap'], issues,
   checks: {formResolution: true, standaloneSource: true, activeLegacyDependencies: false,
     originalBranchesPreservedAsComments: 3, snapshotFieldNames: true,
     proxyFieldNames: true, originalPayloadColumns: oldFields.length,
-    timestampStatusOrder: order, unitTestSources: tests},
-  limitations: 'Parser and local source/schema-name checks only. No SAP type check, ATC, ABAP Unit execution, business DB operations, ArchiveLink or Inspire calls.',
+    timestampStatusOrder: order, unitTestSources: tests,
+    packageIdLoadedAndPreserved: true, packageAssignmentChecked: true,
+    stockMembershipThroughPackage: true, updateChecksPackageMembership: true,
+    packageFieldEvidence: 'user mapping and local CREATE_STOCK source; no active PACKAGE DDIC snapshot',
+    legacySpoolDerivationRemoved: true, printFileUpdatePreserved: true},
+  limitations: (core ? 'Parser and local source/schema-name checks only.' : 'Local source/schema-name checks only; ABAP parser unavailable and not run.')
+    + ' No SAP type check, ATC, ABAP Unit execution, business DB operations, ArchiveLink or Inspire calls.',
 };
 fs.writeFileSync(path.join(project, '02_NOTES/2026-10-15_doc-status-helyi-ellenorzes_WIP.json'), JSON.stringify(result, null, 2) + '\n');
 console.log(JSON.stringify(result, null, 2));
-process.exitCode = issues.length ? 1 : 0;
+process.exitCode = issues && issues.length ? 1 : 0;

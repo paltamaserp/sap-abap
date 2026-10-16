@@ -1,0 +1,52 @@
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap" "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap"
+--- "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap"
+@@ -300,15 +300,17 @@ FORM process_locked_stock USING iv_stock TYPE zprt_stock-stock_id.
+     PERFORM add_log USING 'E' iv_stock space 'A stock már nem lezárt.'.
+     RETURN.
+   ENDIF.
+-  " DCQM and DOC_LOG share the GUID assigned at document creation.
++  " Stock membership is defined by PACKAGE; DOC_LOG shares the DCQM GUID.
+   SELECT dcqm~guid dcqm~doc_no dcqm~package_id doclog~doc_no AS log_doc_no
+          dcqm~envelope dcqm~doc_cat doclog~channel doclog~doc_type
+          doclog~opbel doclog~bukrs doclog~sparte
+     FROM zprt_dcqm AS dcqm
++    INNER JOIN zprt_package AS package
++      ON package~package_id = dcqm~package_id
+     LEFT OUTER JOIN zprt_doc_log AS doclog
+       ON doclog~guid = dcqm~guid AND doclog~doc_no = dcqm~doc_no
+     INTO CORRESPONDING FIELDS OF TABLE lt_document
+-    WHERE dcqm~prd_stock_id = iv_stock.
++    WHERE package~stock_id = iv_stock.
+   IF lt_document IS INITIAL.
+     PERFORM add_log USING 'I' iv_stock space 'A stockhoz nincs dokumentum.'.
+     RETURN.
+@@ -495,9 +497,13 @@ FORM save_document USING iv_stock TYPE zprt_stock-stock_id
+         lv_guid TYPE zprt_dcqm-guid,
+         lv_detail TYPE string.
+   CLEAR cv_error.
+-  SELECT SINGLE guid FROM zprt_dcqm INTO lv_guid
+-    WHERE guid = is_document-guid AND doc_no = is_document-doc_no
+-      AND prd_stock_id = iv_stock AND package_id = is_document-package_id.
++  SELECT SINGLE dcqm~guid FROM zprt_dcqm AS dcqm
++    INNER JOIN zprt_package AS package
++      ON package~package_id = dcqm~package_id
++    INTO lv_guid
++    WHERE dcqm~guid = is_document-guid AND dcqm~doc_no = is_document-doc_no
++      AND dcqm~package_id = is_document-package_id
++      AND package~stock_id = iv_stock.
+   IF sy-subrc <> 0.
+     cv_error = 'A dokumentum stock-hozzárendelése megváltozott.'.
+     RETURN.
+@@ -539,7 +545,10 @@ FORM save_document USING iv_stock TYPE zprt_stock-stock_id
+     UPDATE zprt_dcqm SET prdfile = lv_file
+                         chuser = sy-uname chdate = sy-datum chtime = sy-uzeit
+       WHERE guid = is_document-guid AND doc_no = is_document-doc_no
+-        AND prd_stock_id = iv_stock AND package_id = is_document-package_id.
++        AND package_id = is_document-package_id
++        AND EXISTS ( SELECT * FROM zprt_package AS package
++          WHERE package~package_id = is_document-package_id
++            AND package~stock_id = iv_stock ).
+     IF sy-subrc <> 0.
+       cv_error = 'A DHC nyomtatási hivatkozások mentése sikertelen.'.
+       RETURN.

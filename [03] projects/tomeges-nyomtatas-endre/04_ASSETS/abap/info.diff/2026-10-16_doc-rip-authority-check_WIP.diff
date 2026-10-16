@@ -1,0 +1,13 @@
+--- a/ZPR_DOC_RIP.abap
++++ b/ZPR_DOC_RIP.abap
+@@ -105,6 +105,10 @@
+ INITIALIZATION.
+   AUTHORITY-CHECK OBJECT 'S_TCODE'
+   ID 'TCD' FIELD 'ZPR_DOC_RIP'.
++  IF sy-subrc <> 0.
++    MESSAGE i172(00) WITH 'ZPR_DOC_RIP'.
++    LEAVE PROGRAM.
++  ENDIF.
+ 
+ *Időlegesen kivéve
+ *  IF sy-subrc = 0.

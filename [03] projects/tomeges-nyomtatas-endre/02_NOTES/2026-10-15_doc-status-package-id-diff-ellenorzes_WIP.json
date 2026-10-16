@@ -1,0 +1,9 @@
+{
+  "patch": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-package-id-spool_WIP.diff",
+  "baseline": "local source immediately before PACKAGE_ID change",
+  "forwardApplication": "byte-identical to modified ABAP source",
+  "reverseApplication": "byte-identical to original local baseline",
+  "whitespaceCheck": "passed",
+  "hunks": 12,
+  "limitations": "Local patch checks only; no SAP calls or ABAP runtime execution."
+}

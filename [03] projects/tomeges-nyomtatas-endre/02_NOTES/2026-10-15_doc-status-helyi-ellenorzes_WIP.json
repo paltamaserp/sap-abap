@@ -1,11 +1,12 @@
 {
-  "tool": "@abaplint/core",
-  "version": "2.120.60",
-  "abapVersion": "7.54",
+  "tool": "local source/schema checks",
+  "version": null,
+  "abapVersion": null,
+  "parserPerformed": false,
   "sourceFiles": [
     "ZPR_DOC_STATUS.abap"
   ],
-  "issues": [],
+  "issues": null,
   "checks": {
     "formResolution": true,
     "standaloneSource": true,
@@ -15,7 +16,14 @@
     "proxyFieldNames": true,
     "originalPayloadColumns": 18,
     "timestampStatusOrder": "RCBQOXPLGSADEV",
-    "unitTestSources": 13
+    "unitTestSources": 14,
+    "packageIdLoadedAndPreserved": true,
+    "packageAssignmentChecked": true,
+    "stockMembershipThroughPackage": true,
+    "updateChecksPackageMembership": true,
+    "packageFieldEvidence": "user mapping and local CREATE_STOCK source; no active PACKAGE DDIC snapshot",
+    "legacySpoolDerivationRemoved": true,
+    "printFileUpdatePreserved": true
   },
-  "limitations": "Parser and local source/schema-name checks only. No SAP type check, ATC, ABAP Unit execution, business DB operations, ArchiveLink or Inspire calls."
+  "limitations": "Local source/schema-name checks only; ABAP parser unavailable and not run. No SAP type check, ATC, ABAP Unit execution, business DB operations, ArchiveLink or Inspire calls."
 }

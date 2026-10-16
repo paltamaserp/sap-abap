@@ -41,4 +41,5 @@
 - `04_ASSETS/playwright/` — automatizált OData API-tesztek.
 - `04_ASSETS/rest-client/` — kézi `.http` hívások.
 - `05_FINAL/` — kész eredmény (mielőtt `[04] outputs/`-ba kerül).
+- `05_FINAL/abap/` — a felhasználó kérésére ide mentett MCP-források, DDIC-definíciók, metaadatok és exportjegyzék; 2026-10-16: 24 objektum, 34 fájl, WIP. A UI-alobjektumok és a teljes függőséghalmaz exportja nincs benne.
 - `_LOG.md` — döntésnapló (ezt olvasd a folytatáshoz).
