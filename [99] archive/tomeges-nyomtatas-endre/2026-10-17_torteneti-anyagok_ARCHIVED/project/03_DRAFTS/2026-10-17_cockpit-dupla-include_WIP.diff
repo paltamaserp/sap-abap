@@ -1,0 +1,7 @@
+--- a/ZPR_DCQM_EXCLUDE.abap
++++ b/ZPR_DCQM_EXCLUDE.abap
+@@ -1625,4 +1625,3 @@
+ 
+ ENDFORM.                    " CHECK_ENTERED_DATA_POPUP
+ 
+-INCLUDE ZPR_DCQM_EXCLUDE_C01.

@@ -43,7 +43,7 @@ A meglévő **000** (`& & & &`) változatlanul használható általános szöveg
 
 A `061` és `064` szövegét rövidebbre fogalmaztuk az SE91 rövid szövegének hosszkorlátjához; a jelentésük megmaradt. Minden új szöveg legfeljebb 73 karakter. A kódbeli paraméterátadásokhoz illeszkednek: 053/054/066 darabszám, 058 dokumentum + kód + szöveg, 059 dokumentum, 060 DC-kód, 063 stockazonosító.
 
-Másolható, sorszám nélküli szöveglista: [2026-10-08_dc-zpr-uj-uzenetek_WIP.message](2026-10-08_dc-zpr-uj-uzenetek_WIP.message). A 22 sor a 045–066 üzenetek sorrendjében szerepel; az SE91 szövegoszlopába a 045-ös sortól másolható. Ez létrehozási segédlet, nem aktív SAP-export.
+Másolható, sorszám nélküli szöveglista: [2026-10-08_dc-zpr-uj-uzenetek_WIP.message](../2026-10-08_dc-zpr-uj-uzenetek_WIP.message). A 22 sor a 045–066 üzenetek sorrendjében szerepel; az SE91 szövegoszlopába a 045-ös sortól másolható. Ez létrehozási segédlet, nem aktív SAP-export.
 
 ## Mi változott a kódban?
 
@@ -53,7 +53,7 @@ Másolható, sorszám nélküli szöveglista: [2026-10-08_dc-zpr-uj-uzenetek_WIP
 - Az üzenetekhez tartozó elavult TODO-kommentek és a két rövidített üzenet kommentjei pontosítva. A ZPR 000 kommentje a meglévő négy helyettesítőhöz igazítva.
 - Az üzleti feltételek, az üzenettípusok, a MESSAGE WITH paraméterek, a naplóbejegyzések felépítése és az adatbázis-műveletek megmaradtak. Minden üzenet, ALV-hibaprotokoll és popup a név szerinti konstansokat használja, ezért az átvezetés ezekre is érvényes.
 
-A [2026-10-08_dc-zpr-uzenetek-atvezetes_WIP.diff](2026-10-08_dc-zpr-uzenetek-atvezetes_WIP.diff) a két program közvetlenül e javítás előtti helyi változatához képest mutatja az eltérést. A diff útvonalai az `04_ASSETS/abap/` mappához viszonyítottak; nem a QU5 eredetihez vagy az aktív SAP-verzióhoz hasonlít.
+A [2026-10-08_dc-zpr-uzenetek-atvezetes_WIP.diff](../info.diff/2026-10-08_dc-zpr-uzenetek-atvezetes_WIP.diff) a két program közvetlenül e javítás előtti helyi változatához képest mutatja az eltérést. A diff útvonalai az `04_ASSETS/abap/` mappához viszonyítottak; nem a QU5 eredetihez vagy az aktív SAP-verzióhoz hasonlít.
 
 ## Ellenőrzés és korlátok
 

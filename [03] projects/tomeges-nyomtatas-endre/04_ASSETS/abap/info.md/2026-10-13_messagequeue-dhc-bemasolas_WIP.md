@@ -18,14 +18,14 @@ Státusz: WIP. A felhasználó megerősítette, hogy a `ZPR_SLOG_EMAIL` transzpa
 1. Meglévő `ZPR_SLOG_EMAIL` tábla, a létrehozott `ZPRB_SLOG_EMAIL` táblatípus, valamint az `EZPR_SLOG_EMAIL` zárobjektum és generált FM-ek legyenek aktívak.
 2. A `ZPRB_SLOG_EMAIL` sortípusa `ZPR_SLOG_EMAIL`, táblakategóriája **STANDARD TABLE** legyen. A kód APPEND/SORT/BINARY SEARCH műveleteket használ. A felhasználó a létrehozást jelezte; a definíció aktív visszaolvasása nem történt.
 3. Generált Inspire consumer proxy, request/response típusok és logikai port: lásd az alábbi leképezést.
-4. Az include-ok teljes forrását vedd fel: [ZPR_MQ_PROXY](ZPR_MQ_PROXY.abap), [ZPR_MQ_DISPLAY](ZPR_MQ_DISPLAY.abap), [ZPR_MQ_TESTS](test/ZPR_MQ_TESTS.abap), majd a [ZPR_MESSAGEQUEUE_QUERY](ZPR_MESSAGEQUEUE_QUERY.abap) főprogrammal együtt ellenőrizd és aktiváld őket. Az include-ok a főprogramban definiált típusokat/osztályokat használják; nem önálló programok.
+4. Az include-ok teljes forrását vedd fel: [ZPR_MQ_PROXY](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/04_ASSETS/abap/ZPR_MQ_PROXY.abap>), [ZPR_MQ_DISPLAY](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/04_ASSETS/abap/ZPR_MQ_DISPLAY.abap>), [ZPR_MQ_TESTS](../test/ZPR_MQ_TESTS.abap), majd a [ZPR_MESSAGEQUEUE_QUERY](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/04_ASSETS/abap/ZPR_MESSAGEQUEUE_QUERY.abap>) főprogrammal együtt ellenőrizd és aktiváld őket. Az include-ok a főprogramban definiált típusokat/osztályokat használják; nem önálló programok.
 5. A 0100 képernyő, GUI-státusz, cím és tranzakció aktiválása.
 
 A csomagot/transzportot a meglévő DHC fejlesztési rend szerint válaszd. A QU5 források és a stock/DC riportok ebben a feladatban nem módosultak.
 
 ## Meglévő tábladefiníció és adatértelmezés
 
-A korábbi sikeres MCP-lekérés szerint a tábla kulcsa `MANDT + EXBILLDOCNO`; dokumentumazonosítója CHAR 20, státusza CHAR 1, mindhárom időmezője CHAR 14, hibaüzenete CHAR255. A teljes visszakapott definíció a [MCP-ellenőrzési jegyzetben](../../02_NOTES/2026-10-13_messagequeue-mcp-ellenorzes_WIP.md) szerepel. A korábbi válasz célrendszer-azonossága nem volt igazolva; a mostani helyi átvezetést a felhasználó meglévő táblára vonatkozó utasítása engedélyezte.
+A korábbi sikeres MCP-lekérés szerint a tábla kulcsa `MANDT + EXBILLDOCNO`; dokumentumazonosítója CHAR 20, státusza CHAR 1, mindhárom időmezője CHAR 14, hibaüzenete CHAR255. A teljes visszakapott definíció a [MCP-ellenőrzési jegyzetben](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/02_NOTES/2026-10-13_messagequeue-mcp-ellenorzes_WIP.md>) szerepel. A korábbi válasz célrendszer-azonossága nem volt igazolva; a mostani helyi átvezetést a felhasználó meglévő táblára vonatkozó utasítása engedélyezte.
 
 Az időmezők értelmezése a jelenlegi kódban UTC `YYYYMMDDhhmmss`. A CHAR 14 DDIC-típus önmagában nem igazolja az időzónát; a tényleges naplófeltöltő és a szolgáltatás szerződésében ezt még ellenőrizni kell. Ha helyi időt tárolnak, az időzónakonverziót ahhoz kell igazítani. A meglévő `TSTMP_PRINT` mező üzleti jelentését nem írjuk át az átvezetés során.
 
@@ -33,7 +33,7 @@ A tábla meglévő feltöltését használjuk. A `ZPR_MQ_REGISTER` csak akkor sz
 
 ## Proxy és logikai port
 
-**Új MCP-visszaolvasás (2026-10-13):** a kapcsolt rendszerben az aktív consumer proxy neve `ZPR_CO_EON_QUERY_MESSENGER_STA`; INPUT típusa `ZPR_EON_QUERY_MESSENGER_STATU2`, OUTPUT típusa `ZPR_EON_QUERY_MESSENGER_STATU1`. A 100-as mandantban négy port-hozzárendelés szerepel: `LOGPORT_QMS_SBOX`, `LOGPORT_QMS_DEV`, `LOGPORT_QMS_QA`, `LOGPORT_QMS_UAT`. A helyi adapter nevei még nincsenek átvezetve a most igazolt nevekre; a request/response komponensek ellenőrzése és a célkörnyezet kiválasztása még szükséges. [MCP-eredmény és host-hozzárendelések](../../02_NOTES/2026-10-13_messagequeue-logikai-port-mcp_WIP.md).
+**Új MCP-visszaolvasás (2026-10-13):** a kapcsolt rendszerben az aktív consumer proxy neve `ZPR_CO_EON_QUERY_MESSENGER_STA`; INPUT típusa `ZPR_EON_QUERY_MESSENGER_STATU2`, OUTPUT típusa `ZPR_EON_QUERY_MESSENGER_STATU1`. A 100-as mandantban négy port-hozzárendelés szerepel: `LOGPORT_QMS_SBOX`, `LOGPORT_QMS_DEV`, `LOGPORT_QMS_QA`, `LOGPORT_QMS_UAT`. A helyi adapter nevei még nincsenek átvezetve a most igazolt nevekre; a request/response komponensek ellenőrzése és a célkörnyezet kiválasztása még szükséges. [MCP-eredmény és host-hozzárendelések](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/02_NOTES/2026-10-13_messagequeue-logikai-port-mcp_WIP.md>).
 
 A táblamódosítás nem igazolja a proxy/típusok meglétét. A `ZPR_MQ_PROXY` include alábbi nevei továbbra is tervezett DHC-nevek; a valóban generált nevekhez egy helyen kell illeszteni őket.
 
@@ -80,7 +80,7 @@ A CASE blokk a meglévő INITIALIZATION esemény elejére került, a jogosultsá
 
 - Program: `ZPR_MESSAGEQUEUE_QUERY`, végrehajtható program; szelekciós szöveg `P_LPORT`: „Messenger logikai port”.
 - 0100: normál képernyő, következő képernyő 0; Custom Control `ALV_CONTAINER_01`; OK-mező pontosan `GV_OKCODE_0100`.
-- Flow logic: [másolható forrás](ZPR_MESSAGEQUEUE_QUERY_0100.flow.abap), a PROCESS részt illeszd be SE51-be.
+- Flow logic: [másolható forrás](../ZPR_MESSAGEQUEUE_QUERY_0100.flow.abap), a PROCESS részt illeszd be SE51-be.
 - SE41 `STATUS_0100`: `BACK`, `EXIT`, `CANC`, mindhárom E funkciótípussal. Mentés az ALV saját SAVE gombjával.
 - SE41 `QUEUE_TITLE`: „Messenger e-mailstátuszok”.
 - SE93 `ZPR_MQ_QUERY`: program és szelekciós képernyő, `ZPR_MESSAGEQUEUE_QUERY`, 1000. Futtatási jogosultság: `S_TCODE / ZPR_MQ_QUERY`, batch felhasználónak is.
@@ -97,7 +97,7 @@ A helyi hívás és FORM definíció neve/szignatúrája egyezik. SAP-oldali vis
 
 ## Opcionális küldő oldali regisztráció
 
-Ha a meglévő küldő már tölti a `ZPR_SLOG_EMAIL` táblát, ide nem kell új bekötés. Szükség esetén a küldőbe illeszthető [ZPR_MQ_REGISTER](ZPR_MQ_REGISTER.abap) teljes naplósort kap; az összes üzleti mezőt a küldő tölti ki.
+Ha a meglévő küldő már tölti a `ZPR_SLOG_EMAIL` táblát, ide nem kell új bekötés. Szükség esetén a küldőbe illeszthető [ZPR_MQ_REGISTER](../ZPR_MQ_REGISTER.abap) teljes naplósort kap; az összes üzleti mezőt a küldő tölti ki.
 
 ```abap
 DATA: ls_email TYPE zpr_slog_email,
@@ -131,4 +131,4 @@ A korábbi [SAP COMMIT WORK](https://help.sap.com/doc/abapdocu_752_index_htm/7.5
 
 SAP-ban szükséges: DDIC/table type/lock/proxy/gui aktiválás és szintaxisellenőrzés; ATC; a kilenc ABAP Unit-teszt futtatása. Funkcionális esetek: CHAR 14 formátum/időzóna, 255 karakteres szöveghatár, hibás/üres/duplikált proxyválasz, ALV-rendezés, mentés nélküli kilépés, zárütközés, közben módosított/törölt sor és üzleti mezők változatlansága. A valódi szolgáltatáshívást kijelölt tesztvégponton végezd. SM36-ban a tesztelt portértéket tartalmazó variánst használd.
 
-Helyi ellenőrzési eredmény: [jegyzet](../../02_NOTES/2026-10-13_messagequeue-dhc-helyi-ellenorzes_WIP.md). SAP quality gate nem futott, ezért WIP marad.
+Helyi ellenőrzési eredmény: [jegyzet](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/02_NOTES/2026-10-13_messagequeue-dhc-helyi-ellenorzes_WIP.md>). SAP quality gate nem futott, ezért WIP marad.

@@ -45,7 +45,7 @@ Javasolt SE11 indexazonosító: `Z01`, ha a ZPR_TERTI táblán még szabad és n
 
 A diffek kizárólag e QA-javítás előtti helyi állapothoz viszonyítanak; a korábbi parserjavítás és a felhasználó meglévő módosításai már a kiindulás részei.
 
-1. [Üzenetek és a négy textelem](<../[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-qa-uzenetek_WIP.diff>).
-2. [TERTI-törlés és naplóhandle beszúrása](<../[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-15_doc-status-qa-tablamuveletek_WIP.diff>).
+1. [Üzenetek és a négy textelem](<../[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/info.diff/2026-10-15_doc-status-qa-uzenetek_WIP.diff>).
+2. [TERTI-törlés és naplóhandle beszúrása](<../[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/info.diff/2026-10-15_doc-status-qa-tablamuveletek_WIP.diff>).
 
-A patch-ek alkalmazási sorrendje 1 → 2. A forrásban a javítások már szerepelnek; ugyanarra a példányra nem kell újra alkalmazni őket. A nem módosított SELECT nem szerepel javításként a diffben. A helyi ABAP 7.54 parser- és forrásszerkezeti ellenőrzés hibamentes; a két patch külön másolaton oda-vissza alkalmazva bájtra pontosan visszaadta a célállapotot és az eredeti forrást. [QA-ellenőrzési jegyzőkönyv](<../[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-15_doc-status-qa-ellenorzes_WIP.json>). SAP-ban fordítás, QA/ATC, ABAP Unit és célzott működési próba szükséges.
+A patch-ek alkalmazási sorrendje 1 → 2. A forrásban a javítások már szerepelnek; ugyanarra a példányra nem kell újra alkalmazni őket. A nem módosított SELECT nem szerepel javításként a diffben. A helyi ABAP 7.54 parser- és forrásszerkezeti ellenőrzés hibamentes; a két patch külön másolaton oda-vissza alkalmazva bájtra pontosan visszaadta a célállapotot és az eredeti forrást. [QA-ellenőrzési jegyzőkönyv](<../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/02_NOTES/2026-10-15_doc-status-qa-ellenorzes_WIP.json>). SAP-ban fordítás, QA/ATC, ABAP Unit és célzott működési próba szükséges.

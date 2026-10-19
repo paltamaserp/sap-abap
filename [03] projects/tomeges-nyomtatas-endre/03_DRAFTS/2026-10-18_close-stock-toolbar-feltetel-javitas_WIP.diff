@@ -1,0 +1,25 @@
+ZPR_CLOSE_STOCK – a felhasználó által bemásolt hibás ON_TOOLBAR javítása (WIP)
+Alap: a beszélgetésben megadott hibás kódrészlet, nem a helyi export állapota.
+A GV_LOCKED_STOCK a riport globális változója; nem az MT_TOOLBAR sorának mezője.
+A DELETE WHERE utasítás a ZREFRESH feltétel után ponttal lezárandó.
+A sajátzár-feltétel a gomb létrehozását vezérlő IF-be kerül.
+Új változódeklaráció és DDIC-módosítás nem szükséges.
+Ez csak a bemásolt szintaktikai hiba javítása; a teljes zárkezelési diff
+többi módosítása továbbra szükséges. A korábbi teljes diff ezt már helyesen írja.
+Az eredeti riport nincs módosítva; aktív SAP-ellenőrzés és futtatás nincs.
+
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap" "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+--- "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+@@ -140,8 +140,8 @@
+ CLASS lcl_grid_events IMPLEMENTATION.
+   METHOD on_toolbar.
+     DATA ls_button TYPE stb_button.
+     DELETE e_object->mt_toolbar
+-      WHERE function = 'RELEASE' OR function = 'ZREFRESH'
+-       AND gv_locked_stock = p_stokid.
+-    IF gv_modif = abap_true AND gv_busy = abap_false.
++      WHERE function = 'RELEASE' OR function = 'ZREFRESH'.
++    IF gv_modif = abap_true AND gv_busy = abap_false
++       AND gv_locked_stock = p_stokid.
+       CLEAR ls_button.

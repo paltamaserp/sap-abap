@@ -1,0 +1,14 @@
+@EndUserText.label : 'DC kizárás kódjai'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #C
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zprc_dccode {
+
+  key mandt    : mandt not null;
+  key block_dc : zprd_pr_block_dc not null
+    with value help zprh_dccode
+      where block_dc = zprc_dccode.block_dc;
+  descr40      : text40;
+
+}

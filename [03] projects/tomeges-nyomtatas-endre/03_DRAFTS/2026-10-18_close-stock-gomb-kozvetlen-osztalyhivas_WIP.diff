@@ -1,0 +1,29 @@
+ZPR_CLOSE_STOCK – közvetlen osztályhívás a Lezárás gomb megnyomásakor (WIP)
+
+Csak az ON_USER_COMMAND metódus RELEASE ágában kell az alábbi cserét elvégezni.
+A PERFORM helyére kerül az osztályhívás, nem mellé.
+A hívás a most megadott ZCL_PR_STOCK.class.abap meglévő IV_STOCK interfészét
+használja; új osztályparaméter, új textelem és más riportmódosítás nincs.
+Az eredeti riport nincs módosítva; a diff az elvégzendő változtatást tartalmazza.
+
+A gomb ezután az osztály jelenlegi prioritásbekérését, Inspire-hívását,
+sikerellenőrzését, CL státuszmentését és naplóját indítja.
+A riport RELEASE_STOCK ága és annak SAVE_RELEASE/ragszámkezelése kimarad.
+Ez a közvetlen bekötés nem egészíti ki az osztályt a korábban kért CLOSED,
+prioritás-, lezárási és CH* mezők mentésével; ezek a jelenlegi metódusból hiányoznak.
+A kizárt borítékok átadása az osztályban jelenleg ki van kommentelve.
+A lezárás utáni automatikus riportfrissítés sem a kihagyott rutinból fog lefutni;
+a meglévő Frissítés gomb használható. SAP-fordítás és működési próba nincs.
+
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap" "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+--- "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+@@ -172,7 +172,7 @@
+   METHOD on_user_command.
+     CASE e_ucomm.
+       WHEN 'RELEASE'.
+-        PERFORM release_stock.
++        zcl_pr_stock=>close_stock( iv_stock = p_stokid ).
+       WHEN 'ZREFRESH'.
+         PERFORM reload_display.
+     ENDCASE.

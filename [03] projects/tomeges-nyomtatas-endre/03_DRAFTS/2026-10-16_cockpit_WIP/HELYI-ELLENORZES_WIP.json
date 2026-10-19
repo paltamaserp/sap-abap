@@ -1,0 +1,62 @@
+{
+  "status": "WIP",
+  "date": "2026-10-18",
+  "checks": {
+    "localFormResolution": true,
+    "externalAdapterParameterCounts": true,
+    "screenModuleResolution": true,
+    "selectionFilterResetComplete": true,
+    "businessFormsPreserved": true,
+    "existingStatusActionsPreserved": true,
+    "embeddedNavigationRestricted": true,
+    "transactionAuthorityCheck": true,
+    "hostParentReferenceWiring": true,
+    "standaloneContainerCreationPreserved": true,
+    "hostDynproBindingAutomatic": true,
+    "internalResultsIndependentOfFunctionCodes": true,
+    "cancellationClearedBeforeInactiveDmReturn": true,
+    "hostReferenceReleasedOnlyAfterConfirmedClose": true,
+    "newErrorTextDocumented": true,
+    "qmExternalSelectionSubscreen": true,
+    "qmOriginalInputBlocksAndBusinessControllerPreserved": true,
+    "qmStockPrefilledAndReadOnly": true,
+    "qmNoBusinessOperationOnTabOpen": true,
+    "qmExecuteRequestConsumedBeforeDispatch": true,
+    "qmResetExitAndStockSwitchCleanup": true,
+    "qmEditorRunsInSeparateReportSession": true,
+    "qmAllSixSubmitValuesPassed": true,
+    "qmButtonHasTranslatableDefaultText": true,
+    "diffForwardAndReverse": "exact normalized source match"
+  },
+  "parser": {
+    "tool": "@abaplint/core",
+    "version": "2.120.60",
+    "abapVersion": "7.54",
+    "issues": [],
+    "resultFile": "QM-PARSER_WIP.json"
+  },
+  "sapCompilation": false,
+  "atc": false,
+  "functionalTest": false,
+  "limitation": "Csak helyi szerkezeti és diffellenőrzés; az SAP-futtatás, aktív forrás, képernyőgeometria, DDIC és üzleti működés nincs ellenőrizve.",
+  "sha256": {
+    "LZPR_COCKPITO01.abap": "20fe89ee44a3313d3f10c88d24ca8d2aba54c720d83f9af4af211d4cbf7f3e45",
+    "LZPR_COCKPITTOP.abap": "c253dc74c5a50784daddf148709e26d009a4d05a581fe51bd740011097d96490",
+    "ZPR_COCKPIT_0100.flow.abap": "45d3d7dc465209638760790bba65ca53fb790cfa06d501781efcb4550e798213",
+    "ZPR_COCKPIT_1010.flow.abap": "4b29c8bc9499dfca0d54ee16b87e887d426376007e74ba8cbe0e56908dbec31b",
+    "ZPR_DCQM_EXCLUDE.abap": "b1570f12f54044496881c04560e895976e943e982c079ce52c9d5ed99a7b95ad",
+    "ZPR_DCQM_EXCLUDE_C01.abap": "2e83e504cb3ce7087167d3d88a546097fa11d9b4b57e99422e8ec609f709b994",
+    "ZPR_DCQM_EXCLUDE_I01.abap": "647ff38e81397f71db01812dab94597390ed51ae77090ce30311b3e9a0f379be",
+    "ZPR_DCQM_EXCLUDE_O01.abap": "01668448581d7f6db3b29387f2867bfacb512ac5b2cef87d6857a41a9c215119",
+    "ZPR_QM.abap": "e743b6a7d84ea07cec25291407b629f8a761620cb1347ddebc9be733833846ee",
+    "Z_PR_COCKPIT.abap": "000a53fe033bbc3bb33049ac771dfc5775ddf2e428db5d7868e7966c256441df"
+  },
+  "knownRuntimeLimitation": "A felhasználó ST22-részlete szerint az előző változat SAPLZPR_COCKPIT programkörnyezetében a CALL SELECTION-SCREEN 2000 utasításnál DYNPRO_NOT_FOUND hibát adott. A javított SUBMIT-os indítás és a gombfelirat sikeres SAP-futása még nincs igazolva.",
+  "userProvidedDump": {
+    "runtimeError": "DYNPRO_NOT_FOUND",
+    "abapProgram": "SAPLZPR_COCKPIT",
+    "statement": "CALL SELECTION-SCREEN 2000.",
+    "screen": "2000",
+    "verifiedBy": "Felhasználó által bemásolt ST22-részlet, 2026-10-18; nincs saját SAP-visszaolvasás."
+  }
+}

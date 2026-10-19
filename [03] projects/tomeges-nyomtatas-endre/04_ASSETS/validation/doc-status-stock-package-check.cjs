@@ -3,7 +3,9 @@ const path = require('path');
 const assert = require('assert/strict');
 const {DatabaseSync} = require('node:sqlite');
 const project = path.resolve(__dirname, '../..');
-const source = fs.readFileSync(path.join(project, '04_ASSETS/abap/ZPR_DOC_STATUS.abap'), 'utf8');
+// Historical WIP validation; the current working baseline is the daily export.
+const historicalProject = path.resolve(project, '../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project');
+const source = fs.readFileSync(path.join(historicalProject, '04_ASSETS/abap/ZPR_DOC_STATUS.abap'), 'utf8');
 const read = /SELECT dcqm~guid dcqm~doc_no dcqm~package_id[\s\S]*?WHERE package~stock_id = iv_stock\./i.exec(source);
 const check = /SELECT SINGLE dcqm~guid FROM zprt_dcqm AS dcqm[\s\S]*?AND package~stock_id = iv_stock\./i.exec(source);
 const update = /UPDATE zprt_dcqm SET prdfile = lv_file[\s\S]*?AND package~stock_id = iv_stock \)\./i.exec(source);

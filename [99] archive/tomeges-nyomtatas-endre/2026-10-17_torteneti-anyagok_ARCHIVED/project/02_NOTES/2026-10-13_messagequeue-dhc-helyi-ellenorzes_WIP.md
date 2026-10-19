@@ -1,6 +1,6 @@
 # Messenger DHC: helyi ellenőrzés
 
-Státusz: WIP. Dátum: 2026-10-13. Aktuális állapot: a felhasználó utasítására a meglévő `ZPR_SLOG_EMAIL` tábla és a létrehozott `ZPRB_SLOG_EMAIL` táblatípus használata. A csomag és a változások a [bemásolási útmutatóban](../04_ASSETS/abap/2026-10-13_messagequeue-dhc-bemasolas_WIP.md) szerepelnek.
+Státusz: WIP. Dátum: 2026-10-13. Aktuális állapot: a felhasználó utasítására a meglévő `ZPR_SLOG_EMAIL` tábla és a létrehozott `ZPRB_SLOG_EMAIL` táblatípus használata. A csomag és a változások a [bemásolási útmutatóban](<../../../../../[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/info.md/2026-10-13_messagequeue-dhc-bemasolas_WIP.md>) szerepelnek.
 
 ## Helyi ellenőrzés
 

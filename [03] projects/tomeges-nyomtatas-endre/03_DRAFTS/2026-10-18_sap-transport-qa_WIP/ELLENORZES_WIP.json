@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-18",
+  "status": "WIP",
+  "structuralValidation": {
+    "yamlParser": "yaml 2.8.1",
+    "frontmatterValid": true,
+    "uiMetadataValid": true,
+    "automaticInvocationPreserved": true,
+    "relativeLinksChecked": 3,
+    "unfinishedScaffolding": false
+  },
+  "officialQuickValidate": {
+    "ran": false,
+    "reason": "A python.exe alias nem indítható ebben a környezetben; a gyári quick_validate.py hívása sikertelen."
+  },
+  "review": {
+    "method": "Saját tartalmi felülvizsgálat, nem független agentteszt.",
+    "cases": [
+      "Hiányzó variánsnál részleges helyi elemzés és célzott adatbekérés.",
+      "CheckProgram eredménye csak szintaxisellenőrzésként jelenthető.",
+      "Külön diff kérése nem módosítja az eredeti forrást.",
+      "Fennálló SAP-kapcsolati leállásnál nincs automatikus újrapróbálás.",
+      "TERTI-példa javítása nem szűkítheti önkényesen az üzleti kiválasztást."
+    ]
+  },
+  "sapAccessAttempted": false,
+  "liveAtcRun": false,
+  "files": {
+    "SKILL.md": "f64c041b7b7f900ff3f9604c90741dc097c3ebd2ac0a84d1425e03db57e74eef",
+    "agents/openai.yaml": "d54a3efcc1b998db0e93564a61df7ffd5d293c5f9a857680d214a9138dc10cb3",
+    "references/adatok-beszerzese.md": "83dd5475641859d63761bb01dc957be4eb6c2a8f7fc8391b9027bd25495ce7c4",
+    "references/mcp-es-rendszer.md": "3e86892ec25598ba7aaf8f61e40b3a089a435ed4993239b36d24fc66067c0742",
+    "references/qa-peldak.md": "63bd4ea5fdfa90d6f04a03e0fbcb45df013db85efd9e2f10fe7989e9024364fb"
+  },
+  "installation": {
+    "path": "C:/Users/T13214/.codex/skills/sap-transport-qa",
+    "filesVerifiedBySha256": true,
+    "existingSkillOverwritten": false
+  },
+  "lastReferenceUpdate": {
+    "date": "2026-10-18",
+    "evidence": "Felhasználói képernyőkép: Control for Code Check → Control for Code by Onapsis bejelölve.",
+    "variantContext": "Z_CONTROL_FOR_CODE; a kivágáson a variáns fejléc nem látható.",
+    "releaseVariantConfirmed": false,
+    "fullOnapsisPolicyKnown": false,
+    "markdownOnly": true,
+    "yamlMetadataUnchanged": true,
+    "installedFilesByteExact": true,
+    "sapAccessAttempted": false
+  }
+}

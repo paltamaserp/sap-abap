@@ -1,0 +1,214 @@
+ZPR_CLOSE_STOCK – megtekintési fejléc az ügyfél képernyőképe alapján (WIP)
+
+OK ÉS TEENDŐ
+A RELEASE_STOCK végén lévő darabszámok sikeres lezárás után BAL-naplóüzenetbe
+kerülnek. A rutint csak a RELEASE gomb hívja; megtekintési módban ez a gomb
+nem jelenik meg. Ezért az ottani rész a lista megnyitásakor nem fut le,
+és önmagában nem hoz létre ALV-fejlécet. A számlálók viszont már SELECT_DATA
+során elkészülnek, ezért a megjelenítéshez ezek közvetlenül használhatók.
+
+A diff a mostani 05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap helyi forráshoz
+készült. Az eredeti riport nincs módosítva. Az új fejléc:
+  Stock ID: 0000001183
+  Nyomtatási sorok száma: 22
+  Kizárt nyomtatási sorok száma: 0
+A fenti számok képernyőpéldák; a program mindig a kiválasztott stock adatait írja.
+
+MÓDOSÍTÁSOK
+1. A meglévő PBO → CREATE_CONTROLS_0100 út létrehoz egy felső docking containert.
+   A BUILD_HEADER közvetlenül innen fut, megtekintési módban és lezárható stocknál
+   is. Nem hívja a RELEASE_STOCK-ot vagy az Inspire-t a fejléc megjelenítéséhez.
+2. A három félkövér sor CL_DD_DOCUMENT dokumentumban az ALV felett jelenik meg.
+   Stock ID = P_STOKID (vezető nullák megőrizve); összes sor = GV_TOTAL;
+   kizárt sor = GV_EXCLUDED (a jelenlegi kiválasztás szerinti darabszám).
+   A meglévő SQL-szűrés és a lezárási folyamat nem változik.
+3. A fejléc minden PBO-n és REFRESH_GRID híváskor újraépül, a már létrehozott
+   HTML-control újrahasználatával. A GV_HEADER_VALID jelző a sikeresen beolvasott
+   számlálókat jelöli; beolvasási hiba után az ismeretlen szám Nem elérhető,
+   nem megtévesztő nulla. Üres, sikeresen beolvasott stocknál a nulla szabályos.
+4. FREE_CONTROLS a fejléc dokumentumát és konténerét is felszabadítja; az új
+   klasszikus kivételes hívások SY-SUBRC eredményét ellenőrzi.
+5. SE38/ADT: az alábbi hat szövegszimbólumot a riport HU szövegkészletében
+   karban kell tartani, szükség szerint fordítani és a riporttal transzportálni.
+   A TSV önmagában nem tölti a szövegkészletet. Foglalt azonosító esetén a
+   szöveget és a kódhivatkozást együtt kell átszámozni.
+6. SE41: a meglévő TITLE_0100_DISP cím magyar felirata a képnek megfelelően
+   Stock engedélyezés - megjelenítés legyen. A közös STATUS_0100 PBO-modul már
+   ezt a címet választja megtekintési módban; az include változtatása nem szükséges.
+   A GUI-címek nincsenek exportálva, a felirat kézi ellenőrzése/karbantartása szükséges.
+7. A fejléc a meglévő 0100 képernyőhöz dokkol, új SE51 Custom Control nem szükséges.
+   Az ALV_CONTAINER_01 megmarad. A tényleges SAP GUI témában ellenőrizendő,
+   hogy a három sor látható, az ALV átméreteződik és nincs már külön statikus,
+   azonos tartalmú fejléc. A kezdő magasság EXTENSION = 110.
+
+ELLENŐRZÉS
+A diff önállóan és az osztályhívási patch UTÁN külön másolaton alkalmazható;
+az oda-vissza próbák bájtpontosak. Kilenc helyi forrásszerkezeti ellenőrzés
+sikeres (PBO/frissítés, három sor, mellékhatásmentes fejléc, változatlan üzleti
+rutinok és SQL, érvényes számlálók, control-újrahasználat/felszabadítás, PERFORM-ok).
+A két patch fordított sorrendben is alkalmazható.
+A tényleges SAP-képernyő és az aktív GUI-cím nincs
+ellenőrizve; SAP-fordítás/ATC/GUI-próba és helyi ABAP-parserfuttatás nincs.
+SAP-próbák: lezárt/nem QM stocknál fejléc gombnyomás nélkül; összes/kizárt
+számok egyeznek a stockkal; nincs kizárásnál 0; sikeres üres lekérésnél 0;
+Frissítés után új számok; lekérési hibánál Nem elérhető; képernyő újbóli
+megnyitásakor egyetlen fejléc és egyszeri gombok. Megtekintési nyitáskor
+ne induljon Inspire-hívás és ne történjen üzleti adatbázis-módosítás.
+
+SAP-dokumentáció: dokumentum újraépítése és a meglévő control újrahasználata:
+https://help.sap.com/saphelp_gbt10/helpdata/en/4d/712175130f74dbe10000000a42189c/content.htm
+
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap" "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+index edb1cfe..c44cac1 100644
+--- "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+@@ -73,7 +73,10 @@ DATA: gs_stock          TYPE zprt_stock,
+       gv_block_reason   TYPE c LENGTH 120,
+       gv_dummy          TYPE string,
+       gr_container      TYPE REF TO cl_gui_custom_container,
+-      gr_grid           TYPE REF TO cl_gui_alv_grid.
++      gr_grid           TYPE REF TO cl_gui_alv_grid,
++      gr_header_container TYPE REF TO cl_gui_docking_container,
++      gr_header         TYPE REF TO cl_dd_document,
++      gv_header_valid   TYPE abap_bool.
+ 
+ SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE TEXT-001.
+   PARAMETERS p_stokid TYPE zprd_stock_id OBLIGATORY.
+@@ -189,6 +192,9 @@ FORM read_stock.
+     CATCH cx_root INTO lr_error.
+       PERFORM add_exception USING lr_error.
+   ENDTRY.
++  IF gv_error = abap_true.
++    CLEAR gv_header_valid.
++  ENDIF.
+ ENDFORM.
+ 
+ FORM determine_mode.
+@@ -240,7 +246,7 @@ FORM select_data.
+         lr_error TYPE REF TO cx_root.
+   FIELD-SYMBOLS <ls_alv> TYPE zprs_dcqm_report.
+ 
+-  CLEAR: gv_total, gv_excluded, gv_allowed.
++  CLEAR: gv_total, gv_excluded, gv_allowed, gv_header_valid.
+   REFRESH gt_alv.
+   gv_error = abap_true.
+   TRY.
+@@ -275,6 +281,7 @@ FORM select_data.
+   DESCRIBE TABLE gt_alv LINES gv_excluded.
+   gv_allowed = gv_total - gv_excluded.
+   gv_error = abap_false.
++  gv_header_valid = abap_true.
+ ENDFORM.
+ 
+ FORM release_stock.
+@@ -903,6 +910,21 @@ FORM create_controls_0100.
+         lt_exclude  TYPE ui_functions,
+         lv_function TYPE ui_func.
+   FIELD-SYMBOLS <ls_field> TYPE lvc_s_fcat.
++  IF gr_header_container IS NOT BOUND.
++    CREATE OBJECT gr_header_container
++      EXPORTING
++        repid     = sy-repid
++        dynnr     = sy-dynnr
++        side      = cl_gui_docking_container=>dock_at_top
++        extension = 110
++      EXCEPTIONS
++        OTHERS    = 1.
++    IF sy-subrc <> 0.
++      FREE gr_header_container.
++      MESSAGE text-128 TYPE 'S' DISPLAY LIKE 'W'.
++    ENDIF.
++  ENDIF.
++  PERFORM build_header.
+   CHECK gr_grid IS NOT BOUND.
+   CREATE OBJECT gr_container
+     EXPORTING
+@@ -980,6 +1002,7 @@ ENDFORM.
+ 
+ FORM refresh_grid.
+   DATA ls_stable TYPE lvc_s_stbl.
++  PERFORM build_header.
+   CHECK gr_grid IS BOUND.
+ 
+   ls_stable-row = abap_true.
+@@ -1087,9 +1110,66 @@ FORM free_controls.
+     FREE gr_container.
+   ENDIF.
+ 
++  FREE gr_header.
++  IF gr_header_container IS BOUND.
++    gr_header_container->free( EXCEPTIONS OTHERS = 1 ).
++    IF sy-subrc <> 0.
++      lv_free_failed = abap_true.
++    ENDIF.
++    FREE gr_header_container.
++  ENDIF.
++  CLEAR gv_header_valid.
++
+   IF lv_free_failed = abap_true.
+     MESSAGE i000 WITH 'Az ALV-vezérlők felszabadítása során hiba történt.'
+       DISPLAY LIKE 'E'.
+   ENDIF.
+ 
+-ENDFORM.
+\ No newline at end of file
++ENDFORM.
++
++FORM build_header.
++  "Display the stock summary independently of the release action.
++  DATA: lv_text TYPE sdydo_text_element,
++        lv_number TYPE c LENGTH 20,
++        lv_reuse TYPE abap_bool.
++  CHECK gr_header_container IS BOUND.
++  IF gr_header IS BOUND.
++    lv_reuse = abap_true.
++    gr_header->initialize_document( ).
++  ELSE.
++    CREATE OBJECT gr_header.
++  ENDIF.
++
++  CONCATENATE text-136 p_stokid INTO lv_text SEPARATED BY space.
++  PERFORM add_header_line USING lv_text.
++
++  IF gv_header_valid = abap_true.
++    WRITE gv_total TO lv_number LEFT-JUSTIFIED.
++  ELSE.
++    lv_number = text-141.
++  ENDIF.
++  CONCATENATE text-137 lv_number INTO lv_text SEPARATED BY space.
++  PERFORM add_header_line USING lv_text.
++
++  IF gv_header_valid = abap_true.
++    WRITE gv_excluded TO lv_number LEFT-JUSTIFIED.
++  ELSE.
++    lv_number = text-141.
++  ENDIF.
++  CONCATENATE text-138 lv_number INTO lv_text SEPARATED BY space.
++  PERFORM add_header_line USING lv_text.
++
++  gr_header->merge_document( ).
++  gr_header->display_document(
++    EXPORTING parent = gr_header_container reuse_control = lv_reuse
++    EXCEPTIONS OTHERS = 1 ).
++  IF sy-subrc <> 0.
++    MESSAGE text-140 TYPE 'S' DISPLAY LIKE 'W'.
++  ENDIF.
++ENDFORM.
++
++FORM add_header_line USING uv_text TYPE sdydo_text_element.
++  gr_header->add_text( text = uv_text
++    sap_emphasis = cl_dd_document=>strong ).
++  gr_header->new_line( ).
++ENDFORM.
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-fejlec-textelemek_WIP.tsv" "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-fejlec-textelemek_WIP.tsv"
+new file mode 100644
+--- /dev/null
++++ "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-fejlec-textelemek_WIP.tsv"
+@@ -0,0 +1,7 @@
++ID	Nyelv	Szöveg
++128	HU	A fejléc-konténer nem hozható létre.
++136	HU	Stock ID:
++137	HU	Nyomtatási sorok száma:
++138	HU	Kizárt nyomtatási sorok száma:
++140	HU	A fejléc nem jeleníthető meg.
++141	HU	Nem elérhető

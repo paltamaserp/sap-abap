@@ -1,5 +1,7 @@
 # 04_ASSETS/abap — WIP ABAP export
 
+**Aktuális állapot, 2026-10-17:** a fejlesztési kiindulópont a [mai MCP-export](../../05_FINAL/abap-2026-10-17/README.md). A korábbi 19 munkaforrás a [történeti archívumba](<../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/README.md>) került. Itt a képernyő-flow logic, textelemek, üzenetlista, tesztforrások, opcionális MQ-regisztráció és útmutatók maradtak. Az alábbi ismertető az archivált WIP-változatok történeti leírása; a hivatkozások az új helyekre mutatnak.
+
 Ide kerül a **munka közbeni** `.abap` export (osztály, report, függvénymodul,
 DDL) — verziózáshoz, diffeléshez.
 
@@ -18,31 +20,31 @@ Az ABAP Unit-tesztinclude-ok a `test/` almappában találhatók:
 
 A `ZPR_MESSAGEQUEUE_QUERY` a QU5 `ZBC_PRN_MESSAGEQUEUE_QUERY` alapján készült helyi WIP DHC-változat. A meglévő `ZPR_SLOG_EMAIL` transzparens táblát és a felhasználó által létrehozott `ZPRB_SLOG_EMAIL` táblatípust használja. A zárolási hívások `EZPR_SLOG_EMAIL`-re épülnek, CHAR 14 időmezőkezeléssel és CHAR255 hibaüzenettel. Proxyillesztő, ALV-include, 0100 flow logic, opcionális e-mailküldő regisztrációs include és kilenc ABAP Unit-teszt tartozik hozzá. A korábbi új táblaspecifikáció kivezetve.
 
-[Bemásolási és integrációs útmutató](2026-10-13_messagequeue-dhc-bemasolas_WIP.md). A valódi Inspire WSDL-ből generált proxy/típusok és a logikai port előfeltételek; a tervezett proxynevek az illesztőben egyeztetendők. SAP-fordítás és teszt nem történt, az aktív DHC-állapot nincs ellenőrizve.
+[Bemásolási és integrációs útmutató](info.md/2026-10-13_messagequeue-dhc-bemasolas_WIP.md). A valódi Inspire WSDL-ből generált proxy/típusok és a logikai port előfeltételek; a tervezett proxynevek az illesztőben egyeztetendők. SAP-fordítás és teszt nem történt, az aktív DHC-állapot nincs ellenőrizve.
 
 ## Stocklezárási riport
 
 A `ZPR_STOCK_REPORT` teljes helyi WIP forrása a két include-dal és a 0100 flow logicjával itt található. A felhasználó által választott állapotmodell: `STATUS = QM` → `STATUS = CL`, `CLOSED = X`; ragszámkezelés: `ZPR_TERTI` és `ZISU_F064`.
 
-[Bemásolási útmutató és függőségek](2026-10-13_stock-report-dhc-bemasolas_WIP.md). Helyi szerkezeti/mezőellenőrzés történt, SAP-fordítás és teszt nem; az SAP-kapcsolatot nem használtuk.
+[Bemásolási útmutató és függőségek](info.md/2026-10-13_stock-report-dhc-bemasolas_WIP.md). Helyi szerkezeti/mezőellenőrzés történt, SAP-fordítás és teszt nem; az SAP-kapcsolatot nem használtuk.
 
 ## Nyomdai ellenőrző riport
 
 A `ZPR_DOC_RIP` a QU5 `ZEBF_PR_DOC_RIP` helyi WIP DHC-változata: stockonként és PR/IN csatornánként hasonlítja össze a SAP dokumentum-/borítékszámokat az Inspire fájladataival, részletes ALV-listával. A hat include, a 0100 flow logic és hat Unit-teszt forrása itt található. Az aktív proxy és a szükséges táblák/struktúrák MCP-vel csak olvasva ellenőrizve; SAP-objektum létrehozása/módosítása és tesztfuttatás nem történt.
 
-[Bemásolás, adatleképezés, logikai port és ellenőrzések](2026-10-15_doc-rip-dhc-bemasolas_WIP.md).
+[Bemásolás, adatleképezés, logikai port és ellenőrzések](info.md/2026-10-15_doc-rip-dhc-bemasolas_WIP.md).
 
 ## Dokumentumstátuszok lekérése
 
 A `ZPR_DOC_STATUS.abap` a QU5 `ZEBF_PR_DOC_STATUS` helyi WIP DHC-megfelelője, egyetlen ABAP-forrásban, beágyazott tiszta Unit-tesztekkel. A státusz-/hibamentés, ArchiveLink-kezelés és ragszámtörlés DHC-táblákra épül. A felhasználó kérésére az e-számla-, számlahitelesítési és push-ágak teljes eredeti forrása jelölve, kikommentezve megmaradt. A DOC_SLOG időbélyegkulcsának ütközése hibát ad, nem ír felül másik státuszt.
 
-[Bemásolás, kikapcsolt ágak, adatmodell és ellenőrzések](2026-10-15_doc-status-dhc-bemasolas_WIP.md). MCP-vel csak olvasás történt; a helyi parser hibamentes, SAP-fordítás és tesztfuttatás nincs.
+[Bemásolás, kikapcsolt ágak, adatmodell és ellenőrzések](info.md/2026-10-15_doc-status-dhc-bemasolas_WIP.md). MCP-vel csak olvasás történt; a helyi parser hibamentes, SAP-fordítás és tesztfuttatás nincs.
 
 ## A DC riport DDIC-előfeltételei
 
 A `ZPR_DCQM_EXCLUDE` a megvalósítási terv L1–L7 objektumait igényli.
 `Type "ZPRS_DCQM_REPORT" is unknown` esetén a struktúrát létre kell hozni
-vagy aktiválni: [SE11-mezőlista és beállítások](2026-10-08_zprs-dcqm-report-letrehozas_WIP.md).
+vagy aktiválni: [Mai struktúradefiníció](info.md/2026-10-08_zprs-dcqm-report-letrehozas_WIP.md).
 
 A felhasználó által létrehozott `ZPRT_DCQMLT` dokumentumazonosítója
 `EXBILLDOCNO`; a riport hosszú szöveghez kapcsolódó hivatkozásai ezt használják.
@@ -65,9 +67,9 @@ A két program DC-üzenetei a megadott DHC-exportban szabad **045–066**
 számokra vannak átvezetve. Ezeket a programok használata előtt SE91-ben
 fel kell venni a meglévő `ZPR` osztályba. A `000–044` meglévő üzenetek megmaradnak.
 
-- [SE91-lépések és a 22 új üzenet teljes szövege](2026-10-08_dc-zpr-uzenetek-letrehozasa_WIP.md)
+- [SE91-lépések és a 22 új üzenet teljes szövege](info.md/2026-10-08_dc-zpr-uzenetek-letrehozasa_WIP.md)
 - [Másolható üzenetlista](2026-10-08_dc-zpr-uj-uzenetek_WIP.message)
-- [A két program változásai a közvetlenül korábbi helyi kódhoz képest](2026-10-08_dc-zpr-uzenetek-atvezetes_WIP.diff)
+- [A két program változásai a közvetlenül korábbi helyi kódhoz képest](info.diff/2026-10-08_dc-zpr-uzenetek-atvezetes_WIP.diff)
 
 A számok szabadságát az aktuális DHC-ban is ellenőrizni kell. SAP-objektumot
 ez a helyi átvezetés nem módosított; SAP-szintaxisellenőrzés és ATC nem futott.

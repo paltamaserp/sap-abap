@@ -56,7 +56,7 @@ Teszt- és review-eszközök: `[01] system/TESTING-TOOLS.md`.
 
 A `tomeges-nyomtatas-endre` projekt ABAP Unit-tesztinclude-jai a `04_ASSETS/abap/test/` almappában találhatók.
 
-A projekt `05_FINAL/abap/` almappája a felhasználó által ide kért MCP-forrásokat, DDIC-definíciókat, ADT-metaadatokat és exportjegyzéket tartalmazza. A 2026-10-16-i export 24 objektum / 34 fájl, WIP; az UI-alobjektumok és a teljes függőséghalmaz nélkül. Az aktuális teljességet az ottani README és manifeszt jelzi.
+A projekt elsődleges munkabázisa a felhasználó 2026-10-17-i döntése szerint a `05_FINAL/abap-2026-10-17/` MCP-export; a további elemzések és javítások ebből indulnak. A tegnapi export, a korábbi munkaprogramok, történeti jegyzetek és diagnosztika 127 fájlja a felhasználó kérésére ide került: [`[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/`](<[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/README.md>). A mai 24 objektum / 34 fájl forrásai és metaadatai változatlanok; a README/manifeszt archív hivatkozása frissült. A hiányzó C01/cockpit WIP, a nyitott QA-javítás, a szükséges DDIC/proxyreferenciák, képernyő-/szöveg-/tesztkiegészítők az aktív projektben maradtak. A leltár és az eredeti útvonalak az archív manifesztben szerepelnek; a napi export nem teljes UI-/függőségmentés.
 
 ---
 
@@ -80,6 +80,6 @@ Adj kevesebb okot a találgatásra. Ennyi az egész.
 | Projekt        | Státusz | ClickUp |
 | -------------- | ------- | ------- |
 | `_TEMPLATE` () | WIP     |         |
-| `tomeges-nyomtatas-endre` | WIP | |
+| [tomeges-nyomtatas-endre](<[03] projects/tomeges-nyomtatas-endre/00_BRIEF.md>) | WIP | |
 
 > Tartsd ezt a táblát naprakészen — ez a leggyorsabb áttekintés rólad és Claude-nak is.

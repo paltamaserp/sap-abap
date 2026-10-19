@@ -1,0 +1,9 @@
+{
+  "verifiedDate": "2026-10-18",
+  "forwardByteExact": true,
+  "reverseByteExact": true,
+  "sourceFiles": [
+    "ZPR_CLOSE_STOCK.abap",
+    "ZCL_PR_STOCK.abap"
+  ]
+}

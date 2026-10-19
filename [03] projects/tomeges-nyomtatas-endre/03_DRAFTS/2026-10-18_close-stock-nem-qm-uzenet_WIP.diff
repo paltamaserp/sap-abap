@@ -1,0 +1,32 @@
+ZPR_CLOSE_STOCK – nem QM státuszú stock megtekintési üzenete (WIP)
+Alap: 05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap jelenlegi állapota,
+amely már tartalmazza a lezárt stock TEXT-108 információs üzenetét.
+Teendő: az ALV megnyitása előtti IF-blokk bővítése az alábbi ELSEIF ággal.
+A lezárt stock üzenete elsőbbséget élvez; más nem QM státusznál TEXT-110
+jelenik meg. QM státusznál ez az új üzenet nem jelenik meg.
+A meglévő DETERMINE_MODE már tiltja a nem QM stock lezárását;
+az információs ablak nyugtázása után a megtekintési lista nyílik meg.
+SE38/ADT: a riport 110-es szövegszimbólumát HU nyelven az alábbi TSV szerint
+kell karbantartani és a forrással együtt transzportálni. A TSV nem importálódik
+automatikusan a SAP szövegkészletbe; más nyelvek fordítása külön karbantartandó.
+Az eredeti riport nincs módosítva; aktív SAP-ellenőrzés és futtatás nincs.
+
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap" "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+--- "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+@@ -125,6 +125,8 @@ START-OF-SELECTION.
+   IF gs_stock-closed IS NOT INITIAL
+      OR gs_stock-status = gc_status_closed.
+     MESSAGE text-108 TYPE 'I'.
++  ELSEIF gs_stock-status <> gc_status_qm.
++    MESSAGE text-110 TYPE 'I'.
+   ENDIF.
+ 
+   CALL SCREEN 0100.
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-nem-qm-textelem_WIP.tsv" "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-nem-qm-textelem_WIP.tsv"
+new file mode 100644
+--- /dev/null
++++ "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-nem-qm-textelem_WIP.tsv"
+@@ -0,0 +1,2 @@
++ID	Nyelv	Szöveg
++110	HU	Csak QM státuszú stock zárható le. Csak megtekintés lehetséges.

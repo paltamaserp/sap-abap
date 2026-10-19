@@ -1,0 +1,159 @@
+ZPR_CLOSE_STOCK – kizárólag a riport módosítása az osztályhíváshoz (WIP)
+
+MIT MÓDOSÍTS A RIPORTBAN?
+Az alábbi diff csak a FORM SEND_PRIORITY törzsét cseréli ki.
+A gomb, RELEASE_STOCK, PREPARE_REGMAIL, SAVE_RELEASE, zárolás és fejléc marad.
+A közvetlen proxyhívás helyett a ZCL_PR_STOCK=>CLOSE_STOCK fut le.
+A meglévő RELEASE_STOCK továbbra is csak GV_ERROR = ABAP_FALSE és
+GV_REMOTE_SUCCESS = ABAP_TRUE után hívja a SAVE_RELEASE-t. Ez már menti
+CL/CLOSED/prioritás/lezárási/CH* mezőket és kezeli a ragszámokat.
+A létrehozási CRUSER/CRDATE/CRTIME mezők megmaradnak.
+
+FONTOS ELŐFELTÉTEL – A MOST BETETT OSZTÁLY MÉG NEM TUDJA EZT AZ INTERFÉSZT
+A 05_FINAL/abap-2026-10-17/ZCL_PR_STOCK.class.abap jelenleg csak IV_STOCK
+bemenetet fogad. A riport alábbi új hívása csak az osztály következő célzott
+bővítése UTÁN fordulhat le. Ez a fájl kizárólag a riportpatch;
+a korábbi, teljes logikát áthelyező diffekkel nem kombinálandó.
+
+Elvárt CLOSE_STOCK interfész (az osztályban külön átvezetendő):
+  CLASS-METHODS close_stock
+    IMPORTING
+      !iv_stock TYPE zprd_stock_id
+      !iv_priority TYPE zprd_priority OPTIONAL
+      !it_exclude_envelopes TYPE zpr_eon_dcqmcompleted_requ_tab OPTIONAL
+      !iv_remote_only TYPE abap_bool DEFAULT abap_false
+    EXPORTING
+      !ev_remote_success TYPE abap_bool
+      !ev_call_started TYPE abap_bool
+      !ev_uncertain TYPE abap_bool
+      !et_messages TYPE bal_t_msg.
+
+Az osztály riportból hívott IV_REMOTE_ONLY = ABAP_TRUE ágának kötelező működése:
+- a kapott prioritást és kizártboríték-listát használja az Inspire-kérésben;
+- a logikai portot ellenőrizze; EV_CALL_STARTED csak közvetlenül a tényleges
+  proxyhívás előtt legyen igaz; az eredményjelzők induláskor legyenek törölve;
+- EV_REMOTE_SUCCESS kizárólag PARAMETERS-SUCCESS = ABAP_TRUE válasznál igaz;
+- alkalmazási elutasításnál nincs siker, technikailag bizonytalan hívásnál
+  EV_UNCERTAIN igaz; az eredeti get_cx_message hibakezelés megőrzendő;
+- ebben az ágban nincs második prioritáspopup, UPDATE_STATUS('CL'),
+  COMMIT/ROLLBACK és külön naplómegjelenítés; a riport tulajdonolja a zárat/LUW-t;
+- a naplóüzeneteket ET_MESSAGES-ben adja vissza a riport meglévő naplójához;
+- az EV_CALL_STARTED kimenet referenciával adódjon át (ne VALUE paraméterként),
+  hogy egy kifelé dobott kivételnél a riport ismerje a hívás megkezdését;
+- IV_REMOTE_ONLY = ABAP_FALSE alapértékkel a korábbi hívók viselkedése megőrzendő.
+A puszta paraméterdeklaráció nem elég, ezt az osztályágat is meg kell valósítani.
+Az osztály módosítását ez a riportdiff nem tartalmazza.
+
+TEXTELEMEK
+SE38/ADT: a riport 142, 143 és 144 HU szövegszimbólumát az alábbi TSV szerint
+karban kell tartani, szükség szerint fordítani és transzportálni. A TSV
+önmagában nem hoz létre SAP-textelemeket. Foglalt ID-nál együtt átszámozandó
+a kódhivatkozás és a szöveg. A meglévő textelemek megmaradnak.
+
+ELLENŐRZÉS
+A patch külön másolaton előre/vissza alkalmazva bájtpontos. Ellenőrizve:
+kizárólag SEND_PRIORITY változik; egyetlen osztályhívás; a siker/bizonytalanság
+feltétele; a meglévő SAVE_RELEASE sikerfeltétele és minden más rutin változatlan. Az osztály előfeltétele jelenleg hiányzik, ezért ez nem önállóan
+aktiválható SAP-javítás. SAP-hívás, SAP-fordítás/ATC/GUI és helyi parserpróba nincs.
+Az eredeti riport és az osztály nincs módosítva.
+
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap" "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+index f87ec07..8842042 100644
+--- "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+@@ -654,13 +654,10 @@ FORM prepare_regmail CHANGING ct_regmail TYPE ty_regmail_table.
+ ENDFORM.
+ 
+ FORM send_priority.
+-  DATA: ls_input     TYPE zpr_eon_dcqmcompleted_request2,
+-        ls_output    TYPE zpr_eon_dcqmcompleted_response,
+-        lt_envelopes TYPE zpr_eon_dcqmcompleted_requ_tab,
++  DATA: lt_envelopes TYPE zpr_eon_dcqmcompleted_requ_tab,
+         ls_envelope  TYPE zpr_eon_dcqmcompleted_request1,
+         ls_alv       TYPE zprs_dcqm_report,
+-        lo_proxy     TYPE REF TO zpr_co_eon_dcqmcompleted_port,
+-        lv_port      TYPE prx_logical_port_name,
++        lt_messages  TYPE bal_t_msg,
+         lr_error     TYPE REF TO cx_root.
+ 
+   "Only an explicit successful response permits local closing.
+@@ -676,49 +673,43 @@ FORM send_priority.
+   SORT lt_envelopes BY envelope_id.
+   DELETE ADJACENT DUPLICATES FROM lt_envelopes COMPARING envelope_id.
+ 
+-  ls_input-sap_mandant = sy-mandt.
+-  ls_input-sap_system = sy-sysid.
+-  ls_input-stock_id = p_stokid.
+-  ls_input-priority = gv_priority.
+-  ls_input-exclude_envelopes-envelope = lt_envelopes.
+-
+   TRY.
+-      lv_port = zcl_pr_output_management=>get_logical_port_name( ).
+-      IF lv_port IS INITIAL.
+-        PERFORM add_message USING 'E' 'Az Inspire logikai portja üres.'
+-          space space.
+-        RETURN.
+-      ENDIF.
+-      CREATE OBJECT lo_proxy EXPORTING logical_port_name = lv_port.
+-      gv_call_started = abap_true.
+-      lo_proxy->eon_dcqmcompleted(
+-        EXPORTING input = ls_input IMPORTING output = ls_output ).
++      "The report retains the lock and performs SAVE_RELEASE after success.
++      zcl_pr_stock=>close_stock(
++        EXPORTING
++          iv_stock = p_stokid
++          iv_priority = gv_priority
++          it_exclude_envelopes = lt_envelopes
++          iv_remote_only = abap_true
++        IMPORTING
++          ev_remote_success = gv_remote_success
++          ev_call_started = gv_call_started
++          ev_uncertain = gv_uncertain
++          et_messages = lt_messages ).
+ 
+     CATCH cx_ai_application_fault INTO lr_error.
+-      gv_error = abap_true.
+       CLEAR: gv_call_started, gv_remote_success.
++      APPEND LINES OF lt_messages TO gt_messages.
+       PERFORM add_exception USING lr_error.
+-      PERFORM add_message USING 'E'
+-        'Az Inspire elutasította a lezárást:'
+-        p_stokid space.
++      PERFORM add_message USING 'E' text-142 p_stokid space.
+       RETURN.
+     CATCH cx_root INTO lr_error.
++      CLEAR gv_remote_success.
++      APPEND LINES OF lt_messages TO gt_messages.
+       PERFORM add_exception USING lr_error.
+       IF gv_call_started = abap_true.
+         gv_uncertain = abap_true.
+-        PERFORM add_message USING 'E' 'Az Inspire eredménye bizonytalan:'
+-          p_stokid 'Újraküldés előtt ellenőrzés szükséges.'.
++        PERFORM add_message USING 'E' text-143 p_stokid text-144.
+       ENDIF.
+       RETURN.
+   ENDTRY.
+-  IF ls_output-parameters-success <> abap_true.
+-    PERFORM add_message USING 'E' 'Az Inspire elutasitotta a lezárást:'
+-      ls_output-parameters-error_code ls_output-parameters-info.
++
++  APPEND LINES OF lt_messages TO gt_messages.
++  IF gv_remote_success <> abap_true OR gv_uncertain = abap_true.
++    CLEAR gv_remote_success.
+     RETURN.
+   ENDIF.
+-  gv_remote_success = abap_true.
+   gv_error = abap_false.
+-  PERFORM add_message USING 'S' 'Inspire jóváhagyás sikeres:' p_stokid space.
+ ENDFORM.
+ 
+ FORM save_release USING ut_regmail TYPE ty_regmail_table.
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-riport-osztalyhivas-textelemek_WIP.tsv" "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-riport-osztalyhivas-textelemek_WIP.tsv"
+new file mode 100644
+--- /dev/null
++++ "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-riport-osztalyhivas-textelemek_WIP.tsv"
+@@ -0,0 +1,4 @@
++ID	Nyelv	Szöveg
++142	HU	Az Inspire elutasította a lezárást:
++143	HU	Az Inspire eredménye bizonytalan:
++144	HU	Újraküldés előtt ellenőrzés szükséges.

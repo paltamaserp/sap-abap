@@ -1,0 +1,32 @@
+diff --git a/LZPR_COCKPITO01.abap b/LZPR_COCKPITO01.abap
+index 9e9405a..92433f7 100644
+--- a/LZPR_COCKPITO01.abap
++++ b/LZPR_COCKPITO01.abap
+@@ -89,6 +89,13 @@ MODULE user_command INPUT.
+       gs_tabstrip-pressed_tab = c_tabstrip-t_close.
+ 
+     WHEN c_buttons-dm_close.
++      IF zprs_cockpit-status IS NOT INITIAL.
++        MESSAGE s044(zpr)
++          WITH zprs_cockpit-status 'DM'
++          DISPLAY LIKE 'E'.
++        RETURN.
++      ENDIF.
++
+ 
+       zcl_pr_stock=>check_status(
+         iv_old_status = zprs_cockpit-status
+@@ -100,6 +107,13 @@ MODULE user_command INPUT.
+         iv_new_status = 'DM' ). " Stock státusz
+ 
+     WHEN c_buttons-dm_reopen.
++      IF zprs_cockpit-status <> 'DM'.
++        MESSAGE s044(zpr)
++          WITH zprs_cockpit-status space
++          DISPLAY LIKE 'E'.
++        RETURN.
++      ENDIF.
++
+       zcl_pr_stock=>check_status(
+         iv_old_status = zprs_cockpit-status
+         iv_new_status = space

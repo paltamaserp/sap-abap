@@ -10,10 +10,10 @@ Az aktív SAP-forrás olvasását az elérhető ADT-kapcsolaton megkíséreltük
 
 ## Források és bizonyosság
 
-- [QU5 főprogram](../01_SOURCES/QU5/ZEBF_PR_STOCK_REPORT.abap): 999 sor. A hivatkozott `_O01` és `_I01` include nincs a projekt helyi fájljai között.
-- [DHC stockosztály](../01_SOURCES/DHC/ZCL_PR_STOCK.abap): `CLOSE_STOCK`, `CHECK_STATUS`, `GET_STOCK_HEADER`, `UPDATE_STATUS`.
-- [DHC stocktábla](../01_SOURCES/DHC/ZPRT_STOCK.table), [DHC dokumentumtábla](../01_SOURCES/DHC/ZPRT_DCQM.table), [QU5 stocktábla](../01_SOURCES/QU5/ZEBFT_PR_STOCK.table), [QU5 fájltábla](../01_SOURCES/QU5/ZEBFT_PR_MSSFILE.table), [QU5 ALV-struktúra](../01_SOURCES/QU5/ZEBFS_PR_DCQM_REPORT.sructure).
-- [DHC cockpit eseménykezelése](../01_SOURCES/DHC/ZPR_COCKPIT/LZPR_COCKPITO01.abap), a cockpit főfüggvénye és TOP include-ja.
+- [QU5 főprogram](<../../../../../[03] projects/tomeges-nyomtatas-endre/01_SOURCES/QU5/ZEBF_PR_STOCK_REPORT.abap>): 999 sor. A hivatkozott `_O01` és `_I01` include nincs a projekt helyi fájljai között.
+- [DHC stockosztály](<../../../../../[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/ZCL_PR_STOCK.abap>): `CLOSE_STOCK`, `CHECK_STATUS`, `GET_STOCK_HEADER`, `UPDATE_STATUS`.
+- [DHC stocktábla](<../../../../../[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/ZPRT_STOCK.table>), [DHC dokumentumtábla](<../../../../../[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/ZPRT_DCQM.table>), [QU5 stocktábla](<../../../../../[03] projects/tomeges-nyomtatas-endre/01_SOURCES/QU5/ZEBFT_PR_STOCK.table>), [QU5 fájltábla](<../../../../../[03] projects/tomeges-nyomtatas-endre/01_SOURCES/QU5/ZEBFT_PR_MSSFILE.table>), [QU5 ALV-struktúra](<../../../../../[03] projects/tomeges-nyomtatas-endre/01_SOURCES/QU5/ZEBFS_PR_DCQM_REPORT.sructure>).
+- [DHC cockpit eseménykezelése](<../../../../../[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/ZPR_COCKPIT/LZPR_COCKPITO01.abap>), a cockpit főfüggvénye és TOP include-ja.
 - A projekt `_LOG.md`, a korábbi DC-terv és a `ZPRS_DCQM_REPORT` létrehozási specifikációja: korábbi munkához készült helyi tervek, nem az aktív SAP-állapot igazolásai.
 - `01_SOURCES/Tömeges tranzakciók.docx`: OOXML-ből kiolvasott követelmények. Már rögzített cél a `ZPR_MASS / STOCK` napló és a `ZCL_PR_LOG`; a kódhoz/DDIC-hez megadott csomagok `ZPR_FUNC` és `ZPR_DDIC`. Ezeket nem kell újra megkérdezni. A dokumentum szerint a `CLOSE_STOCK` a későbbi stocklezárási funkció jelöltje.
 

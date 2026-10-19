@@ -1,0 +1,56 @@
+diff --git a/LZPR_COCKPITO01.abap b/LZPR_COCKPITO01.abap
+--- a/LZPR_COCKPITO01.abap
++++ b/LZPR_COCKPITO01.abap
+@@ -41,6 +41,11 @@ ENDMODULE.
+ MODULE prepare_command INPUT.
+   save_ok = ok_code.
+   CLEAR ok_code.
++* Reset must work before stock validation and before the outgoing subscreen.
++  IF save_ok = 'RESET'.
++    PERFORM reset_cockpit.
++    LEAVE TO SCREEN 100.
++  ENDIF.
+   IF zprs_cockpit-stock_id IS INITIAL AND save_ok IS INITIAL.
+     LEAVE TO SCREEN 100.
+   ENDIF.
+@@ -172,7 +177,11 @@ ENDMODULE.
+ MODULE screen_attributes OUTPUT.
+   LOOP AT SCREEN.
+     IF screen-name = 'ZPRS_COCKPIT-STOCK_ID'.
+-      screen-input = 1.
++      IF gv_stock_id IS INITIAL.
++        screen-input = 1.
++      ELSE.
++        screen-input = 0.
++      ENDIF.
+       MODIFY SCREEN.
+     ELSEIF screen-group1 = 'HDR'.
+       screen-input = 0.
+@@ -210,6 +219,10 @@ ENDMODULE.
+ FORM accept_stock.
+   DATA ls_header LIKE zprs_cockpit.
+ 
++* The accepted stock can only be changed through RESET.
++  IF gv_stock_id IS NOT INITIAL.
++    zprs_cockpit-stock_id = gv_stock_id.
++  ENDIF.
+   IF zprs_cockpit-stock_id IS INITIAL.
+     MESSAGE text-101 TYPE 'E'.
+   ENDIF.
+@@ -257,3 +270,16 @@ FORM dm_close.
+     save_ok = '#CANCEL'.
+   ENDIF.
+ ENDFORM.
++
++FORM reset_cockpit.
++* Keep the entire current context if discarding changes is declined.
++  PERFORM dm_close.
++  CHECK save_ok <> '#CANCEL'.
++
++  CLEAR: zprs_cockpit, gv_stock_id, gv_dm_ready, gv_edit_mode,
++         gx_error, gv_dummy_message, ok_code, save_ok, gs_tabstrip.
++  gs_tabstrip-prog = sy-repid.
++  gs_tabstrip-subscreen = '1010'.
++  gs_tabstrip-pressed_tab = c_tabstrip-t_dm_item.
++  t_tabstrip-activetab = c_tabstrip-t_dm_item.
++ENDFORM.

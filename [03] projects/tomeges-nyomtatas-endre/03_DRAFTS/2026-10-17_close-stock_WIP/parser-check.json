@@ -1,0 +1,8 @@
+{
+  "tool": "@abaplint/core",
+  "version": "2.120.60",
+  "abapVersion": "7.54",
+  "issues": [],
+  "currentSourcesReparsed": false,
+  "latestSourceChange": "2026-10-18: GO_ -> GR_ átnevezés, kizárólag azonosítócsere, visszafelé bájtpontosan ellenőrizve."
+}

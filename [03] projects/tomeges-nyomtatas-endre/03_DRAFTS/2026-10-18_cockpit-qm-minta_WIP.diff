@@ -1,0 +1,236 @@
+diff --git a/LZPR_COCKPITTOP.abap b/LZPR_COCKPITTOP.abap
+index e897b50..39b45eb 100644
+--- a/LZPR_COCKPITTOP.abap
++++ b/LZPR_COCKPITTOP.abap
+@@ -47,3 +47,7 @@ DATA: gv_stock_changed      TYPE abap_bool,
+ 
+ * Create the screen container in its own function group's PBO.
+ DATA go_dm_container TYPE REF TO cl_gui_custom_container.
++
++* QM selection-screen state; no business work is started when the tab opens.
++DATA: gv_qm_ready TYPE abap_bool,
++      gv_qm_command_handled TYPE abap_bool.
+diff --git a/LZPR_COCKPITO01.abap b/LZPR_COCKPITO01.abap
+index 9e9405a..dd4f740 100644
+--- a/LZPR_COCKPITO01.abap
++++ b/LZPR_COCKPITO01.abap
+@@ -14,7 +14,14 @@ MODULE t_tabstrip_active_tab_set OUTPUT.
+     WHEN c_tabstrip-t_dm_approve.
+       gs_tabstrip-subscreen = '1020'.
+     WHEN c_tabstrip-t_qm_check.
+-      gs_tabstrip-subscreen = '1030'.
++      PERFORM qm_open.
++      IF gv_qm_ready = abap_true.
++        gs_tabstrip-prog = 'ZPR_QM'.
++        gs_tabstrip-subscreen = '1100'.
++      ELSE.
++        gs_tabstrip-pressed_tab = c_tabstrip-t_dm_approve.
++        gs_tabstrip-subscreen = '1020'.
++      ENDIF.
+     WHEN c_tabstrip-t_qm_approve.
+       gs_tabstrip-subscreen = '1040'.
+     WHEN c_tabstrip-t_close.
+@@ -58,6 +65,17 @@ MODULE prepare_command INPUT.
+ ENDMODULE.
+ 
+ MODULE user_command INPUT.
++* The selection-screen event only requests execution; the host dispatches it.
++  CLEAR gv_qm_command_handled.
++  IF gs_tabstrip-pressed_tab = c_tabstrip-t_qm_check
++     AND gv_qm_ready = abap_true.
++    PERFORM cockpit_execute IN PROGRAM zpr_qm
++      CHANGING gv_qm_command_handled.
++    IF gv_qm_command_handled = abap_true.
++      CLEAR save_ok.
++      RETURN.
++    ENDIF.
++  ENDIF.
+   IF save_ok = c_tabstrip-t_dm_approve
+      OR save_ok = c_tabstrip-t_qm_check
+      OR save_ok = c_tabstrip-t_qm_approve
+@@ -168,6 +186,7 @@ MODULE cancel INPUT.
+     CLEAR: ok_code, save_ok.
+     LEAVE TO SCREEN 100.
+   ENDIF.
++  PERFORM qm_close.
+   LEAVE TO SCREEN 0.
+ ENDMODULE.
+ *&---------------------------------------------------------------------*
+@@ -256,6 +275,7 @@ FORM accept_stock.
+       zprs_cockpit-stock_id = gv_stock_id.
+       RETURN.
+     ENDIF.
++    PERFORM qm_close.
+     gv_stock_id = zprs_cockpit-stock_id.
+     zprs_cockpit = ls_header.
+     gs_tabstrip-pressed_tab = c_tabstrip-t_dm_item.
+@@ -291,7 +311,9 @@ FORM reset_cockpit.
+   PERFORM dm_close.
+   CHECK gv_dm_close_cancelled = abap_false.
+ 
++  PERFORM qm_close.
+   CLEAR: zprs_cockpit, gv_stock_id, gv_dm_ready, gv_edit_mode,
++         gv_qm_ready, gv_qm_command_handled,
+          gv_stock_changed, gv_dm_close_cancelled,
+          gx_error, gv_dummy_message, ok_code, save_ok, gs_tabstrip.
+   gs_tabstrip-prog = sy-repid.
+@@ -299,3 +321,15 @@ FORM reset_cockpit.
+   gs_tabstrip-pressed_tab = c_tabstrip-t_dm_item.
+   t_tabstrip-activetab = c_tabstrip-t_dm_item.
+ ENDFORM.
++
++FORM qm_open.
++  CHECK gv_stock_id IS NOT INITIAL.
++  PERFORM cockpit_open IN PROGRAM zpr_qm
++    USING gv_stock_id CHANGING gv_qm_ready.
++ENDFORM.
++
++FORM qm_close.
++  CHECK gv_qm_ready = abap_true.
++  PERFORM cockpit_close IN PROGRAM zpr_qm.
++  CLEAR: gv_qm_ready, gv_qm_command_handled.
++ENDFORM.
+diff --git a/Z_PR_COCKPIT.abap b/Z_PR_COCKPIT.abap
+index 33ecd78..dced90f 100644
+--- a/Z_PR_COCKPIT.abap
++++ b/Z_PR_COCKPIT.abap
+@@ -17,7 +17,9 @@ FUNCTION z_pr_cockpit.
+ *---------------------------------------------------------------*
+   DATA lv_stock_id TYPE zprd_stock_id.
+ 
++  PERFORM qm_close.
+   CLEAR: zprs_cockpit, gv_stock_id, gv_dm_ready,
++         gv_qm_ready, gv_qm_command_handled,
+          ok_code, save_ok, gs_tabstrip.
+   gs_tabstrip-prog = sy-repid.
+   gs_tabstrip-pressed_tab = c_tabstrip-t_dm_item.
+@@ -52,6 +54,7 @@ FUNCTION z_pr_cockpit.
+     PERFORM dm_open.
+   ENDIF.
+   CALL SCREEN 100.
++  PERFORM qm_close.
+ 
+ 
+ ENDFUNCTION.
+diff --git a/ZPR_QM.abap b/ZPR_QM.abap
+--- a/ZPR_QM.abap
++++ b/ZPR_QM.abap
+@@ -12,6 +12,12 @@
+ *&---------------------------------------------------------------------*
+ REPORT zpr_qm.
+ 
++TABLES sscrfields.
++CONSTANTS gc_cockpit_run TYPE syucomm VALUE 'QRUN'.
++DATA: gv_cockpit_embedded TYPE abap_bool,
++      gv_cockpit_run_requested TYPE abap_bool,
++      gv_cockpit_stock TYPE zprd_stock_id.
++
+ *----------------------------------------------------------------------*
+ * Kijelölő képernyő (1000). A feliratok a program szövegelemei (TEXT-nnn).
+ *----------------------------------------------------------------------*
+@@ -46,6 +52,15 @@ PARAMETERS p_vari TYPE disvariant-variant.
+ SELECTION-SCREEN END OF LINE.
+ SELECTION-SCREEN END OF BLOCK b_layout.
+ 
++* Reuse the standard input blocks on the cockpit's third tab.
++* Screen 1000 remains the independent transaction entry point.
++SELECTION-SCREEN BEGIN OF SCREEN 1100 AS SUBSCREEN NESTING LEVEL 1.
++SELECTION-SCREEN INCLUDE BLOCKS b_main.
++SELECTION-SCREEN INCLUDE BLOCKS b_layout.
++SELECTION-SCREEN SKIP 1.
++SELECTION-SCREEN PUSHBUTTON /1(24) pb_qrun USER-COMMAND qrun.
++SELECTION-SCREEN END OF SCREEN 1100.
++
+ * A 2000-es képernyő üres: csak a konténereknek ad helyet (a dynpro
+ * ADT-ből nem szerkeszthető, ezért kódban definiáljuk).
+ SELECTION-SCREEN BEGIN OF SCREEN 2000 TITLE TEXT-009.
+@@ -1073,6 +1088,57 @@ ENDCLASS.
+ *----------------------------------------------------------------------*
+ * Események
+ *----------------------------------------------------------------------*
++* Cockpit adapter: opening the input screen never starts QM business work.
++FORM cockpit_open USING iv_stock_id TYPE zprd_stock_id
++                  CHANGING cv_ready TYPE abap_bool.
++  cv_ready = abap_false.
++  AUTHORITY-CHECK OBJECT 'S_TCODE' ID 'TCD' FIELD 'ZPR_QM'.
++  IF sy-subrc <> 0.
++    MESSAGE s172(00) WITH 'ZPR_QM' DISPLAY LIKE 'E'.
++    RETURN.
++  ENDIF.
++  CHECK iv_stock_id IS NOT INITIAL.
++  IF gv_cockpit_embedded <> abap_true OR gv_cockpit_stock <> iv_stock_id.
++    CLEAR: p_disp, p_rel, p_relb, p_vari, gv_cockpit_run_requested.
++    p_mod = abap_true.
++    gv_cockpit_stock = iv_stock_id.
++  ENDIF.
++  p_stock = iv_stock_id.
++  gv_cockpit_embedded = abap_true.
++  cv_ready = abap_true.
++ENDFORM.
++
++FORM cockpit_execute CHANGING cv_handled TYPE abap_bool.
++  cv_handled = abap_false.
++  CHECK gv_cockpit_run_requested = abap_true.
++  CLEAR gv_cockpit_run_requested.
++  cv_handled = abap_true.
++  CHECK gv_cockpit_embedded = abap_true AND gv_cockpit_stock IS NOT INITIAL.
++  AUTHORITY-CHECK OBJECT 'S_TCODE' ID 'TCD' FIELD 'ZPR_QM'.
++  IF sy-subrc <> 0.
++    MESSAGE s172(00) WITH 'ZPR_QM' DISPLAY LIKE 'E'.
++    RETURN.
++  ENDIF.
++  p_stock = gv_cockpit_stock.
++* Start a separate report session so screen 2000 belongs to ZPR_QM.
++  SUBMIT zpr_qm
++    WITH p_stock = gv_cockpit_stock
++    WITH p_mod   = p_mod
++    WITH p_disp  = p_disp
++    WITH p_rel   = p_rel
++    WITH p_relb  = p_relb
++    WITH p_vari  = p_vari
++    AND RETURN.
++ENDFORM.
++
++FORM cockpit_close.
++* The input screen itself owns no lock or unsaved business data.
++* The existing START path cleans up its editor before returning to the host.
++  CLEAR: gv_cockpit_embedded, gv_cockpit_run_requested, gv_cockpit_stock,
++         p_stock, p_disp, p_rel, p_relb, p_vari.
++  p_mod = abap_true.
++ENDFORM.
++
+ INITIALIZATION.
+   lcl_qm=>init( ).
+ 
+@@ -1080,9 +1146,30 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_vari.
+   lcl_qm=>f4_layout( CHANGING cv_layout = p_vari ).
+ 
+ AT SELECTION-SCREEN ON p_stock.
+-  lcl_qm=>check_stock( ).
++* The host validates its accepted stock before the subscreen PAI.
++* Do not block navigation with a report-level E message on this subscreen.
++  IF sy-dynnr <> '1100' OR gv_cockpit_embedded <> abap_true.
++    lcl_qm=>check_stock( ).
++  ENDIF.
++
++AT SELECTION-SCREEN.
++  IF sy-dynnr = '1100' AND gv_cockpit_embedded = abap_true
++     AND sscrfields-ucomm = gc_cockpit_run.
++    gv_cockpit_run_requested = abap_true.
++    CLEAR sscrfields-ucomm.
++  ENDIF.
+ 
+ AT SELECTION-SCREEN OUTPUT.
++  IF sy-dynnr = '1100' AND gv_cockpit_embedded = abap_true.
++    pb_qrun = 'QM indítása'(101).
++    p_stock = gv_cockpit_stock.
++    LOOP AT SCREEN.
++      IF screen-name = 'P_STOCK'.
++        screen-input = 0.
++        MODIFY SCREEN.
++      ENDIF.
++    ENDLOOP.
++  ENDIF.
+   IF sy-dynnr EQ '2000'.
+     lcl_qm=>pbo_2000( ).
+   ENDIF.

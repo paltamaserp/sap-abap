@@ -1,0 +1,14 @@
+{
+  "tool": "@abaplint/core",
+  "version": "2.120.60",
+  "abapVersion": "7.54",
+  "date": "2026-10-18",
+  "issues": [],
+  "sha256": {
+    "LZPR_COCKPITTOP.abap": "c253dc74c5a50784daddf148709e26d009a4d05a581fe51bd740011097d96490",
+    "LZPR_COCKPITO01.abap": "20fe89ee44a3313d3f10c88d24ca8d2aba54c720d83f9af4af211d4cbf7f3e45",
+    "Z_PR_COCKPIT.abap": "000a53fe033bbc3bb33049ac771dfc5775ddf2e428db5d7868e7966c256441df",
+    "ZPR_QM.abap": "e743b6a7d84ea07cec25291407b629f8a761620cb1347ddebc9be733833846ee"
+  },
+  "limitation": "Parser only; no SAP/DDIC resolution or runtime test."
+}

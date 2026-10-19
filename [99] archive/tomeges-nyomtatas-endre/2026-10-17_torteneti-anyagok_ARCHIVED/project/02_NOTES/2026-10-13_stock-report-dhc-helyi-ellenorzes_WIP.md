@@ -40,4 +40,4 @@ Az SAP ADT-kapcsolatot a felhasználó leállási szabálya szerint nem használ
 
 A DHC `ZISU_F064` teljes exportja még nem áll rendelkezésre: a CHAR 16 ragszámmező futásidejű ellenőrzésének megfelelőségét aktív definícióval kell összevetni. A ragszámtáblák és az összes stockmódosító közös zárolási rendjét is SAP-ban kell ellenőrizni.
 
-Részletes másolási és tesztelési útmutató: [DHC bemásolás](../04_ASSETS/abap/2026-10-13_stock-report-dhc-bemasolas_WIP.md).
+Részletes másolási és tesztelési útmutató: [DHC bemásolás](<../../../../../[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/info.md/2026-10-13_stock-report-dhc-bemasolas_WIP.md>).

@@ -3,13 +3,17 @@ const path = require('path');
 const assert = require('assert/strict');
 const core = require(process.argv[2]);
 const project = path.resolve(__dirname, '../..');
-const dir = path.join(project, '04_ASSETS/abap');
+// Historical modular WIP validation; the current SAP report has another layout.
+const historicalProject = path.resolve(project, '../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project');
+const dir = path.join(historicalProject, '04_ASSETS/abap');
 const main = fs.readFileSync(path.join(dir, 'ZPR_DOC_RIP.abap'), 'utf8');
 const names = ['ZPR_DOC_RIP.abap'];
 const source = main.replace(/^INCLUDE (zpr_doc_rip\w*)\.$/gmi, (_, name) => {
   const file = name.toUpperCase() + '.abap';
   names.push(file);
-  return fs.readFileSync(path.join(dir, file), 'utf8');
+  const includePath = file === 'ZPR_DOC_RIP_TESTS.abap'
+    ? path.join(project, '04_ASSETS/abap/test', file) : path.join(dir, file);
+  return fs.readFileSync(includePath, 'utf8');
 });
 const config = core.Config.getDefault(core.Version.v754).get();
 config.rules = {parser_error: true};

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-18",
+  "files": [
+    "LZPR_COCKPITTOP.abap",
+    "LZPR_COCKPITO01.abap",
+    "Z_PR_COCKPIT.abap",
+    "ZPR_QM.abap"
+  ],
+  "hunks": 13,
+  "forwardByteExact": true,
+  "reverseByteExact": true,
+  "dmButtonPatchStillApplicable": true,
+  "originalQmUnchanged": true,
+  "correction": {
+    "patch": "2026-10-18_cockpit-qm-dynpro-gomb-javitas_WIP.diff",
+    "hunks": 3,
+    "forwardByteExact": true,
+    "reverseByteExact": true,
+    "sha256": "af099d587bad37f3a05bfe1d703f1a1e21a8a593bbf86b4be6955ce1b43254c3"
+  },
+  "sha256": {
+    "targetPatch": "84c6bca641e029ee71d317b71bbb8df4bd7dba1cd4797cdb85845948927160e1",
+    "qmReport": "e743b6a7d84ea07cec25291407b629f8a761620cb1347ddebc9be733833846ee"
+  },
+  "sapStateVerified": false
+}

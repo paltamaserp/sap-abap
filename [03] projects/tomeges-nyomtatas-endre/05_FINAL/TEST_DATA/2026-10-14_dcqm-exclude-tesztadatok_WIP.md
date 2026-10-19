@@ -1,7 +1,7 @@
 # ZPR_DCQM_EXCLUDE: tesztadatok
 
 Státusz: WIP. Helyi fájlok: SAP-ban még nincs létrehozva, és nem is futott.
-A tesztadat a [ZPR_DCQM_EXCLUDE](../../04_ASSETS/abap/ZPR_DCQM_EXCLUDE.abap) riporthoz és a [ZPR_DC_FRAME](../../04_ASSETS/abap/ZPR_DC_FRAME.abap) keretprogramhoz készült. Lefedi a megvalósítási terv L11 fejezetének T1–T18 tesztesetét, valamint további E1–E9 eseteket.
+A tesztadat a [ZPR_DCQM_EXCLUDE](<../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/04_ASSETS/abap/ZPR_DCQM_EXCLUDE.abap>) riporthoz és a [ZPR_DC_FRAME](<../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/04_ASSETS/abap/ZPR_DC_FRAME.abap>) keretprogramhoz készült. Lefedi a megvalósítási terv L11 fejezetének T1–T18 tesztesetét, valamint további E1–E9 eseteket.
 
 ## Fájlok
 

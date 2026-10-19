@@ -22,10 +22,10 @@ Ezt a kérdést a felhasználó 2026-10-13-án külön felvetette. A magyarázat
 
 | Helyi fájl | SAP cél |
 |---|---|
-| [ZPR_STOCK_REPORT.abap](ZPR_STOCK_REPORT.abap) | SE38/ADT: `ZPR_STOCK_REPORT` végrehajtható program |
-| [ZPR_STOCK_REPORT_O01.abap](ZPR_STOCK_REPORT_O01.abap) | `ZPR_STOCK_REPORT_O01` include |
-| [ZPR_STOCK_REPORT_I01.abap](ZPR_STOCK_REPORT_I01.abap) | `ZPR_STOCK_REPORT_I01` include |
-| [ZPR_STOCK_REPORT_0100_flow.abap](ZPR_STOCK_REPORT_0100_flow.abap) | SE51: a főprogram 0100 képernyőjének flow logicja |
+| [ZPR_STOCK_REPORT.abap](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/04_ASSETS/abap/ZPR_STOCK_REPORT.abap>) | SE38/ADT: `ZPR_STOCK_REPORT` végrehajtható program |
+| [ZPR_STOCK_REPORT_O01.abap](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/04_ASSETS/abap/ZPR_STOCK_REPORT_O01.abap>) | `ZPR_STOCK_REPORT_O01` include |
+| [ZPR_STOCK_REPORT_I01.abap](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/04_ASSETS/abap/ZPR_STOCK_REPORT_I01.abap>) | `ZPR_STOCK_REPORT_I01` include |
+| [ZPR_STOCK_REPORT_0100_flow.abap](../ZPR_STOCK_REPORT_0100_flow.abap) | SE51: a főprogram 0100 képernyőjének flow logicja |
 
 Csomag a programokhoz: `ZPR_FUNC`. Az esetleg hiányzó DDIC-objektumok csomagja: `ZPR_DDIC`. A transport a projekt fejlesztési kérelme; a konkrét szám nincs megadva.
 
@@ -90,7 +90,7 @@ Az összes matching TERTI-ragszám összegyűjtésre kerül, majd a törlés bor
 
 - A mezők legyenek csak megjelenítésre használhatók. A `GV_BLOCK_REASON` legfeljebb 120 karakter.
 - A fejléc alatt custom control: **`ALV_CONTAINER_01`**, kitöltve a maradék képernyőt, vízszintesen és függőlegesen átméretezhetően.
-- Flow logic: a [képernyőfájl](ZPR_STOCK_REPORT_0100_flow.abap) `PROCESS BEFORE OUTPUT` sorától a végéig.
+- Flow logic: a [képernyőfájl](../ZPR_STOCK_REPORT_0100_flow.abap) `PROCESS BEFORE OUTPUT` sorától a végéig.
 - A képernyőt és a programot együtt aktiváld.
 
 ## SE41 és szövegelemek
@@ -157,7 +157,7 @@ A FORM-ban ellenőrizendő: belépéskor `GO_GRID` kezdeti referencia-e; a kont�
 
 Az ALV csak a DC-ben vagy QM-ben kizárt dokumentumokat tartalmazza. Az üres `GT_ALV` ezért lehet helyes eredmény; a helyi kód ettől még meghívja a képernyőt. A stock QM státusza a lezárásgombot szabályozza, nem a képernyő megjelenítését. A futásidejű ok nincs igazolva; csak diagnosztikai útmutatót adtunk, ABAP-kódmódosítás nélkül.
 
-Helyi vizsgálatok és eredményeik a [helyi ellenőrzési jegyzetben](../../02_NOTES/2026-10-13_stock-report-dhc-helyi-ellenorzes_WIP.md) szerepelnek. SAP-szintaxisellenőrzés, ATC, ABAP Unit és funkcionális teszt nem futott. A WIP státuszt az aktív függőségek és a tesztek ellenőrzése után lehet továbbléptetni.
+Helyi vizsgálatok és eredményeik a [helyi ellenőrzési jegyzetben](<../../../../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/02_NOTES/2026-10-13_stock-report-dhc-helyi-ellenorzes_WIP.md>) szerepelnek. SAP-szintaxisellenőrzés, ATC, ABAP Unit és funkcionális teszt nem futott. A WIP státuszt az aktív függőségek és a tesztek ellenőrzése után lehet továbbléptetni.
 
 Minimum funkcionális ellenőrzés:
 

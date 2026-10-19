@@ -1,0 +1,25 @@
+{
+  "kind": "local source and integration contract checks",
+  "checks": [
+    "originalReportUnchanged",
+    "originalClassUnchanged",
+    "ZPR_STOCK_REPORT_O01.abapUnchanged",
+    "ZPR_STOCK_REPORT_I01.abapUnchanged",
+    "allFormsResolved",
+    "allClassMethodsImplemented",
+    "unrelatedClassMethodsUnchanged",
+    "singleInspireCallInClassOnly",
+    "lockBeforeScreenAndToolbarRequiresOwnLock",
+    "explicitRemoteSuccessBeforeSaving",
+    "closeFieldsAndUpdatePredicatePreserved",
+    "excludedEnvelopeAndRegmailPathPreserved",
+    "viewHeaderDoesNotInvokeRelease",
+    "textReferencesComplete",
+    "sevenHarmlessModeRegressionTestsIncluded"
+  ],
+  "passed": 15,
+  "sapConnected": false,
+  "sapCompilation": false,
+  "atc": false,
+  "abapUnitExecuted": false
+}

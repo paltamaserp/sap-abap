@@ -1,0 +1,1812 @@
+Változások – ZPR_CLOSE_STOCK lezárási csomag (2026-10-18, WIP)
+1) ZPR_CLOSE_STOCK: 05_FINAL/abap-2026-10-17 (utolsó SAP-export) -> 03_DRAFTS/2026-10-17_close-stock_WIP
+2) ZCL_PR_STOCK: 01_SOURCES/DHC (utolsó helyi másolat; az aktív SAP-változat nincs exportálva) -> 03_DRAFTS/2026-10-17_close-stock_WIP
+Sorvég-eltérés (CR) figyelmen kívül hagyva. Referencia, nem ellenőrzés nélküli SAP-import.
+
+diff --git a/before/ZPR_CLOSE_STOCK.abap b/after/ZPR_CLOSE_STOCK.abap
+index b80b81c..d1a6d18 100644
+--- a/before/ZPR_CLOSE_STOCK.abap
++++ b/after/ZPR_CLOSE_STOCK.abap
+@@ -24,17 +24,9 @@ CONSTANTS: gc_log_object    TYPE balobj_d VALUE 'ZPR_MASS',
+            gc_tcode         TYPE tcode VALUE 'ZPR_STOCK',
+            gc_status_closed TYPE zprd_stock_status VALUE 'CL',
+            gc_status_qm     TYPE zprd_stock_status VALUE 'QM',
+-           gc_default_priority TYPE zprd_priority VALUE '30',
+-           gc_terti_table   TYPE tabname VALUE 'ZPR_TERTI',
+-           gc_f064_table    TYPE tabname VALUE 'ZISU_F064'.
++           gc_default_priority TYPE zprd_priority VALUE '30'.
+ 
+ TYPES: ty_alv_table TYPE STANDARD TABLE OF zprs_dcqm_report,
+-       BEGIN OF ty_regmail,
+-         envelope_id TYPE zprt_dcqm-envelope,
+-         exbilldocno TYPE zprt_dcqm-doc_no,
+-         zisu_ragszam_128 TYPE zprt_dcqm-regmailnumber,
+-       END OF ty_regmail,
+-       ty_regmail_table TYPE STANDARD TABLE OF ty_regmail,
+        BEGIN OF ty_stock_f4,
+          stock_id TYPE zprt_stock-stock_id,
+          status TYPE zprt_stock-status,
+@@ -64,16 +56,16 @@ DATA: gs_stock TYPE zprt_stock,
+       gv_locked_stock TYPE zprd_stock_id,
+       gv_priority TYPE zprd_priority,
+       gv_error TYPE abap_bool,
+-      gv_call_started TYPE abap_bool,
+-      gv_remote_success TYPE abap_bool,
+       gv_uncertain TYPE abap_bool,
+       gv_saved TYPE abap_bool,
+       gv_log_error TYPE abap_bool,
+       gv_busy TYPE abap_bool,
+       gv_block_reason TYPE c LENGTH 120,
+       gv_dummy TYPE string,
+-      go_container TYPE REF TO cl_gui_custom_container,
+-      go_grid TYPE REF TO cl_gui_alv_grid.
++      gr_container TYPE REF TO cl_gui_custom_container,
++      gr_grid TYPE REF TO cl_gui_alv_grid,
++      gr_header_container TYPE REF TO cl_gui_docking_container,
++      gr_header TYPE REF TO cl_dd_document.
+ 
+ SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE text-001.
+ PARAMETERS p_stokid TYPE zprd_stock_id OBLIGATORY.
+@@ -89,39 +81,46 @@ AT SELECTION-SCREEN.
+   SELECT SINGLE * FROM zprt_stock INTO gs_stock
+     WHERE stock_id = p_stokid.
+   IF sy-subrc <> 0.
+-    MESSAGE e000 WITH 'A stock nem létezik:' p_stokid.
++    MESSAGE e000 WITH text-101 p_stokid.
+   ENDIF.
+ 
+ START-OF-SELECTION.
+   IF sy-batch = abap_true.
+-    MESSAGE s000 WITH 'A riport csak dialógusban indítható.'
++    MESSAGE s000 WITH text-102
+       DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+   AUTHORITY-CHECK OBJECT 'S_TCODE' ID 'TCD' FIELD gc_tcode.
+   IF sy-subrc <> 0.
+-    MESSAGE s000 WITH 'Nincs jogosultsag a tranzakciohoz:' gc_tcode
++    MESSAGE s000 WITH text-103 gc_tcode
+       DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+-  CLEAR: gv_busy, gv_saved, gv_uncertain, gv_remote_success,
+-         gv_call_started, gv_locked_stock.
++  CLEAR: gv_busy, gv_saved, gv_uncertain, gv_locked_stock.
+   PERFORM read_stock.
+ 
+   IF gv_error = abap_true.
+-    MESSAGE s000 WITH 'A stock beolvasása sikertelen.'
++    MESSAGE s000 WITH text-104
+       DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+ 
+   PERFORM determine_mode.
++  PERFORM sync_lock.
++  IF gv_error = abap_true.
++    PERFORM unlock_stock.
++    PERFORM log_write.
++    RETURN.
++  ENDIF.
+   PERFORM select_data.
+ 
+   IF gv_error = abap_true.
++    PERFORM unlock_stock.
+     PERFORM log_write.
+     RETURN.
+   ENDIF.
+ 
++  PERFORM show_mode_message.
+   CALL SCREEN 0100.
+ 
+   PERFORM unlock_stock.
+@@ -135,18 +134,19 @@ CLASS lcl_grid_events IMPLEMENTATION.
+     DATA ls_button TYPE stb_button.
+     DELETE e_object->mt_toolbar
+       WHERE function = 'RELEASE' OR function = 'ZREFRESH'.
+-    IF gv_modif = abap_true AND gv_busy = abap_false.
++    IF gv_modif = abap_true AND gv_busy = abap_false
++       AND gv_locked_stock = p_stokid.
+       CLEAR ls_button.
+       ls_button-function = 'RELEASE'.
+       ls_button-icon = icon_release.
+-      ls_button-text = 'Engedélyezés'.
+-      ls_button-quickinfo = |Stock engedélyezése és lezárása|.
++      ls_button-text = text-105.
++      ls_button-quickinfo = text-106.
+       APPEND ls_button TO e_object->mt_toolbar.
+     ENDIF.
+     CLEAR ls_button.
+     ls_button-function = 'ZREFRESH'.
+     ls_button-icon = icon_refresh.
+-    ls_button-text = 'Frissítés'.
++    ls_button-text = text-107.
+     APPEND ls_button TO e_object->mt_toolbar.
+   ENDMETHOD.
+ 
+@@ -178,19 +178,50 @@ ENDFORM.
+ FORM determine_mode.
+   gv_modif = abap_false.
+   CLEAR gv_block_reason.
+-  IF gs_stock-closed IS NOT INITIAL
+-     OR gs_stock-status = gc_status_closed.
+-    gv_block_reason = 'A stock lezárt, csak megjelenítés lehetséges.'.
+-  ELSEIF gs_stock-stock_status_er IS NOT INITIAL
+-         OR gv_uncertain = abap_true.
+-    gv_block_reason = 'A stock külső állapota ellenőrizendő; lezárás tiltva.'.
++  IF gs_stock-closed IS NOT INITIAL OR gs_stock-status = gc_status_closed.
++    gv_block_reason = text-108.
++  ELSEIF gs_stock-stock_status_er IS NOT INITIAL OR gv_uncertain = abap_true.
++    gv_block_reason = text-109.
+   ELSEIF gs_stock-status <> gc_status_qm.
+-    gv_block_reason = 'A lezárás csak QM státuszban engedélyezett.'.
++    gv_block_reason = text-110.
+   ELSE.
+     gv_modif = abap_true.
+   ENDIF.
+ ENDFORM.
+ 
++FORM show_mode_message.
++  "Dialog adapter: reads GV_MODIF and GV_BLOCK_REASON; no business update.
++  CHECK gv_modif = abap_false AND gv_block_reason IS NOT INITIAL.
++  MESSAGE gv_block_reason TYPE 'I'.
++ENDFORM.
++
++FORM sync_lock.
++  "Dialog adapter: synchronizes GS_STOCK, GV_MODIF, GV_ERROR and the owned lock.
++  IF gv_modif <> abap_true.
++    PERFORM unlock_stock.
++    RETURN.
++  ENDIF.
++  IF gv_locked_stock = p_stokid.
++    RETURN.
++  ENDIF.
++  PERFORM lock_stock.
++  IF gv_locked_stock <> p_stokid.
++    gv_modif = abap_false.
++    RETURN.
++  ENDIF.
++  "Recheck after enqueue; another session may have closed the stock.
++  PERFORM read_stock.
++  IF gv_error = abap_true.
++    gv_modif = abap_false.
++    gv_block_reason = text-104.
++  ELSE.
++    PERFORM determine_mode.
++  ENDIF.
++  IF gv_modif <> abap_true.
++    PERFORM unlock_stock.
++  ENDIF.
++ENDFORM.
++
+ FORM select_data.
+   DATA: lt_texts TYPE STANDARD TABLE OF zprt_dcqmlt,
+         ls_text TYPE zprt_dcqmlt,
+@@ -236,25 +267,26 @@ ENDFORM.
+ 
+ FORM release_stock.
+   DATA: lt_displayed TYPE ty_alv_table,
+-        lt_regmail TYPE ty_regmail_table,
+         lv_displayed_total TYPE i,
+         lv_confirmed TYPE abap_bool,
+         lv_priority_ok TYPE abap_bool,
+-        lv_number TYPE c LENGTH 20,
+-        lr_error TYPE REF TO cx_root.
++        lv_selection_error TYPE abap_bool.
+ 
+   CHECK gv_busy = abap_false.
+   REFRESH gt_messages.
+-  CLEAR: gv_saved, gv_call_started, gv_remote_success.
+-  gv_error = abap_true.
++  CLEAR gv_saved.
+   AUTHORITY-CHECK OBJECT 'S_TCODE' ID 'TCD' FIELD gc_tcode.
+   IF sy-subrc <> 0.
+-    MESSAGE s000 WITH 'Nincs jogosultsag a tranzakciohoz:' gc_tcode
++    MESSAGE s000 WITH text-103 gc_tcode
+       DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+-  IF gv_modif <> abap_true OR gv_uncertain = abap_true.
+-    MESSAGE s000 WITH gv_block_reason DISPLAY LIKE 'E'.
++  IF gv_modif <> abap_true OR gv_uncertain = abap_true
++     OR gv_locked_stock <> p_stokid.
++    IF gv_block_reason IS INITIAL.
++      gv_block_reason = text-111.
++    ENDIF.
++    MESSAGE gv_block_reason TYPE 'S' DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+ 
+@@ -264,98 +296,73 @@ FORM release_stock.
+   CHECK lv_confirmed = abap_true.
+   gv_busy = abap_true.
+ 
+-  PERFORM lock_stock.
+-  IF gv_locked_stock IS INITIAL.
+-    gv_busy = abap_false.
+-    RETURN.
+-  ENDIF.
+-  TRY.
+-      PERFORM read_stock.
+-      IF gv_error = abap_true.
+-        PERFORM add_message USING 'E' 'A stock nem létezik:' p_stokid space.
+-      ELSE.
+-        PERFORM determine_mode.
+-        IF gv_modif <> abap_true.
+-          gv_error = abap_true.
+-          PERFORM add_message USING 'E' gv_block_reason p_stokid space.
+-        ENDIF.
+-      ENDIF.
+-
+-      IF gv_error = abap_false.
+-        lt_displayed = gt_alv.
+-        SORT lt_displayed BY doc_no envelope.
+-        lv_displayed_total = gv_total.
+-        PERFORM select_data.
+-        IF gv_error = abap_false
+-           AND ( lt_displayed <> gt_alv OR lv_displayed_total <> gv_total ).
+-          gv_error = abap_true.
+-          PERFORM add_message USING 'E'
+-            'Az adatok változtak; ellenőrizze az új listát.' space space.
+-        ENDIF.
+-      ENDIF.
+-
+-      IF gv_error = abap_false AND gv_total = 0.
+-        gv_error = abap_true.
+-        PERFORM add_message USING 'E'
+-          'A stockhoz nincs nyomtatási sor.' p_stokid space.
+-      ENDIF.
+-      IF gv_error = abap_false.
+-        PERFORM prepare_regmail CHANGING lt_regmail.
+-      ENDIF.
+-      IF gv_error = abap_false.
+-        PERFORM send_priority.
+-      ENDIF.
+-
+-      IF gv_error = abap_false AND gv_remote_success = abap_true.
+-        PERFORM save_release USING lt_regmail.
+-      ENDIF.
+-    CATCH cx_root INTO lr_error.
+-      ROLLBACK WORK.
++  PERFORM read_stock.
++  IF gv_error = abap_true.
++    gv_modif = abap_false.
++    PERFORM add_message USING 'E' text-101 p_stokid space.
++  ELSE.
++    PERFORM determine_mode.
++    IF gv_modif <> abap_true.
+       gv_error = abap_true.
+-      IF gv_call_started = abap_true OR gv_remote_success = abap_true.
+-        gv_uncertain = abap_true.
+-      ENDIF.
+-      PERFORM add_exception USING lr_error.
+-  ENDTRY.
+-
+-  IF gv_uncertain = abap_true.
+-    PERFORM mark_uncertain_state.
++      PERFORM add_message USING 'E' gv_block_reason p_stokid space.
++    ENDIF.
+   ENDIF.
+-  PERFORM unlock_stock.
+-  gv_busy = abap_false.
+ 
+-  IF gv_saved = abap_true.
+-    PERFORM add_message USING 'S' 'Stock lezárása sikeres:'
+-      p_stokid gv_priority.
+-    WRITE gv_total TO lv_number LEFT-JUSTIFIED.
+-    PERFORM add_message USING 'S' 'Nyomtatási sorok száma:' lv_number space.
+-    WRITE gv_excluded TO lv_number LEFT-JUSTIFIED.
+-    PERFORM add_message USING 'S' 'Kizárt sorok száma:' lv_number space.
+-    WRITE gv_allowed TO lv_number LEFT-JUSTIFIED.
+-    PERFORM add_message USING 'S' 'Engedélyezett sorok száma:' lv_number space.
+-    IF gs_stock-notest = abap_true.
+-      PERFORM add_message USING 'I' 'A stock NOTEST jelzője be van állítva.'
+-        space space.
++  IF gv_error = abap_false.
++    lt_displayed = gt_alv.
++    SORT lt_displayed BY doc_no envelope.
++    lv_displayed_total = gv_total.
++    PERFORM select_data.
++    lv_selection_error = gv_error.
++    IF gv_error = abap_false
++       AND ( lt_displayed <> gt_alv OR lv_displayed_total <> gv_total ).
++      gv_error = abap_true.
++      PERFORM add_message USING 'E'
++        text-112 space space.
+     ENDIF.
+-  ELSE.
+-    PERFORM add_message USING 'E' 'A stock nem lett lezárva:' p_stokid space.
+   ENDIF.
++  IF gv_error = abap_false AND gv_total = 0.
++    gv_error = abap_true.
++    PERFORM add_message USING 'E'
++      text-113 p_stokid space.
++  ENDIF.
++  IF gv_error = abap_false.
++    "The class owns Inspire, the business commit and its existing error handling.
++    zcl_pr_stock=>close_stock(
++      EXPORTING iv_stock = p_stokid
++                iv_priority = gv_priority
++                iv_lock_held = abap_true
++                iv_display_log = abap_false
++      IMPORTING ev_success = gv_saved
++                ev_uncertain = gv_uncertain
++                et_messages = gt_messages ).
++  ENDIF.
++  gv_busy = abap_false.
+   PERFORM log_write.
++
+   PERFORM read_stock.
+   IF gv_error = abap_false.
+     PERFORM determine_mode.
++    IF lv_selection_error = abap_true.
++      gv_modif = abap_false.
++      gv_block_reason = text-114.
++      PERFORM unlock_stock.
++    ELSE.
++      PERFORM sync_lock.
++    ENDIF.
+   ELSE.
+     gv_modif = abap_false.
+-    gv_block_reason = 'A stock beolvasása sikertelen.'.
++    gv_block_reason = text-104.
++    PERFORM unlock_stock.
+   ENDIF.
+   PERFORM refresh_grid.
+   IF gv_saved = abap_true AND gv_log_error = abap_true.
+-    MESSAGE s000 WITH 'A stock lezárt, de a napló kezelése hibás:' p_stokid
++    MESSAGE s000 WITH text-115 p_stokid
+       DISPLAY LIKE 'E'.
+   ELSEIF gv_saved = abap_true.
+-    MESSAGE s000 WITH 'A stock lezárása sikeres:' p_stokid.
++    MESSAGE s000 WITH text-116 p_stokid.
+   ELSE.
+-    MESSAGE s000 WITH 'A stock nem lett lezárva. Lásd a naplót.'
++    MESSAGE s000 WITH text-117
+       DISPLAY LIKE 'E'.
+   ENDIF.
+ ENDFORM.
+@@ -376,7 +383,7 @@ FORM get_priority CHANGING cv_ok TYPE abap_bool.
+   ls_field-field_obl = abap_true.
+   APPEND ls_field TO lt_fields.
+   CALL FUNCTION 'POPUP_GET_VALUES'
+-    EXPORTING popup_title = 'Engedélyezés: adja meg a prioritást'
++    EXPORTING popup_title = text-118
+     IMPORTING returncode = lv_return
+     TABLES fields = lt_fields
+     EXCEPTIONS error_in_fields = 1 OTHERS = 2.
+@@ -385,12 +392,12 @@ FORM get_priority CHANGING cv_ok TYPE abap_bool.
+   ENDIF.
+   READ TABLE lt_fields INTO ls_field INDEX 1.
+   IF sy-subrc <> 0 OR ls_field-value IS INITIAL.
+-    MESSAGE s000 WITH 'A prioritás megadása kötelező.' DISPLAY LIKE 'E'.
++    MESSAGE s000 WITH text-119 DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+   gv_priority = ls_field-value.
+   IF gv_priority IS INITIAL.
+-    MESSAGE s000 WITH 'A prioritás nem lehet nulla.' DISPLAY LIKE 'E'.
++    MESSAGE s000 WITH text-120 DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+   cv_ok = abap_true.
+@@ -400,10 +407,10 @@ FORM confirm_release CHANGING cv_ok TYPE abap_bool.
+   DATA: lv_answer TYPE c LENGTH 1,
+         lv_question TYPE c LENGTH 200.
+   cv_ok = abap_false.
+-  CONCATENATE 'Engedélyezi és lezárja a stockot?' p_stokid
+-    'Prioritás:' gv_priority INTO lv_question SEPARATED BY space.
++  CONCATENATE text-121 p_stokid
++    text-122 gv_priority INTO lv_question SEPARATED BY space.
+   CALL FUNCTION 'POPUP_TO_CONFIRM'
+-    EXPORTING titlebar = 'Stock lezárása'
++    EXPORTING titlebar = text-123
+               text_question = lv_question
+               default_button = '2'
+               display_cancel_button = abap_true
+@@ -415,13 +422,19 @@ FORM confirm_release CHANGING cv_ok TYPE abap_bool.
+ ENDFORM.
+ 
+ FORM lock_stock.
+-  CLEAR gv_locked_stock.
++  IF gv_locked_stock = p_stokid.
++    RETURN.
++  ENDIF.
++  PERFORM unlock_stock.
+   CALL FUNCTION 'ENQUEUE_EZPRT_STOCK'
+     EXPORTING stock_id = p_stokid _scope = '1'
+     EXCEPTIONS foreign_lock = 1 system_failure = 2 OTHERS = 3.
+-  IF sy-subrc <> 0.
+-    MESSAGE s000 WITH 'A stock zárolása sikertelen:' p_stokid sy-msgv1
+-      DISPLAY LIKE 'E'.
++  IF sy-subrc = 1.
++    CONCATENATE text-124 sy-msgv1
++      INTO gv_block_reason SEPARATED BY space.
++    RETURN.
++  ELSEIF sy-subrc <> 0.
++    gv_block_reason = text-125.
+     RETURN.
+   ENDIF.
+   gv_locked_stock = p_stokid.
+@@ -434,297 +447,15 @@ FORM unlock_stock.
+   CLEAR gv_locked_stock.
+ ENDFORM.
+ 
+-FORM check_regmail_tables.
+-  DATA: lt_fields TYPE STANDARD TABLE OF dfies,
+-        ls_field TYPE dfies,
+-        lv_table_class TYPE dd02l-tabclass.
+-  gv_error = abap_true.
+-  SELECT SINGLE tabclass FROM dd02l INTO lv_table_class
+-    WHERE tabname = gc_terti_table AND as4local = 'A' AND as4vers = '0000'.
+-  IF sy-subrc <> 0 OR lv_table_class <> 'TRANSP'.
+-    PERFORM add_message USING 'E' 'Hiányzó transzparens tábla:'
+-      gc_terti_table space.
+-    RETURN.
+-  ENDIF.
+-  CALL FUNCTION 'DDIF_FIELDINFO_GET'
+-    EXPORTING tabname = gc_terti_table
+-    TABLES dfies_tab = lt_fields
+-    EXCEPTIONS not_found = 1 internal_error = 2 OTHERS = 3.
+-  IF sy-subrc <> 0.
+-    PERFORM add_message USING 'E' 'Hiányzó ragszámtábla:'
+-      gc_terti_table space.
+-    RETURN.
+-  ENDIF.
+-  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'MANDT'.
+-  IF sy-subrc <> 0 OR ls_field-datatype <> 'CLNT' OR ls_field-leng <> 3.
+-    PERFORM add_message USING 'E' 'A tábla nem mandantfüggő:'
+-      gc_terti_table space.
+-    RETURN.
+-  ENDIF.
+-  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'ENVELOPE_ID'.
+-  IF sy-subrc <> 0 OR ls_field-datatype <> 'CHAR' OR ls_field-leng <> 9.
+-    PERFORM add_message USING 'E' 'Nem megfelelő táblamező:'
+-      gc_terti_table 'ENVELOPE_ID'.
+-    RETURN.
+-  ENDIF.
+-  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'EXBILLDOCNO'.
+-  IF sy-subrc <> 0 OR ls_field-datatype <> 'CHAR' OR ls_field-leng <> 20.
+-    PERFORM add_message USING 'E' 'Nem megfelelő táblamező:'
+-      gc_terti_table 'EXBILLDOCNO'.
+-    RETURN.
+-  ENDIF.
+-  READ TABLE lt_fields INTO ls_field
+-    WITH KEY fieldname = 'ZISU_RAGSZAM_128'.
+-  IF sy-subrc <> 0 OR ls_field-datatype <> 'CHAR' OR ls_field-leng <> 16.
+-    PERFORM add_message USING 'E' 'Nem megfelelő táblamező:'
+-      gc_terti_table 'ZISU_RAGSZAM_128'.
+-    RETURN.
+-  ENDIF.
+-  REFRESH lt_fields.
+-  CLEAR lv_table_class.
+-  SELECT SINGLE tabclass FROM dd02l INTO lv_table_class
+-    WHERE tabname = gc_f064_table AND as4local = 'A' AND as4vers = '0000'.
+-  IF sy-subrc <> 0 OR lv_table_class <> 'TRANSP'.
+-    PERFORM add_message USING 'E' 'Hiányzó transzparens tábla:'
+-      gc_f064_table space.
+-    RETURN.
+-  ENDIF.
+-  CALL FUNCTION 'DDIF_FIELDINFO_GET'
+-    EXPORTING tabname = gc_f064_table
+-    TABLES dfies_tab = lt_fields
+-    EXCEPTIONS not_found = 1 internal_error = 2 OTHERS = 3.
+-  IF sy-subrc <> 0.
+-    PERFORM add_message USING 'E' 'Hiányzó ragszámtábla:'
+-      gc_f064_table space.
+-    RETURN.
+-  ENDIF.
+-  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'MANDT'.
+-  IF sy-subrc <> 0 OR ls_field-datatype <> 'CLNT' OR ls_field-leng <> 3.
+-    PERFORM add_message USING 'E' 'A tábla nem mandantfüggő:'
+-      gc_f064_table space.
+-    RETURN.
+-  ENDIF.
+-  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'ZISU_RAGSZAM'.
+-  IF sy-subrc <> 0 OR ls_field-datatype <> 'CHAR' OR ls_field-leng <> 16.
+-    PERFORM add_message USING 'E' 'Nem megfelelő táblamező:'
+-      gc_f064_table 'ZISU_RAGSZAM'.
+-    RETURN.
+-  ENDIF.
+-  gv_error = abap_false.
+-ENDFORM.
+-
+-FORM prepare_regmail CHANGING ct_regmail TYPE ty_regmail_table.
+-  DATA: ls_alv TYPE zprs_dcqm_report,
+-        lt_found TYPE ty_regmail_table,
+-        ls_found TYPE ty_regmail,
+-        lr_error TYPE REF TO cx_root.
+-  REFRESH ct_regmail.
+-  gv_error = abap_false.
+-  CHECK gt_alv IS NOT INITIAL.
+-  PERFORM check_regmail_tables.
+-  CHECK gv_error = abap_false.
+-  TRY.
+-      LOOP AT gt_alv INTO ls_alv.
+-        IF ls_alv-doc_no IS INITIAL.
+-*        IF ls_alv-doc_no IS INITIAL OR ls_alv-envelope IS INITIAL.
+-          gv_error = abap_true.
+-          PERFORM add_message USING 'E' 'Hiányzó dokumentum vagy boríték:'
+-            ls_alv-doc_no ls_alv-envelope.
+-          RETURN.
+-        ENDIF.
+-        REFRESH lt_found.
+-
+-        SELECT envelope_id exbilldocno zisu_ragszam_128
+-          FROM (gc_terti_table) INTO TABLE lt_found
+-          WHERE zisu_ragszam_128 = ls_alv-regmailnumber
+-            AND envelope_id = ls_alv-envelope
+-            AND exbilldocno = ls_alv-doc_no.
+-
+-        IF ls_alv-regmailnumber IS NOT INITIAL AND lt_found IS INITIAL.
+-          gv_error = abap_true.
+-          PERFORM add_message USING 'E' 'Ragszámhoz nincs TERTI rekord:'
+-            ls_alv-doc_no ls_alv-regmailnumber.
+-          RETURN.
+-        ENDIF.
+-        LOOP AT lt_found INTO ls_found.
+-          IF ls_found-zisu_ragszam_128 IS INITIAL.
+-            gv_error = abap_true.
+-            PERFORM add_message USING 'E' 'A TERTI ragszáma üres:'
+-              ls_alv-doc_no space.
+-            RETURN.
+-          ENDIF.
+-          APPEND ls_found TO ct_regmail.
+-        ENDLOOP.
+-      ENDLOOP.
+-    CATCH cx_root INTO lr_error.
+-      gv_error = abap_true.
+-      PERFORM add_exception USING lr_error.
+-  ENDTRY.
+-  SORT ct_regmail BY envelope_id exbilldocno zisu_ragszam_128.
+-  DELETE ADJACENT DUPLICATES FROM ct_regmail COMPARING ALL FIELDS.
+-ENDFORM.
+ 
+-FORM send_priority.
+-  DATA: ls_input TYPE zpr_eon_dcqmcompleted_request2,
+-        ls_output TYPE zpr_eon_dcqmcompleted_response,
+-        lt_envelopes TYPE zpr_eon_dcqmcompleted_requ_tab,
+-        ls_envelope TYPE zpr_eon_dcqmcompleted_request1,
+-        ls_alv TYPE zprs_dcqm_report,
+-        lo_proxy TYPE REF TO zpr_co_eon_dcqmcompleted_port,
+-        lv_port TYPE prx_logical_port_name,
+-        lr_error TYPE REF TO cx_root.
+ 
+-  "Only an explicit successful response permits local closing.
+-  gv_error = abap_true.
+-  CLEAR: gv_call_started, gv_remote_success.
+ 
+-  LOOP AT gt_alv INTO ls_alv.
+-    CLEAR ls_envelope.
+-    ls_envelope-envelope_id = ls_alv-envelope.
+-    APPEND ls_envelope TO lt_envelopes.
+-  ENDLOOP.
+ 
+-  SORT lt_envelopes BY envelope_id.
+-  DELETE ADJACENT DUPLICATES FROM lt_envelopes COMPARING envelope_id.
+ 
+-  ls_input-sap_mandant = sy-mandt.
+-  ls_input-sap_system = sy-sysid.
+-  ls_input-stock_id = p_stokid.
+-  ls_input-priority = gv_priority.
+-  ls_input-exclude_envelopes-envelope = lt_envelopes.
+ 
+-  TRY.
+-      lv_port = zcl_pr_output_management=>get_logical_port_name( ).
+-      IF lv_port IS INITIAL.
+-        PERFORM add_message USING 'E' 'Az Inspire logikai portja üres.'
+-          space space.
+-        RETURN.
+-      ENDIF.
+-      CREATE OBJECT lo_proxy EXPORTING logical_port_name = lv_port.
+-      gv_call_started = abap_true.
+-      lo_proxy->eon_dcqmcompleted(
+-        EXPORTING input = ls_input IMPORTING output = ls_output ).
+ 
+-    CATCH cx_ai_application_fault INTO lr_error.
+-      gv_error = abap_true.
+-      CLEAR: gv_call_started, gv_remote_success.
+-      PERFORM add_exception USING lr_error.
+-      PERFORM add_message USING 'E'
+-        'Az Inspire elutasította a lezárást:'
+-        p_stokid space.
+-      RETURN.
+-    CATCH cx_root INTO lr_error.
+-      PERFORM add_exception USING lr_error.
+-      IF gv_call_started = abap_true.
+-        gv_uncertain = abap_true.
+-        PERFORM add_message USING 'E' 'Az Inspire eredménye bizonytalan:'
+-          p_stokid 'Újraküldés előtt ellenőrzés szükséges.'.
+-      ENDIF.
+-      RETURN.
+-  ENDTRY.
+-  IF ls_output-parameters-success <> abap_true.
+-    PERFORM add_message USING 'E' 'Az Inspire elutasitotta a lezárást:'
+-      ls_output-parameters-error_code ls_output-parameters-info.
+-    RETURN.
+-  ENDIF.
+-  gv_remote_success = abap_true.
+-  gv_error = abap_false.
+-  PERFORM add_message USING 'S' 'Inspire jóváhagyás sikeres:' p_stokid space.
+-ENDFORM.
+ 
+-FORM save_release USING ut_regmail TYPE ty_regmail_table.
+-  DATA: ls_regmail TYPE ty_regmail,
+-        lt_current TYPE ty_regmail_table,
+-        lr_error TYPE REF TO cx_root.
+-  gv_error = abap_true.
+-  gv_saved = abap_false.
+-  CHECK gv_remote_success = abap_true.
+-  CHECK gv_locked_stock = p_stokid.
+-  PERFORM prepare_regmail CHANGING lt_current.
+-  IF gv_error = abap_true OR lt_current <> ut_regmail.
+-    gv_error = abap_true.
+-    gv_uncertain = abap_true.
+-    PERFORM add_message USING 'E' 'A ragszámok változtak; a lezárás megszakadt.'
+-      p_stokid space.
+-    RETURN.
+-  ENDIF.
+-  gv_error = abap_true.
+-  TRY.
+-      LOOP AT ut_regmail INTO ls_regmail.
+-        DELETE FROM (gc_terti_table)
+-          WHERE envelope_id = ls_regmail-envelope_id
+-            AND exbilldocno = ls_regmail-exbilldocno
+-            AND zisu_ragszam_128 = ls_regmail-zisu_ragszam_128.
+-        IF sy-subrc <> 0.
+-          ROLLBACK WORK.
+-          gv_uncertain = abap_true.
+-          PERFORM add_message USING 'E' 'A TERTI törlés sikertelen:'
+-            ls_regmail-exbilldocno ls_regmail-zisu_ragszam_128.
+-          RETURN.
+-        ENDIF.
+-        "A missing F064 row is allowed; SQL exceptions abort the LUW.
+-        DELETE FROM (gc_f064_table)
+-          WHERE zisu_ragszam = ls_regmail-zisu_ragszam_128.
+-        IF sy-subrc ne 0.
+-          PERFORM add_message USING 'E' 'A ZISU_F064 törlés sikertelen:'
+-            ls_regmail-exbilldocno ls_regmail-zisu_ragszam_128.
+-        ENDIF.
+-      ENDLOOP.
+-      UPDATE zprt_stock
+-        SET closed = abap_true
+-            status = gc_status_closed
+-            priority = gv_priority
+-            erdat_clo = sy-datum
+-            ernam_clo = sy-uname
+-            ertim_clo = sy-uzeit
+-            chuser = sy-uname
+-            chdate = sy-datum
+-            chtime = sy-uzeit
+-        WHERE stock_id = p_stokid
+-          AND closed = space
+-          AND status = gc_status_qm
+-          AND stock_status_er = space.
+-      IF sy-subrc <> 0 OR sy-dbcnt <> 1.
+-        ROLLBACK WORK.
+-        gv_uncertain = abap_true.
+-        PERFORM add_message USING 'E' 'A stock mentése sikertelen:'
+-          p_stokid space.
+-        RETURN.
+-      ENDIF.
+-      COMMIT WORK.
+-      gv_saved = abap_true.
+-      gv_error = abap_false.
+-    CATCH cx_root INTO lr_error.
+-      ROLLBACK WORK.
+-      gv_uncertain = abap_true.
+-      PERFORM add_exception USING lr_error.
+-  ENDTRY.
+-ENDFORM.
+ 
+-FORM mark_uncertain_state.
+-  DATA lr_error TYPE REF TO cx_root.
+-  "Persist a retry block without marking the stock as closed.
+-  TRY.
+-      UPDATE zprt_stock
+-        SET stock_status_er = abap_true
+-            chuser = sy-uname chdate = sy-datum chtime = sy-uzeit
+-        WHERE stock_id = p_stokid.
+-      IF sy-subrc = 0 AND sy-dbcnt = 1.
+-        COMMIT WORK.
+-        PERFORM add_message USING 'E' 'Stock újraküldése tiltva; ellenőrizendő:'
+-          p_stokid space.
+-      ELSE.
+-        ROLLBACK WORK.
+-        PERFORM add_message USING 'E' 'A hibajelző sem menthető; ne küldje újra!'
+-          p_stokid space.
+-      ENDIF.
+-    CATCH cx_root INTO lr_error.
+-      ROLLBACK WORK.
+-      PERFORM add_exception USING lr_error.
+-      PERFORM add_message USING 'E' 'Ne indítsa újra külső ellenőrzés nélkül!'
+-        p_stokid space.
+-  ENDTRY.
+-ENDFORM.
+ 
+ FORM add_message USING uv_type TYPE symsgty uv_text TYPE clike
+                        uv_value1 TYPE clike uv_value2 TYPE clike.
+@@ -781,7 +512,7 @@ FORM log_write.
+       ROLLBACK WORK.
+       gv_log_error = abap_true.
+       lv_text = lr_error->get_text( ).
+-      MESSAGE s000 WITH 'A napló nem menthető/megjeleníthető:' lv_text
++      MESSAGE s000 WITH text-126 lv_text
+         DISPLAY LIKE 'E'.
+   ENDTRY.
+ ENDFORM.
+@@ -795,7 +526,7 @@ FORM stock_f4.
+     ORDER BY stock_id DESCENDING.
+   CALL FUNCTION 'F4IF_INT_TABLE_VALUE_REQUEST'
+     EXPORTING retfield = 'STOCK_ID' value_org = 'S'
+-              window_title = 'Stockok (legfeljebb 5000)'
++              window_title = text-127
+     TABLES value_tab = lt_stocks return_tab = lt_returns
+     EXCEPTIONS parameter_error = 1 no_values_found = 2 OTHERS = 3.
+   IF sy-subrc = 0.
+@@ -813,21 +544,32 @@ FORM create_controls_0100.
+         lt_exclude TYPE ui_functions,
+         lv_function TYPE ui_func.
+   FIELD-SYMBOLS <ls_field> TYPE lvc_s_fcat.
+-  CHECK go_grid IS NOT BOUND.
+-  CREATE OBJECT go_container
++  CHECK gr_grid IS NOT BOUND.
++  IF gr_header_container IS NOT BOUND.
++    CREATE OBJECT gr_header_container
++      EXPORTING side = cl_gui_docking_container=>dock_at_top
++                extension = 135
++      EXCEPTIONS OTHERS = 1.
++    IF sy-subrc <> 0.
++      FREE gr_header_container.
++      MESSAGE s000 WITH text-128 DISPLAY LIKE 'W'.
++    ENDIF.
++  ENDIF.
++  PERFORM build_header.
++  CREATE OBJECT gr_container
+     EXPORTING container_name = 'ALV_CONTAINER_01'
+     EXCEPTIONS OTHERS = 1.
+   IF sy-subrc <> 0.
+-    MESSAGE e000 WITH 'Az ALV-konténer nem hozható létre.'.
++    MESSAGE e000 WITH text-129.
+   ENDIF.
+-  CREATE OBJECT go_grid
+-    EXPORTING i_parent = go_container i_appl_events = abap_true.
++  CREATE OBJECT gr_grid
++    EXPORTING i_parent = gr_container i_appl_events = abap_true.
+   CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
+     EXPORTING i_structure_name = 'ZPRS_DCQM_REPORT'
+     CHANGING ct_fieldcat = lt_fields
+     EXCEPTIONS inconsistent_interface = 1 program_error = 2 OTHERS = 3.
+   IF sy-subrc <> 0.
+-    MESSAGE e000 WITH 'Az ALV-mezőkatalógus nem készíthető el.'.
++    MESSAGE e000 WITH text-130.
+   ENDIF.
+   LOOP AT lt_fields ASSIGNING <ls_field>.
+     <ls_field>-edit = abap_false.
+@@ -837,7 +579,7 @@ FORM create_controls_0100.
+       <ls_field>-tech = abap_true.
+     ELSEIF <ls_field>-fieldname = 'COUNTER'.
+       <ls_field>-do_sum = abap_true.
+-      <ls_field>-coltext = 'Sorok száma'.
++      <ls_field>-coltext = text-131.
+       <ls_field>-col_pos = 99.
+     ENDIF.
+   ENDLOOP.
+@@ -864,55 +606,61 @@ FORM create_controls_0100.
+   lv_function = cl_gui_alv_grid=>mc_fc_refresh.
+   APPEND lv_function TO lt_exclude.
+   SET HANDLER lcl_grid_events=>on_toolbar
+-              lcl_grid_events=>on_user_command FOR go_grid.
+-  go_grid->set_table_for_first_display(
++              lcl_grid_events=>on_user_command FOR gr_grid.
++  gr_grid->set_table_for_first_display(
+     EXPORTING is_layout = ls_layout is_variant = ls_variant
+               i_save = 'A' it_toolbar_excluding = lt_exclude
+     CHANGING it_outtab = gt_alv it_fieldcatalog = lt_fields
+     EXCEPTIONS OTHERS = 1 ).
+   IF sy-subrc <> 0.
+-    MESSAGE e000 WITH 'Az ALV-lista nem jeleníthető meg.'.
++    MESSAGE e000 WITH text-132.
+   ENDIF.
+-  go_grid->set_ready_for_input(
++  gr_grid->set_ready_for_input(
+     i_ready_for_input = 0                " Ready for Input Status
+   ).
+-  go_grid->set_toolbar_interactive( ).
++  gr_grid->set_toolbar_interactive( ).
+ ENDFORM.
+ 
+ FORM refresh_grid.
+   DATA ls_stable TYPE lvc_s_stbl.
+-  CHECK go_grid IS BOUND.
++  PERFORM build_header.
++  CHECK gr_grid IS BOUND.
+ 
+   ls_stable-row = abap_true.
+   ls_stable-col = abap_true.
+ 
+-  go_grid->refresh_table_display(
++  gr_grid->refresh_table_display(
+     EXPORTING is_stable = ls_stable EXCEPTIONS OTHERS = 1 ).
+   IF sy-subrc <> 0.
+-    MESSAGE i000 WITH 'Az ALV-lista frissítése sikertelen.'
++    MESSAGE i000 WITH text-133
+       DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+ 
+-  go_grid->set_toolbar_interactive( ).
++  gr_grid->set_toolbar_interactive( ).
+ ENDFORM.
+ 
+ FORM reload_display.
+   CHECK gv_busy = abap_false.
+   REFRESH gt_messages.
+   PERFORM read_stock.
+-  IF gv_error = abap_true.
+-    gv_modif = abap_false.
+-    MESSAGE s000 WITH 'A stock nem olvasható:' p_stokid DISPLAY LIKE 'E'.
+-    RETURN.
++  IF gv_error = abap_false.
++    PERFORM determine_mode.
++    PERFORM sync_lock.
++  ENDIF.
++  IF gv_error = abap_false.
++    PERFORM select_data.
+   ENDIF.
+-  PERFORM determine_mode.
+-  PERFORM select_data.
+   IF gv_error = abap_true.
+     gv_modif = abap_false.
++    gv_block_reason = text-104.
++    CLEAR: gv_total, gv_excluded, gv_allowed.
++    REFRESH gt_alv.
++    PERFORM unlock_stock.
+     PERFORM log_write.
+   ENDIF.
+   PERFORM refresh_grid.
++  PERFORM show_mode_message.
+ ENDFORM.
+ 
+ FORM user_command_0100.
+@@ -924,7 +672,7 @@ FORM user_command_0100.
+     IMPORTING return_code = lv_return_code ).
+   IF lv_return_code = cl_gui_cfw=>rc_unknown
+      OR lv_return_code = cl_gui_cfw=>rc_nodispatch.
+-    MESSAGE s000 WITH 'Az ALV-esemény feldolgozása sikertelen.'
++    MESSAGE s000 WITH text-134
+       DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+@@ -959,25 +707,161 @@ ENDFORM.
+ FORM free_controls.
+ DATA lv_free_failed TYPE abap_bool.
+ 
+-  IF go_grid IS BOUND.
+-    go_grid->free( EXCEPTIONS OTHERS = 1 ).
++  IF gr_grid IS BOUND.
++    gr_grid->free( EXCEPTIONS OTHERS = 1 ).
++    IF sy-subrc <> 0.
++      lv_free_failed = abap_true.
++    ENDIF.
++    FREE gr_grid.
++  ENDIF.
++
++  IF gr_container IS BOUND.
++    gr_container->free( EXCEPTIONS OTHERS = 1 ).
+     IF sy-subrc <> 0.
+       lv_free_failed = abap_true.
+     ENDIF.
+-    FREE go_grid.
++    FREE gr_container.
+   ENDIF.
+ 
+-  IF go_container IS BOUND.
+-    go_container->free( EXCEPTIONS OTHERS = 1 ).
++  FREE gr_header.
++  IF gr_header_container IS BOUND.
++    gr_header_container->free( EXCEPTIONS OTHERS = 1 ).
+     IF sy-subrc <> 0.
+       lv_free_failed = abap_true.
+     ENDIF.
+-    FREE go_container.
++    FREE gr_header_container.
+   ENDIF.
+ 
+   IF lv_free_failed = abap_true.
+-    MESSAGE i000 WITH 'Az ALV-vezérlők felszabadítása során hiba történt.'
++    MESSAGE i000 WITH text-135
+       DISPLAY LIKE 'E'.
+   ENDIF.
+ 
+ ENDFORM.
++FORM build_header.
++  "Display only: reads stock/count/mode globals and maintains the header controls.
++  DATA: lv_text TYPE sdydo_text_element,
++        lv_number TYPE c LENGTH 20,
++        lv_reuse TYPE abap_bool.
++  CHECK gr_header_container IS BOUND.
++  IF gr_header IS BOUND.
++    lv_reuse = abap_true.
++    gr_header->initialize_document( ).
++  ELSE.
++    CREATE OBJECT gr_header.
++  ENDIF.
++  CONCATENATE text-136 p_stokid INTO lv_text SEPARATED BY space.
++  PERFORM add_header_line USING lv_text.
++  WRITE gv_total TO lv_number LEFT-JUSTIFIED.
++  CONCATENATE text-137 lv_number INTO lv_text SEPARATED BY space.
++  PERFORM add_header_line USING lv_text.
++  WRITE gv_excluded TO lv_number LEFT-JUSTIFIED.
++  CONCATENATE text-138 lv_number INTO lv_text SEPARATED BY space.
++  PERFORM add_header_line USING lv_text.
++  WRITE gv_allowed TO lv_number LEFT-JUSTIFIED.
++  CONCATENATE text-139 lv_number INTO lv_text SEPARATED BY space.
++  PERFORM add_header_line USING lv_text.
++  IF gv_modif <> abap_true AND gv_block_reason IS NOT INITIAL.
++    lv_text = gv_block_reason.
++    PERFORM add_header_line USING lv_text.
++  ENDIF.
++  gr_header->merge_document( ).
++  gr_header->display_document(
++    EXPORTING parent = gr_header_container reuse_control = lv_reuse
++    EXCEPTIONS OTHERS = 1 ).
++  IF sy-subrc <> 0.
++    MESSAGE s000 WITH text-140 DISPLAY LIKE 'W'.
++  ENDIF.
++ENDFORM.
++
++FORM add_header_line USING uv_text TYPE sdydo_text_element.
++  gr_header->add_text( text = uv_text
++    sap_emphasis = cl_dd_document=>strong ).
++  gr_header->new_line( ).
++ENDFORM.
++
++CLASS ltc_stock_mode DEFINITION FOR TESTING
++  DURATION SHORT RISK LEVEL HARMLESS.
++  PRIVATE SECTION.
++    DATA: ms_stock TYPE zprt_stock,
++          mv_modif TYPE abap_bool,
++          mv_uncertain TYPE abap_bool,
++          mv_reason TYPE c LENGTH 120.
++    METHODS: setup,
++             teardown,
++             qm_can_close FOR TESTING,
++             closed_flag_blocks_qm FOR TESTING,
++             cl_status_is_display FOR TESTING,
++             dm_status_is_display FOR TESTING,
++             open_status_is_display FOR TESTING,
++             external_error_blocks_qm FOR TESTING,
++             uncertain_state_blocks_qm FOR TESTING.
++ENDCLASS.
++
++CLASS ltc_stock_mode IMPLEMENTATION.
++  METHOD setup.
++    ms_stock = gs_stock.
++    mv_modif = gv_modif.
++    mv_uncertain = gv_uncertain.
++    mv_reason = gv_block_reason.
++    CLEAR: gs_stock, gv_modif, gv_uncertain, gv_block_reason.
++  ENDMETHOD.
++
++  METHOD teardown.
++    gs_stock = ms_stock.
++    gv_modif = mv_modif.
++    gv_uncertain = mv_uncertain.
++    gv_block_reason = mv_reason.
++  ENDMETHOD.
++
++  METHOD qm_can_close.
++    gs_stock-status = gc_status_qm.
++    PERFORM determine_mode.
++    cl_abap_unit_assert=>assert_equals( exp = abap_true act = gv_modif ).
++    cl_abap_unit_assert=>assert_initial( act = gv_block_reason ).
++  ENDMETHOD.
++
++  METHOD closed_flag_blocks_qm.
++    gs_stock-status = gc_status_qm.
++    gs_stock-closed = abap_true.
++    PERFORM determine_mode.
++    cl_abap_unit_assert=>assert_equals( exp = abap_false act = gv_modif ).
++    cl_abap_unit_assert=>assert_equals( exp = text-108 act = gv_block_reason ).
++  ENDMETHOD.
++
++  METHOD cl_status_is_display.
++    gs_stock-status = gc_status_closed.
++    PERFORM determine_mode.
++    cl_abap_unit_assert=>assert_equals( exp = abap_false act = gv_modif ).
++    cl_abap_unit_assert=>assert_equals( exp = text-108 act = gv_block_reason ).
++  ENDMETHOD.
++
++  METHOD dm_status_is_display.
++    gs_stock-status = 'DM'.
++    PERFORM determine_mode.
++    cl_abap_unit_assert=>assert_equals( exp = abap_false act = gv_modif ).
++    cl_abap_unit_assert=>assert_equals( exp = text-110 act = gv_block_reason ).
++  ENDMETHOD.
++
++  METHOD open_status_is_display.
++    PERFORM determine_mode.
++    cl_abap_unit_assert=>assert_equals( exp = abap_false act = gv_modif ).
++    cl_abap_unit_assert=>assert_equals( exp = text-110 act = gv_block_reason ).
++  ENDMETHOD.
++
++  METHOD external_error_blocks_qm.
++    gs_stock-status = gc_status_qm.
++    gs_stock-stock_status_er = abap_true.
++    PERFORM determine_mode.
++    cl_abap_unit_assert=>assert_equals( exp = abap_false act = gv_modif ).
++    cl_abap_unit_assert=>assert_equals( exp = text-109 act = gv_block_reason ).
++  ENDMETHOD.
++
++  METHOD uncertain_state_blocks_qm.
++    gs_stock-status = gc_status_qm.
++    gv_uncertain = abap_true.
++    PERFORM determine_mode.
++    cl_abap_unit_assert=>assert_equals( exp = abap_false act = gv_modif ).
++    cl_abap_unit_assert=>assert_equals( exp = text-109 act = gv_block_reason ).
++  ENDMETHOD.
++ENDCLASS.
+diff --git a/before/ZCL_PR_STOCK.abap b/after/ZCL_PR_STOCK.abap
+index 8619c91..3040a44 100644
+--- a/before/ZCL_PR_STOCK.abap
++++ b/after/ZCL_PR_STOCK.abap
+@@ -20,11 +20,63 @@ public section.
+       !IV_NEW_STATUS type ZPRD_STOCK_STATUS .
+   class-methods CLOSE_STOCK
+     importing
+-      !IV_STOCK type ZPRD_STOCK_ID .
++      !IV_STOCK type ZPRD_STOCK_ID
++      !IV_PRIORITY type ZPRD_PRIORITY optional
++      !IV_LOCK_HELD type ABAP_BOOL default ABAP_FALSE
++      !IV_DISPLAY_LOG type ABAP_BOOL default ABAP_TRUE
++    exporting
++      !EV_SUCCESS type ABAP_BOOL
++      !EV_UNCERTAIN type ABAP_BOOL
++      !ET_MESSAGES type BAL_T_MSG .
+ protected section.
+ 
+   class-data GV_DUMMY_MESSAGE type CHAR1 .
+ private section.
++  TYPES: ty_alv_table TYPE STANDARD TABLE OF zprs_dcqm_report WITH DEFAULT KEY,
++         BEGIN OF ty_regmail,
++           envelope_id TYPE zprt_dcqm-envelope,
++           exbilldocno TYPE zprt_dcqm-doc_no,
++           zisu_ragszam_128 TYPE zprt_dcqm-regmailnumber,
++         END OF ty_regmail,
++         ty_regmail_table TYPE STANDARD TABLE OF ty_regmail WITH DEFAULT KEY.
++  CONSTANTS: gc_terti_table TYPE tabname VALUE 'ZPR_TERTI',
++             gc_f064_table TYPE tabname VALUE 'ZISU_F064',
++             gc_status_qm TYPE zprd_stock_status VALUE 'QM',
++             gc_status_closed TYPE zprd_stock_status VALUE 'CL',
++             gc_log_object TYPE balobj_d VALUE 'ZPR_MASS',
++             gc_log_subobject TYPE balsubobj VALUE 'STOCK'.
++  CLASS-METHODS check_regmail_tables
++    EXPORTING ev_error TYPE abap_bool
++    CHANGING ct_messages TYPE bal_t_msg.
++  CLASS-METHODS prepare_regmail
++    IMPORTING it_alv TYPE ty_alv_table
++    EXPORTING et_regmail TYPE ty_regmail_table ev_error TYPE abap_bool
++    CHANGING ct_messages TYPE bal_t_msg.
++  CLASS-METHODS send_priority
++    IMPORTING iv_stock TYPE zprd_stock_id iv_priority TYPE zprd_priority
++              it_alv TYPE ty_alv_table
++    EXPORTING ev_error TYPE abap_bool ev_call_started TYPE abap_bool
++              ev_remote_success TYPE abap_bool ev_uncertain TYPE abap_bool
++    CHANGING ct_messages TYPE bal_t_msg.
++  CLASS-METHODS save_release
++    IMPORTING iv_stock TYPE zprd_stock_id iv_priority TYPE zprd_priority
++              it_alv TYPE ty_alv_table it_regmail TYPE ty_regmail_table
++    EXPORTING ev_error TYPE abap_bool ev_saved TYPE abap_bool
++              ev_uncertain TYPE abap_bool
++    CHANGING ct_messages TYPE bal_t_msg.
++  CLASS-METHODS mark_uncertain_state
++    IMPORTING iv_stock TYPE zprd_stock_id
++    CHANGING ct_messages TYPE bal_t_msg.
++  CLASS-METHODS add_message
++    IMPORTING iv_type TYPE symsgty iv_text TYPE clike
++              iv_value1 TYPE clike OPTIONAL iv_value2 TYPE clike OPTIONAL
++    CHANGING ct_messages TYPE bal_t_msg.
++  CLASS-METHODS add_exception
++    IMPORTING ir_error TYPE REF TO cx_root
++    CHANGING ct_messages TYPE bal_t_msg.
++  CLASS-METHODS write_log
++    IMPORTING it_messages TYPE bal_t_msg
++    EXPORTING ev_log_error TYPE abap_bool.
+ ENDCLASS.
+ 
+ 
+@@ -38,187 +90,164 @@ CLASS ZCL_PR_STOCK IMPLEMENTATION.
+ * | [--->] IV_STOCK                       TYPE        ZPRD_STOCK_ID
+ * +--------------------------------------------------------------------------------------</SIGNATURE>
+   METHOD close_stock.
+-* ---------------------------------------------------------------*
+-* Rövid leírás: Stock lezárása
+-* Projekt:      CSHANA 2026
+-* Fejlesztő:    Németh Endre / X0097 / ERP
+-*
+-* Release:      S4HANA
+-*
+-* Módosítás történet:
+-* Dátum         Felhasználó   Ok(Leírás+CR/ORDER/TICKET ID)
+-* ---------------------------------------------------------------*
+-* 2026.06.20.   X0097         Létrehozva
+-*----------------------------------------------------------------*
+-* Deklaráció
+-    DATA: ls_input  TYPE zpr_eon_dcqmcompleted_request2,
+-          ls_output	TYPE zpr_eon_dcqmcompleted_response.
+-    DATA: lo_dcqm TYPE REF TO zpr_co_eon_dcqmcompleted_port.
+-    DATA: lv_ex_txt TYPE string.
+-    DATA: lr_sys_fail TYPE REF TO cx_ai_system_fault,
+-          lr_app_fail TYPE REF TO cx_ai_application_fault.
+-    DATA: lv_error_flag TYPE flag,
+-          lv_lines      TYPE i,
+-          lv_ret        TYPE char1,
+-          lv_hiba       TYPE flag,
+-          lv_dummy      TYPE string.
+-    DATA: ls_edit   TYPE lvc_s_styl,
+-          ls_stable TYPE lvc_s_stbl.
+-    DATA: lt_rows TYPE lvc_t_row,
+-          ls_rows LIKE LINE OF lt_rows.
+-    DATA: ls_sval  TYPE sval.
+-    DATA: lt_sval  TYPE STANDARD TABLE OF sval.
+-    DATA: gs_stock TYPE zprt_stock.
+-    DATA gv_priority TYPE zprd_priority VALUE '30'.
+-    DATA lv_logical_port_name TYPE prx_logical_port_name.
+-    DATA lv_obj  TYPE balobj_d VALUE 'ZPR_MASS'.
+-    DATA lv_subobj  TYPE balsubobj VALUE 'PACKAGE'.
+-
+-* A boritékolás tisztázandó
+-    DATA: lt_env_tab TYPE zpr_eon_dcqmcompleted_requ_tab,
+-          ls_env_tab TYPE zpr_eon_dcqmcompleted_request1.
+-*    DATA lt_exc_env TYPE zebf_pr_string_tab.
+-*    DATA ls_exc_env TYPE string.
+-*    DATA ls_0100_alv TYPE zebfs_pr_dcqm_report.
+-
+-*----------------------------------------------------------------*
+-* Prioritás megállapítása
+-    REFRESH lt_sval.
+-    ls_sval-tabname   = 'ZPRT_STOCK'.
+-    ls_sval-fieldname = 'PRIORITY'.
+-    ls_sval-value     = gs_stock-priority.
+-    APPEND ls_sval TO lt_sval.
+-
+-    CALL FUNCTION 'POPUP_GET_VALUES'
+-      EXPORTING
+-        popup_title     = 'Engedélyezés, kérem adja meg a prioritást:'
+-        start_column    = '12'
+-        start_row       = '8'
+-      IMPORTING
+-        returncode      = lv_ret
+-      TABLES
+-        fields          = lt_sval
+-      EXCEPTIONS
+-        error_in_fields = 1
+-        OTHERS          = 2.
+-    IF sy-subrc <> 0.
+-      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+-              WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+-      EXIT.
+-    ELSE.
+-      IF lv_ret EQ 'A'. "Abort
+-        EXIT.
+-      ENDIF.
+-      LOOP AT lt_sval INTO ls_sval.
+-        CASE ls_sval-fieldname.
+-          WHEN 'PRIORITY'.
+-            IF ls_sval-value IS INITIAL .
+-              MESSAGE i040(zebf_pr).
+-              lv_hiba = abap_true.
++    DATA: ls_stock TYPE zprt_stock,
++          lt_alv TYPE ty_alv_table,
++          lt_regmail TYPE ty_regmail_table,
++          lt_fields TYPE STANDARD TABLE OF sval,
++          ls_field TYPE sval,
++          lv_return TYPE c LENGTH 1,
++          lv_priority TYPE zprd_priority,
++          lv_own_lock TYPE abap_bool,
++          lv_error TYPE abap_bool,
++          lv_call_started TYPE abap_bool,
++          lv_remote_success TYPE abap_bool,
++          lv_log_error TYPE abap_bool,
++          lv_total TYPE i,
++          lv_excluded TYPE i,
++          lv_allowed TYPE i,
++          lv_number TYPE c LENGTH 20,
++          lr_error TYPE REF TO cx_root.
++
++    CLEAR: ev_success, ev_uncertain.
++    REFRESH et_messages.
++    TRY.
++        DO 1 TIMES.
++          "The caller retains a supplied dialog lock; otherwise this method owns it.
++          IF iv_lock_held <> abap_true.
++            CALL FUNCTION 'ENQUEUE_EZPRT_STOCK'
++              EXPORTING stock_id = iv_stock _scope = '1'
++              EXCEPTIONS foreign_lock = 1 system_failure = 2 OTHERS = 3.
++            IF sy-subrc <> 0.
++              add_message( EXPORTING iv_type = 'E'
++                iv_text = text-101
++                iv_value1 = iv_stock iv_value2 = sy-msgv1
++                CHANGING ct_messages = et_messages ).
+               EXIT.
+             ENDIF.
+-            gv_priority = ls_sval-value.
+-        ENDCASE.
+-      ENDLOOP.
+-      IF lv_hiba EQ abap_true.
+-        EXIT.
+-      ENDIF.
+-    ENDIF.
+-
+-*    LOOP AT gt_0100_alv INTO ls_0100_alv.
+-**    ls_exc_env = ls_0100_alv-envelope.
+-*      ls_env_tab-envelope_id = ls_0100_alv-envelope.
+-*      APPEND ls_env_tab TO lt_env_tab.
+-*    ENDLOOP.
+-*    SORT lt_env_tab.
+-*    DELETE ADJACENT DUPLICATES FROM lt_env_tab.
+-*    ls_input-exclude_envelopes-envelope[] = lt_env_tab[].
+-
+-*---------------------------------------------------------------*
+-* Alkalmazási napló megnyitása
+-    DATA(lo_log) = NEW zcl_pr_log(
+-      iv_log_object    = lv_obj
+-      iv_log_subobject = lv_subobj ).
+-
+-* ---------------------------------------------------------------*
+-* Logikai port előállítása
+-    lv_logical_port_name = zcl_pr_output_management=>get_logical_port_name(  ).
+-
+-* ---------------------------------------------------------------*
+-* Proxy objektum létrehozása
+-    TRY.
+-        CREATE OBJECT lo_dcqm
+-          EXPORTING
+-*           destination       = lo_destination
+-            logical_port_name = lv_logical_port_name. "lv_logical_port_name..
+-      CATCH cx_ai_system_fault INTO DATA(lx_system_fault). " Application Integration: Technical Error
+-        MESSAGE e000 WITH lx_system_fault->get_text(  ) INTO gv_dummy_message.
+-        lo_log->add_system_message(  ).
+-        lv_error_flag = abap_true.
++            lv_own_lock = abap_true.
++          ENDIF.
++
++          SELECT SINGLE * FROM zprt_stock BYPASSING BUFFER INTO ls_stock
++            WHERE stock_id = iv_stock.
++          IF sy-subrc <> 0.
++            add_message( EXPORTING iv_type = 'E' iv_text = text-102
++              iv_value1 = iv_stock CHANGING ct_messages = et_messages ).
++            EXIT.
++          ENDIF.
++          IF ls_stock-closed IS NOT INITIAL OR ls_stock-status <> gc_status_qm
++             OR ls_stock-stock_status_er IS NOT INITIAL.
++            add_message( EXPORTING iv_type = 'E'
++              iv_text = text-103
++              iv_value1 = iv_stock CHANGING ct_messages = et_messages ).
++            EXIT.
++          ENDIF.
++
++          IF iv_priority IS SUPPLIED.
++            lv_priority = iv_priority.
++          ELSE.
++            ls_field-tabname = 'ZPRT_STOCK'.
++            ls_field-fieldname = 'PRIORITY'.
++            IF ls_stock-priority IS INITIAL.
++              ls_field-value = '30'.
++            ELSE.
++              ls_field-value = ls_stock-priority.
++            ENDIF.
++            ls_field-field_obl = abap_true.
++            APPEND ls_field TO lt_fields.
++            CALL FUNCTION 'POPUP_GET_VALUES'
++              EXPORTING popup_title = text-104
++              IMPORTING returncode = lv_return
++              TABLES fields = lt_fields
++              EXCEPTIONS error_in_fields = 1 OTHERS = 2.
++            IF sy-subrc <> 0 OR lv_return = 'A'.
++              EXIT.
++            ENDIF.
++            READ TABLE lt_fields INTO ls_field INDEX 1.
++            IF sy-subrc <> 0.
++              EXIT.
++            ENDIF.
++            lv_priority = ls_field-value.
++          ENDIF.
++          IF lv_priority IS INITIAL.
++            add_message( EXPORTING iv_type = 'E' iv_text = text-105
++              CHANGING ct_messages = et_messages ).
++            EXIT.
++          ENDIF.
++
++          SELECT COUNT(*) FROM zprt_dcqm INTO lv_total
++            WHERE prd_stock_id = iv_stock.
++          IF lv_total = 0.
++            add_message( EXPORTING iv_type = 'E' iv_text = text-106
++              iv_value1 = iv_stock CHANGING ct_messages = et_messages ).
++            EXIT.
++          ENDIF.
++          SELECT * FROM zprt_dcqm INTO CORRESPONDING FIELDS OF TABLE lt_alv
++            WHERE prd_stock_id = iv_stock
++              AND ( block_dc <> space OR block_qm <> space ).
++          SORT lt_alv BY doc_no envelope.
++          DESCRIBE TABLE lt_alv LINES lv_excluded.
++          lv_allowed = lv_total - lv_excluded.
++
++          prepare_regmail( EXPORTING it_alv = lt_alv
++            IMPORTING et_regmail = lt_regmail ev_error = lv_error
++            CHANGING ct_messages = et_messages ).
++          IF lv_error = abap_true.
++            EXIT.
++          ENDIF.
++          send_priority( EXPORTING iv_stock = iv_stock iv_priority = lv_priority
++              it_alv = lt_alv
++            IMPORTING ev_error = lv_error ev_call_started = lv_call_started
++              ev_remote_success = lv_remote_success ev_uncertain = ev_uncertain
++            CHANGING ct_messages = et_messages ).
++          IF lv_error = abap_true OR lv_remote_success <> abap_true.
++            EXIT.
++          ENDIF.
++          save_release( EXPORTING iv_stock = iv_stock iv_priority = lv_priority
++              it_alv = lt_alv it_regmail = lt_regmail
++            IMPORTING ev_error = lv_error ev_saved = ev_success
++              ev_uncertain = ev_uncertain
++            CHANGING ct_messages = et_messages ).
++          IF ev_success = abap_true.
++            add_message( EXPORTING iv_type = 'S' iv_text = text-107
++              iv_value1 = iv_stock iv_value2 = lv_priority CHANGING ct_messages = et_messages ).
++            WRITE lv_total TO lv_number LEFT-JUSTIFIED.
++            add_message( EXPORTING iv_type = 'S' iv_text = text-108
++              iv_value1 = lv_number CHANGING ct_messages = et_messages ).
++            WRITE lv_excluded TO lv_number LEFT-JUSTIFIED.
++            add_message( EXPORTING iv_type = 'S' iv_text = text-109
++              iv_value1 = lv_number CHANGING ct_messages = et_messages ).
++            WRITE lv_allowed TO lv_number LEFT-JUSTIFIED.
++            add_message( EXPORTING iv_type = 'S' iv_text = text-110
++              iv_value1 = lv_number CHANGING ct_messages = et_messages ).
++            IF ls_stock-notest = abap_true.
++              add_message( EXPORTING iv_type = 'I' iv_text = text-111
++                CHANGING ct_messages = et_messages ).
++            ENDIF.
++          ENDIF.
++        ENDDO.
++      CATCH cx_root INTO lr_error.
++        ROLLBACK WORK.
++        IF ev_success <> abap_true
++           AND ( lv_call_started = abap_true OR lv_remote_success = abap_true ).
++          ev_uncertain = abap_true.
++        ENDIF.
++        add_exception( EXPORTING ir_error = lr_error CHANGING ct_messages = et_messages ).
+     ENDTRY.
+ 
+-* ---------------------------------------------------------------*
+-* Hívás felparaméterezése
+-    ls_input-sap_mandant = sy-mandt.
+-    ls_input-sap_system = sy-sysid.
+-    ls_input-stock_id = iv_stock.
+-    ls_input-priority = gv_priority.
+-
+-* ---------------------------------------------------------------*
+-* Inspire hívás
+-    IF lv_error_flag IS INITIAL.
+-      TRY.
+-          CALL METHOD lo_dcqm->eon_dcqmcompleted
+-            EXPORTING
+-              input  = ls_input
+-            IMPORTING
+-              output = ls_output.
+-        CATCH cx_ai_system_fault INTO lx_system_fault.
+-          MESSAGE e000 WITH lx_system_fault->get_text(  ) INTO gv_dummy_message.
+-          lo_log->add_system_message(  ).
+-          lv_error_flag = abap_true.
+-        CATCH cx_ai_application_fault INTO DATA(lx_application_fault).
+-          MESSAGE e000 WITH lx_application_fault->get_text(  ) INTO gv_dummy_message.
+-          lo_log->add_system_message(  ).
+-          lv_error_flag = abap_true.
+-      ENDTRY.
+-    ENDIF.
+-
+-* ---------------------------------------------------------------*
+-* Hibakezelés
+-    IF lv_error_flag IS INITIAL.
+-      IF ls_output-parameters-success = abap_true.
+-        MESSAGE s071 WITH iv_stock INTO gv_dummy_message.
+-        lo_log->add_system_message(  ).
+-      ELSE.
+-        MESSAGE e000 WITH ls_output-parameters-error_code ':' ls_output-parameters-info INTO  gv_dummy_message.
+-        lo_log->add_system_message(  ).
+-        lv_error_flag = abap_true.
+-      ENDIF.
++    IF ev_uncertain = abap_true AND ev_success <> abap_true.
++      mark_uncertain_state( EXPORTING iv_stock = iv_stock CHANGING ct_messages = et_messages ).
+     ENDIF.
+-
+-*---------------------------------------------------------------*
+-* Hiba kezelés
+-    IF lv_error_flag EQ abap_true.
+-      MESSAGE s072 WITH iv_stock INTO gv_dummy_message.
+-      lo_log->add_system_message(  ).
++    IF lv_own_lock = abap_true.
++      CALL FUNCTION 'DEQUEUE_EZPRT_STOCK'
++        EXPORTING stock_id = iv_stock _scope = '1'.
+     ENDIF.
+-
+-*---------------------------------------------------------------*
+-* Adatbázis update
+-    IF lv_error_flag IS INITIAL.
+-      zcl_pr_stock=>update_status(
+-        iv_stock_id   = iv_stock
+-        iv_new_status = 'CL' ).
++    IF ev_success <> abap_true.
++      add_message( EXPORTING iv_type = 'E' iv_text = text-112
++        iv_value1 = iv_stock CHANGING ct_messages = et_messages ).
+     ENDIF.
+-
+-*---------------------------------------------------------------*
+-* Napló
+-    lo_log->close(  ).
+-    IF sy-batch IS INITIAL.
+-      lo_log->display(  ).
++    IF iv_display_log = abap_true.
++      write_log( EXPORTING it_messages = et_messages IMPORTING ev_log_error = lv_log_error ).
+     ENDIF.
+-
+   ENDMETHOD.
+ 
+ 
+@@ -340,4 +369,355 @@ CLASS ZCL_PR_STOCK IMPLEMENTATION.
+     ENDIF.
+ 
+   ENDMETHOD.
++METHOD check_regmail_tables.
++  DATA: lt_fields TYPE STANDARD TABLE OF dfies,
++        ls_field TYPE dfies,
++        lv_table_class TYPE dd02l-tabclass.
++  ev_error = abap_true.
++  SELECT SINGLE tabclass FROM dd02l INTO lv_table_class
++    WHERE tabname = gc_terti_table AND as4local = 'A' AND as4vers = '0000'.
++  IF sy-subrc <> 0 OR lv_table_class <> 'TRANSP'.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-113
++      iv_value1 = gc_terti_table iv_value2 = space CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  CALL FUNCTION 'DDIF_FIELDINFO_GET'
++    EXPORTING tabname = gc_terti_table
++    TABLES dfies_tab = lt_fields
++    EXCEPTIONS not_found = 1 internal_error = 2 OTHERS = 3.
++  IF sy-subrc <> 0.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-114
++      iv_value1 = gc_terti_table iv_value2 = space CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'MANDT'.
++  IF sy-subrc <> 0 OR ls_field-datatype <> 'CLNT' OR ls_field-leng <> 3.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-115
++      iv_value1 = gc_terti_table iv_value2 = space CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'ENVELOPE_ID'.
++  IF sy-subrc <> 0 OR ls_field-datatype <> 'CHAR' OR ls_field-leng <> 9.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-116
++      iv_value1 = gc_terti_table iv_value2 = 'ENVELOPE_ID' CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'EXBILLDOCNO'.
++  IF sy-subrc <> 0 OR ls_field-datatype <> 'CHAR' OR ls_field-leng <> 20.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-116
++      iv_value1 = gc_terti_table iv_value2 = 'EXBILLDOCNO' CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  READ TABLE lt_fields INTO ls_field
++    WITH KEY fieldname = 'ZISU_RAGSZAM_128'.
++  IF sy-subrc <> 0 OR ls_field-datatype <> 'CHAR' OR ls_field-leng <> 16.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-116
++      iv_value1 = gc_terti_table iv_value2 = 'ZISU_RAGSZAM_128' CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  REFRESH lt_fields.
++  CLEAR lv_table_class.
++  SELECT SINGLE tabclass FROM dd02l INTO lv_table_class
++    WHERE tabname = gc_f064_table AND as4local = 'A' AND as4vers = '0000'.
++  IF sy-subrc <> 0 OR lv_table_class <> 'TRANSP'.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-113
++      iv_value1 = gc_f064_table iv_value2 = space CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  CALL FUNCTION 'DDIF_FIELDINFO_GET'
++    EXPORTING tabname = gc_f064_table
++    TABLES dfies_tab = lt_fields
++    EXCEPTIONS not_found = 1 internal_error = 2 OTHERS = 3.
++  IF sy-subrc <> 0.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-114
++      iv_value1 = gc_f064_table iv_value2 = space CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'MANDT'.
++  IF sy-subrc <> 0 OR ls_field-datatype <> 'CLNT' OR ls_field-leng <> 3.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-115
++      iv_value1 = gc_f064_table iv_value2 = space CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  READ TABLE lt_fields INTO ls_field WITH KEY fieldname = 'ZISU_RAGSZAM'.
++  IF sy-subrc <> 0 OR ls_field-datatype <> 'CHAR' OR ls_field-leng <> 16.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-116
++      iv_value1 = gc_f064_table iv_value2 = 'ZISU_RAGSZAM' CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  ev_error = abap_false.
++ENDMETHOD.
++
++METHOD prepare_regmail.
++  DATA: ls_alv TYPE zprs_dcqm_report,
++        lt_found TYPE ty_regmail_table,
++        ls_found TYPE ty_regmail,
++        lr_error TYPE REF TO cx_root.
++  REFRESH et_regmail.
++  ev_error = abap_false.
++  CHECK it_alv IS NOT INITIAL.
++  check_regmail_tables( IMPORTING ev_error = ev_error CHANGING ct_messages = ct_messages ).
++  CHECK ev_error = abap_false.
++  TRY.
++      LOOP AT it_alv INTO ls_alv.
++        IF ls_alv-doc_no IS INITIAL.
++*        IF ls_alv-doc_no IS INITIAL OR ls_alv-envelope IS INITIAL.
++          ev_error = abap_true.
++          add_message( EXPORTING iv_type = 'E' iv_text = text-117
++      iv_value1 = ls_alv-doc_no iv_value2 = ls_alv-envelope CHANGING ct_messages = ct_messages ).
++          RETURN.
++        ENDIF.
++        REFRESH lt_found.
++
++        SELECT envelope_id exbilldocno zisu_ragszam_128
++          FROM (gc_terti_table) INTO TABLE lt_found
++          WHERE zisu_ragszam_128 = ls_alv-regmailnumber
++            AND envelope_id = ls_alv-envelope
++            AND exbilldocno = ls_alv-doc_no.
++
++        IF ls_alv-regmailnumber IS NOT INITIAL AND lt_found IS INITIAL.
++          ev_error = abap_true.
++          add_message( EXPORTING iv_type = 'E' iv_text = text-118
++      iv_value1 = ls_alv-doc_no iv_value2 = ls_alv-regmailnumber CHANGING ct_messages = ct_messages ).
++          RETURN.
++        ENDIF.
++        LOOP AT lt_found INTO ls_found.
++          IF ls_found-zisu_ragszam_128 IS INITIAL.
++            ev_error = abap_true.
++            add_message( EXPORTING iv_type = 'E' iv_text = text-119
++      iv_value1 = ls_alv-doc_no iv_value2 = space CHANGING ct_messages = ct_messages ).
++            RETURN.
++          ENDIF.
++          APPEND ls_found TO et_regmail.
++        ENDLOOP.
++      ENDLOOP.
++    CATCH cx_root INTO lr_error.
++      ev_error = abap_true.
++      add_exception( EXPORTING ir_error = lr_error CHANGING ct_messages = ct_messages ).
++  ENDTRY.
++  SORT et_regmail BY envelope_id exbilldocno zisu_ragszam_128.
++  DELETE ADJACENT DUPLICATES FROM et_regmail COMPARING ALL FIELDS.
++ENDMETHOD.
++
++METHOD send_priority.
++  DATA: ls_input TYPE zpr_eon_dcqmcompleted_request2,
++        ls_output TYPE zpr_eon_dcqmcompleted_response,
++        lt_envelopes TYPE zpr_eon_dcqmcompleted_requ_tab,
++        ls_envelope TYPE zpr_eon_dcqmcompleted_request1,
++        ls_alv TYPE zprs_dcqm_report,
++        lo_proxy TYPE REF TO zpr_co_eon_dcqmcompleted_port,
++        lv_port TYPE prx_logical_port_name,
++        lr_error TYPE REF TO cx_root.
++
++  "Only an explicit successful response permits local closing.
++  ev_error = abap_true.
++  CLEAR ev_uncertain.
++  CLEAR: ev_call_started, ev_remote_success.
++
++  LOOP AT it_alv INTO ls_alv.
++    CLEAR ls_envelope.
++    ls_envelope-envelope_id = ls_alv-envelope.
++    APPEND ls_envelope TO lt_envelopes.
++  ENDLOOP.
++
++  SORT lt_envelopes BY envelope_id.
++  DELETE ADJACENT DUPLICATES FROM lt_envelopes COMPARING envelope_id.
++
++  ls_input-sap_mandant = sy-mandt.
++  ls_input-sap_system = sy-sysid.
++  ls_input-stock_id = iv_stock.
++  ls_input-priority = iv_priority.
++  ls_input-exclude_envelopes-envelope = lt_envelopes.
++
++  TRY.
++      lv_port = zcl_pr_output_management=>get_logical_port_name( ).
++      IF lv_port IS INITIAL.
++        add_message( EXPORTING iv_type = 'E' iv_text = text-120
++      iv_value1 = space iv_value2 = space CHANGING ct_messages = ct_messages ).
++        RETURN.
++      ENDIF.
++      CREATE OBJECT lo_proxy EXPORTING logical_port_name = lv_port.
++      ev_call_started = abap_true.
++      lo_proxy->eon_dcqmcompleted(
++        EXPORTING input = ls_input IMPORTING output = ls_output ).
++
++    CATCH cx_ai_application_fault INTO lr_error.
++      ev_error = abap_true.
++      CLEAR: ev_call_started, ev_remote_success.
++      add_exception( EXPORTING ir_error = lr_error CHANGING ct_messages = ct_messages ).
++      add_message( EXPORTING iv_type = 'E' iv_text = text-121
++      iv_value1 = iv_stock iv_value2 = space CHANGING ct_messages = ct_messages ).
++      RETURN.
++    CATCH cx_root INTO lr_error.
++      add_exception( EXPORTING ir_error = lr_error CHANGING ct_messages = ct_messages ).
++      IF ev_call_started = abap_true.
++        ev_uncertain = abap_true.
++        add_message( EXPORTING iv_type = 'E' iv_text = text-122
++      iv_value1 = iv_stock iv_value2 = text-123 CHANGING ct_messages = ct_messages ).
++      ENDIF.
++      RETURN.
++  ENDTRY.
++  IF ls_output-parameters-success <> abap_true.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-124
++      iv_value1 = ls_output-parameters-error_code iv_value2 = ls_output-parameters-info CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  ev_remote_success = abap_true.
++  ev_error = abap_false.
++  add_message( EXPORTING iv_type = 'S' iv_text = text-125
++      iv_value1 = iv_stock iv_value2 = space CHANGING ct_messages = ct_messages ).
++ENDMETHOD.
++
++METHOD save_release.
++  DATA: ls_regmail TYPE ty_regmail,
++        lt_current TYPE ty_regmail_table,
++        lr_error TYPE REF TO cx_root.
++  ev_error = abap_true.
++  ev_saved = abap_false.  CLEAR ev_uncertain.
++  prepare_regmail( EXPORTING it_alv = it_alv
++    IMPORTING et_regmail = lt_current ev_error = ev_error CHANGING ct_messages = ct_messages ).
++  IF ev_error = abap_true OR lt_current <> it_regmail.
++    ev_error = abap_true.
++    ev_uncertain = abap_true.
++    add_message( EXPORTING iv_type = 'E' iv_text = text-126
++      iv_value1 = iv_stock iv_value2 = space CHANGING ct_messages = ct_messages ).
++    RETURN.
++  ENDIF.
++  ev_error = abap_true.
++  TRY.
++      LOOP AT it_regmail INTO ls_regmail.
++        DELETE FROM (gc_terti_table)
++          WHERE envelope_id = ls_regmail-envelope_id
++            AND exbilldocno = ls_regmail-exbilldocno
++            AND zisu_ragszam_128 = ls_regmail-zisu_ragszam_128.
++        IF sy-subrc <> 0.
++          ROLLBACK WORK.
++          ev_uncertain = abap_true.
++          add_message( EXPORTING iv_type = 'E' iv_text = text-127
++      iv_value1 = ls_regmail-exbilldocno iv_value2 = ls_regmail-zisu_ragszam_128 CHANGING ct_messages = ct_messages ).
++          RETURN.
++        ENDIF.
++        "A missing F064 row is allowed; SQL exceptions abort the LUW.
++        DELETE FROM (gc_f064_table)
++          WHERE zisu_ragszam = ls_regmail-zisu_ragszam_128.
++        IF sy-subrc ne 0.
++          add_message( EXPORTING iv_type = 'E' iv_text = text-128
++      iv_value1 = ls_regmail-exbilldocno iv_value2 = ls_regmail-zisu_ragszam_128 CHANGING ct_messages = ct_messages ).
++        ENDIF.
++      ENDLOOP.
++      UPDATE zprt_stock
++        SET closed = abap_true
++            status = gc_status_closed
++            priority = iv_priority
++            erdat_clo = sy-datum
++            ernam_clo = sy-uname
++            ertim_clo = sy-uzeit
++            chuser = sy-uname
++            chdate = sy-datum
++            chtime = sy-uzeit
++        WHERE stock_id = iv_stock
++          AND closed = space
++          AND status = gc_status_qm
++          AND stock_status_er = space.
++      IF sy-subrc <> 0 OR sy-dbcnt <> 1.
++        ROLLBACK WORK.
++        ev_uncertain = abap_true.
++        add_message( EXPORTING iv_type = 'E' iv_text = text-129
++      iv_value1 = iv_stock iv_value2 = space CHANGING ct_messages = ct_messages ).
++        RETURN.
++      ENDIF.
++      COMMIT WORK.
++      ev_saved = abap_true.
++      ev_error = abap_false.
++    CATCH cx_root INTO lr_error.
++      ROLLBACK WORK.
++      ev_uncertain = abap_true.
++      add_exception( EXPORTING ir_error = lr_error CHANGING ct_messages = ct_messages ).
++  ENDTRY.
++ENDMETHOD.
++
++METHOD mark_uncertain_state.
++  DATA lr_error TYPE REF TO cx_root.
++  "Persist a retry block without marking the stock as closed.
++  TRY.
++      UPDATE zprt_stock
++        SET stock_status_er = abap_true
++            chuser = sy-uname chdate = sy-datum chtime = sy-uzeit
++        WHERE stock_id = iv_stock.
++      IF sy-subrc = 0 AND sy-dbcnt = 1.
++        COMMIT WORK.
++        add_message( EXPORTING iv_type = 'E' iv_text = text-130
++      iv_value1 = iv_stock iv_value2 = space CHANGING ct_messages = ct_messages ).
++      ELSE.
++        ROLLBACK WORK.
++        add_message( EXPORTING iv_type = 'E' iv_text = text-131
++      iv_value1 = iv_stock iv_value2 = space CHANGING ct_messages = ct_messages ).
++      ENDIF.
++    CATCH cx_root INTO lr_error.
++      ROLLBACK WORK.
++      add_exception( EXPORTING ir_error = lr_error CHANGING ct_messages = ct_messages ).
++      add_message( EXPORTING iv_type = 'E' iv_text = text-132
++      iv_value1 = iv_stock iv_value2 = space CHANGING ct_messages = ct_messages ).
++  ENDTRY.
++ENDMETHOD.
++
++METHOD add_message.
++  DATA: ls_message TYPE bal_s_msg,
++        lv_text TYPE c LENGTH 200.
++  CONCATENATE iv_text iv_value1 iv_value2 INTO lv_text SEPARATED BY space.
++  ls_message-msgid = 'ZPR'.
++  ls_message-msgno = '000'.
++  ls_message-msgty = iv_type.
++  ls_message-msgv1 = lv_text+0(50).
++  ls_message-msgv2 = lv_text+50(50).
++  ls_message-msgv3 = lv_text+100(50).
++  ls_message-msgv4 = lv_text+150(50).
++  APPEND ls_message TO ct_messages.
++ENDMETHOD.
++
++METHOD add_exception.
++  DATA: ls_message TYPE bal_s_msg,
++        lv_text TYPE c LENGTH 200.
++  lv_text = ir_error->get_text( ).
++  ls_message-msgid = 'ZPR'.
++  ls_message-msgno = '000'.
++  ls_message-msgty = 'E'.
++  ls_message-msgv1 = lv_text+0(50).
++  ls_message-msgv2 = lv_text+50(50).
++  ls_message-msgv3 = lv_text+100(50).
++  ls_message-msgv4 = lv_text+150(50).
++  APPEND ls_message TO ct_messages.
++ENDMETHOD.
++
++METHOD write_log.
++  DATA lv_dummy TYPE string.
++  DATA: lo_log TYPE REF TO zcl_pr_log,
++        lr_error TYPE REF TO cx_root,
++        ls_message TYPE bal_s_msg,
++        lv_text TYPE string.
++  ev_log_error = abap_false.
++  CHECK it_messages IS NOT INITIAL.
++  "Business changes have already been committed or rolled back.
++  TRY.
++      CREATE OBJECT lo_log
++        EXPORTING iv_log_object = gc_log_object
++                  iv_log_subobject = gc_log_subobject.
++      LOOP AT it_messages INTO ls_message.
++        MESSAGE ID ls_message-msgid TYPE ls_message-msgty
++          NUMBER ls_message-msgno
++          WITH ls_message-msgv1 ls_message-msgv2
++               ls_message-msgv3 ls_message-msgv4 INTO lv_dummy.
++        lo_log->add_system_message( ).
++      ENDLOOP.
++      lo_log->close( ).
++      COMMIT WORK.
++      lo_log->display( ).
++    CATCH cx_root INTO lr_error.
++      ROLLBACK WORK.
++      ev_log_error = abap_true.
++      lv_text = lr_error->get_text( ).
++      MESSAGE s000 WITH text-133 lv_text
++        DISPLAY LIKE 'E'.
++  ENDTRY.
++ENDMETHOD.
+ ENDCLASS.

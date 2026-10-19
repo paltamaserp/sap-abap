@@ -1,0 +1,97 @@
+diff --git a/LZPR_COCKPITTOP.abap b/LZPR_COCKPITTOP.abap
+--- a/LZPR_COCKPITTOP.abap
++++ b/LZPR_COCKPITTOP.abap
+@@ -41,5 +41,9 @@ CONSTANTS: BEGIN OF c_buttons,
+ DATA: gv_stock_id TYPE zprd_stock_id,
+       gv_dm_ready TYPE abap_bool.
+ 
++* Internal processing results are independent of user function codes.
++DATA: gv_stock_changed      TYPE abap_bool,
++      gv_dm_close_cancelled TYPE abap_bool.
++
+ * Create the screen container in its own function group's PBO.
+ DATA go_dm_container TYPE REF TO cl_gui_custom_container.
+diff --git a/LZPR_COCKPITO01.abap b/LZPR_COCKPITO01.abap
+--- a/LZPR_COCKPITO01.abap
++++ b/LZPR_COCKPITO01.abap
+@@ -41,6 +41,7 @@ ENDMODULE.
+ MODULE prepare_command INPUT.
+   save_ok = ok_code.
+   CLEAR ok_code.
++  CLEAR: gv_stock_changed, gv_dm_close_cancelled.
+ * Reset must work before stock validation and before the outgoing subscreen.
+   IF save_ok = 'RESET'.
+     PERFORM reset_cockpit.
+@@ -51,7 +52,7 @@ MODULE prepare_command INPUT.
+   ENDIF.
+   PERFORM accept_stock.
+ * Do not run the outgoing subscreen PAI against a changed stock.
+-  IF save_ok = '#STOCK' OR save_ok = '#CANCEL'.
++  IF gv_stock_changed = abap_true OR gv_dm_close_cancelled = abap_true.
+     LEAVE TO SCREEN 100.
+   ENDIF.
+ ENDMODULE.
+@@ -68,7 +69,7 @@ MODULE user_command INPUT.
+      OR save_ok = c_buttons-close
+      OR save_ok = c_buttons-reopen.
+     PERFORM dm_close.
+-    CHECK save_ok <> '#CANCEL'.
++    CHECK gv_dm_close_cancelled = abap_false.
+   ENDIF.
+ 
+   CASE save_ok.
+@@ -163,7 +164,7 @@ ENDMODULE.
+ MODULE cancel INPUT.
+   CLEAR save_ok.
+   PERFORM dm_close.
+-  IF save_ok = '#CANCEL'.
++  IF gv_dm_close_cancelled = abap_true.
+     CLEAR: ok_code, save_ok.
+     LEAVE TO SCREEN 100.
+   ENDIF.
+@@ -251,7 +252,7 @@ FORM accept_stock.
+ 
+   IF zprs_cockpit-stock_id <> gv_stock_id.
+     PERFORM dm_close.
+-    IF save_ok = '#CANCEL'.
++    IF gv_dm_close_cancelled = abap_true.
+       zprs_cockpit-stock_id = gv_stock_id.
+       RETURN.
+     ENDIF.
+@@ -259,7 +260,7 @@ FORM accept_stock.
+     zprs_cockpit = ls_header.
+     gs_tabstrip-pressed_tab = c_tabstrip-t_dm_item.
+     PERFORM dm_open.
+-    save_ok = '#STOCK'.
++    gv_stock_changed = abap_true.
+   ELSE.
+     zprs_cockpit = ls_header.
+   ENDIF.
+@@ -273,6 +274,7 @@ ENDFORM.
+ 
+ FORM dm_close.
+   DATA lv_ok TYPE abap_bool.
++  CLEAR gv_dm_close_cancelled.
+   CHECK gv_dm_ready = abap_true.
+   PERFORM cockpit_close IN PROGRAM zpr_dcqm_exclude CHANGING lv_ok.
+   IF lv_ok = abap_true.
+@@ -280,16 +282,17 @@ FORM dm_close.
+     FREE go_dm_container.
+     CLEAR gv_dm_ready.
+   ELSE.
+-    save_ok = '#CANCEL'.
++    gv_dm_close_cancelled = abap_true.
+   ENDIF.
+ ENDFORM.
+ 
+ FORM reset_cockpit.
+ * Keep the entire current context if discarding changes is declined.
+   PERFORM dm_close.
+-  CHECK save_ok <> '#CANCEL'.
++  CHECK gv_dm_close_cancelled = abap_false.
+ 
+   CLEAR: zprs_cockpit, gv_stock_id, gv_dm_ready, gv_edit_mode,
++         gv_stock_changed, gv_dm_close_cancelled,
+          gx_error, gv_dummy_message, ok_code, save_ok, gs_tabstrip.
+   gs_tabstrip-prog = sy-repid.
+   gs_tabstrip-subscreen = '1010'.

@@ -65,4 +65,4 @@ A meglévő `ZPR_SLOG_EMAIL` újrahasználata volt az elsődleges irány. Az ell
 
 Ebben a körben a felhasználó ellenőrzést kért. ABAP-kód, aktív SAP-objektum vagy adat nem módosult. A jegyzet, az integrációs útmutató és a döntésnapló frissült. SAP-fordítás, ATC, ABAP Unit és funkcionális teszt nem történt.
 
-A későbbi, azonos napi felhasználói kérésre a helyi kód már a `ZPR_SLOG_EMAIL` táblára és a létrehozott `ZPRB_SLOG_EMAIL` táblatípusra átvezetve. Aktuális állapot: [bemásolási útmutató](../04_ASSETS/abap/2026-10-13_messagequeue-dhc-bemasolas_WIP.md). Ez nem jelent új SAP-ellenőrzést vagy új aktív visszaolvasást.
+A későbbi, azonos napi felhasználói kérésre a helyi kód már a `ZPR_SLOG_EMAIL` táblára és a létrehozott `ZPRB_SLOG_EMAIL` táblatípusra átvezetve. Aktuális állapot: [bemásolási útmutató](<../../../../../[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/info.md/2026-10-13_messagequeue-dhc-bemasolas_WIP.md>). Ez nem jelent új SAP-ellenőrzést vagy új aktív visszaolvasást.

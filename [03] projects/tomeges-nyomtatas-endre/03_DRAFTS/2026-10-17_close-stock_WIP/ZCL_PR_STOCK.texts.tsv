@@ -1,0 +1,34 @@
+ID	Nyelv	Szöveg
+101	HU	A stock zárolása sikertelen:
+102	HU	A stock nem létezik:
+103	HU	A stock jelenlegi állapotában nem zárható le:
+104	HU	Engedélyezés: adja meg a prioritást
+105	HU	A prioritás nem lehet nulla.
+106	HU	A stockhoz nincs nyomtatási sor.
+107	HU	Stock lezárása sikeres:
+108	HU	Nyomtatási sorok száma:
+109	HU	Kizárt sorok száma:
+110	HU	Engedélyezett sorok száma:
+111	HU	A stock NOTEST jelzője be van állítva.
+112	HU	A stock nem lett lezárva:
+113	HU	Hiányzó transzparens tábla:
+114	HU	Hiányzó ragszámtábla:
+115	HU	A tábla nem mandantfüggő:
+116	HU	Nem megfelelő táblamező:
+117	HU	Hiányzó dokumentum vagy boríték:
+118	HU	Ragszámhoz nincs TERTI rekord:
+119	HU	A TERTI ragszáma üres:
+120	HU	Az Inspire logikai portja üres.
+121	HU	Az Inspire elutasította a lezárást:
+122	HU	Az Inspire eredménye bizonytalan:
+123	HU	Újraküldés előtt ellenőrzés szükséges.
+124	HU	Az Inspire elutasitotta a lezárást:
+125	HU	Inspire jóváhagyás sikeres:
+126	HU	A ragszámok változtak; a lezárás megszakadt.
+127	HU	A TERTI törlés sikertelen:
+128	HU	A ZISU_F064 törlés sikertelen:
+129	HU	A stock mentése sikertelen:
+130	HU	Stock újraküldése tiltva; ellenőrizendő:
+131	HU	A hibajelző sem menthető; ne küldje újra!
+132	HU	Ne indítsa újra külső ellenőrzés nélkül!
+133	HU	A napló nem menthető/megjeleníthető:

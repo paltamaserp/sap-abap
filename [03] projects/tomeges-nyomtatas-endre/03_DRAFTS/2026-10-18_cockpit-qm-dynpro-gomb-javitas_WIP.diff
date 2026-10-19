@@ -1,0 +1,38 @@
+diff --git a/ZPR_QM.abap b/ZPR_QM.abap
+--- a/ZPR_QM.abap
++++ b/ZPR_QM.abap
+@@ -58,7 +58,7 @@ SELECTION-SCREEN BEGIN OF SCREEN 1100 AS SUBSCREEN NESTING LEVEL 1.
+ SELECTION-SCREEN INCLUDE BLOCKS b_main.
+ SELECTION-SCREEN INCLUDE BLOCKS b_layout.
+ SELECTION-SCREEN SKIP 1.
+-SELECTION-SCREEN PUSHBUTTON /1(24) TEXT-101 USER-COMMAND qrun.
++SELECTION-SCREEN PUSHBUTTON /1(24) pb_qrun USER-COMMAND qrun.
+ SELECTION-SCREEN END OF SCREEN 1100.
+ 
+ * A 2000-es képernyő üres: csak a konténereknek ad helyet (a dynpro
+@@ -1120,8 +1120,15 @@ FORM cockpit_execute CHANGING cv_handled TYPE abap_bool.
+     RETURN.
+   ENDIF.
+   p_stock = gv_cockpit_stock.
+-* Run only after the subscreen has completed PAI and the host has control.
+-  lcl_qm=>start( ).
++* Start a separate report session so screen 2000 belongs to ZPR_QM.
++  SUBMIT zpr_qm
++    WITH p_stock = gv_cockpit_stock
++    WITH p_mod   = p_mod
++    WITH p_disp  = p_disp
++    WITH p_rel   = p_rel
++    WITH p_relb  = p_relb
++    WITH p_vari  = p_vari
++    AND RETURN.
+ ENDFORM.
+ 
+ FORM cockpit_close.
+@@ -1154,6 +1161,7 @@ AT SELECTION-SCREEN.
+ 
+ AT SELECTION-SCREEN OUTPUT.
+   IF sy-dynnr = '1100' AND gv_cockpit_embedded = abap_true.
++    pb_qrun = 'QM indítása'(101).
+     p_stock = gv_cockpit_stock.
+     LOOP AT SCREEN.
+       IF screen-name = 'P_STOCK'.

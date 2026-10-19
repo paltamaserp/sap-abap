@@ -1,0 +1,4 @@
+interface:
+  display_name: "SAP transzport QA"
+  short_description: "ATC/SCI-találatok és transzport QA-előkészítés"
+  default_prompt: "Használd a $sap-transport-qa skillt a kérelem QA-előkészítéséhez: elemezd a rendelkezésre álló találatokat, és sorold fel a hiányzó bizonyítékokat."

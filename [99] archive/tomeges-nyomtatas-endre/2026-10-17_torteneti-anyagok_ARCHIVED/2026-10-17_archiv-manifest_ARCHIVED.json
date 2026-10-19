@@ -1,0 +1,1371 @@
+{
+  "date": "2026-10-17",
+  "status": "ARCHIVED",
+  "reason": "Felhasználó által kért archiválás a fájltisztítási elemzés alapján",
+  "fileCount": 127,
+  "moveTargets": 60,
+  "verification": "Archiválás előtti SHA256; mozgatás után újraszámolva",
+  "files": [
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/2026-10-16_export-manifest_WIP.json",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/2026-10-16_export-manifest_WIP.json",
+      "bytes": 8778,
+      "sha256": "8099a76c13ab35b08ef3c0d41c9578a3d7224cc67dc7f543d679a9fc13efa90e",
+      "archivedBytes": 8778,
+      "archivedSha256": "8099a76c13ab35b08ef3c0d41c9578a3d7224cc67dc7f543d679a9fc13efa90e",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/README.md",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/README.md",
+      "bytes": 3490,
+      "sha256": "4342e6be414a37be0495b9dc6e6d1b7662918b05a1bad9052ffb1ce01f5daa19",
+      "archivedBytes": 3490,
+      "archivedSha256": "4342e6be414a37be0495b9dc6e6d1b7662918b05a1bad9052ffb1ce01f5daa19",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZCL_PR_QM_SAMPLER.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZCL_PR_QM_SAMPLER.abap",
+      "bytes": 17586,
+      "sha256": "6ee1228e8a74a1d4c48b836f24c6b1192e93da6bb88bb5f18651fa3bf0c9928e",
+      "archivedBytes": 17586,
+      "archivedSha256": "6ee1228e8a74a1d4c48b836f24c6b1192e93da6bb88bb5f18651fa3bf0c9928e",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZCL_PR_QM_SAMPLER.metadata.xml",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZCL_PR_QM_SAMPLER.metadata.xml",
+      "bytes": 8658,
+      "sha256": "6c2870628744c36a50414f0971eb5e445f4196e20d80c3afbce9e55fc27e18b3",
+      "archivedBytes": 8658,
+      "archivedSha256": "6c2870628744c36a50414f0971eb5e445f4196e20d80c3afbce9e55fc27e18b3",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPRB_EMAIL_SLOG.ttyp.json",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPRB_EMAIL_SLOG.ttyp.json",
+      "bytes": 5027,
+      "sha256": "435fcdf1192a6756d8382223904ce44b8ddfa1fa8c2efc7d4008d8dacc90facd",
+      "archivedBytes": 5027,
+      "archivedSha256": "435fcdf1192a6756d8382223904ce44b8ddfa1fa8c2efc7d4008d8dacc90facd",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPRB_SLOG_EMAIL.ttyp.json",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPRB_SLOG_EMAIL.ttyp.json",
+      "bytes": 5030,
+      "sha256": "c49737e81268a626858d624634241a4990362c6f00d850140c27fdf476cdeb04",
+      "archivedBytes": 5030,
+      "archivedSha256": "c49737e81268a626858d624634241a4990362c6f00d850140c27fdf476cdeb04",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPRC_DCCODE.table",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPRC_DCCODE.table",
+      "bytes": 418,
+      "sha256": "d41bb5f269b59b4dfa8e45a6d921bbac9e9b5d7b59af1d160f07857cd152366a",
+      "archivedBytes": 418,
+      "archivedSha256": "d41bb5f269b59b4dfa8e45a6d921bbac9e9b5d7b59af1d160f07857cd152366a",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPRS_DCQM_REPORT.structure",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPRS_DCQM_REPORT.structure",
+      "bytes": 1546,
+      "sha256": "628957152f1d46e111b72319aef3c21cb56088ac06d3811ab3c1e40495e0cd1f",
+      "archivedBytes": 1546,
+      "archivedSha256": "628957152f1d46e111b72319aef3c21cb56088ac06d3811ab3c1e40495e0cd1f",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPRT_DCQM.table",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPRT_DCQM.table",
+      "bytes": 1534,
+      "sha256": "2c7973db61d9a510c3abe057eb78fe501895f967dfcff4773f96db4c783cac74",
+      "archivedBytes": 1534,
+      "archivedSha256": "2c7973db61d9a510c3abe057eb78fe501895f967dfcff4773f96db4c783cac74",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPRT_DCQMLT.table",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPRT_DCQMLT.table",
+      "bytes": 439,
+      "sha256": "7df3284c99d56e6852b5ce11d25250b54a6926abc46f53b96843aeabfeda746d",
+      "archivedBytes": 439,
+      "archivedSha256": "7df3284c99d56e6852b5ce11d25250b54a6926abc46f53b96843aeabfeda746d",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPRT_EMAIL_SLOG.table",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPRT_EMAIL_SLOG.table",
+      "bytes": 663,
+      "sha256": "2de281c0eb66a1b6069af20085e71a951b382c588aed21617040f67dbe601259",
+      "archivedBytes": 663,
+      "archivedSha256": "2de281c0eb66a1b6069af20085e71a951b382c588aed21617040f67dbe601259",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_CLOSE_STOCK.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_CLOSE_STOCK.abap",
+      "bytes": 33320,
+      "sha256": "a527b0f65c82a4d995007f35764c76a2a4e7ca465e014a5650643acea8265eec",
+      "archivedBytes": 33320,
+      "archivedSha256": "a527b0f65c82a4d995007f35764c76a2a4e7ca465e014a5650643acea8265eec",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_CLOSE_STOCK.metadata.xml",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_CLOSE_STOCK.metadata.xml",
+      "bytes": 3080,
+      "sha256": "66369e4865609343307100df4a399683181f3e82c5d4d3ded2f1b6f23a52c5b3",
+      "archivedBytes": 3080,
+      "archivedSha256": "66369e4865609343307100df4a399683181f3e82c5d4d3ded2f1b6f23a52c5b3",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_CREATE_STOCK.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_CREATE_STOCK.abap",
+      "bytes": 32690,
+      "sha256": "7432bf4cd1b9b520a627688c8395143b5ae7c65b8926c4aaad27c7452328162c",
+      "archivedBytes": 32690,
+      "archivedSha256": "7432bf4cd1b9b520a627688c8395143b5ae7c65b8926c4aaad27c7452328162c",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_CREATE_STOCK.metadata.xml",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_CREATE_STOCK.metadata.xml",
+      "bytes": 3381,
+      "sha256": "d86a0af54a816a7dccbc74b123675f88313e415b139ef9bae534e26f1ee8890f",
+      "archivedBytes": 3381,
+      "archivedSha256": "d86a0af54a816a7dccbc74b123675f88313e415b139ef9bae534e26f1ee8890f",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DCQM_EXCLUDE.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DCQM_EXCLUDE.abap",
+      "bytes": 54869,
+      "sha256": "cbc78065ab03f8c5b8567e74e7ff81a29de4a6d5a8d89404b69cd0dcdfd213fa",
+      "archivedBytes": 54869,
+      "archivedSha256": "cbc78065ab03f8c5b8567e74e7ff81a29de4a6d5a8d89404b69cd0dcdfd213fa",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DCQM_EXCLUDE.metadata.xml",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DCQM_EXCLUDE.metadata.xml",
+      "bytes": 3154,
+      "sha256": "f0d2afb651915c8d8536528160464467d3762a19e6fbf314c05632f553ae269e",
+      "archivedBytes": 3154,
+      "archivedSha256": "f0d2afb651915c8d8536528160464467d3762a19e6fbf314c05632f553ae269e",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DCQM_EXCLUDE_I01.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DCQM_EXCLUDE_I01.abap",
+      "bytes": 1035,
+      "sha256": "865d462805ccc69259f504871d758fceaf5d1a6755857a257da2029290ba17f3",
+      "archivedBytes": 1035,
+      "archivedSha256": "865d462805ccc69259f504871d758fceaf5d1a6755857a257da2029290ba17f3",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DCQM_EXCLUDE_O01.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DCQM_EXCLUDE_O01.abap",
+      "bytes": 1077,
+      "sha256": "a92b566a2c9ae68f293227a9b6850955266c85aa4aff070636d500beed09b032",
+      "archivedBytes": 1077,
+      "archivedSha256": "a92b566a2c9ae68f293227a9b6850955266c85aa4aff070636d500beed09b032",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DC_FRAME.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DC_FRAME.abap",
+      "bytes": 13185,
+      "sha256": "6fdd4428ade69fd34bf8d3c7ec38c242f69702244d6c4fa5dc5fc15be1763fd1",
+      "archivedBytes": 13185,
+      "archivedSha256": "6fdd4428ade69fd34bf8d3c7ec38c242f69702244d6c4fa5dc5fc15be1763fd1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DC_FRAME.metadata.xml",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DC_FRAME.metadata.xml",
+      "bytes": 3076,
+      "sha256": "fb87ae3ffc300836d3d314efc9a8b2f2d3caad451775d8acae3cb863adc53aaa",
+      "archivedBytes": 3076,
+      "archivedSha256": "fb87ae3ffc300836d3d314efc9a8b2f2d3caad451775d8acae3cb863adc53aaa",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DOC_RIP.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DOC_RIP.abap",
+      "bytes": 33147,
+      "sha256": "1ee4d31693915864f0dad2faebc8f990567c3c5f2a8d8d7b0a7b4c4244decf21",
+      "archivedBytes": 33147,
+      "archivedSha256": "1ee4d31693915864f0dad2faebc8f990567c3c5f2a8d8d7b0a7b4c4244decf21",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DOC_RIP.metadata.xml",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DOC_RIP.metadata.xml",
+      "bytes": 3066,
+      "sha256": "89bf6d943e3b36cbe99d6b609008891b24bff2541f833ca7db4241ee2d732962",
+      "archivedBytes": 3066,
+      "archivedSha256": "89bf6d943e3b36cbe99d6b609008891b24bff2541f833ca7db4241ee2d732962",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DOC_RIP_I01.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DOC_RIP_I01.abap",
+      "bytes": 662,
+      "sha256": "87fc378a8912a798b797189c2860605e176ed47dfb1a2dd3615211a19a413a0f",
+      "archivedBytes": 662,
+      "archivedSha256": "87fc378a8912a798b797189c2860605e176ed47dfb1a2dd3615211a19a413a0f",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DOC_RIP_O01.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DOC_RIP_O01.abap",
+      "bytes": 964,
+      "sha256": "61c01506417247c9d0a0c9cbce3b48d7a823265515880393b8edaad34111b9fa",
+      "archivedBytes": 964,
+      "archivedSha256": "61c01506417247c9d0a0c9cbce3b48d7a823265515880393b8edaad34111b9fa",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DOC_STATUS.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DOC_STATUS.abap",
+      "bytes": 42342,
+      "sha256": "091f2c68c59c89e591d961f9b2beeb6a9d7e6fffc1d38ec6cfa1325bc960a941",
+      "archivedBytes": 42342,
+      "archivedSha256": "091f2c68c59c89e591d961f9b2beeb6a9d7e6fffc1d38ec6cfa1325bc960a941",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_DOC_STATUS.metadata.xml",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_DOC_STATUS.metadata.xml",
+      "bytes": 3105,
+      "sha256": "7745581e6d4e39bd45a1c2f43602c6caf2c2be9d5e996febd1c5058d01ec4771",
+      "archivedBytes": 3105,
+      "archivedSha256": "7745581e6d4e39bd45a1c2f43602c6caf2c2be9d5e996febd1c5058d01ec4771",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_MESSAGEQUEUE_QUERY.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_MESSAGEQUEUE_QUERY.abap",
+      "bytes": 13650,
+      "sha256": "c8b83f3a0f31e5cbdbd70e37023f3be8fa4b957b838af15792de99ce4f423dbc",
+      "archivedBytes": 13650,
+      "archivedSha256": "c8b83f3a0f31e5cbdbd70e37023f3be8fa4b957b838af15792de99ce4f423dbc",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_MESSAGEQUEUE_QUERY.metadata.xml",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_MESSAGEQUEUE_QUERY.metadata.xml",
+      "bytes": 3158,
+      "sha256": "174cb990b0e55221a336580424a431ab83d5be4091f97920a96e615ea6634c52",
+      "archivedBytes": 3158,
+      "archivedSha256": "174cb990b0e55221a336580424a431ab83d5be4091f97920a96e615ea6634c52",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_MQ_DISPLAY.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_MQ_DISPLAY.abap",
+      "bytes": 3335,
+      "sha256": "832e7d9cd7e3627cc92a21441de68e6eaad2f27f2829083aa1435c5020291f55",
+      "archivedBytes": 3335,
+      "archivedSha256": "832e7d9cd7e3627cc92a21441de68e6eaad2f27f2829083aa1435c5020291f55",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_MQ_PROXY.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_MQ_PROXY.abap",
+      "bytes": 4203,
+      "sha256": "24542c2fc71f241f2ed28e6781bc0dbda57693b877afe78ba83330494b2e19c1",
+      "archivedBytes": 4203,
+      "archivedSha256": "24542c2fc71f241f2ed28e6781bc0dbda57693b877afe78ba83330494b2e19c1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_MQ_TESTS.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_MQ_TESTS.abap",
+      "bytes": 5819,
+      "sha256": "07cee0b63caf78957e85ac96b945bb101fa8063fbb0a9e807dd446dcc0e99b84",
+      "archivedBytes": 5819,
+      "archivedSha256": "07cee0b63caf78957e85ac96b945bb101fa8063fbb0a9e807dd446dcc0e99b84",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_STOCK_REPORT_I01.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_STOCK_REPORT_I01.abap",
+      "bytes": 984,
+      "sha256": "259eb7c633a60e843b169ba506d500d821230781b6788f400d10240364b339d8",
+      "archivedBytes": 984,
+      "archivedSha256": "259eb7c633a60e843b169ba506d500d821230781b6788f400d10240364b339d8",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-16/ZPR_STOCK_REPORT_O01.abap",
+      "archivedPath": "project/05_FINAL/abap-2026-10-16/ZPR_STOCK_REPORT_O01.abap",
+      "bytes": 1105,
+      "sha256": "ccc332b86554595dfad8d3d1db86745574bce145fb386e3ff2fe411b8c82ffc8",
+      "archivedBytes": 1105,
+      "archivedSha256": "ccc332b86554595dfad8d3d1db86745574bce145fb386e3ff2fe411b8c82ffc8",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/2026-10-17_cockpit/LZPR_COCKPITO01.abap",
+      "archivedPath": "project/01_SOURCES/DHC/2026-10-17_cockpit/LZPR_COCKPITO01.abap",
+      "bytes": 7815,
+      "sha256": "80f8673100b3d732f2e0f4f5bc2d7bef0fc9504f5ff4b7da1b4176080d84929e",
+      "archivedBytes": 7815,
+      "archivedSha256": "80f8673100b3d732f2e0f4f5bc2d7bef0fc9504f5ff4b7da1b4176080d84929e",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/2026-10-17_cockpit/ZPR_DCQM_EXCLUDE.active.abap",
+      "archivedPath": "project/01_SOURCES/DHC/2026-10-17_cockpit/ZPR_DCQM_EXCLUDE.active.abap",
+      "bytes": 53270,
+      "sha256": "1551f2a126caad9355e5c026de2c1e75d4806539211bea5a00558a2a6df80f9e",
+      "archivedBytes": 53270,
+      "archivedSha256": "1551f2a126caad9355e5c026de2c1e75d4806539211bea5a00558a2a6df80f9e",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/2026-10-17_cockpit/ZPR_DCQM_EXCLUDE.inactive.abap",
+      "archivedPath": "project/01_SOURCES/DHC/2026-10-17_cockpit/ZPR_DCQM_EXCLUDE.inactive.abap",
+      "bytes": 53992,
+      "sha256": "1618ce711ebf7f1e12cd136512a72b3b099d7917afb5e412a00fd0b2ce2e6a75",
+      "archivedBytes": 53992,
+      "archivedSha256": "1618ce711ebf7f1e12cd136512a72b3b099d7917afb5e412a00fd0b2ce2e6a75",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/2026-10-17_cockpit_114947_WIP/README.md",
+      "archivedPath": "project/01_SOURCES/DHC/2026-10-17_cockpit_114947_WIP/README.md",
+      "bytes": 3363,
+      "sha256": "9eb046d03e183a8fe6c108d26cb1fc8c9b6d57f47dddef18079b30d521cea05e",
+      "archivedBytes": 3363,
+      "archivedSha256": "9eb046d03e183a8fe6c108d26cb1fc8c9b6d57f47dddef18079b30d521cea05e",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/2026-10-17_cockpit_114947_WIP/ZPR_DCQM_EXCLUDE.abap",
+      "archivedPath": "project/01_SOURCES/DHC/2026-10-17_cockpit_114947_WIP/ZPR_DCQM_EXCLUDE.abap",
+      "bytes": 55682,
+      "sha256": "7888edd050780f7ecd759941b8a77d2cda3b0467c60d0a72e223f4376af598fb",
+      "archivedBytes": 55682,
+      "archivedSha256": "7888edd050780f7ecd759941b8a77d2cda3b0467c60d0a72e223f4376af598fb",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/2026-10-17_cockpit_felhasznaloi_WIP/CREATE_CONTROLS_0100.fragment.abap",
+      "archivedPath": "project/01_SOURCES/DHC/2026-10-17_cockpit_felhasznaloi_WIP/CREATE_CONTROLS_0100.fragment.abap",
+      "bytes": 5779,
+      "sha256": "f372286b606a5ec62ca190da14a3f1e915531eb665daa0e2def5fbe993351252",
+      "archivedBytes": 5779,
+      "archivedSha256": "f372286b606a5ec62ca190da14a3f1e915531eb665daa0e2def5fbe993351252",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/2026-10-17_cockpit_felhasznaloi_WIP/LZPR_COCKPITO01.abap",
+      "archivedPath": "project/01_SOURCES/DHC/2026-10-17_cockpit_felhasznaloi_WIP/LZPR_COCKPITO01.abap",
+      "bytes": 8928,
+      "sha256": "23d1fb524fceb2bc64f6c94f675586b78be448c8516437c94c071b24a288c80f",
+      "archivedBytes": 8928,
+      "archivedSha256": "23d1fb524fceb2bc64f6c94f675586b78be448c8516437c94c071b24a288c80f",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/01_SOURCES/DHC/2026-10-17_cockpit_felhasznaloi_WIP/README.md",
+      "archivedPath": "project/01_SOURCES/DHC/2026-10-17_cockpit_felhasznaloi_WIP/README.md",
+      "bytes": 2059,
+      "sha256": "464c7ce729adc6ef5fe8f0f50e0aba0b5f82c2a9de32d7c44633de165145f4ce",
+      "archivedBytes": 2059,
+      "archivedSha256": "464c7ce729adc6ef5fe8f0f50e0aba0b5f82c2a9de32d7c44633de165145f4ce",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-08_dc-kodellenorzes-friss-ddic_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-08_dc-kodellenorzes-friss-ddic_WIP.md",
+      "bytes": 2694,
+      "sha256": "c3c15ed0adc34ddc1f0851f9362c1a5a86a2be2ecbe4b41b141671893d1c485a",
+      "archivedBytes": 2694,
+      "archivedSha256": "c3c15ed0adc34ddc1f0851f9362c1a5a86a2be2ecbe4b41b141671893d1c485a",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-08_dc-megvalositasi-terv-ellenorzes_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-08_dc-megvalositasi-terv-ellenorzes_WIP.md",
+      "bytes": 15184,
+      "sha256": "418a52d782ac8e53f6686c90880383e95260507b44138514a13b4b78a8371fff",
+      "archivedBytes": 15184,
+      "archivedSha256": "418a52d782ac8e53f6686c90880383e95260507b44138514a13b4b78a8371fff",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-08_dc-qu5-dhc-kodelteres_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-08_dc-qu5-dhc-kodelteres_WIP.md",
+      "bytes": 5197,
+      "sha256": "9c8f7b500fa29719fba1f41a289e557a95b1eb0b5a5bff053284a9d7db3ccd61",
+      "archivedBytes": 5197,
+      "archivedSha256": "9c8f7b500fa29719fba1f41a289e557a95b1eb0b5a5bff053284a9d7db3ccd61",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-13_messagequeue-dhc-helyi-ellenorzes_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-13_messagequeue-dhc-helyi-ellenorzes_WIP.md",
+      "bytes": 4918,
+      "sha256": "999603f451230431d47ada1859dca8a2d8c4981242a33e49a63e95b9e565360b",
+      "archivedBytes": 4978,
+      "archivedSha256": "ddae02e05671a762014dbfc4d9101b33cbdd231d6ee49637b1aa055b5c00c2f4",
+      "navigationUpdated": true
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-13_messagequeue-logikai-port-mcp_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-13_messagequeue-logikai-port-mcp_WIP.md",
+      "bytes": 3273,
+      "sha256": "6565de113277ca54bf659d972758cb684795f908901e97c0633ca4f1f4c09e9c",
+      "archivedBytes": 3273,
+      "archivedSha256": "6565de113277ca54bf659d972758cb684795f908901e97c0633ca4f1f4c09e9c",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-13_messagequeue-mcp-ellenorzes_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-13_messagequeue-mcp-ellenorzes_WIP.md",
+      "bytes": 4546,
+      "sha256": "c1f3b2425b5157e2e3cc6bab11b3507adc576f5b84c7a60352d5b52cddd1a5b7",
+      "archivedBytes": 4606,
+      "archivedSha256": "872e6ccf168c662d20a9dce8afb0933edb7860c346e6e21b9170437a7bae6b55",
+      "navigationUpdated": true
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-13_stock-report-dhc-helyi-ellenorzes_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-13_stock-report-dhc-helyi-ellenorzes_WIP.md",
+      "bytes": 4360,
+      "sha256": "e4e0178245ec9b8a7e576e5fb09019a4b7d373b7eb5c35acf83df93f4d2d8492",
+      "archivedBytes": 4420,
+      "archivedSha256": "1da1f5fdab103cf9414c7fbffb5be37b3821ea5c6e5641124b9b1983d75b6be1",
+      "navigationUpdated": true
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-13_stock-report-qu5-dhc-elemzes_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-13_stock-report-qu5-dhc-elemzes_WIP.md",
+      "bytes": 17895,
+      "sha256": "00d7021b8e717b183658c1d33e625b0c795d19255355da423375d047f4004fd3",
+      "archivedBytes": 18311,
+      "archivedSha256": "5816760c5774ce5cd26692d9f8fce021e0f79f8d336b72a3db3d476091b1c3b9",
+      "navigationUpdated": true
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-14_sampler-duplikalt-dokumentum_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-14_sampler-duplikalt-dokumentum_WIP.md",
+      "bytes": 3851,
+      "sha256": "0b0feab22c8173fa9b758c6089425fda3c9e927d6af3c530b72428cb2926e7fd",
+      "archivedBytes": 3851,
+      "archivedSha256": "0b0feab22c8173fa9b758c6089425fda3c9e927d6af3c530b72428cb2926e7fd",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-14_zpr-create-stock-feltaras_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-14_zpr-create-stock-feltaras_WIP.md",
+      "bytes": 4658,
+      "sha256": "ca2cd508fb4057b1974244fb9c2204a0c63fa8854405c4f6b9c2f14f0bb65971",
+      "archivedBytes": 4658,
+      "archivedSha256": "ca2cd508fb4057b1974244fb9c2204a0c63fa8854405c4f6b9c2f14f0bb65971",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-15_doc-rip-helyi-ellenorzes_WIP.json",
+      "archivedPath": "project/02_NOTES/2026-10-15_doc-rip-helyi-ellenorzes_WIP.json",
+      "bytes": 675,
+      "sha256": "2bf7f87c4100784e143960e022eb82027f9ec408f505d8a34e16f5bf7be1bb7d",
+      "archivedBytes": 675,
+      "archivedSha256": "2bf7f87c4100784e143960e022eb82027f9ec408f505d8a34e16f5bf7be1bb7d",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-15_doc-status-helyi-ellenorzes_WIP.json",
+      "archivedPath": "project/02_NOTES/2026-10-15_doc-status-helyi-ellenorzes_WIP.json",
+      "bytes": 1056,
+      "sha256": "52e6d92d69e4e097806d53b25210ca7cf86c08df1afa46cd3876cf513a838a87",
+      "archivedBytes": 1056,
+      "archivedSha256": "52e6d92d69e4e097806d53b25210ca7cf86c08df1afa46cd3876cf513a838a87",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-15_doc-status-package-id-diff-ellenorzes_WIP.json",
+      "archivedPath": "project/02_NOTES/2026-10-15_doc-status-package-id-diff-ellenorzes_WIP.json",
+      "bytes": 451,
+      "sha256": "0ae22be684fdfeb1d60e23e112d91964e0692bc9c5fbdd284ab0892b02fb0bd0",
+      "archivedBytes": 451,
+      "archivedSha256": "0ae22be684fdfeb1d60e23e112d91964e0692bc9c5fbdd284ab0892b02fb0bd0",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-15_doc-status-qa-ellenorzes_WIP.json",
+      "archivedPath": "project/02_NOTES/2026-10-15_doc-status-qa-ellenorzes_WIP.json",
+      "bytes": 673,
+      "sha256": "985c37675e9cce3570d2c4f2fe1087b96763cc4adcafef089f90ebe9fdd006de",
+      "archivedBytes": 673,
+      "archivedSha256": "985c37675e9cce3570d2c4f2fe1087b96763cc4adcafef089f90ebe9fdd006de",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-15_doc-status-stock-package-diff-ellenorzes_WIP.json",
+      "archivedPath": "project/02_NOTES/2026-10-15_doc-status-stock-package-diff-ellenorzes_WIP.json",
+      "bytes": 860,
+      "sha256": "ba7ba787d73f7ed7dd9f3b52de67e34936972970fd0f909c1c19d8c2b556f81e",
+      "archivedBytes": 860,
+      "archivedSha256": "ba7ba787d73f7ed7dd9f3b52de67e34936972970fd0f909c1c19d8c2b556f81e",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-15_doc-status-stock-package-sql-ellenorzes_WIP.json",
+      "archivedPath": "project/02_NOTES/2026-10-15_doc-status-stock-package-sql-ellenorzes_WIP.json",
+      "bytes": 594,
+      "sha256": "2ad92c7168b19306186b2756b33a4df244a88c56333d291c6edf6eb6915c478c",
+      "archivedBytes": 594,
+      "archivedSha256": "2ad92c7168b19306186b2756b33a4df244a88c56333d291c6edf6eb6915c478c",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-15_messagequeue-email-slog-tablaellenorzes_WIP.md",
+      "archivedPath": "project/02_NOTES/2026-10-15_messagequeue-email-slog-tablaellenorzes_WIP.md",
+      "bytes": 2885,
+      "sha256": "c1d2bfe9cc15229b4d92680b2d7ef8487c41560ea4bbe0141fd5fcddf7b479aa",
+      "archivedBytes": 2885,
+      "archivedSha256": "c1d2bfe9cc15229b4d92680b2d7ef8487c41560ea4bbe0141fd5fcddf7b479aa",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-08_dc-adatellenorzes-dhc-megvalositasi-terv_WIP.md",
+      "archivedPath": "project/03_DRAFTS/2026-10-08_dc-adatellenorzes-dhc-megvalositasi-terv_WIP.md",
+      "bytes": 40720,
+      "sha256": "fa259a7fa7c698163efa44cf73d9548916f15bcf9ff1f1455e5bcb08f805fdc7",
+      "archivedBytes": 40720,
+      "archivedSha256": "fa259a7fa7c698163efa44cf73d9548916f15bcf9ff1f1455e5bcb08f805fdc7",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-16_messagequeue-email-slog-tablacsere_WIP.diff",
+      "archivedPath": "project/03_DRAFTS/2026-10-16_messagequeue-email-slog-tablacsere_WIP.diff",
+      "bytes": 13774,
+      "sha256": "0eac84761a322cd0ad2f7c45ce84aaaaccb3b37a7fa257eb7e6fb12bf1bda776",
+      "archivedBytes": 13774,
+      "archivedSha256": "0eac84761a322cd0ad2f7c45ce84aaaaccb3b37a7fa257eb7e6fb12bf1bda776",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_cockpit-alv-frontend-diagnosztika_WIP.md",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_cockpit-alv-frontend-diagnosztika_WIP.md",
+      "bytes": 27687,
+      "sha256": "33a282d6d0dd4c341e9e2ff3dd8bc542653e9eb5c98d1cdb1055a758a0b26436",
+      "archivedBytes": 27687,
+      "archivedSha256": "33a282d6d0dd4c341e9e2ff3dd8bc542653e9eb5c98d1cdb1055a758a0b26436",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_cockpit-dupla-include_WIP.diff",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_cockpit-dupla-include_WIP.diff",
+      "bytes": 169,
+      "sha256": "68980401b1c89faf4f1719927a77828e68db18060e638cf0dd4aabdf478c599c",
+      "archivedBytes": 169,
+      "archivedSha256": "68980401b1c89faf4f1719927a77828e68db18060e638cf0dd4aabdf478c599c",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_cockpit-input-lock-reset_WIP.diff",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_cockpit-input-lock-reset_WIP.diff",
+      "bytes": 1686,
+      "sha256": "5bb21c8666d5a50aa7970b32331c7090d6393e6d57a9bcd49a0729ef5996a433",
+      "archivedBytes": 1686,
+      "archivedSha256": "5bb21c8666d5a50aa7970b32331c7090d6393e6d57a9bcd49a0729ef5996a433",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_cockpit-kontener-atadas_WIP.md",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_cockpit-kontener-atadas_WIP.md",
+      "bytes": 9463,
+      "sha256": "42aea26b364e4bfcbde364e03a0a51da4284e03971125d545269034142fe4fc5",
+      "archivedBytes": 9463,
+      "archivedSha256": "42aea26b364e4bfcbde364e03a0a51da4284e03971125d545269034142fe4fc5",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_cockpit-lathatosag-proba_WIP.abap",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_cockpit-lathatosag-proba_WIP.abap",
+      "bytes": 1364,
+      "sha256": "cb4de21316d8e9401e0b802708ef32bb34240e2e53cd10936cc7e652d72728b5",
+      "archivedBytes": 1364,
+      "archivedSha256": "cb4de21316d8e9401e0b802708ef32bb34240e2e53cd10936cc7e652d72728b5",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_cockpit-lathatova-tetel-proba_WIP.abap",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_cockpit-lathatova-tetel-proba_WIP.abap",
+      "bytes": 1876,
+      "sha256": "6f957187e0bc0dbdaafc89944c3d376e3546e0d7d1c52a706574dd6564fcdd00",
+      "archivedBytes": 1876,
+      "archivedSha256": "6f957187e0bc0dbdaafc89944c3d376e3546e0d7d1c52a706574dd6564fcdd00",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_cockpit-merokod-tisztitas_WIP.md",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_cockpit-merokod-tisztitas_WIP.md",
+      "bytes": 5309,
+      "sha256": "d28f44049a96cea48ce75b1a35c29e92e976326b858eb2fa4d565d4b898170a1",
+      "archivedBytes": 5309,
+      "archivedSha256": "d28f44049a96cea48ce75b1a35c29e92e976326b858eb2fa4d565d4b898170a1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_cockpit-pbo-meres-nelkul_WIP.abap",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_cockpit-pbo-meres-nelkul_WIP.abap",
+      "bytes": 321,
+      "sha256": "f75b82f310f0fa11fc3382ddbd58f6e5d0ec66a76d68f9dce135304410d87dd2",
+      "archivedBytes": 321,
+      "archivedSha256": "f75b82f310f0fa11fc3382ddbd58f6e5d0ec66a76d68f9dce135304410d87dd2",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_create-controls-0100-javitott_WIP.abap",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_create-controls-0100-javitott_WIP.abap",
+      "bytes": 5571,
+      "sha256": "ef0348bf806a7f92108894c6eceec9f444e7804d414010cb5a0b0f843194958d",
+      "archivedBytes": 5571,
+      "archivedSha256": "ef0348bf806a7f92108894c6eceec9f444e7804d414010cb5a0b0f843194958d",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_create-controls-0100-meres-nelkul_WIP.abap",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_create-controls-0100-meres-nelkul_WIP.abap",
+      "bytes": 3817,
+      "sha256": "d486436cbdd6d1abf87f1102cf1c62fffcbf15b177243398fc3e3bb20c2e1fec",
+      "archivedBytes": 3817,
+      "archivedSha256": "d486436cbdd6d1abf87f1102cf1c62fffcbf15b177243398fc3e3bb20c2e1fec",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_dm-controls-meres-nelkul_WIP.abap",
+      "archivedPath": "project/03_DRAFTS/2026-10-17_dm-controls-meres-nelkul_WIP.abap",
+      "bytes": 652,
+      "sha256": "23e101d4def0f4dc52c5bafd265668578bb266b8bbced4fdb7fed44f5f3f284b",
+      "archivedBytes": 652,
+      "archivedSha256": "23e101d4def0f4dc52c5bafd265668578bb266b8bbced4fdb7fed44f5f3f284b",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZCL_PR_QM_SAMPLER.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZCL_PR_QM_SAMPLER.abap",
+      "bytes": 17367,
+      "sha256": "97a0880f9b0bfd5936b5a4a15b6ed88f31787273ba32eb7da053423183ecb549",
+      "archivedBytes": 17367,
+      "archivedSha256": "97a0880f9b0bfd5936b5a4a15b6ed88f31787273ba32eb7da053423183ecb549",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_CREATE_STOCK.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_CREATE_STOCK.abap",
+      "bytes": 32820,
+      "sha256": "14ac998bb1c64857983ee2fc3b28d664286e06e0699e739f66bbdd704af7c871",
+      "archivedBytes": 32820,
+      "archivedSha256": "14ac998bb1c64857983ee2fc3b28d664286e06e0699e739f66bbdd704af7c871",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DCQM_EXCLUDE.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DCQM_EXCLUDE.abap",
+      "bytes": 53732,
+      "sha256": "37d51a2054c0ecae9fa9cc5756db21d77a1f8bc898af0b11d173fa148a35a397",
+      "archivedBytes": 53732,
+      "archivedSha256": "37d51a2054c0ecae9fa9cc5756db21d77a1f8bc898af0b11d173fa148a35a397",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DCQM_EXCLUDE_I01.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DCQM_EXCLUDE_I01.abap",
+      "bytes": 1014,
+      "sha256": "2fd26477769cbae2817cea057952ae6750405112ba2b3a1e7d5186730968345d",
+      "archivedBytes": 1014,
+      "archivedSha256": "2fd26477769cbae2817cea057952ae6750405112ba2b3a1e7d5186730968345d",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DCQM_EXCLUDE_O01.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DCQM_EXCLUDE_O01.abap",
+      "bytes": 1043,
+      "sha256": "b1d4ffe1e1dad7749536d56b75097b38c43d5ea98b02d27e806e305bbcf92ead",
+      "archivedBytes": 1043,
+      "archivedSha256": "b1d4ffe1e1dad7749536d56b75097b38c43d5ea98b02d27e806e305bbcf92ead",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DC_FRAME.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DC_FRAME.abap",
+      "bytes": 13076,
+      "sha256": "9ced7073cff45eca463bd72ae24d04983e2f5250686e6410e3649b01b80e97e2",
+      "archivedBytes": 13076,
+      "archivedSha256": "9ced7073cff45eca463bd72ae24d04983e2f5250686e6410e3649b01b80e97e2",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_RIP.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DOC_RIP.abap",
+      "bytes": 5829,
+      "sha256": "cc8f8fe83039bd4dd80a4f12ed1614c5c0d421786ed52e385aae7dcc128a4a38",
+      "archivedBytes": 5829,
+      "archivedSha256": "cc8f8fe83039bd4dd80a4f12ed1614c5c0d421786ed52e385aae7dcc128a4a38",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_RIP_DATA.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DOC_RIP_DATA.abap",
+      "bytes": 6247,
+      "sha256": "1fc31319b341dfb5a617471d53da9cdf07a090959774e833d331a028bfe85e73",
+      "archivedBytes": 6247,
+      "archivedSha256": "1fc31319b341dfb5a617471d53da9cdf07a090959774e833d331a028bfe85e73",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_RIP_DISPLAY.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DOC_RIP_DISPLAY.abap",
+      "bytes": 8565,
+      "sha256": "2b98b4cdce97906470aa62aef9676de076086b9450b24c99508200a7ec4f976f",
+      "archivedBytes": 8565,
+      "archivedSha256": "2b98b4cdce97906470aa62aef9676de076086b9450b24c99508200a7ec4f976f",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_RIP_I01.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DOC_RIP_I01.abap",
+      "bytes": 509,
+      "sha256": "971ff2ced5292b0710a0f06670e73c63a287d6b93f26ec8d2a2dce7342eaa376",
+      "archivedBytes": 509,
+      "archivedSha256": "971ff2ced5292b0710a0f06670e73c63a287d6b93f26ec8d2a2dce7342eaa376",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_RIP_O01.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DOC_RIP_O01.abap",
+      "bytes": 349,
+      "sha256": "4811bb40659970b42fb00380c0fa353917b82458819c6b9c280bab3050636e9e",
+      "archivedBytes": 349,
+      "archivedSha256": "4811bb40659970b42fb00380c0fa353917b82458819c6b9c280bab3050636e9e",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_RIP_PROXY.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DOC_RIP_PROXY.abap",
+      "bytes": 3508,
+      "sha256": "7280969e4fe501747d00baae7634e0e0d8538ad53a25b50d539ca14d3bd2b7d1",
+      "archivedBytes": 3508,
+      "archivedSha256": "7280969e4fe501747d00baae7634e0e0d8538ad53a25b50d539ca14d3bd2b7d1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "bytes": 42824,
+      "sha256": "4cdf6ed9c3a06a2d7f5d5db1c3ce4be2414e6c3e0be699f10d9ddad0c760cc12",
+      "archivedBytes": 42824,
+      "archivedSha256": "4cdf6ed9c3a06a2d7f5d5db1c3ce4be2414e6c3e0be699f10d9ddad0c760cc12",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_MESSAGEQUEUE_QUERY.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_MESSAGEQUEUE_QUERY.abap",
+      "bytes": 12383,
+      "sha256": "b25d9a7e43ea2eca3bf2cd124228e86f48f30b175c53c10b5e3b9cf287f3cdf4",
+      "archivedBytes": 12383,
+      "archivedSha256": "b25d9a7e43ea2eca3bf2cd124228e86f48f30b175c53c10b5e3b9cf287f3cdf4",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_MQ_DISPLAY.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_MQ_DISPLAY.abap",
+      "bytes": 3261,
+      "sha256": "19918f05269560d983996e644130c6b05bd3194df21c4250b9e910922e658c85",
+      "archivedBytes": 3261,
+      "archivedSha256": "19918f05269560d983996e644130c6b05bd3194df21c4250b9e910922e658c85",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_MQ_PROXY.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_MQ_PROXY.abap",
+      "bytes": 3983,
+      "sha256": "8650f30010e66dba87c9f781403ef4c1cdf828ec624d407535acd0edeec35e51",
+      "archivedBytes": 3983,
+      "archivedSha256": "8650f30010e66dba87c9f781403ef4c1cdf828ec624d407535acd0edeec35e51",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_STOCK_REPORT.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_STOCK_REPORT.abap",
+      "bytes": 31256,
+      "sha256": "3ec1d40d0fd0a11c59c1ca3ab60e093f26b59899666093fcdc48e6200b088829",
+      "archivedBytes": 31256,
+      "archivedSha256": "3ec1d40d0fd0a11c59c1ca3ab60e093f26b59899666093fcdc48e6200b088829",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_STOCK_REPORT_I01.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_STOCK_REPORT_I01.abap",
+      "bytes": 323,
+      "sha256": "be3822a52809be3dc0c1f6815639264d6536aef24b88fcf8060d62cc0a4458ee",
+      "archivedBytes": 323,
+      "archivedSha256": "be3822a52809be3dc0c1f6815639264d6536aef24b88fcf8060d62cc0a4458ee",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_STOCK_REPORT_O01.abap",
+      "archivedPath": "project/04_ASSETS/abap/ZPR_STOCK_REPORT_O01.abap",
+      "bytes": 440,
+      "sha256": "f90b622587cfda206b0db59b8d9a100274e9db7ca4b7cab624d78216304d8aa1",
+      "archivedBytes": 440,
+      "archivedSha256": "f90b622587cfda206b0db59b8d9a100274e9db7ca4b7cab624d78216304d8aa1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-20261016/patch-check/after.txt",
+      "archivedPath": "workspace-tmp/cockpit-20261016/patch-check/after.txt",
+      "bytes": 3078,
+      "sha256": "2e83e504cb3ce7087167d3d88a546097fa11d9b4b57e99422e8ec609f709b994",
+      "archivedBytes": 3078,
+      "archivedSha256": "2e83e504cb3ce7087167d3d88a546097fa11d9b4b57e99422e8ec609f709b994",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-20261016/patch-check/before.txt",
+      "archivedPath": "workspace-tmp/cockpit-20261016/patch-check/before.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedBytes": 0,
+      "archivedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-20261016/patch-check/LZPR_COCKPITO01.abap",
+      "archivedPath": "workspace-tmp/cockpit-20261016/patch-check/LZPR_COCKPITO01.abap",
+      "bytes": 4996,
+      "sha256": "0a1e0822b290dfc24ca93bb9700bd949e55f8fc15e57288ae3b04ec2f8133019",
+      "archivedBytes": 4996,
+      "archivedSha256": "0a1e0822b290dfc24ca93bb9700bd949e55f8fc15e57288ae3b04ec2f8133019",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-20261016/patch-check/LZPR_COCKPITTOP.abap",
+      "archivedPath": "workspace-tmp/cockpit-20261016/patch-check/LZPR_COCKPITTOP.abap",
+      "bytes": 1383,
+      "sha256": "9a885e14261172963e785d1968cbf0f37675daa4a8453d18d95e49c015709570",
+      "archivedBytes": 1383,
+      "archivedSha256": "9a885e14261172963e785d1968cbf0f37675daa4a8453d18d95e49c015709570",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-20261016/patch-check/ZPR_COCKPIT_0100.flow.abap",
+      "archivedPath": "workspace-tmp/cockpit-20261016/patch-check/ZPR_COCKPIT_0100.flow.abap",
+      "bytes": 310,
+      "sha256": "4d105d0649bc1570ed9e67aae9d493b8fce0cd3e3ac170a80252c7f5d063c0e9",
+      "archivedBytes": 310,
+      "archivedSha256": "4d105d0649bc1570ed9e67aae9d493b8fce0cd3e3ac170a80252c7f5d063c0e9",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-20261016/patch-check/ZPR_COCKPIT_1010.flow.abap",
+      "archivedPath": "workspace-tmp/cockpit-20261016/patch-check/ZPR_COCKPIT_1010.flow.abap",
+      "bytes": 95,
+      "sha256": "94039f38e4edc21ad23fefc857abcbb0a21085bf84ea608fdb753acd043cb828",
+      "archivedBytes": 95,
+      "archivedSha256": "94039f38e4edc21ad23fefc857abcbb0a21085bf84ea608fdb753acd043cb828",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-20261016/patch-check/ZPR_DCQM_EXCLUDE.abap",
+      "archivedPath": "workspace-tmp/cockpit-20261016/patch-check/ZPR_DCQM_EXCLUDE.abap",
+      "bytes": 53269,
+      "sha256": "27a9e308104b8c21951a1315a5c11dcec51a0ba0635e926d42ce307e7f58b169",
+      "archivedBytes": 53269,
+      "archivedSha256": "27a9e308104b8c21951a1315a5c11dcec51a0ba0635e926d42ce307e7f58b169",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-20261016/patch-check/Z_PR_COCKPIT.abap",
+      "archivedPath": "workspace-tmp/cockpit-20261016/patch-check/Z_PR_COCKPIT.abap",
+      "bytes": 1297,
+      "sha256": "8e1b51d8d41f97858aa99719d66617e56802417046a73347da34a328cf327059",
+      "archivedBytes": 1297,
+      "archivedSha256": "8e1b51d8d41f97858aa99719d66617e56802417046a73347da34a328cf327059",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-hidden-okcodes-20261017/after.txt",
+      "archivedPath": "workspace-tmp/cockpit-hidden-okcodes-20261017/after.txt",
+      "bytes": 9363,
+      "sha256": "db3223bfbc2fb5278f81df14334691e8e35b510918127e65d4faa8693d00fb3c",
+      "archivedBytes": 9363,
+      "archivedSha256": "db3223bfbc2fb5278f81df14334691e8e35b510918127e65d4faa8693d00fb3c",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-hidden-okcodes-20261017/before.txt",
+      "archivedPath": "workspace-tmp/cockpit-hidden-okcodes-20261017/before.txt",
+      "bytes": 9128,
+      "sha256": "1066a73425a0a522d2c32b1fc3561b22b937957dc512eb05e7df94c16505dd20",
+      "archivedBytes": 9128,
+      "archivedSha256": "1066a73425a0a522d2c32b1fc3561b22b937957dc512eb05e7df94c16505dd20",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-hidden-okcodes-20261017/check-diff.cjs",
+      "archivedPath": "workspace-tmp/cockpit-hidden-okcodes-20261017/check-diff.cjs",
+      "bytes": 1803,
+      "sha256": "266853e626e760191313ab399c280b62f69ebfec417ab842202f3c8861e00627",
+      "archivedBytes": 1803,
+      "archivedSha256": "266853e626e760191313ab399c280b62f69ebfec417ab842202f3c8861e00627",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-hidden-okcodes-20261017/LZPR_COCKPITO01.abap",
+      "archivedPath": "workspace-tmp/cockpit-hidden-okcodes-20261017/LZPR_COCKPITO01.abap",
+      "bytes": 9128,
+      "sha256": "1066a73425a0a522d2c32b1fc3561b22b937957dc512eb05e7df94c16505dd20",
+      "archivedBytes": 9128,
+      "archivedSha256": "1066a73425a0a522d2c32b1fc3561b22b937957dc512eb05e7df94c16505dd20",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/cockpit-hidden-okcodes-20261017/LZPR_COCKPITTOP.abap",
+      "archivedPath": "workspace-tmp/cockpit-hidden-okcodes-20261017/LZPR_COCKPITTOP.abap",
+      "bytes": 1633,
+      "sha256": "415f2b8ec72b296dc312894d97b57472a3b7f612d760a9c0155d2a41d9db774f",
+      "archivedBytes": 1633,
+      "archivedSha256": "415f2b8ec72b296dc312894d97b57472a3b7f612d760a9c0155d2a41d9db774f",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-rip-auth-20261016/ZPR_DOC_RIP.abap",
+      "archivedPath": "workspace-tmp/doc-rip-auth-20261016/ZPR_DOC_RIP.abap",
+      "bytes": 32140,
+      "sha256": "e5a67aabb9c3f9a95dd0e02a466b98735c7dee137e48a7323a4dbf4fc3363a81",
+      "archivedBytes": 32140,
+      "archivedSha256": "e5a67aabb9c3f9a95dd0e02a466b98735c7dee137e48a7323a4dbf4fc3363a81",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-package-20261015/before-guide.md",
+      "archivedPath": "workspace-tmp/doc-status-package-20261015/before-guide.md",
+      "bytes": 13574,
+      "sha256": "3b8ecdae66d5ad780d29b42085b2be9ecbaf365dbff8902ef027964d93d6002e",
+      "archivedBytes": 13574,
+      "archivedSha256": "3b8ecdae66d5ad780d29b42085b2be9ecbaf365dbff8902ef027964d93d6002e",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-package-20261015/before.abap",
+      "archivedPath": "workspace-tmp/doc-status-package-20261015/before.abap",
+      "bytes": 43215,
+      "sha256": "801a2702194a74d8f4fbdb6549c6f3c7053390428c65564bccad5a69be8155d1",
+      "archivedBytes": 43215,
+      "archivedSha256": "801a2702194a74d8f4fbdb6549c6f3c7053390428c65564bccad5a69be8155d1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-package-20261015/create-check-diff.cjs",
+      "archivedPath": "workspace-tmp/doc-status-package-20261015/create-check-diff.cjs",
+      "bytes": 2573,
+      "sha256": "80430d0431d7f9768e66ec681f6237473e7e13011d9f5290754f8b685c56fd8b",
+      "archivedBytes": 2573,
+      "archivedSha256": "80430d0431d7f9768e66ec681f6237473e7e13011d9f5290754f8b685c56fd8b",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-package-20261015/verify/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "archivedPath": "workspace-tmp/doc-status-package-20261015/verify/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "bytes": 43215,
+      "sha256": "801a2702194a74d8f4fbdb6549c6f3c7053390428c65564bccad5a69be8155d1",
+      "archivedBytes": 43215,
+      "archivedSha256": "801a2702194a74d8f4fbdb6549c6f3c7053390428c65564bccad5a69be8155d1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-qa-20261015/before.abap",
+      "archivedPath": "workspace-tmp/doc-status-qa-20261015/before.abap",
+      "bytes": 43475,
+      "sha256": "0fdebb7773c6a5b626dd5e3e0d93da447608ac223002177ed3be4f9e42a9c877",
+      "archivedBytes": 43475,
+      "archivedSha256": "0fdebb7773c6a5b626dd5e3e0d93da447608ac223002177ed3be4f9e42a9c877",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-qa-20261015/create-check-diffs.cjs",
+      "archivedPath": "workspace-tmp/doc-status-qa-20261015/create-check-diffs.cjs",
+      "bytes": 4377,
+      "sha256": "79d444c5c201a967915979d137c5115c75f469b6a8a5388d1b061578eb4c22c9",
+      "archivedBytes": 4377,
+      "archivedSha256": "79d444c5c201a967915979d137c5115c75f469b6a8a5388d1b061578eb4c22c9",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-qa-20261015/messages.abap",
+      "archivedPath": "workspace-tmp/doc-status-qa-20261015/messages.abap",
+      "bytes": 43280,
+      "sha256": "120f37c494e1a9116f78bfc08cb714aa421ed208acc6b97367ce9be89d42d20f",
+      "archivedBytes": 43280,
+      "archivedSha256": "120f37c494e1a9116f78bfc08cb714aa421ed208acc6b97367ce9be89d42d20f",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-qa-20261015/verify/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "archivedPath": "workspace-tmp/doc-status-qa-20261015/verify/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "bytes": 43475,
+      "sha256": "0fdebb7773c6a5b626dd5e3e0d93da447608ac223002177ed3be4f9e42a9c877",
+      "archivedBytes": 43475,
+      "archivedSha256": "0fdebb7773c6a5b626dd5e3e0d93da447608ac223002177ed3be4f9e42a9c877",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-stock-package-20261015/before-guide.md",
+      "archivedPath": "workspace-tmp/doc-status-stock-package-20261015/before-guide.md",
+      "bytes": 15305,
+      "sha256": "3262509bb8d28f4862a9b271730b5de80500ec297d3870fbc9e3bd23ef5bbc00",
+      "archivedBytes": 15305,
+      "archivedSha256": "3262509bb8d28f4862a9b271730b5de80500ec297d3870fbc9e3bd23ef5bbc00",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-stock-package-20261015/before.abap",
+      "archivedPath": "workspace-tmp/doc-status-stock-package-20261015/before.abap",
+      "bytes": 42479,
+      "sha256": "53dfd271d97c4567a09332de1bf1df03b701fd3b8181c9e74bb73dd5993cd534",
+      "archivedBytes": 42479,
+      "archivedSha256": "53dfd271d97c4567a09332de1bf1df03b701fd3b8181c9e74bb73dd5993cd534",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-stock-package-20261015/check-diff-sequence.cjs",
+      "archivedPath": "workspace-tmp/doc-status-stock-package-20261015/check-diff-sequence.cjs",
+      "bytes": 1935,
+      "sha256": "a66bf6d546d5a839b4713abe89bb944398a2fc38bfc67613505dcb496552e1fe",
+      "archivedBytes": 1935,
+      "archivedSha256": "a66bf6d546d5a839b4713abe89bb944398a2fc38bfc67613505dcb496552e1fe",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-stock-package-20261015/create-check-diff.cjs",
+      "archivedPath": "workspace-tmp/doc-status-stock-package-20261015/create-check-diff.cjs",
+      "bytes": 2625,
+      "sha256": "22fe6f6b4df52a174feb5fef42b3d8fdf5aafbf3194d5892e9bc76761b3fc2fa",
+      "archivedBytes": 2625,
+      "archivedSha256": "22fe6f6b4df52a174feb5fef42b3d8fdf5aafbf3194d5892e9bc76761b3fc2fa",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-stock-package-20261015/verify/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "archivedPath": "workspace-tmp/doc-status-stock-package-20261015/verify/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "bytes": 42479,
+      "sha256": "53dfd271d97c4567a09332de1bf1df03b701fd3b8181c9e74bb73dd5993cd534",
+      "archivedBytes": 42479,
+      "archivedSha256": "53dfd271d97c4567a09332de1bf1df03b701fd3b8181c9e74bb73dd5993cd534",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/doc-status-stock-package-20261015/verify-sequence/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "archivedPath": "workspace-tmp/doc-status-stock-package-20261015/verify-sequence/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/ZPR_DOC_STATUS.abap",
+      "bytes": 43215,
+      "sha256": "801a2702194a74d8f4fbdb6549c6f3c7053390428c65564bccad5a69be8155d1",
+      "archivedBytes": 43215,
+      "archivedSha256": "801a2702194a74d8f4fbdb6549c6f3c7053390428c65564bccad5a69be8155d1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/messagequeue-table-20261015/before/ZPR_MESSAGEQUEUE_QUERY.abap",
+      "archivedPath": "workspace-tmp/messagequeue-table-20261015/before/ZPR_MESSAGEQUEUE_QUERY.abap",
+      "bytes": 12383,
+      "sha256": "b25d9a7e43ea2eca3bf2cd124228e86f48f30b175c53c10b5e3b9cf287f3cdf4",
+      "archivedBytes": 12383,
+      "archivedSha256": "b25d9a7e43ea2eca3bf2cd124228e86f48f30b175c53c10b5e3b9cf287f3cdf4",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/messagequeue-table-20261015/before/ZPR_MQ_PROXY.abap",
+      "archivedPath": "workspace-tmp/messagequeue-table-20261015/before/ZPR_MQ_PROXY.abap",
+      "bytes": 3983,
+      "sha256": "8650f30010e66dba87c9f781403ef4c1cdf828ec624d407535acd0edeec35e51",
+      "archivedBytes": 3983,
+      "archivedSha256": "8650f30010e66dba87c9f781403ef4c1cdf828ec624d407535acd0edeec35e51",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/messagequeue-table-20261015/before/ZPR_MQ_REGISTER.abap",
+      "archivedPath": "workspace-tmp/messagequeue-table-20261015/before/ZPR_MQ_REGISTER.abap",
+      "bytes": 3077,
+      "sha256": "0316fd1ded28739e9384632bf495dae8d128c4f36664000b0ad010621033fd34",
+      "archivedBytes": 3077,
+      "archivedSha256": "0316fd1ded28739e9384632bf495dae8d128c4f36664000b0ad010621033fd34",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/messagequeue-table-20261015/before/test/ZPR_MQ_TESTS.abap",
+      "archivedPath": "workspace-tmp/messagequeue-table-20261015/before/test/ZPR_MQ_TESTS.abap",
+      "bytes": 5486,
+      "sha256": "332194072490267780e0f86615c94a5da4288e53f8d0b61f422f0287b3e148a1",
+      "archivedBytes": 5486,
+      "archivedSha256": "332194072490267780e0f86615c94a5da4288e53f8d0b61f422f0287b3e148a1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/messagequeue-table-20261015/candidate/ZPR_MESSAGEQUEUE_QUERY.abap",
+      "archivedPath": "workspace-tmp/messagequeue-table-20261015/candidate/ZPR_MESSAGEQUEUE_QUERY.abap",
+      "bytes": 12432,
+      "sha256": "52e7a38e661853253d8e96e73ef3b852771a104e03f26fc9df2dab212cef1af1",
+      "archivedBytes": 12432,
+      "archivedSha256": "52e7a38e661853253d8e96e73ef3b852771a104e03f26fc9df2dab212cef1af1",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/messagequeue-table-20261015/candidate/ZPR_MQ_PROXY.abap",
+      "archivedPath": "workspace-tmp/messagequeue-table-20261015/candidate/ZPR_MQ_PROXY.abap",
+      "bytes": 3985,
+      "sha256": "39709538131dedec4c14a54c6bc68d0e08c3631e11c07abf2316f4d256d8366b",
+      "archivedBytes": 3985,
+      "archivedSha256": "39709538131dedec4c14a54c6bc68d0e08c3631e11c07abf2316f4d256d8366b",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/messagequeue-table-20261015/candidate/ZPR_MQ_REGISTER.abap",
+      "archivedPath": "workspace-tmp/messagequeue-table-20261015/candidate/ZPR_MQ_REGISTER.abap",
+      "bytes": 3083,
+      "sha256": "ce7b780d6e6fd21192287bad632cf2a6d51092589ad2c4a3aa3ef6b5e90f0f84",
+      "archivedBytes": 3083,
+      "archivedSha256": "ce7b780d6e6fd21192287bad632cf2a6d51092589ad2c4a3aa3ef6b5e90f0f84",
+      "navigationUpdated": false
+    },
+    {
+      "originalPath": ".tmp/messagequeue-table-20261015/candidate/test/ZPR_MQ_TESTS.abap",
+      "archivedPath": "workspace-tmp/messagequeue-table-20261015/candidate/test/ZPR_MQ_TESTS.abap",
+      "bytes": 5492,
+      "sha256": "3413110473c08f387634ced6e22fd1f19a811ef51b28cb803c6ac5461f391862",
+      "archivedBytes": 5492,
+      "archivedSha256": "3413110473c08f387634ced6e22fd1f19a811ef51b28cb803c6ac5461f391862",
+      "navigationUpdated": false
+    }
+  ],
+  "todayBefore": [
+    {
+      "file": "2026-10-17_export-manifest_WIP.json",
+      "sha256": "1f8fd53c9ec1b664b39fbe1bfd1a8e086f2463a72bcb4945a36b5d7bcac7ae03"
+    },
+    {
+      "file": "README.md",
+      "sha256": "350aacae3f0dc126a951be33e1300dd6bc0ac50d38eb2f821810c9b4e9a9ea79"
+    },
+    {
+      "file": "ZCL_PR_QM_SAMPLER.abap",
+      "sha256": "6ee1228e8a74a1d4c48b836f24c6b1192e93da6bb88bb5f18651fa3bf0c9928e"
+    },
+    {
+      "file": "ZCL_PR_QM_SAMPLER.metadata.xml",
+      "sha256": "6c2870628744c36a50414f0971eb5e445f4196e20d80c3afbce9e55fc27e18b3"
+    },
+    {
+      "file": "ZPRB_EMAIL_SLOG.ttyp.json",
+      "sha256": "435fcdf1192a6756d8382223904ce44b8ddfa1fa8c2efc7d4008d8dacc90facd"
+    },
+    {
+      "file": "ZPRB_SLOG_EMAIL.ttyp.json",
+      "sha256": "c49737e81268a626858d624634241a4990362c6f00d850140c27fdf476cdeb04"
+    },
+    {
+      "file": "ZPRC_DCCODE.table",
+      "sha256": "d41bb5f269b59b4dfa8e45a6d921bbac9e9b5d7b59af1d160f07857cd152366a"
+    },
+    {
+      "file": "ZPRS_DCQM_REPORT.structure",
+      "sha256": "628957152f1d46e111b72319aef3c21cb56088ac06d3811ab3c1e40495e0cd1f"
+    },
+    {
+      "file": "ZPRT_DCQM.table",
+      "sha256": "2c7973db61d9a510c3abe057eb78fe501895f967dfcff4773f96db4c783cac74"
+    },
+    {
+      "file": "ZPRT_DCQMLT.table",
+      "sha256": "7df3284c99d56e6852b5ce11d25250b54a6926abc46f53b96843aeabfeda746d"
+    },
+    {
+      "file": "ZPRT_EMAIL_SLOG.table",
+      "sha256": "2de281c0eb66a1b6069af20085e71a951b382c588aed21617040f67dbe601259"
+    },
+    {
+      "file": "ZPR_CLOSE_STOCK.abap",
+      "sha256": "a527b0f65c82a4d995007f35764c76a2a4e7ca465e014a5650643acea8265eec"
+    },
+    {
+      "file": "ZPR_CLOSE_STOCK.metadata.xml",
+      "sha256": "66369e4865609343307100df4a399683181f3e82c5d4d3ded2f1b6f23a52c5b3"
+    },
+    {
+      "file": "ZPR_CREATE_STOCK.abap",
+      "sha256": "31a042c2de93141b3eb8da187728355a041759d7321bf55bd389b42936e32d84"
+    },
+    {
+      "file": "ZPR_CREATE_STOCK.metadata.xml",
+      "sha256": "8f3ee0f641c9fa34c6a238b8b37a30fd53311da2e3347a0b1196bc8e9b7ce188"
+    },
+    {
+      "file": "ZPR_DCQM_EXCLUDE.abap",
+      "sha256": "77cfc4f11e7c9013121efdec539ff338d0e861c1273ddda648c7a04fe61eafa5"
+    },
+    {
+      "file": "ZPR_DCQM_EXCLUDE.metadata.xml",
+      "sha256": "1c42f606fc4a45e23ad70ea66a67bb6c0bfe0cc9cb4a9fe3077b9a3d47108767"
+    },
+    {
+      "file": "ZPR_DCQM_EXCLUDE_I01.abap",
+      "sha256": "865d462805ccc69259f504871d758fceaf5d1a6755857a257da2029290ba17f3"
+    },
+    {
+      "file": "ZPR_DCQM_EXCLUDE_O01.abap",
+      "sha256": "a92b566a2c9ae68f293227a9b6850955266c85aa4aff070636d500beed09b032"
+    },
+    {
+      "file": "ZPR_DC_FRAME.abap",
+      "sha256": "eac7f8ca2f5ea37ff9145a62c2e4784d03c5b3f059e2878c108b911f6c82a868"
+    },
+    {
+      "file": "ZPR_DC_FRAME.metadata.xml",
+      "sha256": "6adbda3554508eb0ca201e49a7eafdfc5c13427b2f4d1b857839da6918992082"
+    },
+    {
+      "file": "ZPR_DOC_RIP.abap",
+      "sha256": "24a7ad630581b0dd3ad07441dcdc04fd6dabeda3c902c1a58db7e8bfdf6f4910"
+    },
+    {
+      "file": "ZPR_DOC_RIP.metadata.xml",
+      "sha256": "b132b5fd97974f7acb3fe4a5a6c8f32dc87649df4895b1fc780f4302c203f7b2"
+    },
+    {
+      "file": "ZPR_DOC_RIP_I01.abap",
+      "sha256": "87fc378a8912a798b797189c2860605e176ed47dfb1a2dd3615211a19a413a0f"
+    },
+    {
+      "file": "ZPR_DOC_RIP_O01.abap",
+      "sha256": "61c01506417247c9d0a0c9cbce3b48d7a823265515880393b8edaad34111b9fa"
+    },
+    {
+      "file": "ZPR_DOC_STATUS.abap",
+      "sha256": "b3b55a72a772a4fd3a65567f29e5c82006ed37df86156bbcbd5d2a486afd5b06"
+    },
+    {
+      "file": "ZPR_DOC_STATUS.metadata.xml",
+      "sha256": "75f0f73107d528c7527706ca5698fa051b8f5bf8e355c0e4afa5e87905d5c9e4"
+    },
+    {
+      "file": "ZPR_MESSAGEQUEUE_QUERY.abap",
+      "sha256": "c8b83f3a0f31e5cbdbd70e37023f3be8fa4b957b838af15792de99ce4f423dbc"
+    },
+    {
+      "file": "ZPR_MESSAGEQUEUE_QUERY.metadata.xml",
+      "sha256": "174cb990b0e55221a336580424a431ab83d5be4091f97920a96e615ea6634c52"
+    },
+    {
+      "file": "ZPR_MQ_DISPLAY.abap",
+      "sha256": "832e7d9cd7e3627cc92a21441de68e6eaad2f27f2829083aa1435c5020291f55"
+    },
+    {
+      "file": "ZPR_MQ_PROXY.abap",
+      "sha256": "24542c2fc71f241f2ed28e6781bc0dbda57693b877afe78ba83330494b2e19c1"
+    },
+    {
+      "file": "ZPR_MQ_TESTS.abap",
+      "sha256": "07cee0b63caf78957e85ac96b945bb101fa8063fbb0a9e807dd446dcc0e99b84"
+    },
+    {
+      "file": "ZPR_STOCK_REPORT_I01.abap",
+      "sha256": "259eb7c633a60e843b169ba506d500d821230781b6788f400d10240364b339d8"
+    },
+    {
+      "file": "ZPR_STOCK_REPORT_O01.abap",
+      "sha256": "ccc332b86554595dfad8d3d1db86745574bce145fb386e3ff2fe411b8c82ffc8"
+    }
+  ],
+  "verificationResult": {
+    "movedFileCount": 127,
+    "allMovesInitiallyByteIdentical": true,
+    "allOriginalLocationsAbsent": true,
+    "finalArchivedFileHashesVerified": true,
+    "archiveDocumentationNavigationEdits": [
+      "project/02_NOTES/2026-10-13_messagequeue-dhc-helyi-ellenorzes_WIP.md",
+      "project/02_NOTES/2026-10-13_messagequeue-mcp-ellenorzes_WIP.md",
+      "project/02_NOTES/2026-10-13_stock-report-dhc-helyi-ellenorzes_WIP.md",
+      "project/02_NOTES/2026-10-13_stock-report-qu5-dhc-elemzes_WIP.md"
+    ],
+    "oldExport34FilesByteIdentical": true,
+    "currentExportSourceAndMetadataUnchanged": 32,
+    "currentExportManifestContentFilesVerified": 33,
+    "retainedAbapFilesUnchanged": 71,
+    "scriptSyntaxChecks": 4,
+    "localMarkdownLinksChecked": 135,
+    "brokenLocalMarkdownLinks": 0,
+    "sapAccess": false,
+    "sapTests": false
+  },
+  "navigationRebasedFiles": [
+    {
+      "file": "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-17_dc-zz-szerepe-qu5-dhc_WIP.md",
+      "links": 2
+    },
+    {
+      "file": "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-16_cockpit_WIP/README.md",
+      "links": 2
+    },
+    {
+      "file": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/info.md/2026-10-08_dc-zpr-uzenetek-letrehozasa_WIP.md",
+      "links": 1
+    },
+    {
+      "file": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/info.md/2026-10-13_messagequeue-dhc-bemasolas_WIP.md",
+      "links": 6
+    },
+    {
+      "file": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/info.md/2026-10-13_stock-report-dhc-bemasolas_WIP.md",
+      "links": 5
+    },
+    {
+      "file": "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/info.md/2026-10-15_doc-status-dhc-bemasolas_WIP.md",
+      "links": 1
+    },
+    {
+      "file": "[03] projects/tomeges-nyomtatas-endre/05_FINAL/TEST_DATA/2026-10-14_dcqm-exclude-tesztadatok_WIP.md",
+      "links": 2
+    },
+    {
+      "file": "[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/02_NOTES/2026-10-08_dc-megvalositasi-terv-ellenorzes_WIP.md",
+      "links": 1
+    },
+    {
+      "file": "[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/02_NOTES/2026-10-13_messagequeue-dhc-helyi-ellenorzes_WIP.md",
+      "links": 1
+    },
+    {
+      "file": "[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/02_NOTES/2026-10-13_stock-report-qu5-dhc-elemzes_WIP.md",
+      "links": 8
+    },
+    {
+      "file": "[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/03_DRAFTS/2026-10-17_cockpit-alv-frontend-diagnosztika_WIP.md",
+      "links": 4
+    },
+    {
+      "file": "[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project/03_DRAFTS/2026-10-17_cockpit-merokod-tisztitas_WIP.md",
+      "links": 3
+    },
+    {
+      "file": "[01] system/ABAP-QA-CHECKLIST.md",
+      "links": 1
+    }
+  ],
+  "additionalLinkCorrections": 22,
+  "generatedIndex": {
+    "file": "README.md",
+    "sha256": "fa9503ea3a913d52513fcbc7447c07d3f6d2d607638d69093e0ead42af1a2078"
+  }
+}

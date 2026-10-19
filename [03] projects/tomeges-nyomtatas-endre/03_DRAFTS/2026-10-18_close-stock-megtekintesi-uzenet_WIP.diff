@@ -1,0 +1,30 @@
+ZPR_CLOSE_STOCK – lezárt stock megnyitásakor információs üzenet (WIP)
+Alap: 05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap.
+Az üzenet az adatlekérés után, az ALV megnyitása előtt jelenik meg.
+SE38/ADT: a riport 108-as szövegszimbólumát HU nyelven az alábbi TSV szerint
+kell karbantartani és a forrással együtt transzportálni; a TSV nem importálódik
+automatikusan a SAP szövegkészletbe. Más nyelvek fordítása külön karbantartandó.
+A megadott export és a SAP-forrás nincs módosítva; aktív SAP-ellenőrzés nincs.
+
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap" "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+--- "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+@@ -132,6 +132,11 @@ START-OF-SELECTION.
+     RETURN.
+   ENDIF.
+ 
++  IF gs_stock-closed IS NOT INITIAL
++     OR gs_stock-status = gc_status_closed.
++    MESSAGE text-108 TYPE 'I'.
++  ENDIF.
++
+   CALL SCREEN 0100.
+ 
+   PERFORM unlock_stock.
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-megtekintesi-uzenet-textelem_WIP.tsv" "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-megtekintesi-uzenet-textelem_WIP.tsv"
+new file mode 100644
+--- /dev/null
++++ "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-megtekintesi-uzenet-textelem_WIP.tsv"
+@@ -0,0 +1,2 @@
++ID	Nyelv	Szöveg
++108	HU	A stock engedélyezve van, csak megtekintés lehetséges.

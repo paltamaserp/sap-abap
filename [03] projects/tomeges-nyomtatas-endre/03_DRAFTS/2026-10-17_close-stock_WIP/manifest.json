@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-17",
+  "status": "WIP",
+  "sapStateVerified": false,
+  "files": [
+    {
+      "file": "2026-10-18_close-stock-valtozasok_WIP.diff",
+      "sha256": "7836a1b48f3db020d3f5d77fce3fa50e31fbe9387c4015b786459914d6e78558",
+      "bytes": 69489
+    },
+    {
+      "file": "README.md",
+      "sha256": "eb6c0b084a5e95c0c2da30dbc44e8aa8900568b810c0ea3d81c9dd9908d3e8b2",
+      "bytes": 10932
+    },
+    {
+      "file": "ZCL_PR_STOCK.abap",
+      "sha256": "c5e5b7a96b2968efebfbe8cb7ecf7deae5fbc20bcc21fd98968d6769f9905519",
+      "bytes": 29322
+    },
+    {
+      "file": "ZCL_PR_STOCK.texts.tsv",
+      "sha256": "81a37ac3cd4c23473136695f231efbc19454b174003347e7a31e739bbbb52449",
+      "bytes": 1379
+    },
+    {
+      "file": "ZPR_CLOSE_STOCK.abap",
+      "sha256": "ba5134b0afaaede6894016e7ac0082e9a8a374a5a922f8162203575b8dca9398",
+      "bytes": 26741
+    },
+    {
+      "file": "ZPR_CLOSE_STOCK.texts.tsv",
+      "sha256": "c86cead53de93d60e9615ec540cd1bf451541deacebc2d360fac5f04c99047e0",
+      "bytes": 1782
+    },
+    {
+      "file": "ZPR_STOCK_REPORT_I01.abap",
+      "sha256": "259eb7c633a60e843b169ba506d500d821230781b6788f400d10240364b339d8",
+      "bytes": 984
+    },
+    {
+      "file": "ZPR_STOCK_REPORT_O01.abap",
+      "sha256": "ccc332b86554595dfad8d3d1db86745574bce145fb386e3ff2fe411b8c82ffc8",
+      "bytes": 1105
+    },
+    {
+      "file": "changes.diff",
+      "sha256": "6d65570171cdb90cc5fa0aafc03fcc5f1378efb145b2a72759793620ec68bbd5",
+      "bytes": 69145
+    },
+    {
+      "file": "check.cjs",
+      "sha256": "483264db2f3f66f74b246bf3ca11f98215e8cfefbef0493d07742f2a249f1312",
+      "bytes": 7601
+    },
+    {
+      "file": "diff-check.json",
+      "sha256": "ddea7d658c4933fc0cb14e09f24b8dd91809658cf3267c41791f85c156cfd782",
+      "bytes": 167
+    },
+    {
+      "file": "parser-check.json",
+      "sha256": "ee2efe633f2f4498fee5850354926179af9b6011101e602adfa4f62f0eb0d3ae",
+      "bytes": 265
+    },
+    {
+      "file": "source-check.json",
+      "sha256": "083067a0ede92e1f0a91e70e4a1f1b2bd9f6f023c9898c4d35fbaede56cf0cf9",
+      "bytes": 768
+    }
+  ],
+  "updatedDate": "2026-10-18"
+}

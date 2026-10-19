@@ -3,7 +3,9 @@ const path = require('path');
 const assert = require('assert/strict');
 const core = process.argv[2] ? require(process.argv[2]) : null;
 const project = path.resolve(__dirname, '../..');
-const source = fs.readFileSync(path.join(project, '04_ASSETS/abap/ZPR_DOC_STATUS.abap'), 'utf8');
+// Historical WIP validation; the current working baseline is the daily export.
+const historicalProject = path.resolve(project, '../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/project');
+const source = fs.readFileSync(path.join(historicalProject, '04_ASSETS/abap/ZPR_DOC_STATUS.abap'), 'utf8');
 const original = fs.readFileSync(path.join(project, '01_SOURCES/QU5/ZEBF_PR_DOC_STATUS.abap'), 'utf8');
 const active = source.split(/\r?\n/).filter(l => !/^\s*\*/.test(l))
   .map(l => l.replace(/".*$/, '')).join('\n');

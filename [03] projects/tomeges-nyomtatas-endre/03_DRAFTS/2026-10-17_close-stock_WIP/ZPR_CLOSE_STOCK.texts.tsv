@@ -1,0 +1,41 @@
+ID	Nyelv	Szöveg
+101	HU	A stock nem létezik:
+102	HU	A riport csak dialógusban indítható.
+103	HU	Nincs jogosultsag a tranzakciohoz:
+104	HU	A stock beolvasása sikertelen.
+105	HU	Lezárás
+106	HU	Stock engedélyezése és lezárása
+107	HU	Frissítés
+108	HU	A stock engedélyezve van, csak megtekintés lehetséges.
+109	HU	A stock külső állapota ellenőrizendő. Csak megtekintés lehetséges.
+110	HU	Csak QM státuszú stock zárható le. Csak megtekintés lehetséges.
+111	HU	Saját stockzár nélkül a lezárás nem engedélyezett.
+112	HU	Az adatok változtak; ellenőrizze az új listát.
+113	HU	A stockhoz nincs nyomtatási sor.
+114	HU	Az adatok nem olvashatók. Frissítés szükséges.
+115	HU	A stock lezárt, de a napló kezelése hibás:
+116	HU	A stock lezárása sikeres:
+117	HU	A stock nem lett lezárva. Lásd a naplót.
+118	HU	Engedélyezés: adja meg a prioritást
+119	HU	A prioritás megadása kötelező.
+120	HU	A prioritás nem lehet nulla.
+121	HU	Engedélyezi és lezárja a stockot?
+122	HU	Prioritás:
+123	HU	Stock lezárása
+124	HU	A stockot más felhasználó zárolja:
+125	HU	A stock zárolása sikertelen. Csak megtekintés lehetséges.
+126	HU	A napló nem menthető/megjeleníthető:
+127	HU	Stockok (legfeljebb 5000)
+128	HU	A fejléc-konténer nem hozható létre.
+129	HU	Az ALV-konténer nem hozható létre.
+130	HU	Az ALV-mezőkatalógus nem készíthető el.
+131	HU	Sorok száma
+132	HU	Az ALV-lista nem jeleníthető meg.
+133	HU	Az ALV-lista frissítése sikertelen.
+134	HU	Az ALV-esemény feldolgozása sikertelen.
+135	HU	Az ALV-vezérlők felszabadítása során hiba történt.
+136	HU	Stock ID:
+137	HU	Nyomtatási sorok száma:
+138	HU	Kizárt nyomtatási sorok száma:
+139	HU	Engedélyezett sorok száma:
+140	HU	A fejléc nem jeleníthető meg.

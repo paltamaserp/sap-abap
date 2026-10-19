@@ -1,0 +1,18 @@
+@EndUserText.label : 'Nyomtatás - Email státusz log'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zprt_email_slog {
+
+  key mandt            : mandt not null;
+  key exbilldocno      : zprd_doc_no not null;
+  opbel                : e_printdoc;
+  tstmp_print          : zebfd_pr_tmstmp_print;
+  email_address        : ad_smtpadr;
+  tstmp_email_sent     : zprd_tmstmp_email_sent;
+  sending_status       : zprd_send_status;
+  tstmp_sending_status : zprd_tmstmp_sending_email;
+  error_message        : zprd_email_error_message;
+
+}

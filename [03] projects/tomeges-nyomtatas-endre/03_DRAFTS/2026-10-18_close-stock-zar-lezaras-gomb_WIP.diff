@@ -1,0 +1,220 @@
+ZPR_CLOSE_STOCK – ABAP stockzár a lista idejére és Lezárás gomb (WIP)
+Alap: a megadott 05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap jelenlegi állapota,
+amely már tartalmazza a TEXT-108 és TEXT-110 indulási üzeneteket.
+Az eredeti riport nincs módosítva; az alábbi patch az elvégzendő módosítás.
+
+Teendők és működés:
+1. Lezárhatóság: a meglévő DETERMINE_MODE szerint QM, nem lezárt,
+   STOCK_STATUS_ER és GV_UNCERTAIN tiltás nélkül.
+2. A lista megnyitása előtt SYNC_LOCK kérje a meglévő ENQUEUE_EZPRT_STOCK zárat,
+   majd újraolvassa és ellenőrizze a stockot. Az AB-zárat ABAP enqueue-zárként
+   értelmezzük; a meglévő _SCOPE = '1' marad, párja a DEQUEUE_EZPRT_STOCK.
+3. A meglévő RELEASE gomb felirata Lezárás legyen. Csak lezárható stocknál,
+   saját zár mellett és GV_BUSY = ABAP_FALSE esetén jelenjen meg. A gomb
+   továbbra a meglévő RELEASE_STOCK folyamatot indítja, prioritásbekéréssel,
+   megerősítéssel, Inspire-hívással és helyi mentéssel. Nincs új osztályhívás.
+4. A gomb kezelője is követeljen saját zárat; ne kérjen ismételt enqueue-t.
+   Visszavont megerősítés vagy ismételhető hiba után a zár a listán marad.
+   Sikeres lezárás, tiltott állapot, olvasási/adatkiválasztási hiba és kilépés
+   esetén a saját zár szabaduljon fel. Frissítéskor a mód/zár/gomb egyezzen;
+   korábbi idegen zár megszűnése után Frissítés újra megkísérli a zárolást.
+5. Sikertelen zároláskor TEXT-125 üzenet és csak megtekintés, lezáró gomb nélkül.
+   A korábbi lezárt/nem QM tájékoztatások megmaradnak.
+6. SE38/ADT: az alábbi 104, 105, 106, 111 és 125 szövegszimbólumokat a riport
+   HU szövegkészletében karban kell tartani és a forrással transzportálni.
+   A TSV önmagában nem hoz létre SAP-textelemeket; fordítás külön szükséges.
+
+Ellenőrzés SAP-ban átvezetés után:
+- QM stock: SM12-ben stockzár, egy Lezárás gomb; második munkamenetben csak
+  megtekintés. A gomb a meglévő lezárási folyamatot indítja.
+- Lezárt/nem QM/hibajelzős stock: nincs saját zár és nincs Lezárás gomb.
+- Mégsem a prioritás/megerősítés ablakban: a lista és saját zár megmarad.
+- Sikeres lezárás: megtekintés, gomb eltűnik, saját zár felszabadul.
+- Bizonytalan külső eredmény: a meglévő újraküldési tiltás megmarad,
+  megtekintésre váltáskor a saját zár felszabadul.
+- Frissítési hiba/kilépés: saját zár felszabadul; hiba után nincs lezáró gomb.
+- Idegen zár feloldása után Frissítés: megszerzett zár mellett visszatér a gomb.
+
+Helyi ellenőrzés: a diff külön másolaton előre/vissza alkalmazva bájtpontos;
+hét forrásszerkezeti ellenőrzés sikeres (sajátzár-feltételek, záréletciklus,
+rutinok feloldása, változatlan üzleti rutinok és korábbi üzenetek).
+Helyi ABAP-parser nem futott, az @abaplint/core nem elérhető.
+SAP-fordítás, ATC, GUI- és SM12-próba nincs;
+az aktív lockobjektum/interfész és a többi stockíró zárhasználata nem ellenőrzött.
+A riport már meglévő ENQUEUE/DEQUEUE nevét és paramétereit használjuk.
+_SCOPE = 1 viselkedés: SAP-dokumentáció (a COMMIT/ROLLBACK nem oldja fel):
+https://help.sap.com/saphelp_snc70/helpdata/en/47/daadf638793c85e10000000a42189c/content.htm
+
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap" "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+index 80873d9..e1527a0 100644
+--- "a/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
++++ "b/[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-17/ZPR_CLOSE_STOCK.abap"
+@@ -115,9 +115,16 @@ START-OF-SELECTION.
+   ENDIF.
+ 
+   PERFORM determine_mode.
++  PERFORM sync_lock.
++  IF gv_error = abap_true.
++    PERFORM unlock_stock.
++    PERFORM log_write.
++    RETURN.
++  ENDIF.
+   PERFORM select_data.
+ 
+   IF gv_error = abap_true.
++    PERFORM unlock_stock.
+     PERFORM log_write.
+     RETURN.
+   ENDIF.
+@@ -142,12 +149,13 @@ CLASS lcl_grid_events IMPLEMENTATION.
+     DATA ls_button TYPE stb_button.
+     DELETE e_object->mt_toolbar
+       WHERE function = 'RELEASE' OR function = 'ZREFRESH'.
+-    IF gv_modif = abap_true AND gv_busy = abap_false.
++    IF gv_modif = abap_true AND gv_busy = abap_false
++       AND gv_locked_stock = p_stokid.
+       CLEAR ls_button.
+       ls_button-function = 'RELEASE'.
+       ls_button-icon = icon_release.
+-      ls_button-text = 'Engedélyezés'.
+-      ls_button-quickinfo = |Stock engedélyezése és lezárása|.
++      ls_button-text = text-105.
++      ls_button-quickinfo = text-106.
+       APPEND ls_button TO e_object->mt_toolbar.
+     ENDIF.
+     CLEAR ls_button.
+@@ -198,6 +206,33 @@ FORM determine_mode.
+   ENDIF.
+ ENDFORM.
+ 
++FORM sync_lock.
++  IF gv_modif <> abap_true.
++    PERFORM unlock_stock.
++    RETURN.
++  ENDIF.
++  IF gv_locked_stock = p_stokid.
++    RETURN.
++  ENDIF.
++  PERFORM lock_stock.
++  IF gv_locked_stock <> p_stokid.
++    gv_modif = abap_false.
++    RETURN.
++  ENDIF.
++  "Recheck the stock after acquiring the lock.
++  PERFORM read_stock.
++  IF gv_error = abap_true.
++    gv_modif = abap_false.
++    gv_block_reason = text-104.
++    PERFORM add_message USING 'E' text-104 p_stokid space.
++  ELSE.
++    PERFORM determine_mode.
++  ENDIF.
++  IF gv_modif <> abap_true.
++    PERFORM unlock_stock.
++  ENDIF.
++ENDFORM.
++
+ FORM select_data.
+   DATA: lt_texts TYPE STANDARD TABLE OF zprt_dcqmlt,
+         ls_text TYPE zprt_dcqmlt,
+@@ -265,17 +300,20 @@ FORM release_stock.
+     RETURN.
+   ENDIF.
+ 
++  IF gv_locked_stock <> p_stokid.
++    gv_modif = abap_false.
++    gv_block_reason = text-111.
++    PERFORM refresh_grid.
++    MESSAGE text-111 TYPE 'S' DISPLAY LIKE 'E'.
++    RETURN.
++  ENDIF.
++
+   PERFORM get_priority CHANGING lv_priority_ok.
+   CHECK lv_priority_ok = abap_true.
+   PERFORM confirm_release CHANGING lv_confirmed.
+   CHECK lv_confirmed = abap_true.
+   gv_busy = abap_true.
+ 
+-  PERFORM lock_stock.
+-  IF gv_locked_stock IS INITIAL.
+-    gv_busy = abap_false.
+-    RETURN.
+-  ENDIF.
+   TRY.
+       PERFORM read_stock.
+       IF gv_error = abap_true.
+@@ -328,7 +366,6 @@ FORM release_stock.
+   IF gv_uncertain = abap_true.
+     PERFORM mark_uncertain_state.
+   ENDIF.
+-  PERFORM unlock_stock.
+   gv_busy = abap_false.
+ 
+   IF gv_saved = abap_true.
+@@ -351,9 +388,11 @@ FORM release_stock.
+   PERFORM read_stock.
+   IF gv_error = abap_false.
+     PERFORM determine_mode.
++    PERFORM sync_lock.
+   ELSE.
+     gv_modif = abap_false.
+     gv_block_reason = 'A stock beolvasása sikertelen.'.
++    PERFORM unlock_stock.
+   ENDIF.
+   PERFORM refresh_grid.
+   IF gv_saved = abap_true AND gv_log_error = abap_true.
+@@ -422,13 +461,16 @@ FORM confirm_release CHANGING cv_ok TYPE abap_bool.
+ ENDFORM.
+ 
+ FORM lock_stock.
+-  CLEAR gv_locked_stock.
++  IF gv_locked_stock = p_stokid.
++    RETURN.
++  ENDIF.
++  PERFORM unlock_stock.
+   CALL FUNCTION 'ENQUEUE_EZPRT_STOCK'
+     EXPORTING stock_id = p_stokid _scope = '1'
+     EXCEPTIONS foreign_lock = 1 system_failure = 2 OTHERS = 3.
+   IF sy-subrc <> 0.
+-    MESSAGE s000 WITH 'A stock zárolása sikertelen:' p_stokid sy-msgv1
+-      DISPLAY LIKE 'E'.
++    gv_block_reason = text-125.
++    MESSAGE text-125 TYPE 'I' DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+   gv_locked_stock = p_stokid.
+@@ -910,13 +952,23 @@ FORM reload_display.
+   PERFORM read_stock.
+   IF gv_error = abap_true.
+     gv_modif = abap_false.
++    PERFORM unlock_stock.
++    PERFORM refresh_grid.
+     MESSAGE s000 WITH 'A stock nem olvasható:' p_stokid DISPLAY LIKE 'E'.
+     RETURN.
+   ENDIF.
+   PERFORM determine_mode.
++  PERFORM sync_lock.
++  IF gv_error = abap_true.
++    PERFORM unlock_stock.
++    PERFORM log_write.
++    PERFORM refresh_grid.
++    RETURN.
++  ENDIF.
+   PERFORM select_data.
+   IF gv_error = abap_true.
+     gv_modif = abap_false.
++    PERFORM unlock_stock.
+     PERFORM log_write.
+   ENDIF.
+   PERFORM refresh_grid.
+diff --git "a/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-zar-gomb-textelemek_WIP.tsv" "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-zar-gomb-textelemek_WIP.tsv"
+new file mode 100644
+--- /dev/null
++++ "b/[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/2026-10-18_close-stock-zar-gomb-textelemek_WIP.tsv"
+@@ -0,0 +1,6 @@
++ID	Nyelv	Szöveg
++104	HU	A stock beolvasása sikertelen.
++105	HU	Lezárás
++106	HU	Stock engedélyezése és lezárása
++111	HU	Saját stockzár nélkül a lezárás nem engedélyezett.
++125	HU	A stock zárolása sikertelen. Csak megtekintés lehetséges.
