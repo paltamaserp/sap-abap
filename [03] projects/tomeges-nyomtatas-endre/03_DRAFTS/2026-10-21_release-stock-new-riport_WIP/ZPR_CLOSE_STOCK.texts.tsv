@@ -1,0 +1,10 @@
+ID	Nyelv	Szöveg
+201	HU	Nincs jogosultság a tranzakcióhoz:
+202	HU	A stock beolvasása sikertelen:
+203	HU	Az adatok változtak; ellenőrizze az új listát.
+204	HU	A stockhoz nincs nyomtatási sor:
+205	HU	A lezárás sikere nem igazolható; ellenőrizze az osztály naplóját:
+206	HU	A stock CL státuszú, de a CH* adatok mentése sikertelen:
+207	HU	A stock CL státusza és a CH* adatok mentve:
+208	HU	A riport nem igazolt sikeres státusz- és CH* mentést:
+209	HU	A stockadatok mentve, de a napló kezelése hibás:

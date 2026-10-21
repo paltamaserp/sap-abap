@@ -1,0 +1,25 @@
+{
+  "status": "WIP",
+  "date": "2026-10-21",
+  "baseline": "C:\\Users\\T13214\\Documents\\work\\sap-abap-main\\[03] projects\\tomeges-nyomtatas-endre\\05_FINAL\\abap-2026-10-17",
+  "checks": [
+    "exact_05_FINAL_base_and_class_unchanged",
+    "only_button_and_new_form_changed",
+    "preconditions_and_fresh_post_call_CL_check",
+    "update_scope_status_CH_only_and_failed_save_not_successful",
+    "failure_lock_refresh_and_texts",
+    "report_only_patch_round_trip_byte_exact"
+  ],
+  "passed": 6,
+  "kind": "Local source-contract and patch checks; not SAP execution",
+  "classModified": false,
+  "successDetection": "Observed QM-to-CL database transition under the existing dialog lock",
+  "sapConnected": false,
+  "sapCompilation": false,
+  "parserExecuted": false,
+  "atc": false,
+  "abapUnitExecuted": false,
+  "originalSha256": "bb5c6e1fd26f395a981d8ab0a3ac84a93c2f12888a04cd377766119c5911339e",
+  "sha256": "565d03fef06f918e8b136eef116682d0b2a4b3791051238c11e2d10fd1944257",
+  "classSha256": "90a9893883cc9976974193feec6b2a86c498ff3ff73604e79b78f6df9b9f662e"
+}

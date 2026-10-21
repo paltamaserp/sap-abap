@@ -1,0 +1,153 @@
+diff --git a/ZPR_CLOSE_STOCK.abap b/ZPR_CLOSE_STOCK.abap
+index 660c22d..129f6b3 100644
+--- a/ZPR_CLOSE_STOCK.abap
++++ b/ZPR_CLOSE_STOCK.abap
+@@ -173,7 +173,7 @@ CLASS lcl_grid_events IMPLEMENTATION.
+     CASE e_ucomm.
+       WHEN 'RELEASE'.
+ *        zcl_pr_stock=>close_stock( iv_stock = p_stokid ).
+-       PERFORM release_stock.
++       PERFORM release_stock_new.
+       WHEN 'ZREFRESH'.
+         PERFORM reload_display.
+     ENDCASE.
+@@ -285,6 +285,139 @@ FORM select_data.
+   gv_header_valid = abap_true.
+ ENDFORM.
+ 
++FORM release_stock_new.
++  DATA: lt_displayed TYPE ty_alv_table,
++        lv_displayed_total TYPE i,
++        ls_after TYPE zprt_stock,
++        lv_class_started TYPE abap_bool,
++        lr_error TYPE REF TO cx_root.
++
++  CHECK gv_busy = abap_false.
++  REFRESH gt_messages.
++  CLEAR: gv_saved, gv_call_started, gv_remote_success.
++  AUTHORITY-CHECK OBJECT 'S_TCODE' ID 'TCD' FIELD gc_tcode.
++  IF sy-subrc <> 0.
++    MESSAGE s000 WITH text-201 gc_tcode DISPLAY LIKE 'E'.
++    RETURN.
++  ENDIF.
++  IF gv_modif <> abap_true OR gv_uncertain = abap_true.
++    MESSAGE s000 WITH gv_block_reason DISPLAY LIKE 'E'.
++    RETURN.
++  ENDIF.
++  IF gv_locked_stock <> p_stokid.
++    MESSAGE TEXT-111 TYPE 'S' DISPLAY LIKE 'E'.
++    RETURN.
++  ENDIF.
++
++  gv_busy = abap_true.
++  TRY.
++      DO 1 TIMES.
++        PERFORM read_stock.
++        IF gv_error = abap_true.
++          PERFORM add_message USING 'E' text-202 p_stokid space.
++          EXIT.
++        ENDIF.
++        PERFORM determine_mode.
++        IF gv_modif <> abap_true.
++          gv_error = abap_true.
++          PERFORM add_message USING 'E' gv_block_reason p_stokid space.
++          EXIT.
++        ENDIF.
++
++        lt_displayed = gt_alv.
++        SORT lt_displayed BY doc_no envelope.
++        lv_displayed_total = gv_total.
++        PERFORM select_data.
++        IF gv_error = abap_true.
++          EXIT.
++        ENDIF.
++        IF lt_displayed <> gt_alv OR lv_displayed_total <> gv_total.
++          gv_error = abap_true.
++          PERFORM add_message USING 'E' text-203 space space.
++          EXIT.
++        ENDIF.
++        IF gv_total = 0.
++          gv_error = abap_true.
++          PERFORM add_message USING 'E' text-204 p_stokid space.
++          EXIT.
++        ENDIF.
++
++        "The unchanged class owns the priority popup and commits CL on success.
++        "A normal return or SY-SUBRC alone is not a success indication.
++        lv_class_started = abap_true.
++        zcl_pr_stock=>close_stock( iv_stock = p_stokid ).
++        gv_error = abap_true.
++        SELECT SINGLE * FROM zprt_stock BYPASSING BUFFER INTO ls_after
++          WHERE stock_id = p_stokid.
++        IF sy-subrc <> 0.
++          gv_uncertain = abap_true.
++          PERFORM add_message USING 'E' text-202 p_stokid space.
++          EXIT.
++        ENDIF.
++        IF ls_after-status <> gc_status_closed.
++          PERFORM add_message USING 'E' text-205 p_stokid space.
++          EXIT.
++        ENDIF.
++
++        "Only the QM-to-CL transition observed under our lock permits the audit save.
++        "The class commit has already completed; this is a separate local LUW.
++        GET TIME.
++        UPDATE zprt_stock
++          SET status = gc_status_closed
++              chuser = sy-uname
++              chdate = sy-datum
++              chtime = sy-uzeit
++          WHERE stock_id = p_stokid
++            AND status = gc_status_closed
++            AND closed = space
++            AND stock_status_er = space.
++        IF sy-subrc <> 0 OR sy-dbcnt <> 1.
++          ROLLBACK WORK.
++          gv_uncertain = abap_true.
++          PERFORM add_message USING 'E' text-206 p_stokid space.
++          EXIT.
++        ENDIF.
++        COMMIT WORK.
++        gv_saved = abap_true.
++        gv_error = abap_false.
++        PERFORM add_message USING 'S' text-207 p_stokid space.
++      ENDDO.
++    CATCH cx_root INTO lr_error.
++      ROLLBACK WORK.
++      gv_error = abap_true.
++      IF lv_class_started = abap_true.
++        gv_uncertain = abap_true.
++      ENDIF.
++      PERFORM add_exception USING lr_error.
++  ENDTRY.
++
++  IF gv_uncertain = abap_true.
++    PERFORM mark_uncertain_state.
++  ENDIF.
++  gv_busy = abap_false.
++  IF gv_saved <> abap_true.
++    PERFORM add_message USING 'E' text-208 p_stokid space.
++  ENDIF.
++  PERFORM log_write.
++  PERFORM read_stock.
++  IF gv_error = abap_false.
++    PERFORM determine_mode.
++    PERFORM sync_lock.
++  ELSE.
++    gv_modif = abap_false.
++    gv_block_reason = text-202.
++    PERFORM unlock_stock.
++  ENDIF.
++  PERFORM refresh_grid.
++  IF gv_saved = abap_true AND gv_log_error = abap_true.
++    MESSAGE s000 WITH text-209 p_stokid DISPLAY LIKE 'E'.
++  ELSEIF gv_saved = abap_true.
++    MESSAGE s000 WITH text-207 p_stokid.
++  ELSE.
++    MESSAGE s000 WITH text-208 p_stokid DISPLAY LIKE 'E'.
++  ENDIF.
++ENDFORM.
++
+ FORM release_stock.
+   DATA: lt_displayed       TYPE ty_alv_table,
+         lt_regmail         TYPE ty_regmail_table,

@@ -21,7 +21,7 @@ TYPE-POOLS icon.
 
 CONSTANTS: gc_log_object       TYPE balobj_d VALUE 'ZPR_MASS',
            gc_log_subobject    TYPE balsubobj VALUE 'STOCK',
-           gc_tcode            TYPE tcode VALUE 'ZPR_STOCK',
+           gc_tcode            TYPE tcode VALUE 'ZPR_CLOSE_STOCK',
            gc_status_closed    TYPE zprd_stock_status VALUE 'CL',
            gc_status_qm        TYPE zprd_stock_status VALUE 'QM',
            gc_default_priority TYPE zprd_priority VALUE '30',
@@ -172,7 +172,8 @@ CLASS lcl_grid_events IMPLEMENTATION.
   METHOD on_user_command.
     CASE e_ucomm.
       WHEN 'RELEASE'.
-        PERFORM release_stock.
+*        zcl_pr_stock=>close_stock( iv_stock = p_stokid ).
+       PERFORM release_stock.
       WHEN 'ZREFRESH'.
         PERFORM reload_display.
     ENDCASE.
