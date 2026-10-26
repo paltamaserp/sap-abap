@@ -33,20 +33,21 @@
 
 ## Tartalom-térkép
 
-**Elsődleges munkabázis (felhasználói döntés, 2026-10-17):** `05_FINAL/abap-2026-10-17/`. A további elemzések és javítások ebből a mentett aktív SAP-forrásból indulnak. A külön cockpit-/QA-tervezetek és szükséges kiegészítők megmaradtak. A felhasználó kérésére 127 korábbi fájl az [archívumba](<../../[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/README.md>) került, eredeti útvonal- és hash-jegyzékkel. [Tisztítási elemzés](02_NOTES/2026-10-17_fajltisztitas-elemzes_WIP.md).
+Áttekintés: **2026-10-26**, első körös tisztítás és friss MCP-forrásmentés után. [Aktuális állapot és nyitott pontok](_LOG.md).
 
-- `01_SOURCES/` — bemenetek (dump-ok, ADT export, dokumentáció).
-- `02_NOTES/` — aktuális munkajegyzetek; a korábbi 17 jegyzet/ellenőrzési eredmény archiválva.
-- `03_DRAFTS/` — WIP verziók, iterációk.
-- `03_DRAFTS/2026-10-21_release-stock-new-riport_WIP/` — **aktuális, kizárólag riportmódosítás** a megadott 05_FINAL alapból: Lezárás → új `release_stock_new` → változatlan `ZCL_PR_STOCK=>CLOSE_STOCK( iv_stock )` → visszaolvasott QM → CL váltás alapján STATUS/CH* UPDATE, CR* megőrzéssel. Az osztály nincs módosítva. Az eredeti `release_stock` és a többi meglévő rutin változatlan; külön riportmunkamásolat, diff, textelemek és hat helyi ellenőrzés. Az osztály sikerjelzőjének hiánya és saját commitja miatti korlátok a [leírásban](03_DRAFTS/2026-10-21_release-stock-new-riport_WIP/README.md). A korábbi osztálybővítési irányt ez váltja fel.
-- `03_DRAFTS/2026-10-18_sap-transport-qa_WIP/` — a `sap-transport-qa` skill telepített WIP-alapváltozatának helyi másolata és ellenőrzési jegyzőkönyve. [Skill](03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/SKILL.md), [hiányzó adatok beszerzése](03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/references/adatok-beszerzese.md). Személyes telepítés: `~/.codex/skills/sap-transport-qa`; aktuális SAP-variáns és élő QA-futás még nem ismert.
-- `03_DRAFTS/2026-10-17_close-stock_WIP/` — a ZPR_CLOSE_STOCK hatpontos kérésének helyi megvalósítása: külön riport- és osztályváltozat, fordítható szövegek, változatlan include-ok, diff, ellenőrzési eredmények és átvezetési útmutató. Aktív SAP-átvezetés és futtatott SAP-teszt nélkül.
-- `03_DRAFTS/2026-10-16_cockpit_WIP/` — a stock cockpit Enter-validációja, az első DM-fül riportadaptere és a QM minta fül stockkal előtöltött ZPR_QM-indítóképernyője (2026-10-18); külön forráscsomag, visszafordítható diff és átvezetési útmutató. Helyileg ellenőrzött WIP, aktív SAP-visszaolvasás és teszt nélkül. [QM-bekötés](03_DRAFTS/2026-10-18_cockpit-qm-minta_WIP.md). [QM-indítás és gombfelirat javítása](03_DRAFTS/2026-10-18_cockpit-qm-dynpro-gomb-javitas_WIP.md), a felhasználó ST22-részlete a cockpit környezetében futó `CALL SELECTION-SCREEN 2000` hívást megerősítette; a javított változat SAP-próbája még szükséges.
-- `04_ASSETS/abap/` — megőrzött flow logic, üzenet-/textelemek és opcionális regisztráció; a korábbi 19 munkaforrás archiválva.
-- `04_ASSETS/abap/test/` — WIP ABAP Unit-tesztinclude-ok.
-- `04_ASSETS/playwright/` — automatizált OData API-tesztek.
-- `04_ASSETS/rest-client/` — kézi `.http` hívások.
-- `05_FINAL/` — kész eredmény (mielőtt `[04] outputs/`-ba kerül).
-- `[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/` — a tegnapi 34 fájlos export, régi munkaprogramok, diagnosztika, jegyzetek és ideiglenes munkamentések. A `project/` almappa az eredeti projektútvonalakat, a `workspace-tmp/` az ideiglenes mentéseket őrzi; a konténer státusza ARCHIVED, az eredeti fájlnevek megmaradtak.
-- `05_FINAL/abap-2026-10-17/` — ugyanazon 24 objektum új napi MCP-exportja, 34 fájl, WIP; minden mentés és SHA256 ellenőrizve. A mai `ZPR_DCQM_EXCLUDE_C01` új include-függőség a kért tegnapi objektumkörön kívül esik, ezért nincs benne. Egyik napi csomag sem teljes UI-/függőségmentés; a határokat a README-k/manifesztek rögzítik.
-- `_LOG.md` — döntésnapló (ezt olvasd a folytatáshoz).
+- **Elsődleges munkabázis (felhasználói döntés, 2026-10-26):** [05_FINAL/abap-2026-10-26/](05_FINAL/abap-2026-10-26/README.md), 39/39 kijelölt objektum friss MCP-forrása/definíciója, 90 ellenőrzött fájl. A további elemzések és javítások ebből indulnak. Státusz WIP; nem teljes UI-/függőségmentés.
+- **Korábbi exportok:** [2026-10-22](<../../[99]%20archive/abap-2026-10-22/README.md>) és [2026-10-17](<../../[99]%20archive/abap-2026-10-17/README.md>), történeti összehasonlításhoz. A mai munkabázist nem helyettesítik.
+- 01_SOURCES/ — eredeti dokumentumok, tábladefiníciók, QU5/DHC-referenciák és SCI/Onapsis-bemenetek.
+- 02_NOTES/ — korábbi naplózási és DOC_STATUS-elemzések, valamint a DC ZZ-kód szerepének jegyzete. A korábbi hibalisták a mai exporttal újra ellenőrizendők.
+- [Régi draftok szerepe és összevetése](03_DRAFTS/README.md) — történeti referenciák; új javítás a mai exportból indul.
+- [Cockpit WIP](03_DRAFTS/2026-10-16_cockpit_WIP/README.md) — C01-adapter, DM/QM-integráció, kapcsolódó külön gomb-/képernyőjavítások.
+- [RELEASE_STOCK_NEW riportváltozat](03_DRAFTS/2026-10-21_release-stock-new-riport_WIP/README.md) — a korábbi osztálybővítési irány helyett készült; a friss exportban már szereplő rutinnal összevetendő.
+- [Lezárási naplózás](03_DRAFTS/2026-10-22_close-stock-naplo_WIP/README.md) — a DHC/100-ra igazított javaslatok és az átvezetési bizonyítékok is itt maradtak.
+- [DC-keret átvitel](03_DRAFTS/2026-10-22_dc-frame-atvitel_WIP/README.md) — QU5 → DHC helyi WIP-forrás, szövegek és diffek.
+- [DOC_STATUS CL → AD javaslat](03_DRAFTS/2026-10-22_doc-status-all-delivered_WIP/README.md) — korábbi csomag és háttérjob-útmutató; a [friss exportellenőrzés](02_NOTES/2026-10-22_doc-status-friss-export-ellenorzes_WIP.md) alapján használandó.
+- [04_ASSETS/abap/](04_ASSETS/abap/README.md) — flow logic, üzenet-/textelemek, tesztinclude-ok, útmutatók és nyitott DOC_RIP QA-patch. A 04_ASSETS/mcp-export/ eszközei között a mai mentéshez külön offline ellenőrző készült; a letöltés a csatlakoztatott MCP-eszközökkel történt.
+- [05_FINAL/TEST_DATA/](05_FINAL/TEST_DATA/2026-10-14_dcqm-exclude-tesztadatok_WIP.md) — megőrzött tesztadatok.
+- [2026-10-26-i archívum](<../../[99]%20archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/README.md>) — felváltott lezárási változatok, tervek, általános sablonok, QA-skill projektmásolata és teljes előzménynapló; eredeti útvonal- és hash-leltárral.
+- [2026-10-17-i archívum](<../../[99]%20archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/README.md>) — korábban archivált 127 történeti fájl.
+
+A mai objektumlekérések sikeresek voltak, a forrás/definíció az export időpontjára igazolt. SAP-módosítás és futtatott SAP-teszt nem történt. Az első elérési hiba utáni azonnali leállás szabálya továbbra is érvényes.

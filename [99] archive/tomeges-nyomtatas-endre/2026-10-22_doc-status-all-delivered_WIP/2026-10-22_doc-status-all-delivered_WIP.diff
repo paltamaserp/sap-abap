@@ -1,0 +1,95 @@
+diff --git a/ZPR_DOC_STATUS.abap b/ZPR_DOC_STATUS.abap
+index bf7103c..e0da7b1 100644
+--- a/ZPR_DOC_STATUS.abap
++++ b/ZPR_DOC_STATUS.abap
+@@ -64,7 +64,6 @@ DATA: gs_stock      TYPE zprt_stock,
+ 
+ SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE TEXT-001.
+   SELECT-OPTIONS so_stock FOR gs_stock-stock_id
+-                  OBLIGATORY
+                   MATCHCODE OBJECT zprh_stock.
+ 
+   PARAMETERS: p_det   AS CHECKBOX,
+@@ -301,7 +300,8 @@ FORM process_locked_stock USING iv_stock TYPE zprt_stock-stock_id.
+         lx_fault     TYPE REF TO cx_ai_system_fault.
+   SELECT SINGLE * FROM zprt_stock INTO ls_stock
+     WHERE stock_id = iv_stock.
+-  IF sy-subrc <> 0 OR ls_stock-closed <> abap_true.
++  IF sy-subrc <> 0 OR ls_stock-closed <> abap_true
++     OR ls_stock-status <> 'CL'.
+     PERFORM add_log USING 'E' iv_stock space 'A stock már nem lezárt.'.
+     RETURN.
+   ENDIF.
+@@ -344,6 +344,7 @@ FORM process_locked_stock USING iv_stock TYPE zprt_stock-stock_id.
+   IF lt_requested IS INITIAL.
+     PERFORM add_log USING 'I' iv_stock space
+       'Nincs újra lekérendő dokumentum; a tárolt végállapotok megmaradtak.'.
++    PERFORM update_stock_delivery USING iv_stock.
+     RETURN.
+   ENDIF.
+   ls_input-sap_system = sy-sysid.
+@@ -400,8 +401,62 @@ FORM process_locked_stock USING iv_stock TYPE zprt_stock-stock_id.
+     CHECK sy-subrc = 0.
+     PERFORM process_document USING iv_stock ls_document ls_response.
+   ENDLOOP.
+-  PERFORM add_log USING 'I' iv_stock space
+-    'Stocklekérdezés vége; a CL stockstátusz változatlan.'.
++  PERFORM update_stock_delivery USING iv_stock.
++ENDFORM.
++
++FORM update_stock_delivery USING iv_stock TYPE zprt_stock-stock_id.
++  DATA: lv_total        TYPE i,
++        lv_missing      TYPE i,
++        lv_total_text   TYPE c LENGTH 12,
++        lv_missing_text TYPE c LENGTH 12,
++        lv_text         TYPE string.
++  "Use the complete stock/package document set, including documents without logs.
++  SELECT COUNT( DISTINCT dcqm~doc_no )
++    FROM zprt_dcqm AS dcqm
++    INNER JOIN zprt_package AS package
++      ON package~package_id = dcqm~package_id
++    INTO lv_total
++    WHERE package~stock_id = iv_stock.
++  IF lv_total = 0.
++    PERFORM add_log USING 'W' iv_stock space text-201.
++    RETURN.
++  ENDIF.
++  "A historical D event is sufficient; other events do not count as delivery.
++  SELECT COUNT( DISTINCT dcqm~doc_no )
++    FROM zprt_dcqm AS dcqm
++    INNER JOIN zprt_package AS package
++      ON package~package_id = dcqm~package_id
++    INTO lv_missing
++    WHERE package~stock_id = iv_stock
++      AND NOT EXISTS ( SELECT * FROM zprt_doc_slog AS slog
++        WHERE slog~exbilldocno = dcqm~doc_no
++          AND slog~status = 'D' ).
++  IF lv_missing > 0.
++    WRITE lv_total TO lv_total_text LEFT-JUSTIFIED.
++    WRITE lv_missing TO lv_missing_text LEFT-JUSTIFIED.
++    CONCATENATE text-202 lv_missing_text text-203 lv_total_text
++      INTO lv_text SEPARATED BY space.
++    PERFORM add_log USING 'W' iv_stock space lv_text.
++    RETURN.
++  ENDIF.
++  "The caller holds the stock lock across the document commits and this update.
++  UPDATE zprt_stock
++    SET status = 'AD'
++        chuser = sy-uname chdate = sy-datum chtime = sy-uzeit
++    WHERE stock_id = iv_stock
++      AND status = 'CL'
++      AND closed = abap_true.
++  IF sy-subrc <> 0 OR sy-dbcnt <> 1.
++    ROLLBACK WORK.
++    PERFORM add_log USING 'E' iv_stock space text-205.
++    RETURN.
++  ENDIF.
++  COMMIT WORK AND WAIT.
++  IF sy-subrc <> 0.
++    PERFORM add_log USING 'E' iv_stock space text-206.
++    RETURN.
++  ENDIF.
++  PERFORM add_log USING 'S' iv_stock space text-204.
+ ENDFORM.
+ 
+ FORM is_terminal USING iv_doc TYPE zprt_dcqm-doc_no

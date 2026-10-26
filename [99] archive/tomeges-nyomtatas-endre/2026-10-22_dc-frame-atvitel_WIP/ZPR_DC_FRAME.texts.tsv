@@ -1,0 +1,10 @@
+TYPE	KEY	LANGUAGE	TEXT
+R		HU	Data Control(DC): Műveletek
+I	001	HU	Elvégzendő műveletek:
+I	101	HU	Stockok (legfeljebb 5000)
+I	102	HU	A napló nem menthető/megjeleníthető:
+S	P_STOKID	HU	Stock ID
+S	P_MOD	HU	Nyomtatási sorok kizárása
+S	P_DISP	HU	Nyomtatási sorok megtekintése
+S	P_ENG	HU	DC engedélyezés
+S	P_ENGV	HU	DC engedélyezés visszavétele

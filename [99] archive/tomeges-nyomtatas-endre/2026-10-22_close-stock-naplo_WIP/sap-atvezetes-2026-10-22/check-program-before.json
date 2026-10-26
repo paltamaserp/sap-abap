@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "MCP error -32603: Error: Failed to check program: Program check failed: The REPORT/PROGRAM statement is missing, or the program type is INCLUDE."
+    }
+  ],
+  "isError": true
+}

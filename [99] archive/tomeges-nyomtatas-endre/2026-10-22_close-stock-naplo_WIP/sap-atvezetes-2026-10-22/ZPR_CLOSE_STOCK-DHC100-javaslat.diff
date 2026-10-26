@@ -1,0 +1,140 @@
+diff --git a/ZPR_CLOSE_STOCK-DHC100-javaslat.abap b/ZPR_CLOSE_STOCK-DHC100-javaslat.abap
+index d0dda29..49e4d3f 100644
+--- a/ZPR_CLOSE_STOCK-DHC100-javaslat.abap
++++ b/ZPR_CLOSE_STOCK-DHC100-javaslat.abap
+@@ -319,6 +319,7 @@ FORM release_stock_new .
+   ENDIF.
+ 
+   gv_busy = abap_true.
++  PERFORM log_now USING 'I' text-310 space.
+   TRY.
+       DO 1 TIMES.
+         PERFORM read_stock.
+@@ -353,8 +354,11 @@ FORM release_stock_new .
+ 
+         "The unchanged class owns the priority popup and commits CL on success.
+         "A normal return or SY-SUBRC alone is not a success indication.
++        PERFORM log_stock_totals.
++        PERFORM log_now USING 'I' text-313 space.
+         lv_class_started = abap_true.
+         zcl_pr_stock=>close_stock( iv_stock = p_stokid ).
++        PERFORM log_now USING 'I' text-314 space.
+         gv_error = abap_true.
+         SELECT SINGLE * FROM zprt_stock BYPASSING BUFFER INTO ls_after
+           WHERE stock_id = p_stokid.
+@@ -371,6 +375,7 @@ FORM release_stock_new .
+         "Only the QM-to-CL transition observed under our lock permits the audit save.
+         "The class commit has already completed; this is a separate local LUW.
+         GET TIME.
++        PERFORM log_now USING 'I' text-321 space.
+         UPDATE zprt_stock
+           SET status = gc_status_closed
+               chuser = sy-uname
+@@ -383,12 +388,14 @@ FORM release_stock_new .
+         IF sy-subrc <> 0 OR sy-dbcnt <> 1.
+           ROLLBACK WORK.
+           gv_uncertain = abap_true.
++          PERFORM log_now USING 'E' text-323 space.
+           PERFORM add_message USING 'E' text-206 p_stokid space.
+           EXIT.
+         ENDIF.
+         COMMIT WORK.
+         gv_saved = abap_true.
+         gv_error = abap_false.
++        PERFORM log_now USING 'S' text-322 space.
+         PERFORM add_message USING 'S' text-207 p_stokid space.
+       ENDDO.
+     CATCH cx_root INTO lr_error.
+@@ -407,6 +414,11 @@ FORM release_stock_new .
+   IF gv_saved <> abap_true.
+     PERFORM add_message USING 'E' text-208 p_stokid space.
+   ENDIF.
++  IF gv_saved = abap_true.
++    PERFORM log_now USING 'S' text-311 space.
++  ELSE.
++    PERFORM log_now USING 'E' text-312 space.
++  ENDIF.
+   PERFORM log_write.
+   PERFORM read_stock.
+   IF gv_error = abap_false.
+@@ -1318,4 +1330,78 @@ FORM add_header_line USING uv_text TYPE sdydo_text_element.
+   gr_header->add_text( text = uv_text
+     sap_emphasis = cl_dd_document=>strong ).
+   gr_header->new_line( ).
+-ENDFORM.
+\ No newline at end of file
++ENDFORM.
++"Logging only: use the complete stock, including allowed and excluded rows.
++FORM log_stock_totals.
++  TYPES: BEGIN OF ty_log_row,
++           package_id TYPE zprt_dcqm-package_id,
++           doc_no     TYPE zprt_dcqm-doc_no,
++         END OF ty_log_row.
++  DATA: lt_rows        TYPE STANDARD TABLE OF ty_log_row,
++        ls_row         TYPE ty_log_row,
++        lt_packages    TYPE SORTED TABLE OF zprt_dcqm-package_id
++                         WITH UNIQUE KEY table_line,
++        lt_documents   TYPE SORTED TABLE OF zprt_dcqm-doc_no
++                         WITH UNIQUE KEY table_line,
++        lv_count       TYPE i,
++        lv_no_package  TYPE i,
++        lv_no_document TYPE i,
++        lv_number      TYPE c LENGTH 20,
++        lv_error_text  TYPE string,
++        lr_error       TYPE REF TO cx_root.
++
++  PERFORM log_now USING 'I' text-307 space.
++  TRY.
++      SELECT package_id doc_no FROM zprt_dcqm INTO TABLE lt_rows
++        WHERE prd_stock_id = p_stokid.
++      LOOP AT lt_rows INTO ls_row.
++        IF ls_row-package_id IS INITIAL.
++          ADD 1 TO lv_no_package.
++        ELSE.
++          INSERT ls_row-package_id INTO TABLE lt_packages.
++        ENDIF.
++        IF ls_row-doc_no IS INITIAL.
++          ADD 1 TO lv_no_document.
++        ELSE.
++          INSERT ls_row-doc_no INTO TABLE lt_documents.
++        ENDIF.
++      ENDLOOP.
++      DESCRIBE TABLE lt_packages LINES lv_count.
++      WRITE lv_count TO lv_number LEFT-JUSTIFIED.
++      PERFORM add_message USING 'I' text-301 lv_number space.
++      DESCRIBE TABLE lt_documents LINES lv_count.
++      WRITE lv_count TO lv_number LEFT-JUSTIFIED.
++      PERFORM add_message USING 'I' text-302 lv_number space.
++      DESCRIBE TABLE lt_rows LINES lv_count.
++      WRITE lv_count TO lv_number LEFT-JUSTIFIED.
++      PERFORM add_message USING 'I' text-303 lv_number space.
++      IF lv_no_package > 0.
++        WRITE lv_no_package TO lv_number LEFT-JUSTIFIED.
++        PERFORM add_message USING 'W' text-304 lv_number space.
++      ENDIF.
++      IF lv_no_document > 0.
++        WRITE lv_no_document TO lv_number LEFT-JUSTIFIED.
++        PERFORM add_message USING 'W' text-305 lv_number space.
++      ENDIF.
++    CATCH cx_root INTO lr_error.
++      lv_error_text = lr_error->get_text( ).
++      PERFORM add_message USING 'W' text-306 p_stokid lv_error_text.
++  ENDTRY.
++ENDFORM.
++
++FORM log_now USING uv_type TYPE symsgty uv_event TYPE clike
++                   uv_detail TYPE clike.
++  DATA lv_stamp TYPE timestampl.
++  GET TIME STAMP FIELD lv_stamp.
++  PERFORM log_at USING uv_type uv_event lv_stamp uv_detail.
++ENDFORM.
++
++FORM log_at USING uv_type TYPE symsgty uv_event TYPE clike
++                  uv_stamp TYPE timestampl uv_detail TYPE clike.
++  DATA: lv_time   TYPE c LENGTH 40,
++        lv_detail TYPE c LENGTH 100.
++  lv_time = |{ uv_stamp TIMESTAMP = ISO TIMEZONE = 'UTC' } UTC|.
++  CONCATENATE p_stokid uv_detail INTO lv_detail SEPARATED BY space.
++  PERFORM add_message USING uv_type uv_event lv_time lv_detail.
++ENDFORM.
++

@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "*----------------------------------------------------------------------*\r\n***INCLUDE ZEBF_PR_DCQM_REPORT_O01 .\r\n*----------------------------------------------------------------------*\r\n*&---------------------------------------------------------------------*\r\n*&      Module  STATUS_0100  OUTPUT\r\n*&---------------------------------------------------------------------*\r\n*       text\r\n*----------------------------------------------------------------------*\r\nMODULE status_0100 OUTPUT.\r\n\r\n  SET PF-STATUS 'STAT_0100'.\r\n  IF go_view->is_modifiable( ) EQ abap_true.\r\n    SET TITLEBAR 'TITLE_0100_MOD'.\r\n  ELSE.\r\n    SET TITLEBAR 'TITLE_0100_DISP'.\r\n  ENDIF.\r\n\r\nENDMODULE.                 \" STATUS_0100  OUTPUT\r\n*&---------------------------------------------------------------------*\r\n*&      Module  CREATE_CONTROLS_0100  OUTPUT\r\n*&---------------------------------------------------------------------*\r\n*       text\r\n*----------------------------------------------------------------------*\r\nMODULE create_controls_0100 OUTPUT.\r\n\r\n  go_view->create_controls( ).\r\n\r\nENDMODULE.                 \" CREATE_CONTROLS_0100  OUTPUT"
+    }
+  ]
+}

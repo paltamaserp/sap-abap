@@ -1,0 +1,13 @@
+MESSAGE_CLASS	NUMBER	LANGUAGE	TEXT
+ZPR	000	HU	& & & &
+ZPR	045	HU	A Stock ID nem létezik!
+ZPR	046	HU	A stock lezárt, csak megjelenítés lehetséges
+ZPR	050	HU	A DC már engedélyezve van
+ZPR	051	HU	DC engedélyezés sikeres
+ZPR	052	HU	DC engedélyezés sikertelen
+ZPR	053	HU	Engedélyezett sorok száma: &1
+ZPR	054	HU	Kizárt sorok száma: &1
+ZPR	055	HU	A DC még nincs engedélyezve
+ZPR	056	HU	Engedélyezés visszavétele sikeres
+ZPR	057	HU	Engedélyezés visszavétele sikertelen
+ZPR	062	HU	DC kész, a stock nem módosítható

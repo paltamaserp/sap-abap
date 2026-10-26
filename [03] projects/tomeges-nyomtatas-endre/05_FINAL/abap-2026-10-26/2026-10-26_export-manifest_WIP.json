@@ -1,0 +1,1510 @@
+{
+  "date": "2026-10-26",
+  "status": "WIP",
+  "complete": true,
+  "startedAt": "2026-10-26T10:54:08.494Z",
+  "planned": [
+    {
+      "id": "ZPR_CREATE_STOCK",
+      "type": "PROG/P",
+      "tool": "GetProgram",
+      "args": {
+        "program_name": "ZPR_CREATE_STOCK",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_CLOSE_STOCK",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_CLOSE_STOCK",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_DC_FRAME",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DC_FRAME",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_DOC_STATUS",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DOC_STATUS",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZCL_PR_STOCK",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_STOCK",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZCL_PR_LOG",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_LOG",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZCL_PR_INSPIRE_GW",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_INSPIRE_GW",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_O01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DCQM_EXCLUDE_O01"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DCQM_EXCLUDE",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_MESSAGEQUEUE_QUERY",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_MESSAGEQUEUE_QUERY",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_DOC_RIP",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DOC_RIP",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZCL_PR_QM_SAMPLER",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_QM_SAMPLER",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_I01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DCQM_EXCLUDE_I01"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_MQ_PROXY",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_MQ_PROXY"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_MQ_DISPLAY",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_MQ_DISPLAY"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_MQ_TESTS",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_MQ_TESTS"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_STOCK_REPORT_O01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_STOCK_REPORT_O01"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_STOCK_REPORT_I01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_STOCK_REPORT_I01"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_DOC_RIP_O01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DOC_RIP_O01"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_DOC_RIP_I01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DOC_RIP_I01"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPRT_DCQMLT",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRT_DCQMLT",
+        "version": "active"
+      },
+      "extension": ".table"
+    },
+    {
+      "id": "ZPRT_DCQM",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRT_DCQM",
+        "version": "active"
+      },
+      "extension": ".table"
+    },
+    {
+      "id": "ZPRT_EMAIL_SLOG",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRT_EMAIL_SLOG",
+        "version": "active"
+      },
+      "extension": ".table"
+    },
+    {
+      "id": "ZPRC_DCCODE",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRC_DCCODE",
+        "version": "active"
+      },
+      "extension": ".table"
+    },
+    {
+      "id": "ZPRS_DCQM_REPORT",
+      "type": "TABL/DS",
+      "tool": "GetStructure",
+      "args": {
+        "structure_name": "ZPRS_DCQM_REPORT",
+        "version": "active"
+      },
+      "extension": ".structure"
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_C01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DCQM_EXCLUDE_C01"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPR_QM",
+      "type": "PROG/P",
+      "tool": "GetProgram",
+      "args": {
+        "program_name": "ZPR_QM",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "LZPR_COCKPITTOP",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "LZPR_COCKPITTOP"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "LZPR_COCKPITO01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "LZPR_COCKPITO01"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "LZPR_COCKPITUXX",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "LZPR_COCKPITUXX"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "Z_PR_COCKPIT",
+      "type": "FUNC",
+      "tool": "GetFunctionModule",
+      "args": {
+        "function_group_name": "ZPR_COCKPIT",
+        "function_module_name": "Z_PR_COCKPIT",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZCL_PR_QM_DATA",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_QM_DATA",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZCL_PR_QM_RANDOM",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_QM_RANDOM",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZIF_PR_QM_DATA",
+      "type": "INTF/OI",
+      "tool": "GetInterface",
+      "args": {
+        "interface_name": "ZIF_PR_QM_DATA",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZIF_PR_QM_RANDOM",
+      "type": "INTF/OI",
+      "tool": "GetInterface",
+      "args": {
+        "interface_name": "ZIF_PR_QM_RANDOM",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZIF_PR_INSPIRE_GW",
+      "type": "INTF/OI",
+      "tool": "GetInterface",
+      "args": {
+        "interface_name": "ZIF_PR_INSPIRE_GW",
+        "version": "active"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "LZPR_COCKPITU01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "LZPR_COCKPITU01"
+      },
+      "extension": ".abap"
+    },
+    {
+      "id": "ZPRB_EMAIL_SLOG",
+      "type": "TTYP/DA",
+      "tool": "GetTypeInfo",
+      "args": {
+        "type_name": "ZPRB_EMAIL_SLOG",
+        "include_structure_fallback": false
+      },
+      "extension": ".ttyp.json"
+    },
+    {
+      "id": "ZPRB_SLOG_EMAIL",
+      "type": "TTYP/DA",
+      "tool": "GetTypeInfo",
+      "args": {
+        "type_name": "ZPRB_SLOG_EMAIL",
+        "include_structure_fallback": false
+      },
+      "extension": ".ttyp.json"
+    }
+  ],
+  "records": [
+    {
+      "id": "ZPR_CREATE_STOCK",
+      "type": "PROG/P",
+      "tool": "GetProgram",
+      "args": {
+        "program_name": "ZPR_CREATE_STOCK",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:54:22.203Z",
+      "raw": {
+        "file": "_mcp/ZPR_CREATE_STOCK.json",
+        "bytes": 40955,
+        "sha256": "8e4dd56974426442d77fe39e86188afc4bd5ffcf030e2220063c0ebf8c17efe5"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_CREATE_STOCK.abap",
+          "bytes": 36833,
+          "sha256": "dd8f01574d95e86ee6d1dee6b000bb07e608034aefb07232f363404ec1e2b630",
+          "responseKey": "program_data"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_CLOSE_STOCK",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_CLOSE_STOCK",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:54:37.696Z",
+      "raw": {
+        "file": "_mcp/ZPR_CLOSE_STOCK.json",
+        "bytes": 40426,
+        "sha256": "e83c06b18077160c1147accb17b90366f31f6b293991089203ec82dd80511f90"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_CLOSE_STOCK.abap",
+          "bytes": 32571,
+          "sha256": "4ce8c372eeca485d434e4b8cd2ed323df019245b82efcb099eaf3c6e685c7ca0",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZPR_CLOSE_STOCK.metadata.xml",
+          "bytes": 3080,
+          "sha256": "1c9c58dd1a53627f69c8a5742a41efa53555a8063eaa157497251834820fd522"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DC_FRAME",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DC_FRAME",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:54:40.962Z",
+      "raw": {
+        "file": "_mcp/ZPR_DC_FRAME.json",
+        "bytes": 18851,
+        "sha256": "30eabd6440b6077d39745050dff81d469cc7cdcd99af9e6f624a501feea7bcd6"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_DC_FRAME.abap",
+          "bytes": 13350,
+          "sha256": "fa88f068f88eb2c6fce3d62d9ee57d0a4f8c43cdd99dee1756ae9ff51d1ecf48",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZPR_DC_FRAME.metadata.xml",
+          "bytes": 3296,
+          "sha256": "b83bfba89aecbe2c8b08ac8d4b99d12fac3ed31c650cb7ba7929d2d48f75ddff"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DOC_STATUS",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DOC_STATUS",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:54:48.334Z",
+      "raw": {
+        "file": "_mcp/ZPR_DOC_STATUS.json",
+        "bytes": 52457,
+        "sha256": "f5363422271eac28b81b03405bc1a496f98e58a3f11505113c54b106b03edbe6"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_DOC_STATUS.abap",
+          "bytes": 43896,
+          "sha256": "8fc750362eadd975ca626d9d7c1a8b6000df90740cad2f37eef1a1af07323adb",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZPR_DOC_STATUS.metadata.xml",
+          "bytes": 3105,
+          "sha256": "cd113e76e1d151a0f98ebfe505dc9b62ed7d7bcc168289c0dd9b4e43f4221679"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_STOCK",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_STOCK",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:54:49.982Z",
+      "raw": {
+        "file": "_mcp/ZCL_PR_STOCK.json",
+        "bytes": 31919,
+        "sha256": "a09765d425b418949260b59c8dd8886df95f8544f423435183f3871a38b38ec0"
+      },
+      "artifacts": [
+        {
+          "file": "ZCL_PR_STOCK.abap",
+          "bytes": 19554,
+          "sha256": "36afcb072f2f1182df69df500b015b4bb9a17560171a1b7d4acbeb1b691cb638",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZCL_PR_STOCK.metadata.xml",
+          "bytes": 8685,
+          "sha256": "8de0d4aa00647a944d51ed0e44161950cb6c0e0087b3aa4d1d46966af397a6d5"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_LOG",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_LOG",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:54:50.462Z",
+      "raw": {
+        "file": "_mcp/ZCL_PR_LOG.json",
+        "bytes": 18207,
+        "sha256": "c1394774f0fccf2321e97cea89cc014bbe81ff028e8dd89cf29345faeafbfb57"
+      },
+      "artifacts": [
+        {
+          "file": "ZCL_PR_LOG.abap",
+          "bytes": 6983,
+          "sha256": "06046c84cf899596795e4ddc5290c084e137453ddd57a9c884591787d123d69c",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZCL_PR_LOG.metadata.xml",
+          "bytes": 8663,
+          "sha256": "d5956be992f33698c5c18ba10d318f54d68a9906774dc539aad321e7eb94e839"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_INSPIRE_GW",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_INSPIRE_GW",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:54:57.473Z",
+      "raw": {
+        "file": "_mcp/ZCL_PR_INSPIRE_GW.json",
+        "bytes": 17352,
+        "sha256": "dd23a318309ef9a9ace164eb7a5f579e49bc8e96239ce3cbea301ffd0836c10e"
+      },
+      "artifacts": [
+        {
+          "file": "ZCL_PR_INSPIRE_GW.abap",
+          "bytes": 7718,
+          "sha256": "9515f104de10f683ce037d9bdfbc2b80bae0ded78d8477a2f30a2fb0aa104a2b",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZCL_PR_INSPIRE_GW.metadata.xml",
+          "bytes": 7585,
+          "sha256": "161c152c2c789d53f933221baef59ee0b83fb5e41ac1d926f4f424959cceb576"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_O01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DCQM_EXCLUDE_O01"
+      },
+      "retrievedAt": "2026-10-26T10:55:53.215Z",
+      "raw": {
+        "file": "_mcp/ZPR_DCQM_EXCLUDE_O01.json",
+        "bytes": 1207,
+        "sha256": "1c11b1f5433640367be07a7b10cbb955d28ad79c08040371b4dae62bf1d68741"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_DCQM_EXCLUDE_O01.abap",
+          "bytes": 1077,
+          "sha256": "a92b566a2c9ae68f293227a9b6850955266c85aa4aff070636d500beed09b032",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DCQM_EXCLUDE",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:56:42.990Z",
+      "raw": {
+        "file": "_mcp/ZPR_DCQM_EXCLUDE.json",
+        "bytes": 66074,
+        "sha256": "c1660e5e20c188b3374ee0373b8f2b09ecca1b79245a86c55e41b87776e618f7"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_DCQM_EXCLUDE.abap",
+          "bytes": 55612,
+          "sha256": "77cfc4f11e7c9013121efdec539ff338d0e861c1273ddda648c7a04fe61eafa5",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZPR_DCQM_EXCLUDE.metadata.xml",
+          "bytes": 3154,
+          "sha256": "1c42f606fc4a45e23ad70ea66a67bb6c0bfe0cc9cb4a9fe3077b9a3d47108767"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_MESSAGEQUEUE_QUERY",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_MESSAGEQUEUE_QUERY",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:56:56.408Z",
+      "raw": {
+        "file": "_mcp/ZPR_MESSAGEQUEUE_QUERY.json",
+        "bytes": 19096,
+        "sha256": "995d19cbc973f5352b1f5eb410217d3738b5755f336fecd8488c9e4434698c2e"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_MESSAGEQUEUE_QUERY.abap",
+          "bytes": 13650,
+          "sha256": "c8b83f3a0f31e5cbdbd70e37023f3be8fa4b957b838af15792de99ce4f423dbc",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZPR_MESSAGEQUEUE_QUERY.metadata.xml",
+          "bytes": 3158,
+          "sha256": "174cb990b0e55221a336580424a431ab83d5be4091f97920a96e615ea6634c52"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DOC_RIP",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DOC_RIP",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:57:00.960Z",
+      "raw": {
+        "file": "_mcp/ZPR_DOC_RIP.json",
+        "bytes": 41129,
+        "sha256": "d36395e86a88f88989779f4975ceda077128124acaa4c33cbda437d56d2e58b1"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_DOC_RIP.abap",
+          "bytes": 33324,
+          "sha256": "d2d131abc1af5149348450e044b1c778279e2e4a88aac841b8c7b4cf83fc5dac",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZPR_DOC_RIP.metadata.xml",
+          "bytes": 3066,
+          "sha256": "f4a085e66d36d4affd54080afc6d00c98cf5b2df51130e15e8b9e2655185da66"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_QM_SAMPLER",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_QM_SAMPLER",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:57:03.426Z",
+      "raw": {
+        "file": "_mcp/ZCL_PR_QM_SAMPLER.json",
+        "bytes": 29663,
+        "sha256": "ff6f3a0b77c098cca23705e1ae7423d7db09890dbe6fd7016c49162d3b902238"
+      },
+      "artifacts": [
+        {
+          "file": "ZCL_PR_QM_SAMPLER.abap",
+          "bytes": 17586,
+          "sha256": "6ee1228e8a74a1d4c48b836f24c6b1192e93da6bb88bb5f18651fa3bf0c9928e",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZCL_PR_QM_SAMPLER.metadata.xml",
+          "bytes": 8658,
+          "sha256": "6c2870628744c36a50414f0971eb5e445f4196e20d80c3afbce9e55fc27e18b3"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_I01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DCQM_EXCLUDE_I01"
+      },
+      "retrievedAt": "2026-10-26T10:57:08.860Z",
+      "raw": {
+        "file": "_mcp/ZPR_DCQM_EXCLUDE_I01.json",
+        "bytes": 1155,
+        "sha256": "a9afbabeba455156f8e324ba960f4513566f0e406d722ed4f09e9dc64193d593"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_DCQM_EXCLUDE_I01.abap",
+          "bytes": 1035,
+          "sha256": "865d462805ccc69259f504871d758fceaf5d1a6755857a257da2029290ba17f3",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_MQ_PROXY",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_MQ_PROXY"
+      },
+      "retrievedAt": "2026-10-26T10:57:11.492Z",
+      "raw": {
+        "file": "_mcp/ZPR_MQ_PROXY.json",
+        "bytes": 4451,
+        "sha256": "3dd19d0c42b233b474d5e2589db360784186f5fb3026adc7d79d753c974db066"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_MQ_PROXY.abap",
+          "bytes": 4172,
+          "sha256": "5578dd4b8155aed1ee4b3acec1cc7b88c84f64b3bb9752224a8b18bffbe69734",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_MQ_DISPLAY",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_MQ_DISPLAY"
+      },
+      "retrievedAt": "2026-10-26T10:57:14.064Z",
+      "raw": {
+        "file": "_mcp/ZPR_MQ_DISPLAY.json",
+        "bytes": 3573,
+        "sha256": "774ec91ad7d7d556e80ff3a8c1d87a84ff54a6b378a789c9356f3fa2a9d7a863"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_MQ_DISPLAY.abap",
+          "bytes": 3335,
+          "sha256": "832e7d9cd7e3627cc92a21441de68e6eaad2f27f2829083aa1435c5020291f55",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_MQ_TESTS",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_MQ_TESTS"
+      },
+      "retrievedAt": "2026-10-26T10:57:22.566Z",
+      "raw": {
+        "file": "_mcp/ZPR_MQ_TESTS.json",
+        "bytes": 6181,
+        "sha256": "7f92722bce6e64241c96063957bfc42cc323b722fd32b40aaed3845283d614d8"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_MQ_TESTS.abap",
+          "bytes": 5819,
+          "sha256": "07cee0b63caf78957e85ac96b945bb101fa8063fbb0a9e807dd446dcc0e99b84",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_STOCK_REPORT_O01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_STOCK_REPORT_O01"
+      },
+      "retrievedAt": "2026-10-26T10:57:24.579Z",
+      "raw": {
+        "file": "_mcp/ZPR_STOCK_REPORT_O01.json",
+        "bytes": 1251,
+        "sha256": "1cc4f549a37257b161b357efa821f86477967b133d0953b18cfd6b15fb7cac72"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_STOCK_REPORT_O01.abap",
+          "bytes": 1121,
+          "sha256": "c9686246770e7532e16ff16ac3d6985ca5a9d69c01547ec9aeb6e4e050f0845e",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_STOCK_REPORT_I01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_STOCK_REPORT_I01"
+      },
+      "retrievedAt": "2026-10-26T10:57:27.707Z",
+      "raw": {
+        "file": "_mcp/ZPR_STOCK_REPORT_I01.json",
+        "bytes": 1174,
+        "sha256": "bcf75e348103b187363a3ea58fd6d19e76357d62a21878b14f84dcf1855cf99d"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_STOCK_REPORT_I01.abap",
+          "bytes": 1054,
+          "sha256": "a8a8e5b5f030b71822715c418e7b30f6569874e6110a2d9bfb96116fa36ada92",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DOC_RIP_O01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DOC_RIP_O01"
+      },
+      "retrievedAt": "2026-10-26T10:57:30.686Z",
+      "raw": {
+        "file": "_mcp/ZPR_DOC_RIP_O01.json",
+        "bytes": 1087,
+        "sha256": "72a2419648234f4699ca4d09a5341fc2b899779429541259cd3ff8bf3637468b"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_DOC_RIP_O01.abap",
+          "bytes": 964,
+          "sha256": "61c01506417247c9d0a0c9cbce3b48d7a823265515880393b8edaad34111b9fa",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DOC_RIP_I01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DOC_RIP_I01"
+      },
+      "retrievedAt": "2026-10-26T10:57:32.804Z",
+      "raw": {
+        "file": "_mcp/ZPR_DOC_RIP_I01.json",
+        "bytes": 771,
+        "sha256": "b34faa5a1a444838e65c1afb1515720af9d2c7a144b4022518deb3da37fc3388"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_DOC_RIP_I01.abap",
+          "bytes": 662,
+          "sha256": "87fc378a8912a798b797189c2860605e176ed47dfb1a2dd3615211a19a413a0f",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPRT_DCQMLT",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRT_DCQMLT",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:57:34.974Z",
+      "raw": {
+        "file": "_mcp/ZPRT_DCQMLT.json",
+        "bytes": 699,
+        "sha256": "165e8592685a7443ce9b822de8f8f41d5ca0ecb5e7c39892fd8a1b2ddf926cf6"
+      },
+      "artifacts": [
+        {
+          "file": "ZPRT_DCQMLT.table",
+          "bytes": 439,
+          "sha256": "7df3284c99d56e6852b5ce11d25250b54a6926abc46f53b96843aeabfeda746d",
+          "responseKey": "table_data"
+        }
+      ]
+    },
+    {
+      "id": "ZPRT_DCQM",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRT_DCQM",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:57:43.529Z",
+      "raw": {
+        "file": "_mcp/ZPRT_DCQM.json",
+        "bytes": 2212,
+        "sha256": "7947205f586d4d2043308ab64d2115715819b3ff809b558312d778d6037538ff"
+      },
+      "artifacts": [
+        {
+          "file": "ZPRT_DCQM.table",
+          "bytes": 1864,
+          "sha256": "9556d7d38cd5193d5f81b88e8ffe472c7607d219f4f7b191d36e1c7a7c510c9e",
+          "responseKey": "table_data"
+        }
+      ]
+    },
+    {
+      "id": "ZPRT_EMAIL_SLOG",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRT_EMAIL_SLOG",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:57:46.429Z",
+      "raw": {
+        "file": "_mcp/ZPRT_EMAIL_SLOG.json",
+        "bytes": 937,
+        "sha256": "35a2c6b734d9493c971bd008b54f8f4d9ce4b93fa39cc2c56178d33eb0170e36"
+      },
+      "artifacts": [
+        {
+          "file": "ZPRT_EMAIL_SLOG.table",
+          "bytes": 663,
+          "sha256": "2de281c0eb66a1b6069af20085e71a951b382c588aed21617040f67dbe601259",
+          "responseKey": "table_data"
+        }
+      ]
+    },
+    {
+      "id": "ZPRC_DCCODE",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRC_DCCODE",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:57:48.870Z",
+      "raw": {
+        "file": "_mcp/ZPRC_DCCODE.json",
+        "bytes": 680,
+        "sha256": "321e4a6f26022dc0b0b11ccd8ec55b71d6120aa7cdb4f0ccb77b495489be4bce"
+      },
+      "artifacts": [
+        {
+          "file": "ZPRC_DCCODE.table",
+          "bytes": 418,
+          "sha256": "d41bb5f269b59b4dfa8e45a6d921bbac9e9b5d7b59af1d160f07857cd152366a",
+          "responseKey": "table_data"
+        }
+      ]
+    },
+    {
+      "id": "ZPRS_DCQM_REPORT",
+      "type": "TABL/DS",
+      "tool": "GetStructure",
+      "args": {
+        "structure_name": "ZPRS_DCQM_REPORT",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:57:52.238Z",
+      "raw": {
+        "file": "_mcp/ZPRS_DCQM_REPORT.json",
+        "bytes": 1889,
+        "sha256": "0c1b716775a907634a98966b6ba56d3677a6e392dd73d9000fe5713e5eaff7c1"
+      },
+      "artifacts": [
+        {
+          "file": "ZPRS_DCQM_REPORT.structure",
+          "bytes": 1546,
+          "sha256": "628957152f1d46e111b72319aef3c21cb56088ac06d3811ab3c1e40495e0cd1f",
+          "responseKey": "structure_data"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_C01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DCQM_EXCLUDE_C01"
+      },
+      "retrievedAt": "2026-10-26T10:57:54.796Z",
+      "raw": {
+        "file": "_mcp/ZPR_DCQM_EXCLUDE_C01.json",
+        "bytes": 3538,
+        "sha256": "9042dcfbfb028a9e8c6c64c34cf7ed7e712a26e68ed5a41ee14705a9675ac131"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_DCQM_EXCLUDE_C01.abap",
+          "bytes": 3262,
+          "sha256": "3d525e132fac274d70a6f4aade474e29c3ee09eff768d8d38bca41cef3a84e21",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_QM",
+      "type": "PROG/P",
+      "tool": "GetProgram",
+      "args": {
+        "program_name": "ZPR_QM",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:57:59.345Z",
+      "raw": {
+        "file": "_mcp/ZPR_QM.json",
+        "bytes": 42009,
+        "sha256": "9407c9381fbf0cdd7a05a598de9c3ad33a0dbb3f91febb9caaa2d9d98d238808"
+      },
+      "artifacts": [
+        {
+          "file": "ZPR_QM.abap",
+          "bytes": 37141,
+          "sha256": "87c719dc6cf6d3e79ca53cece12c416595388200ca95a70a13b1d81a106f4f26",
+          "responseKey": "program_data"
+        }
+      ]
+    },
+    {
+      "id": "LZPR_COCKPITTOP",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "LZPR_COCKPITTOP"
+      },
+      "retrievedAt": "2026-10-26T10:58:14.478Z",
+      "raw": {
+        "file": "_mcp/LZPR_COCKPITTOP.json",
+        "bytes": 2180,
+        "sha256": "9b7a75fdec73ade03f9a813e6cfa7be235f255957fe78d71c554904feb95bd40"
+      },
+      "artifacts": [
+        {
+          "file": "LZPR_COCKPITTOP.abap",
+          "bytes": 1999,
+          "sha256": "0c45cd0ca3c9d7ec5da2234c98f0985cc2913192e85f76097c9ca2506a6691d6",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "LZPR_COCKPITO01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "LZPR_COCKPITO01"
+      },
+      "retrievedAt": "2026-10-26T10:58:17.398Z",
+      "raw": {
+        "file": "_mcp/LZPR_COCKPITO01.json",
+        "bytes": 12092,
+        "sha256": "e990892d0920219fcab90ad03079d639a87357a0f686aadc17941680758957a5"
+      },
+      "artifacts": [
+        {
+          "file": "LZPR_COCKPITO01.abap",
+          "bytes": 11326,
+          "sha256": "286a5daa6818ea51125e3c8adfcf7b92859ed7df38a33752d78c4208efec3dad",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "LZPR_COCKPITUXX",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "LZPR_COCKPITUXX"
+      },
+      "retrievedAt": "2026-10-26T10:58:19.394Z",
+      "raw": {
+        "file": "_mcp/LZPR_COCKPITUXX.json",
+        "bytes": 412,
+        "sha256": "45afde251ae713706638f8c01e1488f38c408f4488c69b73f67045a7ed5ba63b"
+      },
+      "artifacts": [
+        {
+          "file": "LZPR_COCKPITUXX.abap",
+          "bytes": 327,
+          "sha256": "a13d0be2b33d7b577f5da4a902cae9c01cb65075be85f39dab70e8eff55cc6d7",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "Z_PR_COCKPIT",
+      "type": "FUNC",
+      "tool": "GetFunctionModule",
+      "args": {
+        "function_group_name": "ZPR_COCKPIT",
+        "function_module_name": "Z_PR_COCKPIT",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:58:21.440Z",
+      "raw": {
+        "file": "_mcp/Z_PR_COCKPIT.json",
+        "bytes": 2313,
+        "sha256": "403735a023a6973b776b59d0411a6aa627a023ce11e242e0054c1b17cf6b63ad"
+      },
+      "artifacts": [
+        {
+          "file": "Z_PR_COCKPIT.abap",
+          "bytes": 1775,
+          "sha256": "7ff21756fdf82414ac96f4ac4a2a0dd6d27984bb836cedeea06936d200eaa439",
+          "responseKey": "function_module_data"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_QM_DATA",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_QM_DATA",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:58:24.100Z",
+      "raw": {
+        "file": "_mcp/ZCL_PR_QM_DATA.json",
+        "bytes": 29609,
+        "sha256": "7660e148f313503f4ec2e38ec119a0d4d725a5f666dad0f2b8b5418d246c32df"
+      },
+      "artifacts": [
+        {
+          "file": "ZCL_PR_QM_DATA.abap",
+          "bytes": 18550,
+          "sha256": "07fb1f6f5977929d4f3c89a0f3a13927ad5c14776bb849dab56225b96ed65c6f",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZCL_PR_QM_DATA.metadata.xml",
+          "bytes": 7547,
+          "sha256": "af7e72777be6982741051f4015157055dd194ab7d0f10df93f88f117d3f7b9c0"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_QM_RANDOM",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_QM_RANDOM",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:58:31.054Z",
+      "raw": {
+        "file": "_mcp/ZCL_PR_QM_RANDOM.json",
+        "bytes": 10338,
+        "sha256": "58528b33cd7dd4ded99c9b848d6cc739e6fc3284ed93ec26db10b1c9ee459168"
+      },
+      "artifacts": [
+        {
+          "file": "ZCL_PR_QM_RANDOM.abap",
+          "bytes": 1288,
+          "sha256": "18fb4d6312ce63d497ea44f8db22cea9bd6082386c74e76c9ee32e5a59cbc29b",
+          "responseKey": "source_code"
+        },
+        {
+          "file": "ZCL_PR_QM_RANDOM.metadata.xml",
+          "bytes": 7579,
+          "sha256": "95447152befcbbfd8bb23ae229c06a7e0325ec0e829d9826cd249fa8509d7034"
+        }
+      ]
+    },
+    {
+      "id": "ZIF_PR_QM_DATA",
+      "type": "INTF/OI",
+      "tool": "GetInterface",
+      "args": {
+        "interface_name": "ZIF_PR_QM_DATA",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:58:35.260Z",
+      "raw": {
+        "file": "_mcp/ZIF_PR_QM_DATA.json",
+        "bytes": 6783,
+        "sha256": "546ef6495e596e34f81e644b4b775c4dd540cf4c94ffcd3af19762b3e6e94ff1"
+      },
+      "artifacts": [
+        {
+          "file": "ZIF_PR_QM_DATA.abap",
+          "bytes": 5802,
+          "sha256": "4de0a81469a4b2e63ffeaa11a4d851e0db2cc4058d818e757ce94c5375266a7a",
+          "responseKey": "interface_data"
+        }
+      ]
+    },
+    {
+      "id": "ZIF_PR_QM_RANDOM",
+      "type": "INTF/OI",
+      "tool": "GetInterface",
+      "args": {
+        "interface_name": "ZIF_PR_QM_RANDOM",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:58:36.927Z",
+      "raw": {
+        "file": "_mcp/ZIF_PR_QM_RANDOM.json",
+        "bytes": 495,
+        "sha256": "fdabf53699568943044019557ea83cba7da349f7c23ad7e1b90cae881d5297f7"
+      },
+      "artifacts": [
+        {
+          "file": "ZIF_PR_QM_RANDOM.abap",
+          "bytes": 206,
+          "sha256": "49ffebc12160a3f86036859548ec717ca57a7a0f102f05aa3af33be14f3689c6",
+          "responseKey": "interface_data"
+        }
+      ]
+    },
+    {
+      "id": "ZIF_PR_INSPIRE_GW",
+      "type": "INTF/OI",
+      "tool": "GetInterface",
+      "args": {
+        "interface_name": "ZIF_PR_INSPIRE_GW",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-26T10:58:39.147Z",
+      "raw": {
+        "file": "_mcp/ZIF_PR_INSPIRE_GW.json",
+        "bytes": 5456,
+        "sha256": "ba7d27dfbcfd7fb5e83e8e4ec3216f44d89d406abf161524c8ec3e915bf87da0"
+      },
+      "artifacts": [
+        {
+          "file": "ZIF_PR_INSPIRE_GW.abap",
+          "bytes": 4641,
+          "sha256": "3c22a27472e93b904b585ec678f6ef64809f28f7bd60417689171364323da16c",
+          "responseKey": "interface_data"
+        }
+      ]
+    },
+    {
+      "id": "LZPR_COCKPITU01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "LZPR_COCKPITU01"
+      },
+      "retrievedAt": "2026-10-26T10:59:15.503Z",
+      "raw": {
+        "file": "_mcp/LZPR_COCKPITU01.json",
+        "bytes": 2158,
+        "sha256": "15626de34aa51026c262bdd2aaea04ae8b44e268b7404b486d4a16ff46d19fc2"
+      },
+      "artifacts": [
+        {
+          "file": "LZPR_COCKPITU01.abap",
+          "bytes": 1960,
+          "sha256": "b9f80e5f069871b89d9ef5f1bc964980108ff0e33a609914fa4fa1645e1da5cd",
+          "responseKey": "source_code"
+        }
+      ]
+    },
+    {
+      "id": "ZPRB_EMAIL_SLOG",
+      "type": "TTYP/DA",
+      "tool": "GetTypeInfo",
+      "args": {
+        "type_name": "ZPRB_EMAIL_SLOG",
+        "include_structure_fallback": false
+      },
+      "retrievedAt": "2026-10-26T10:59:18.176Z",
+      "raw": {
+        "file": "_mcp/ZPRB_EMAIL_SLOG.json",
+        "bytes": 5719,
+        "sha256": "ca86ef72b3aa42091150a93a1336db6b59690558bff2eb50f124fbf26be99f79"
+      },
+      "artifacts": [
+        {
+          "file": "ZPRB_EMAIL_SLOG.ttyp.json",
+          "bytes": 8288,
+          "sha256": "00e23e652fd15bdfb3bb5e25a2be22e512de79e1edf5ad40e79136bf571def3a",
+          "responseKey": null
+        }
+      ]
+    },
+    {
+      "id": "ZPRB_SLOG_EMAIL",
+      "type": "TTYP/DA",
+      "tool": "GetTypeInfo",
+      "args": {
+        "type_name": "ZPRB_SLOG_EMAIL",
+        "include_structure_fallback": false
+      },
+      "retrievedAt": "2026-10-26T10:59:20.172Z",
+      "raw": {
+        "file": "_mcp/ZPRB_SLOG_EMAIL.json",
+        "bytes": 5722,
+        "sha256": "6d87b74079c85f1f57babb42bcc751891650c0a27848314c14383c09f11b0022"
+      },
+      "artifacts": [
+        {
+          "file": "ZPRB_SLOG_EMAIL.ttyp.json",
+          "bytes": 8291,
+          "sha256": "6954d2552e6cb0251e20d53258c853c7b9b20dfa5b7166f9d6bfc8746e74937a",
+          "responseKey": null
+        }
+      ]
+    }
+  ],
+  "failure": null,
+  "finishedAt": "2026-10-26T11:00:33.439Z",
+  "validation": {
+    "allSavedHashesMatch": true,
+    "sourceMatchesSavedMcpResponse": true,
+    "verifiedFileCount": 90,
+    "problems": [],
+    "missingLocalIncludes": [],
+    "offlineVerifier": "../../04_ASSETS/mcp-export/verify-2026-10-26.cjs",
+    "entryPointLinksChecked": 91,
+    "entryPointBrokenLinks": 0,
+    "tableTypeVersions": {
+      "ZPRB_EMAIL_SLOG": "active",
+      "ZPRB_SLOG_EMAIL": "active"
+    }
+  },
+  "changesFrom20261022": [
+    {
+      "id": "ZPR_CREATE_STOCK",
+      "relation": "different"
+    },
+    {
+      "id": "ZPR_CLOSE_STOCK",
+      "relation": "different"
+    },
+    {
+      "id": "ZPR_DC_FRAME",
+      "relation": "different"
+    },
+    {
+      "id": "ZPR_DOC_STATUS",
+      "relation": "different"
+    },
+    {
+      "id": "ZCL_PR_STOCK",
+      "relation": "different"
+    },
+    {
+      "id": "ZCL_PR_LOG",
+      "relation": "different"
+    },
+    {
+      "id": "ZCL_PR_INSPIRE_GW",
+      "relation": "different"
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_O01",
+      "relation": "same"
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE",
+      "relation": "same"
+    },
+    {
+      "id": "ZPR_MESSAGEQUEUE_QUERY",
+      "relation": "same"
+    },
+    {
+      "id": "ZPR_DOC_RIP",
+      "relation": "same"
+    },
+    {
+      "id": "ZCL_PR_QM_SAMPLER",
+      "relation": "same"
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_I01",
+      "relation": "same"
+    },
+    {
+      "id": "ZPR_MQ_PROXY",
+      "relation": "different"
+    },
+    {
+      "id": "ZPR_MQ_DISPLAY",
+      "relation": "same"
+    },
+    {
+      "id": "ZPR_MQ_TESTS",
+      "relation": "same"
+    },
+    {
+      "id": "ZPR_STOCK_REPORT_O01",
+      "relation": "different"
+    },
+    {
+      "id": "ZPR_STOCK_REPORT_I01",
+      "relation": "different"
+    },
+    {
+      "id": "ZPR_DOC_RIP_O01",
+      "relation": "same"
+    },
+    {
+      "id": "ZPR_DOC_RIP_I01",
+      "relation": "same"
+    },
+    {
+      "id": "ZPRT_DCQMLT",
+      "relation": "same"
+    },
+    {
+      "id": "ZPRT_DCQM",
+      "relation": "different"
+    },
+    {
+      "id": "ZPRT_EMAIL_SLOG",
+      "relation": "same"
+    },
+    {
+      "id": "ZPRC_DCCODE",
+      "relation": "same"
+    },
+    {
+      "id": "ZPRS_DCQM_REPORT",
+      "relation": "same"
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_C01",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "ZPR_QM",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "LZPR_COCKPITTOP",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "LZPR_COCKPITO01",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "LZPR_COCKPITUXX",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "Z_PR_COCKPIT",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "ZCL_PR_QM_DATA",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "ZCL_PR_QM_RANDOM",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "ZIF_PR_QM_DATA",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "ZIF_PR_QM_RANDOM",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "ZIF_PR_INSPIRE_GW",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "LZPR_COCKPITU01",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "ZPRB_EMAIL_SLOG",
+      "relation": "new_in_snapshot"
+    },
+    {
+      "id": "ZPRB_SLOG_EMAIL",
+      "relation": "new_in_snapshot"
+    }
+  ],
+  "localSaveApprovalRejection": {
+    "action": "Large tool response local serialization",
+    "reason": "64000-byte strict auto-review limit",
+    "resolved": "Response saved in smaller local chunks; no SAP rerequest."
+  }
+}

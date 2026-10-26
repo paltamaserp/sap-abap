@@ -1,0 +1,6 @@
+{
+  "kind": "class",
+  "source": "\r\n@MaxLength:132\r\n901=Inspire DCQMCompleted hívás kezdete:\r\n\r\n@MaxLength:132\r\n902=Inspire DCQMCompleted válasz megérkezett:\r\n\r\n@MaxLength:132\r\n903=Inspire DCQMCompleted technikai/alkalmazási hiba:\r\n\r\n@MaxLength:132\r\n904=Inspire DCQMCompleted időtartama másodpercben:\r\n",
+  "expected_before": "",
+  "transport": "DHCK906298"
+}

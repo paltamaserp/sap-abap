@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-26",
+  "status": "WIP",
+  "basis": "MCP-export 2026-10-26",
+  "note": "Text comparison only. A difference does not prove an outstanding requirement; prior patches must not be applied automatically.",
+  "files": [
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/LZPR_COCKPITO01.abap",
+      "exportFile": "LZPR_COCKPITO01.abap",
+      "relation": "different"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/LZPR_COCKPITTOP.abap",
+      "exportFile": "LZPR_COCKPITTOP.abap",
+      "relation": "same_ignoring_line_endings_and_trailing_whitespace"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/ZPR_COCKPIT_0100.flow.abap",
+      "exportFile": null,
+      "relation": "separate_candidate_or_no_matching_export_filename"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/ZPR_COCKPIT_1010.flow.abap",
+      "exportFile": null,
+      "relation": "separate_candidate_or_no_matching_export_filename"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/ZPR_DCQM_EXCLUDE.abap",
+      "exportFile": "ZPR_DCQM_EXCLUDE.abap",
+      "relation": "different"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/ZPR_DCQM_EXCLUDE_C01.abap",
+      "exportFile": "ZPR_DCQM_EXCLUDE_C01.abap",
+      "relation": "different"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/ZPR_DCQM_EXCLUDE_I01.abap",
+      "exportFile": "ZPR_DCQM_EXCLUDE_I01.abap",
+      "relation": "same_ignoring_line_endings_and_trailing_whitespace"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/ZPR_DCQM_EXCLUDE_O01.abap",
+      "exportFile": "ZPR_DCQM_EXCLUDE_O01.abap",
+      "relation": "same_ignoring_line_endings_and_trailing_whitespace"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/ZPR_QM.abap",
+      "exportFile": "ZPR_QM.abap",
+      "relation": "different"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-16_cockpit_WIP/Z_PR_COCKPIT.abap",
+      "exportFile": "Z_PR_COCKPIT.abap",
+      "relation": "different"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-21_release-stock-new-riport_WIP/ZPR_CLOSE_STOCK.abap",
+      "exportFile": "ZPR_CLOSE_STOCK.abap",
+      "relation": "different"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-22_close-stock-naplo_WIP/sap-atvezetes-2026-10-22/ZCL_PR_STOCK-active-before.abap",
+      "exportFile": null,
+      "relation": "separate_candidate_or_no_matching_export_filename"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-22_close-stock-naplo_WIP/sap-atvezetes-2026-10-22/ZCL_PR_STOCK-inspire-javaslat.abap",
+      "exportFile": null,
+      "relation": "separate_candidate_or_no_matching_export_filename"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-22_close-stock-naplo_WIP/sap-atvezetes-2026-10-22/ZPR_CLOSE_STOCK-active-before.abap",
+      "exportFile": null,
+      "relation": "separate_candidate_or_no_matching_export_filename"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-22_close-stock-naplo_WIP/sap-atvezetes-2026-10-22/ZPR_CLOSE_STOCK-DHC100-javaslat.abap",
+      "exportFile": null,
+      "relation": "separate_candidate_or_no_matching_export_filename"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-22_close-stock-naplo_WIP/ZPR_CLOSE_STOCK.abap",
+      "exportFile": "ZPR_CLOSE_STOCK.abap",
+      "relation": "different"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-22_dc-frame-atvitel_WIP/ZPR_DC_FRAME.abap",
+      "exportFile": "ZPR_DC_FRAME.abap",
+      "relation": "different"
+    },
+    {
+      "draft": "03_DRAFTS/2026-10-22_doc-status-all-delivered_WIP/ZPR_DOC_STATUS.abap",
+      "exportFile": "ZPR_DOC_STATUS.abap",
+      "relation": "different"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+@EndUserText.label : 'Dokumentumok tömeges nyomtatás'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zprt_dcqm {
+
+  key mandt      : mandt not null;
+  key doc_no     : zprd_doc_no not null;
+  envelope       : zprd_envelope_id;
+  pymet          : pymet_kk;
+  doc_cat        : zprd_doc_cat;
+  @Semantics.amount.currencyCode : 'zprt_dcqm.waers'
+  amnt           : betrw_kk;
+  waers          : blwae_kk;
+  duedate        : faedn_kk;
+  bankaccountnum : zprd_banknum;
+  giro           : zecad_giro;
+  name1          : ad_name1;
+  sysid          : sysysid;
+  land1          : land1;
+  ab             : abzeitsch;
+  bis            : biszeitsch;
+  tariftyp       : tariftyp;
+  aklasse        : aklasse;
+  zbizcat        : /sapce/iu_bbhubizcat;
+  mahns          : mahns_kk;
+  mahnv          : mahnv_kk;
+  form           : zprd_inspire_formname;
+  cotyp          : cotyp_kk;
+  package_id     : zprd_package_id;
+  cheqnumbr      : zprd_pr_cheqnumbr;
+  block_dc       : zprd_pr_block_dc;
+  block_qm       : zprd_pr_block_qm;
+  cokey          : cokey_kk;
+  regmailnumber  : zprd_regmailnumber;
+  opbuk_pr       : zprd_pr_opbukpr;
+  aktyp          : aktyp_kk;
+  laufd          : laufd_kk;
+  laufi          : laufi_kk;
+  prd_stock_id   : zprd_stock_id;
+  prdspool       : zedmd_prdspool;
+  prdfile        : zedmd_prdfile;
+  counter        : zprd_pr_counter;
+  include zprs_create_data;
+  include zprs_update_data;
+
+}

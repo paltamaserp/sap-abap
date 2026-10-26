@@ -1,0 +1,7 @@
+ID	Szöveg
+201	A stockhoz nincs dokumentum; AD státusz nem állítható.
+202	A stock CL maradt. D nélküli dokumentumok:
+203	Összes dokumentum:
+204	Minden dokumentum megkapta a D státuszt; a stock AD státuszra állítva.
+205	Az AD státusz nem menthető; a stock már nem CL/lezárt, vagy hiányzik.
+206	Az AD státusz mentésekor update task hiba történt; ellenőrizze az SM13 naplót.

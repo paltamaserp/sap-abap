@@ -1,0 +1,1073 @@
+{
+  "date": "2026-10-22",
+  "timezone": "Europe/Budapest",
+  "status": "WIP",
+  "complete": false,
+  "plannedObjectCount": 28,
+  "downloadedObjectCount": 25,
+  "startedAt": "2026-10-22T15:06:16.829Z",
+  "stoppedAt": "2026-10-22T15:06:28.457Z",
+  "connectionStop": {
+    "operation": "GetTypeInfo:ZPRB_EMAIL_SLOG",
+    "at": "2026-10-22T15:06:28.457Z",
+    "kind": "http",
+    "status": 404
+  },
+  "groups": {
+    "PROG/P": 7,
+    "CLAS/OC": 4,
+    "PROG/I": 9,
+    "TABL/DT": 4,
+    "TABL/DS": 1
+  },
+  "objects": [
+    {
+      "id": "ZPR_CREATE_STOCK",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_CREATE_STOCK",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:20.583Z",
+      "file": "_mcp\\ZPR_CREATE_STOCK.json",
+      "bytes": 38884,
+      "sha256": "1f044f9613401bef09b0cb865bdcfdca6b057dc587c8d1e3a3f84c1f05d97863",
+      "artifacts": [
+        {
+          "file": "ZPR_CREATE_STOCK.abap",
+          "bytes": 33700,
+          "sha256": "8cce708063dfbfad78c9388eaad11ca629314bcab4b061285201c427702f7d19"
+        },
+        {
+          "file": "ZPR_CREATE_STOCK.metadata.xml",
+          "bytes": 3157,
+          "sha256": "85a1286eb0417e5a3243ad929c059ea992cc65e13cf7d015ec45219f59b49629"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_CLOSE_STOCK",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_CLOSE_STOCK",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:21.049Z",
+      "file": "_mcp\\ZPR_CLOSE_STOCK.json",
+      "bytes": 49035,
+      "sha256": "5461f373ef0a044ddd2bee18fba0a819fbd3fe6abe4f441ecf6720ec25b3ab93",
+      "artifacts": [
+        {
+          "file": "ZPR_CLOSE_STOCK.abap",
+          "bytes": 42816,
+          "sha256": "2ba1e7dcda704b5a2a7c9474508f5af06a74b4464c8da3dcb7785e9a923e06e8"
+        },
+        {
+          "file": "ZPR_CLOSE_STOCK.metadata.xml",
+          "bytes": 3303,
+          "sha256": "ac37b9beca779bc6030fa81941bb85351f7af4a8f2cee93f09ed347ba553e29f"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DC_FRAME",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DC_FRAME",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:21.479Z",
+      "file": "_mcp\\ZPR_DC_FRAME.json",
+      "bytes": 17276,
+      "sha256": "f79782b8cb0c0c15414935b59dd177d5880692d0bd234b40f8c224dfd7b394e3",
+      "artifacts": [
+        {
+          "file": "ZPR_DC_FRAME.abap",
+          "bytes": 13179,
+          "sha256": "eac7f8ca2f5ea37ff9145a62c2e4784d03c5b3f059e2878c108b911f6c82a868"
+        },
+        {
+          "file": "ZPR_DC_FRAME.metadata.xml",
+          "bytes": 3076,
+          "sha256": "6adbda3554508eb0ca201e49a7eafdfc5c13427b2f4d1b857839da6918992082"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DOC_STATUS",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DOC_STATUS",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:21.921Z",
+      "file": "_mcp\\ZPR_DOC_STATUS.json",
+      "bytes": 51636,
+      "sha256": "bf4f585161486046dc929239502e285a3aa6aa1933a3cd1e3493b4f4c6ab96ab",
+      "artifacts": [
+        {
+          "file": "ZPR_DOC_STATUS.abap",
+          "bytes": 45766,
+          "sha256": "24aab1c6fd440818776c43a4e40267e4765af8efeaf4ec685d2bcef91dc13131"
+        },
+        {
+          "file": "ZPR_DOC_STATUS.metadata.xml",
+          "bytes": 3105,
+          "sha256": "2c9fb8ad58fb8c5642199e860d4334dd759f5a54aff86ca591c429b31375ce0e"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_STOCK",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_STOCK",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:22.450Z",
+      "file": "_mcp\\ZCL_PR_STOCK.json",
+      "bytes": 22386,
+      "sha256": "92652b1243e4585c58d942ec5ffaed7db982792ab9fb36c7eb1b106f5313aed1",
+      "artifacts": [
+        {
+          "file": "ZCL_PR_STOCK.abap",
+          "bytes": 12424,
+          "sha256": "69c329ee23dda2c631784ba4f61d1a74633b31a3a1ebe4c8a18b8a9bd4f1cff5"
+        },
+        {
+          "file": "ZCL_PR_STOCK.metadata.xml",
+          "bytes": 8685,
+          "sha256": "c5ff47792e09657ac7f972963caa311c103b05c11875fab316b01e222029bdd7"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_LOG",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_LOG",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:22.891Z",
+      "file": "_mcp\\ZCL_PR_LOG.json",
+      "bytes": 14509,
+      "sha256": "38fc975685f89f25731eebc9911fe84fae76e3c5b1af91030873d4ab834573c4",
+      "artifacts": [
+        {
+          "file": "ZCL_PR_LOG.abap",
+          "bytes": 4908,
+          "sha256": "3afbaa7fe8ea0cca1601cf5ad64348509f769b32ad00d17d2e48b77a0aa337f8"
+        },
+        {
+          "file": "ZCL_PR_LOG.metadata.xml",
+          "bytes": 8663,
+          "sha256": "9a6e698557afa7f8544f5e851d0201426acf2b78bfa2888317141cbdcbe0b61a"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_INSPIRE_GW",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_INSPIRE_GW",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:23.340Z",
+      "file": "_mcp\\ZCL_PR_INSPIRE_GW.json",
+      "bytes": 16624,
+      "sha256": "3cca4506485891143ddd4bab3c229c4716fdac9ba0573fe4baed1d837dc629f5",
+      "artifacts": [
+        {
+          "file": "ZCL_PR_INSPIRE_GW.abap",
+          "bytes": 7944,
+          "sha256": "d48b63a36df4275b013d7af97554ef3cd6d72604e5288acc57ff47f60b05a19a"
+        },
+        {
+          "file": "ZCL_PR_INSPIRE_GW.metadata.xml",
+          "bytes": 7815,
+          "sha256": "3c5f27ae24c94a4cc2dcd1f731c53e8bc993d959378e1fed458bf411740033c9"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_O01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DCQM_EXCLUDE_O01"
+      },
+      "retrievedAt": "2026-10-22T15:06:23.552Z",
+      "file": "_mcp\\ZPR_DCQM_EXCLUDE_O01.json",
+      "bytes": 1150,
+      "sha256": "7cf9ca7cdf29f38a6edf2d9eabb9be6fc769af7cdd3b58992ddcfb8621b2e88f",
+      "artifacts": [
+        {
+          "file": "ZPR_DCQM_EXCLUDE_O01.abap",
+          "bytes": 1077,
+          "sha256": "a92b566a2c9ae68f293227a9b6850955266c85aa4aff070636d500beed09b032"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DCQM_EXCLUDE",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:23.980Z",
+      "file": "_mcp\\ZPR_DCQM_EXCLUDE.json",
+      "bytes": 62335,
+      "sha256": "68c51c63d2436d5a81ecc414e53a6282dac5cffde74d885b529a7ea92d0f6cdf",
+      "artifacts": [
+        {
+          "file": "ZPR_DCQM_EXCLUDE.abap",
+          "bytes": 55612,
+          "sha256": "77cfc4f11e7c9013121efdec539ff338d0e861c1273ddda648c7a04fe61eafa5"
+        },
+        {
+          "file": "ZPR_DCQM_EXCLUDE.metadata.xml",
+          "bytes": 3154,
+          "sha256": "1c42f606fc4a45e23ad70ea66a67bb6c0bfe0cc9cb4a9fe3077b9a3d47108767"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_MESSAGEQUEUE_QUERY",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_MESSAGEQUEUE_QUERY",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:24.416Z",
+      "file": "_mcp\\ZPR_MESSAGEQUEUE_QUERY.json",
+      "bytes": 17893,
+      "sha256": "dbb0616de75f5ae07100476fa9004c03f083f7fff976fbc3308108b4d9d33647",
+      "artifacts": [
+        {
+          "file": "ZPR_MESSAGEQUEUE_QUERY.abap",
+          "bytes": 13650,
+          "sha256": "c8b83f3a0f31e5cbdbd70e37023f3be8fa4b957b838af15792de99ce4f423dbc"
+        },
+        {
+          "file": "ZPR_MESSAGEQUEUE_QUERY.metadata.xml",
+          "bytes": 3158,
+          "sha256": "174cb990b0e55221a336580424a431ab83d5be4091f97920a96e615ea6634c52"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DOC_RIP",
+      "type": "PROG/P",
+      "tool": "ReadProgram",
+      "args": {
+        "program_name": "ZPR_DOC_RIP",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:24.836Z",
+      "file": "_mcp\\ZPR_DOC_RIP.json",
+      "bytes": 38688,
+      "sha256": "47cf273d0e94341f4ada622dde7e275a537628e8af5635f9ed776c913b747b4e",
+      "artifacts": [
+        {
+          "file": "ZPR_DOC_RIP.abap",
+          "bytes": 33324,
+          "sha256": "d2d131abc1af5149348450e044b1c778279e2e4a88aac841b8c7b4cf83fc5dac"
+        },
+        {
+          "file": "ZPR_DOC_RIP.metadata.xml",
+          "bytes": 3066,
+          "sha256": "f4a085e66d36d4affd54080afc6d00c98cf5b2df51130e15e8b9e2655185da66"
+        }
+      ]
+    },
+    {
+      "id": "ZCL_PR_QM_SAMPLER",
+      "type": "CLAS/OC",
+      "tool": "ReadClass",
+      "args": {
+        "class_name": "ZCL_PR_QM_SAMPLER",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:25.291Z",
+      "file": "_mcp\\ZCL_PR_QM_SAMPLER.json",
+      "bytes": 27740,
+      "sha256": "75139b4e43ed78f9028ef93cd9eeebc94b64f49a7d5ac6b3bc3f958b47d4f8e3",
+      "artifacts": [
+        {
+          "file": "ZCL_PR_QM_SAMPLER.abap",
+          "bytes": 17586,
+          "sha256": "6ee1228e8a74a1d4c48b836f24c6b1192e93da6bb88bb5f18651fa3bf0c9928e"
+        },
+        {
+          "file": "ZCL_PR_QM_SAMPLER.metadata.xml",
+          "bytes": 8658,
+          "sha256": "6c2870628744c36a50414f0971eb5e445f4196e20d80c3afbce9e55fc27e18b3"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DCQM_EXCLUDE_I01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DCQM_EXCLUDE_I01"
+      },
+      "retrievedAt": "2026-10-22T15:06:25.540Z",
+      "file": "_mcp\\ZPR_DCQM_EXCLUDE_I01.json",
+      "bytes": 1098,
+      "sha256": "6617450dccbec11c5e9023137a384cc74f1dadfaaa7305b2573c8981e8f12075",
+      "artifacts": [
+        {
+          "file": "ZPR_DCQM_EXCLUDE_I01.abap",
+          "bytes": 1035,
+          "sha256": "865d462805ccc69259f504871d758fceaf5d1a6755857a257da2029290ba17f3"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_MQ_PROXY",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_MQ_PROXY"
+      },
+      "retrievedAt": "2026-10-22T15:06:25.754Z",
+      "file": "_mcp\\ZPR_MQ_PROXY.json",
+      "bytes": 4430,
+      "sha256": "c9ff338f04bdc4978caa5c99cd3bb1174746726e58086fdd66338ed4e0798108",
+      "artifacts": [
+        {
+          "file": "ZPR_MQ_PROXY.abap",
+          "bytes": 4203,
+          "sha256": "24542c2fc71f241f2ed28e6781bc0dbda57693b877afe78ba83330494b2e19c1"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_MQ_DISPLAY",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_MQ_DISPLAY"
+      },
+      "retrievedAt": "2026-10-22T15:06:25.967Z",
+      "file": "_mcp\\ZPR_MQ_DISPLAY.json",
+      "bytes": 3516,
+      "sha256": "a89ac354af68fcfe40135cc40640ebdb2c673e70d19a9fce35ef4182bcf767f4",
+      "artifacts": [
+        {
+          "file": "ZPR_MQ_DISPLAY.abap",
+          "bytes": 3335,
+          "sha256": "832e7d9cd7e3627cc92a21441de68e6eaad2f27f2829083aa1435c5020291f55"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_MQ_TESTS",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_MQ_TESTS"
+      },
+      "retrievedAt": "2026-10-22T15:06:26.176Z",
+      "file": "_mcp\\ZPR_MQ_TESTS.json",
+      "bytes": 6124,
+      "sha256": "9b709c03517e08062ff708d852a2995aecbef9f4ab5ecf841ccd9708a3af798a",
+      "artifacts": [
+        {
+          "file": "ZPR_MQ_TESTS.abap",
+          "bytes": 5819,
+          "sha256": "07cee0b63caf78957e85ac96b945bb101fa8063fbb0a9e807dd446dcc0e99b84"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_STOCK_REPORT_O01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_STOCK_REPORT_O01"
+      },
+      "retrievedAt": "2026-10-22T15:06:26.409Z",
+      "file": "_mcp\\ZPR_STOCK_REPORT_O01.json",
+      "bytes": 1178,
+      "sha256": "b89e6fc070d41d4977991dd7b97336285da7d746766d8a1436e890ce4243d987",
+      "artifacts": [
+        {
+          "file": "ZPR_STOCK_REPORT_O01.abap",
+          "bytes": 1105,
+          "sha256": "ccc332b86554595dfad8d3d1db86745574bce145fb386e3ff2fe411b8c82ffc8"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_STOCK_REPORT_I01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_STOCK_REPORT_I01"
+      },
+      "retrievedAt": "2026-10-22T15:06:26.619Z",
+      "file": "_mcp\\ZPR_STOCK_REPORT_I01.json",
+      "bytes": 1047,
+      "sha256": "ac654b3cf36f90da7f565402742d925ea15c82f1daaab3fedda44b55372cbb66",
+      "artifacts": [
+        {
+          "file": "ZPR_STOCK_REPORT_I01.abap",
+          "bytes": 984,
+          "sha256": "259eb7c633a60e843b169ba506d500d821230781b6788f400d10240364b339d8"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DOC_RIP_O01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DOC_RIP_O01"
+      },
+      "retrievedAt": "2026-10-22T15:06:26.827Z",
+      "file": "_mcp\\ZPR_DOC_RIP_O01.json",
+      "bytes": 1030,
+      "sha256": "30266f95cee06f9507823c87a898553dd947ffd151581d83d44394fed90f33e3",
+      "artifacts": [
+        {
+          "file": "ZPR_DOC_RIP_O01.abap",
+          "bytes": 964,
+          "sha256": "61c01506417247c9d0a0c9cbce3b48d7a823265515880393b8edaad34111b9fa"
+        }
+      ]
+    },
+    {
+      "id": "ZPR_DOC_RIP_I01",
+      "type": "PROG/I",
+      "tool": "GetInclude",
+      "args": {
+        "include_name": "ZPR_DOC_RIP_I01"
+      },
+      "retrievedAt": "2026-10-22T15:06:27.042Z",
+      "file": "_mcp\\ZPR_DOC_RIP_I01.json",
+      "bytes": 714,
+      "sha256": "e242624c4af3bedb90c55bbc1d29f7b4dc098a1ec713ab6e27a454d8a33b8e74",
+      "artifacts": [
+        {
+          "file": "ZPR_DOC_RIP_I01.abap",
+          "bytes": 662,
+          "sha256": "87fc378a8912a798b797189c2860605e176ed47dfb1a2dd3615211a19a413a0f"
+        }
+      ]
+    },
+    {
+      "id": "ZPRT_DCQMLT",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRT_DCQMLT",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:27.277Z",
+      "file": "_mcp\\ZPRT_DCQMLT.json",
+      "bytes": 587,
+      "sha256": "dc4ed27ffa859447f116302cbe0cd0b920d6488efda898166b8f21d0f60eda9e",
+      "artifacts": [
+        {
+          "file": "ZPRT_DCQMLT.table",
+          "bytes": 439,
+          "sha256": "7df3284c99d56e6852b5ce11d25250b54a6926abc46f53b96843aeabfeda746d"
+        }
+      ]
+    },
+    {
+      "id": "ZPRT_DCQM",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRT_DCQM",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:27.515Z",
+      "file": "_mcp\\ZPRT_DCQM.json",
+      "bytes": 1715,
+      "sha256": "4b113b10eb70c7d32d1d46667e7ad38ced6c7e8b3f7291ab2f3f3d5d14597a24",
+      "artifacts": [
+        {
+          "file": "ZPRT_DCQM.table",
+          "bytes": 1534,
+          "sha256": "2c7973db61d9a510c3abe057eb78fe501895f967dfcff4773f96db4c783cac74"
+        }
+      ]
+    },
+    {
+      "id": "ZPRT_EMAIL_SLOG",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRT_EMAIL_SLOG",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:27.745Z",
+      "file": "_mcp\\ZPRT_EMAIL_SLOG.json",
+      "bytes": 820,
+      "sha256": "df5b3263d69529441135fd301b8927f695d6ac0c16f260d15d7789f32eb569d8",
+      "artifacts": [
+        {
+          "file": "ZPRT_EMAIL_SLOG.table",
+          "bytes": 663,
+          "sha256": "2de281c0eb66a1b6069af20085e71a951b382c588aed21617040f67dbe601259"
+        }
+      ]
+    },
+    {
+      "id": "ZPRC_DCCODE",
+      "type": "TABL/DT",
+      "tool": "GetTable",
+      "args": {
+        "table_name": "ZPRC_DCCODE",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:27.982Z",
+      "file": "_mcp\\ZPRC_DCCODE.json",
+      "bytes": 567,
+      "sha256": "034cf86ddd8c5b4b0414e506bafdb47212932413d33fc9565015c3b82e782686",
+      "artifacts": [
+        {
+          "file": "ZPRC_DCCODE.table",
+          "bytes": 418,
+          "sha256": "d41bb5f269b59b4dfa8e45a6d921bbac9e9b5d7b59af1d160f07857cd152366a"
+        }
+      ]
+    },
+    {
+      "id": "ZPRS_DCQM_REPORT",
+      "type": "TABL/DS",
+      "tool": "GetStructure",
+      "args": {
+        "structure_name": "ZPRS_DCQM_REPORT",
+        "version": "active"
+      },
+      "retrievedAt": "2026-10-22T15:06:28.252Z",
+      "file": "_mcp\\ZPRS_DCQM_REPORT.json",
+      "bytes": 1742,
+      "sha256": "8581aafa55a7cee3d2cb5d0abd62117db1b82f98d6d1ef618bd0379f34e81976",
+      "artifacts": [
+        {
+          "file": "ZPRS_DCQM_REPORT.structure",
+          "bytes": 1546,
+          "sha256": "628957152f1d46e111b72319aef3c21cb56088ac06d3811ab3c1e40495e0cd1f"
+        }
+      ]
+    }
+  ],
+  "missing": [
+    {
+      "name": "ZPRB_EMAIL_SLOG",
+      "type": "TTYP/DA",
+      "state": "request_failed"
+    },
+    {
+      "name": "ZPRB_SLOG_EMAIL",
+      "type": "TTYP/DA",
+      "state": "not_requested_after_stop"
+    },
+    {
+      "name": "ZPR_DCQM_EXCLUDE_C01",
+      "type": "PROG/I",
+      "state": "not_requested_after_stop"
+    }
+  ],
+  "missingIncludes": [
+    "ZPR_DCQM_EXCLUDE_C01"
+  ],
+  "changes": [
+    {
+      "name": "ZPR_CREATE_STOCK",
+      "relationToPreviousLocalFile": "different"
+    },
+    {
+      "name": "ZPR_CLOSE_STOCK",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_DC_FRAME",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_DOC_STATUS",
+      "relationToPreviousLocalFile": "different"
+    },
+    {
+      "name": "ZCL_PR_STOCK",
+      "relationToPreviousLocalFile": "different"
+    },
+    {
+      "name": "ZCL_PR_LOG",
+      "relationToPreviousLocalFile": "new_in_snapshot"
+    },
+    {
+      "name": "ZCL_PR_INSPIRE_GW",
+      "relationToPreviousLocalFile": "new_in_snapshot"
+    },
+    {
+      "name": "ZPR_DCQM_EXCLUDE_O01",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_DCQM_EXCLUDE",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_MESSAGEQUEUE_QUERY",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_DOC_RIP",
+      "relationToPreviousLocalFile": "different"
+    },
+    {
+      "name": "ZCL_PR_QM_SAMPLER",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_DCQM_EXCLUDE_I01",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_MQ_PROXY",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_MQ_DISPLAY",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_MQ_TESTS",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_STOCK_REPORT_O01",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_STOCK_REPORT_I01",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_DOC_RIP_O01",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPR_DOC_RIP_I01",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPRT_DCQMLT",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPRT_DCQM",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPRT_EMAIL_SLOG",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPRC_DCCODE",
+      "relationToPreviousLocalFile": "same"
+    },
+    {
+      "name": "ZPRS_DCQM_REPORT",
+      "relationToPreviousLocalFile": "same"
+    }
+  ],
+  "verifiedFiles": [
+    {
+      "file": "_mcp\\ZPR_CREATE_STOCK.json",
+      "bytes": 38884,
+      "sha256": "1f044f9613401bef09b0cb865bdcfdca6b057dc587c8d1e3a3f84c1f05d97863",
+      "verified": true
+    },
+    {
+      "file": "ZPR_CREATE_STOCK.abap",
+      "bytes": 33700,
+      "sha256": "8cce708063dfbfad78c9388eaad11ca629314bcab4b061285201c427702f7d19",
+      "verified": true
+    },
+    {
+      "file": "ZPR_CREATE_STOCK.metadata.xml",
+      "bytes": 3157,
+      "sha256": "85a1286eb0417e5a3243ad929c059ea992cc65e13cf7d015ec45219f59b49629",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_CLOSE_STOCK.json",
+      "bytes": 49035,
+      "sha256": "5461f373ef0a044ddd2bee18fba0a819fbd3fe6abe4f441ecf6720ec25b3ab93",
+      "verified": true
+    },
+    {
+      "file": "ZPR_CLOSE_STOCK.abap",
+      "bytes": 42816,
+      "sha256": "2ba1e7dcda704b5a2a7c9474508f5af06a74b4464c8da3dcb7785e9a923e06e8",
+      "verified": true
+    },
+    {
+      "file": "ZPR_CLOSE_STOCK.metadata.xml",
+      "bytes": 3303,
+      "sha256": "ac37b9beca779bc6030fa81941bb85351f7af4a8f2cee93f09ed347ba553e29f",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_DC_FRAME.json",
+      "bytes": 17276,
+      "sha256": "f79782b8cb0c0c15414935b59dd177d5880692d0bd234b40f8c224dfd7b394e3",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DC_FRAME.abap",
+      "bytes": 13179,
+      "sha256": "eac7f8ca2f5ea37ff9145a62c2e4784d03c5b3f059e2878c108b911f6c82a868",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DC_FRAME.metadata.xml",
+      "bytes": 3076,
+      "sha256": "6adbda3554508eb0ca201e49a7eafdfc5c13427b2f4d1b857839da6918992082",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_DOC_STATUS.json",
+      "bytes": 51636,
+      "sha256": "bf4f585161486046dc929239502e285a3aa6aa1933a3cd1e3493b4f4c6ab96ab",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DOC_STATUS.abap",
+      "bytes": 45766,
+      "sha256": "24aab1c6fd440818776c43a4e40267e4765af8efeaf4ec685d2bcef91dc13131",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DOC_STATUS.metadata.xml",
+      "bytes": 3105,
+      "sha256": "2c9fb8ad58fb8c5642199e860d4334dd759f5a54aff86ca591c429b31375ce0e",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZCL_PR_STOCK.json",
+      "bytes": 22386,
+      "sha256": "92652b1243e4585c58d942ec5ffaed7db982792ab9fb36c7eb1b106f5313aed1",
+      "verified": true
+    },
+    {
+      "file": "ZCL_PR_STOCK.abap",
+      "bytes": 12424,
+      "sha256": "69c329ee23dda2c631784ba4f61d1a74633b31a3a1ebe4c8a18b8a9bd4f1cff5",
+      "verified": true
+    },
+    {
+      "file": "ZCL_PR_STOCK.metadata.xml",
+      "bytes": 8685,
+      "sha256": "c5ff47792e09657ac7f972963caa311c103b05c11875fab316b01e222029bdd7",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZCL_PR_LOG.json",
+      "bytes": 14509,
+      "sha256": "38fc975685f89f25731eebc9911fe84fae76e3c5b1af91030873d4ab834573c4",
+      "verified": true
+    },
+    {
+      "file": "ZCL_PR_LOG.abap",
+      "bytes": 4908,
+      "sha256": "3afbaa7fe8ea0cca1601cf5ad64348509f769b32ad00d17d2e48b77a0aa337f8",
+      "verified": true
+    },
+    {
+      "file": "ZCL_PR_LOG.metadata.xml",
+      "bytes": 8663,
+      "sha256": "9a6e698557afa7f8544f5e851d0201426acf2b78bfa2888317141cbdcbe0b61a",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZCL_PR_INSPIRE_GW.json",
+      "bytes": 16624,
+      "sha256": "3cca4506485891143ddd4bab3c229c4716fdac9ba0573fe4baed1d837dc629f5",
+      "verified": true
+    },
+    {
+      "file": "ZCL_PR_INSPIRE_GW.abap",
+      "bytes": 7944,
+      "sha256": "d48b63a36df4275b013d7af97554ef3cd6d72604e5288acc57ff47f60b05a19a",
+      "verified": true
+    },
+    {
+      "file": "ZCL_PR_INSPIRE_GW.metadata.xml",
+      "bytes": 7815,
+      "sha256": "3c5f27ae24c94a4cc2dcd1f731c53e8bc993d959378e1fed458bf411740033c9",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_DCQM_EXCLUDE_O01.json",
+      "bytes": 1150,
+      "sha256": "7cf9ca7cdf29f38a6edf2d9eabb9be6fc769af7cdd3b58992ddcfb8621b2e88f",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DCQM_EXCLUDE_O01.abap",
+      "bytes": 1077,
+      "sha256": "a92b566a2c9ae68f293227a9b6850955266c85aa4aff070636d500beed09b032",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_DCQM_EXCLUDE.json",
+      "bytes": 62335,
+      "sha256": "68c51c63d2436d5a81ecc414e53a6282dac5cffde74d885b529a7ea92d0f6cdf",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DCQM_EXCLUDE.abap",
+      "bytes": 55612,
+      "sha256": "77cfc4f11e7c9013121efdec539ff338d0e861c1273ddda648c7a04fe61eafa5",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DCQM_EXCLUDE.metadata.xml",
+      "bytes": 3154,
+      "sha256": "1c42f606fc4a45e23ad70ea66a67bb6c0bfe0cc9cb4a9fe3077b9a3d47108767",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_MESSAGEQUEUE_QUERY.json",
+      "bytes": 17893,
+      "sha256": "dbb0616de75f5ae07100476fa9004c03f083f7fff976fbc3308108b4d9d33647",
+      "verified": true
+    },
+    {
+      "file": "ZPR_MESSAGEQUEUE_QUERY.abap",
+      "bytes": 13650,
+      "sha256": "c8b83f3a0f31e5cbdbd70e37023f3be8fa4b957b838af15792de99ce4f423dbc",
+      "verified": true
+    },
+    {
+      "file": "ZPR_MESSAGEQUEUE_QUERY.metadata.xml",
+      "bytes": 3158,
+      "sha256": "174cb990b0e55221a336580424a431ab83d5be4091f97920a96e615ea6634c52",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_DOC_RIP.json",
+      "bytes": 38688,
+      "sha256": "47cf273d0e94341f4ada622dde7e275a537628e8af5635f9ed776c913b747b4e",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DOC_RIP.abap",
+      "bytes": 33324,
+      "sha256": "d2d131abc1af5149348450e044b1c778279e2e4a88aac841b8c7b4cf83fc5dac",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DOC_RIP.metadata.xml",
+      "bytes": 3066,
+      "sha256": "f4a085e66d36d4affd54080afc6d00c98cf5b2df51130e15e8b9e2655185da66",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZCL_PR_QM_SAMPLER.json",
+      "bytes": 27740,
+      "sha256": "75139b4e43ed78f9028ef93cd9eeebc94b64f49a7d5ac6b3bc3f958b47d4f8e3",
+      "verified": true
+    },
+    {
+      "file": "ZCL_PR_QM_SAMPLER.abap",
+      "bytes": 17586,
+      "sha256": "6ee1228e8a74a1d4c48b836f24c6b1192e93da6bb88bb5f18651fa3bf0c9928e",
+      "verified": true
+    },
+    {
+      "file": "ZCL_PR_QM_SAMPLER.metadata.xml",
+      "bytes": 8658,
+      "sha256": "6c2870628744c36a50414f0971eb5e445f4196e20d80c3afbce9e55fc27e18b3",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_DCQM_EXCLUDE_I01.json",
+      "bytes": 1098,
+      "sha256": "6617450dccbec11c5e9023137a384cc74f1dadfaaa7305b2573c8981e8f12075",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DCQM_EXCLUDE_I01.abap",
+      "bytes": 1035,
+      "sha256": "865d462805ccc69259f504871d758fceaf5d1a6755857a257da2029290ba17f3",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_MQ_PROXY.json",
+      "bytes": 4430,
+      "sha256": "c9ff338f04bdc4978caa5c99cd3bb1174746726e58086fdd66338ed4e0798108",
+      "verified": true
+    },
+    {
+      "file": "ZPR_MQ_PROXY.abap",
+      "bytes": 4203,
+      "sha256": "24542c2fc71f241f2ed28e6781bc0dbda57693b877afe78ba83330494b2e19c1",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_MQ_DISPLAY.json",
+      "bytes": 3516,
+      "sha256": "a89ac354af68fcfe40135cc40640ebdb2c673e70d19a9fce35ef4182bcf767f4",
+      "verified": true
+    },
+    {
+      "file": "ZPR_MQ_DISPLAY.abap",
+      "bytes": 3335,
+      "sha256": "832e7d9cd7e3627cc92a21441de68e6eaad2f27f2829083aa1435c5020291f55",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_MQ_TESTS.json",
+      "bytes": 6124,
+      "sha256": "9b709c03517e08062ff708d852a2995aecbef9f4ab5ecf841ccd9708a3af798a",
+      "verified": true
+    },
+    {
+      "file": "ZPR_MQ_TESTS.abap",
+      "bytes": 5819,
+      "sha256": "07cee0b63caf78957e85ac96b945bb101fa8063fbb0a9e807dd446dcc0e99b84",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_STOCK_REPORT_O01.json",
+      "bytes": 1178,
+      "sha256": "b89e6fc070d41d4977991dd7b97336285da7d746766d8a1436e890ce4243d987",
+      "verified": true
+    },
+    {
+      "file": "ZPR_STOCK_REPORT_O01.abap",
+      "bytes": 1105,
+      "sha256": "ccc332b86554595dfad8d3d1db86745574bce145fb386e3ff2fe411b8c82ffc8",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_STOCK_REPORT_I01.json",
+      "bytes": 1047,
+      "sha256": "ac654b3cf36f90da7f565402742d925ea15c82f1daaab3fedda44b55372cbb66",
+      "verified": true
+    },
+    {
+      "file": "ZPR_STOCK_REPORT_I01.abap",
+      "bytes": 984,
+      "sha256": "259eb7c633a60e843b169ba506d500d821230781b6788f400d10240364b339d8",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_DOC_RIP_O01.json",
+      "bytes": 1030,
+      "sha256": "30266f95cee06f9507823c87a898553dd947ffd151581d83d44394fed90f33e3",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DOC_RIP_O01.abap",
+      "bytes": 964,
+      "sha256": "61c01506417247c9d0a0c9cbce3b48d7a823265515880393b8edaad34111b9fa",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPR_DOC_RIP_I01.json",
+      "bytes": 714,
+      "sha256": "e242624c4af3bedb90c55bbc1d29f7b4dc098a1ec713ab6e27a454d8a33b8e74",
+      "verified": true
+    },
+    {
+      "file": "ZPR_DOC_RIP_I01.abap",
+      "bytes": 662,
+      "sha256": "87fc378a8912a798b797189c2860605e176ed47dfb1a2dd3615211a19a413a0f",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPRT_DCQMLT.json",
+      "bytes": 587,
+      "sha256": "dc4ed27ffa859447f116302cbe0cd0b920d6488efda898166b8f21d0f60eda9e",
+      "verified": true
+    },
+    {
+      "file": "ZPRT_DCQMLT.table",
+      "bytes": 439,
+      "sha256": "7df3284c99d56e6852b5ce11d25250b54a6926abc46f53b96843aeabfeda746d",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPRT_DCQM.json",
+      "bytes": 1715,
+      "sha256": "4b113b10eb70c7d32d1d46667e7ad38ced6c7e8b3f7291ab2f3f3d5d14597a24",
+      "verified": true
+    },
+    {
+      "file": "ZPRT_DCQM.table",
+      "bytes": 1534,
+      "sha256": "2c7973db61d9a510c3abe057eb78fe501895f967dfcff4773f96db4c783cac74",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPRT_EMAIL_SLOG.json",
+      "bytes": 820,
+      "sha256": "df5b3263d69529441135fd301b8927f695d6ac0c16f260d15d7789f32eb569d8",
+      "verified": true
+    },
+    {
+      "file": "ZPRT_EMAIL_SLOG.table",
+      "bytes": 663,
+      "sha256": "2de281c0eb66a1b6069af20085e71a951b382c588aed21617040f67dbe601259",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPRC_DCCODE.json",
+      "bytes": 567,
+      "sha256": "034cf86ddd8c5b4b0414e506bafdb47212932413d33fc9565015c3b82e782686",
+      "verified": true
+    },
+    {
+      "file": "ZPRC_DCCODE.table",
+      "bytes": 418,
+      "sha256": "d41bb5f269b59b4dfa8e45a6d921bbac9e9b5d7b59af1d160f07857cd152366a",
+      "verified": true
+    },
+    {
+      "file": "_mcp\\ZPRS_DCQM_REPORT.json",
+      "bytes": 1742,
+      "sha256": "8581aafa55a7cee3d2cb5d0abd62117db1b82f98d6d1ef618bd0379f34e81976",
+      "verified": true
+    },
+    {
+      "file": "ZPRS_DCQM_REPORT.structure",
+      "bytes": 1546,
+      "sha256": "628957152f1d46e111b72319aef3c21cb56088ac06d3811ab3c1e40495e0cd1f",
+      "verified": true
+    }
+  ],
+  "validation": {
+    "allSavedHashesMatch": true,
+    "verifiedFileCount": 61,
+    "declarationWarnings": []
+  },
+  "limitations": [
+    "Partial export; first HTTP 404 caused immediate process termination without retry.",
+    "Program/class/table/structure calls explicitly requested active. Include calls use GetInclude default version.",
+    "Metadata masterSystem is not independent proof of the connected SID/client.",
+    "No dynpro, GUI status, text pool, message class, index or complete dependency export.",
+    "No SAP writes, activation, compilation, ATC or runtime tests."
+  ]
+}

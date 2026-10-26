@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-22",
+  "system": "DHC",
+  "client": "100",
+  "request": "DHCK906297",
+  "task": "DHCK906298",
+  "authorization": {
+    "program": true,
+    "programTextElements": 20,
+    "class": true,
+    "classTextElements": 4
+  },
+  "sapWritesPerformed": false,
+  "latestAttempt": "HTTP_500_at_text_pool_lock_stopped_no_retry",
+  "requiresExplicitNewADTSessionAuthorization": true,
+  "objects": [
+    {
+      "kind": "program",
+      "name": "ZPR_CLOSE_STOCK",
+      "tool": "UpdateProgram",
+      "source": "ZPR_CLOSE_STOCK-DHC100-javaslat.abap",
+      "beforeSHA256": "2ba1e7dcda704b5a2a7c9474508f5af06a74b4464c8da3dcb7785e9a923e06e8",
+      "candidateSHA256": "b442929eb1da55c9e8df543a1ec3d7e415d406a023f544199b371d26220d9e79",
+      "texts": "ZPR_CLOSE_STOCK-DHC100-javaslat.texts.tsv",
+      "textCount": 20
+    },
+    {
+      "kind": "class",
+      "name": "ZCL_PR_STOCK",
+      "tool": "UpdateClass",
+      "source": "ZCL_PR_STOCK-inspire-javaslat.abap",
+      "beforeSHA256": "b0d4a70d0a0332d16fc15056393f4a98cf944be202f8ea540716d69e13ff22d2",
+      "candidateSHA256": "c410ea501a4166b0fd52f1e64b31f7f2e42ae6daf161ad68eba9f19670a12440",
+      "texts": "ZCL_PR_STOCK-javaslat.texts.tsv",
+      "textCount": 4
+    }
+  ]
+}

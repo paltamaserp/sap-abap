@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "table_name": "ZPRC_DCCODE",
+  "version": "active",
+  "table_data": "@EndUserText.label : 'DC kizárás kódjai'\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\n@AbapCatalog.tableCategory : #TRANSPARENT\n@AbapCatalog.deliveryClass : #C\n@AbapCatalog.dataMaintenance : #ALLOWED\ndefine table zprc_dccode {\n\n  key mandt    : mandt not null;\n  key block_dc : zprd_pr_block_dc not null\n    with value help zprh_dccode\n      where block_dc = zprc_dccode.block_dc;\n  descr40      : text40;\n\n}",
+  "status": 200,
+  "status_text": "OK"
+}

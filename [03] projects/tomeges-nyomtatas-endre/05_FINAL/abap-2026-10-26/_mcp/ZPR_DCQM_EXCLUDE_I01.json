@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "*----------------------------------------------------------------------*\r\n***INCLUDE ZPR_DCQM_EXCLUDE_I01 .\r\n*----------------------------------------------------------------------*\r\n* PAI modulok - Screen 0100\r\n* A check_changed_data hívása és az e_valid vizsgálata a FORM-okban\r\n* történik (USER_COMMAND_0100, EXIT_COMMAND_0100).\r\n*----------------------------------------------------------------------*\r\n*&---------------------------------------------------------------------*\r\n*&      Module  USER_COMMAND_0100  INPUT\r\n*&---------------------------------------------------------------------*\r\nMODULE user_command_0100 INPUT.\r\n\r\n  PERFORM user_command_0100.\r\n\r\nENDMODULE.                 \" USER_COMMAND_0100  INPUT\r\n*&---------------------------------------------------------------------*\r\n*&      Module  EXIT_COMMAND_0100  INPUT\r\n*&---------------------------------------------------------------------*\r\nMODULE exit_command_0100 INPUT.\r\n\r\n  PERFORM exit_command_0100.\r\n\r\nENDMODULE.                 \" EXIT_COMMAND_0100  INPUT"
+    }
+  ]
+}

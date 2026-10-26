@@ -56,7 +56,9 @@ Teszt- és review-eszközök: `[01] system/TESTING-TOOLS.md`.
 
 A `tomeges-nyomtatas-endre` projekt ABAP Unit-tesztinclude-jai a `04_ASSETS/abap/test/` almappában találhatók.
 
-A projekt elsődleges munkabázisa a felhasználó 2026-10-17-i döntése szerint a `05_FINAL/abap-2026-10-17/` MCP-export; a további elemzések és javítások ebből indulnak. A tegnapi export, a korábbi munkaprogramok, történeti jegyzetek és diagnosztika 127 fájlja a felhasználó kérésére ide került: [`[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/`](<[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/README.md>). A mai 24 objektum / 34 fájl forrásai és metaadatai változatlanok; a README/manifeszt archív hivatkozása frissült. A hiányzó C01/cockpit WIP, a nyitott QA-javítás, a szükséges DDIC/proxyreferenciák, képernyő-/szöveg-/tesztkiegészítők az aktív projektben maradtak. A leltár és az eredeti útvonalak az archív manifesztben szerepelnek; a napi export nem teljes UI-/függőségmentés.
+**Projektfrissítés és munkabázis (2026-10-26):** a felhasználó döntése szerint a további munka a legfrissebb FINAL-mentésből indul: [05_FINAL/abap-2026-10-26/](<[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-26/README.md>). **39/39 kijelölt objektum** friss SAP ADT MCP-forrása/definíciója mentve, 90 nyers válasz-/forrás-/metaadatfájl hash- és forrásazonosság-ellenőrzéssel. A korábban hiányzó C01 és két táblatípus, továbbá a cockpit/QM kiegészítései is megvannak. A hivatkozott helyi include-ok teljesek. A mai lekérések sikeresek voltak; nincs új SAP-elérési hiba. A kijelölt forráskör teljes, UI-/teljes függőségmentés és SAP-teszt nincs.
+
+A [projekt aktuális naplója](<[03] projects/tomeges-nyomtatas-endre/_LOG.md>) és a [draftok szerepének összefoglalója](<[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/README.md>) jelzi az új munkamódot. A 2026-10-22-i és 2026-10-17-i export a [99] archive/abap-2026-10-22/ és abap-2026-10-17/ könyvtárban történeti referencia; a régi draftok nem munkabázisok. Az első takarítás 50 fájlja és a teljes előzménynapló a [2026-10-26-i archívumban](<[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/README.md>), a korábbi 127 fájl a [2026-10-17-i archívumban](<[99] archive/tomeges-nyomtatas-endre/2026-10-17_torteneti-anyagok_ARCHIVED/README.md>) maradt. Új elérési hiba esetén továbbra is azonnali leállás szükséges.
 
 ---
 
@@ -80,6 +82,6 @@ Adj kevesebb okot a találgatásra. Ennyi az egész.
 | Projekt        | Státusz | ClickUp |
 | -------------- | ------- | ------- |
 | `_TEMPLATE` () | WIP     |         |
-| [tomeges-nyomtatas-endre](<[03] projects/tomeges-nyomtatas-endre/00_BRIEF.md>) | WIP | |
+| [tomeges-nyomtatas-endre (friss mentés: 2026-10-26)](<[03] projects/tomeges-nyomtatas-endre/README.md>) | WIP | |
 
 > Tartsd ezt a táblát naprakészen — ez a leggyorsabb áttekintés rólad és Claude-nak is.

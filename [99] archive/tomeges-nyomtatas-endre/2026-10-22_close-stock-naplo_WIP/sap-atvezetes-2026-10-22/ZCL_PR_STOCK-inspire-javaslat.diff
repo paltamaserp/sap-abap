@@ -1,0 +1,65 @@
+diff --git a/ZCL_PR_STOCK-inspire-javaslat.abap b/ZCL_PR_STOCK-inspire-javaslat.abap
+index 107c4a7..747a4c5 100644
+--- a/ZCL_PR_STOCK-inspire-javaslat.abap
++++ b/ZCL_PR_STOCK-inspire-javaslat.abap
+@@ -66,6 +66,11 @@ CLASS ZCL_PR_STOCK IMPLEMENTATION.
+     DATA: gs_stock TYPE zprt_stock.
+     DATA gv_priority TYPE zprd_priority VALUE '30'.
+     DATA lv_logical_port_name TYPE prx_logical_port_name.
++    DATA: lv_call_start TYPE timestampl,
++          lv_call_end TYPE timestampl,
++          lv_log_stamp TYPE c LENGTH 40,
++          lv_seconds TYPE p LENGTH 12 DECIMALS 3,
++          lv_log_duration TYPE c LENGTH 40.
+     DATA lv_obj  TYPE balobj_d VALUE 'ZPR_MASS'.
+     DATA lv_subobj  TYPE balsubobj VALUE 'PACKAGE'.
+ 
+@@ -164,22 +169,48 @@ CLASS ZCL_PR_STOCK IMPLEMENTATION.
+ * Inspire hívás
+     IF lv_error_flag IS INITIAL.
+       TRY.
++          GET TIME STAMP FIELD lv_call_start.
++          lv_log_stamp = |{ lv_call_start TIMESTAMP = ISO TIMEZONE = 'UTC' } UTC|.
++          MESSAGE s000(zpr) WITH text-901 iv_stock lv_log_stamp INTO lv_dummy.
++          lo_log->add_system_message( ).
+           CALL METHOD lo_dcqm->eon_dcqmcompleted
+             EXPORTING
+               input  = ls_input
+             IMPORTING
+               output = ls_output.
++          GET TIME STAMP FIELD lv_call_end.
+         CATCH cx_ai_system_fault INTO lx_system_fault.
++          GET TIME STAMP FIELD lv_call_end.
+ *          MESSAGE e000 WITH lx_system_fault->get_text(  ) INTO gv_dummy_message.
+           gv_dummy_message = zcl_pr_admin=>get_cx_message( io_cx = lx_system_fault iv_out = abap_false ).
+           lo_log->add_system_message(  ).
+           lv_error_flag = abap_true.
+         CATCH cx_ai_application_fault INTO DATA(lx_application_fault).
++          GET TIME STAMP FIELD lv_call_end.
+ *          MESSAGE e000 WITH lx_application_fault->get_text(  ) INTO gv_dummy_message.
+           gv_dummy_message = zcl_pr_admin=>get_cx_message( io_cx = lx_application_fault iv_out = abap_false ).
+           lo_log->add_system_message(  ).
+           lv_error_flag = abap_true.
+       ENDTRY.
++      IF lv_call_start IS NOT INITIAL AND lv_call_end IS NOT INITIAL.
++        lv_log_stamp = |{ lv_call_end TIMESTAMP = ISO TIMEZONE = 'UTC' } UTC|.
++        IF lv_error_flag IS INITIAL.
++          MESSAGE s000(zpr) WITH text-902 iv_stock lv_log_stamp INTO lv_dummy.
++        ELSE.
++          MESSAGE e000(zpr) WITH text-903 iv_stock lv_log_stamp INTO lv_dummy.
++        ENDIF.
++        lo_log->add_system_message( ).
++        TRY.
++            lv_seconds = cl_abap_tstmp=>subtract(
++              tstmp1 = lv_call_end tstmp2 = lv_call_start ).
++            WRITE lv_seconds TO lv_log_duration LEFT-JUSTIFIED
++              DECIMALS 3 NO-GROUPING.
++            MESSAGE s000(zpr) WITH text-904 iv_stock lv_log_duration INTO lv_dummy.
++            lo_log->add_system_message( ).
++          CATCH cx_root.
++            "Optional timing must not alter business error handling.
++        ENDTRY.
++      ENDIF.
+     ENDIF.
+ 
+ * ---------------------------------------------------------------*

@@ -1,0 +1,21 @@
+KEY	LANGUAGE	TEXT
+301	HU	Egyedi, kitöltött PACKAGE_ID-k száma:
+302	HU	Egyedi, kitöltött DOC_NO-k száma:
+303	HU	Nyomtatási rekordok száma (DCQM):
+304	HU	PACKAGE_ID nélküli nyomtatási rekordok:
+305	HU	DOC_NO nélküli nyomtatási rekordok:
+306	HU	A napló darabszámai nem olvashatók:
+307	HU	Stock naplóösszesítés:
+310	HU	Stock lezárási folyamat indul:
+311	HU	Stock lezárási folyamat vége - siker:
+312	HU	Stock lezárási folyamat vége - sikertelen:
+313	HU	CLOSE_STOCK osztályhívás indul:
+314	HU	CLOSE_STOCK osztályhívás visszatért:
+315	HU	Inspire hívás vége - elutasítás:
+316	HU	Inspire hívás vége - bizonytalan eredmény:
+318	HU	Inspire hívás nem indult el:
+319	HU	másodperc
+320	HU	Az időtartam nem számítható.
+321	HU	SAP lezárási mentés indul:
+322	HU	SAP lezárási mentés vége - siker:
+323	HU	SAP lezárási mentés vége - sikertelen:

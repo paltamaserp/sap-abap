@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-22",
+  "status": "WIP",
+  "baseline": "../../05_FINAL/abap-2026-10-17/ZPR_DOC_STATUS.abap",
+  "baselineSHA256": "b3b55a72a772a4fd3a65567f29e5c82006ed37df86156bbcbd5d2a486afd5b06",
+  "files": [
+    {
+      "file": "2026-10-22_doc-status-all-delivered_WIP.diff",
+      "bytes": 3754,
+      "sha256": "54599b023edde0eddefb0cf333dad79d0a3179cec0779eea84ee02cc1f0fdb99"
+    },
+    {
+      "file": "2026-10-22_doc-status-textelemek_WIP.tsv",
+      "bytes": 401,
+      "sha256": "3c827c7d0a502b39235bcaa3c2718268be8657b0f4066f1753bab06c64a0c90e"
+    },
+    {
+      "file": "README.md",
+      "bytes": 6321,
+      "sha256": "068f932ac06ba03798cfc52e741b1f1a79f196a73e4dc6536a97114066d5e860"
+    },
+    {
+      "file": "ZPR_DOC_STATUS.abap",
+      "bytes": 44339,
+      "sha256": "98a87fcc3339eab5aef3bb55323b9d225c40f78375447bf0f687456f1ef86285"
+    },
+    {
+      "file": "check.mjs",
+      "bytes": 11066,
+      "sha256": "363805a602ebb6e91c51e4590be39105e6626d73a1bfb8367e77621f8b41461b"
+    },
+    {
+      "file": "validation.json",
+      "bytes": 2028,
+      "sha256": "0cd2423728ad61179480ef8454767244b3e9d41c5b8de225bd6d399d895146da"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"table_name\": \"ZPRT_EMAIL_SLOG\",\n  \"version\": \"active\",\n  \"table_data\": \"@EndUserText.label : 'Nyomtatás - Email státusz log'\\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\\n@AbapCatalog.tableCategory : #TRANSPARENT\\n@AbapCatalog.deliveryClass : #A\\n@AbapCatalog.dataMaintenance : #RESTRICTED\\ndefine table zprt_email_slog {\\n\\n  key mandt            : mandt not null;\\n  key exbilldocno      : zprd_doc_no not null;\\n  opbel                : e_printdoc;\\n  tstmp_print          : zebfd_pr_tmstmp_print;\\n  email_address        : ad_smtpadr;\\n  tstmp_email_sent     : zprd_tmstmp_email_sent;\\n  sending_status       : zprd_send_status;\\n  tstmp_sending_status : zprd_tmstmp_sending_email;\\n  error_message        : zprd_email_error_message;\\n\\n}\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

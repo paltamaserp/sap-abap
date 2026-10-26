@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "*&---------------------------------------------------------------------*\r\n*& Include          ZPR_DOC_RIP_I01\r\n*&---------------------------------------------------------------------*\r\nMODULE user_command_0100 INPUT.\r\n\r\n  PERFORM user_command_0100.\r\n\r\nENDMODULE.                 \" USER_COMMAND_0100  INPUT\r\n*&---------------------------------------------------------------------*\r\n*&      Module  EXIT_COMMAND_0100  INPUT\r\n*&---------------------------------------------------------------------*\r\n*       text\r\n*----------------------------------------------------------------------*\r\nMODULE exit_command_0100 INPUT.\r\n\r\n  PERFORM exit_command_0100.\r\n\r\nENDMODULE."
+    }
+  ]
+}

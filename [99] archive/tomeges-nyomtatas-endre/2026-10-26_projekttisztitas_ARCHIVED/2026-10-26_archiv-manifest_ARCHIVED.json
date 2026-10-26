@@ -1,0 +1,430 @@
+{
+    "status":  "ARCHIVED",
+    "date":  "2026-10-26",
+    "project":  "tomeges-nyomtatas-endre",
+    "fileCount":  50,
+    "originalTotalBytes":  776267,
+    "authorization":  "Felhasználói kérés: első körben szükségtelennek ítélt projektanyagok áthelyezése az archívumba.",
+    "verification":  {
+                         "moveHashesMatched":  50,
+                         "nonMarkdownFilesUnchanged":  332,
+                         "checkedRelocatedLinks":  68,
+                         "markdownLinkEdits":  [
+                                                   "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/_LOG.md",
+                                                   "[03] projects/tomeges-nyomtatas-endre/00_BRIEF.md",
+                                                   "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/02_NOTES/2026-10-22_create-stock-naplo-allapot_WIP.md",
+                                                   "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/02_NOTES/2026-10-17_fajltisztitas-elemzes_WIP.md",
+                                                   "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/02_NOTES/2026-10-17_close-stock-modositasi-terv_WIP.md",
+                                                   "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/02_NOTES/2026-10-17_close-stock-kerdesek-megoldas_WIP.md",
+                                                   "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/README.md",
+                                                   "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_sap-qa-skill-adatgyujtes_WIP.md",
+                                                   "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/SKILL.md",
+                                                   "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/abap/README.md"
+                                               ],
+                         "sapAccess":  false,
+                         "entryPointLinksChecked":  49,
+                         "entryPointBrokenLinks":  0
+                     },
+    "files":  [
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/README.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/README.md",
+                      "reason":  "Bemásolt projektindító sablon; helyette projektspecifikus belépő készül.",
+                      "originalBytes":  2542,
+                      "originalSha256":  "3fab5e2e4a0744f8bc7256135c814c981103ddfc66160b2c2836a8db327d5f93",
+                      "archivedSha256":  "3fab5e2e4a0744f8bc7256135c814c981103ddfc66160b2c2836a8db327d5f93"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/_LOG.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/_LOG.md",
+                      "reason":  "Teljes történeti döntésnapló; helyette rövid aktuális állapot és archív hivatkozás készül.",
+                      "originalBytes":  216433,
+                      "originalSha256":  "236ce48379b974421d30d57f5f020723ce3fd2bfd813a4ac1095d830df52730f",
+                      "archivedSha256":  "a8e5be8a6c85c9602147859d2baccc75da4d72707e7c0fc596aaba5deddc28f2"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-17_close-stock-kerdesek-megoldas_WIP.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/02_NOTES/2026-10-17_close-stock-kerdesek-megoldas_WIP.md",
+                      "reason":  "Korai lezárási javaslat, későbbi megoldások váltották fel.",
+                      "originalBytes":  20654,
+                      "originalSha256":  "bb2116ae0362a85ce155934c79d2a2138ff32bc6a2fd3750b6bd2f6c07c7636c",
+                      "archivedSha256":  "f69d804f3cd251c7b686a92e74d408bd274fd1f8d0f6e37a8aac385f99f58847"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-17_close-stock-modositasi-terv_WIP.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/02_NOTES/2026-10-17_close-stock-modositasi-terv_WIP.md",
+                      "reason":  "Korábbi osztálybővítési terv; a 2026-10-21-i riportirány váltotta fel.",
+                      "originalBytes":  18800,
+                      "originalSha256":  "344dc8cda211f0318de91029008270ae6de532cb16ea6bc8888fc91e0ca8dc07",
+                      "archivedSha256":  "b33b24bcdac8e7083f453841b01d38fc4ac57464ad5e044e6b05864b5cb0a56e"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-17_fajltisztitas-elemzes_WIP.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/02_NOTES/2026-10-17_fajltisztitas-elemzes_WIP.md",
+                      "reason":  "A már végrehajtott előző takarítás történeti elemzése.",
+                      "originalBytes":  11092,
+                      "originalSha256":  "834f87cdf723c39823fbcd8356c082c470f1808199a7ca84a03c16eae20b84ba",
+                      "archivedSha256":  "968189b1907653df809fccb42db67c0bd3f8546d9c246d5c2e877499edc61a13"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/02_NOTES/2026-10-22_create-stock-naplo-allapot_WIP.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/02_NOTES/2026-10-22_create-stock-naplo-allapot_WIP.md",
+                      "reason":  "Régebbi alapból készült vizsgálat; a friss export szerinti naplózási jegyzet váltotta fel.",
+                      "originalBytes":  5947,
+                      "originalSha256":  "95c3c493d5a21645e6f8eda21547b34a4859152f309ec408e44109df46462b55",
+                      "archivedSha256":  "ea5c589080792998f2bf7d9878182cf3b30442bb955da8cbf8bef2314aa96cc4"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/2026-10-18_close-stock-valtozasok_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/2026-10-18_close-stock-valtozasok_WIP.diff",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  69489,
+                      "originalSha256":  "7836a1b48f3db020d3f5d77fce3fa50e31fbe9387c4015b786459914d6e78558",
+                      "archivedSha256":  "7836a1b48f3db020d3f5d77fce3fa50e31fbe9387c4015b786459914d6e78558"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/changes.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/changes.diff",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  69145,
+                      "originalSha256":  "6d65570171cdb90cc5fa0aafc03fcc5f1378efb145b2a72759793620ec68bbd5",
+                      "archivedSha256":  "6d65570171cdb90cc5fa0aafc03fcc5f1378efb145b2a72759793620ec68bbd5"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/check.cjs",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/check.cjs",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  7601,
+                      "originalSha256":  "483264db2f3f66f74b246bf3ca11f98215e8cfefbef0493d07742f2a249f1312",
+                      "archivedSha256":  "483264db2f3f66f74b246bf3ca11f98215e8cfefbef0493d07742f2a249f1312"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/diff-check.json",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/diff-check.json",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  167,
+                      "originalSha256":  "ddea7d658c4933fc0cb14e09f24b8dd91809658cf3267c41791f85c156cfd782",
+                      "archivedSha256":  "ddea7d658c4933fc0cb14e09f24b8dd91809658cf3267c41791f85c156cfd782"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/manifest.json",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/manifest.json",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  2134,
+                      "originalSha256":  "7b1713a99903f0de6c45a99551628ea914e40cfc2e160abe0a62f00d35928d9e",
+                      "archivedSha256":  "7b1713a99903f0de6c45a99551628ea914e40cfc2e160abe0a62f00d35928d9e"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/parser-check.json",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/parser-check.json",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  265,
+                      "originalSha256":  "ee2efe633f2f4498fee5850354926179af9b6011101e602adfa4f62f0eb0d3ae",
+                      "archivedSha256":  "ee2efe633f2f4498fee5850354926179af9b6011101e602adfa4f62f0eb0d3ae"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/README.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/README.md",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  10932,
+                      "originalSha256":  "eb6c0b084a5e95c0c2da30dbc44e8aa8900568b810c0ea3d81c9dd9908d3e8b2",
+                      "archivedSha256":  "32edc32a1ea540ec836cc23f090001377c61587d57458c5a5f821feb4cda7c01"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/source-check.json",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/source-check.json",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  768,
+                      "originalSha256":  "083067a0ede92e1f0a91e70e4a1f1b2bd9f6f023c9898c4d35fbaede56cf0cf9",
+                      "archivedSha256":  "083067a0ede92e1f0a91e70e4a1f1b2bd9f6f023c9898c4d35fbaede56cf0cf9"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/ZCL_PR_STOCK.abap",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/ZCL_PR_STOCK.abap",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  29322,
+                      "originalSha256":  "c5e5b7a96b2968efebfbe8cb7ecf7deae5fbc20bcc21fd98968d6769f9905519",
+                      "archivedSha256":  "c5e5b7a96b2968efebfbe8cb7ecf7deae5fbc20bcc21fd98968d6769f9905519"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/ZCL_PR_STOCK.texts.tsv",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/ZCL_PR_STOCK.texts.tsv",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  1379,
+                      "originalSha256":  "81a37ac3cd4c23473136695f231efbc19454b174003347e7a31e739bbbb52449",
+                      "archivedSha256":  "81a37ac3cd4c23473136695f231efbc19454b174003347e7a31e739bbbb52449"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/ZPR_CLOSE_STOCK.abap",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/ZPR_CLOSE_STOCK.abap",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  26741,
+                      "originalSha256":  "ba5134b0afaaede6894016e7ac0082e9a8a374a5a922f8162203575b8dca9398",
+                      "archivedSha256":  "ba5134b0afaaede6894016e7ac0082e9a8a374a5a922f8162203575b8dca9398"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/ZPR_CLOSE_STOCK.texts.tsv",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/ZPR_CLOSE_STOCK.texts.tsv",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  1782,
+                      "originalSha256":  "c86cead53de93d60e9615ec540cd1bf451541deacebc2d360fac5f04c99047e0",
+                      "archivedSha256":  "c86cead53de93d60e9615ec540cd1bf451541deacebc2d360fac5f04c99047e0"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/ZPR_STOCK_REPORT_I01.abap",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/ZPR_STOCK_REPORT_I01.abap",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  984,
+                      "originalSha256":  "259eb7c633a60e843b169ba506d500d821230781b6788f400d10240364b339d8",
+                      "archivedSha256":  "259eb7c633a60e843b169ba506d500d821230781b6788f400d10240364b339d8"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-17_close-stock_WIP/ZPR_STOCK_REPORT_O01.abap",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-17_close-stock_WIP/ZPR_STOCK_REPORT_O01.abap",
+                      "reason":  "Korábbi riport- és osztálybővítési alternatíva, későbbi riportirány váltotta fel.",
+                      "originalBytes":  1105,
+                      "originalSha256":  "ccc332b86554595dfad8d3d1db86745574bce145fb386e3ff2fe411b8c82ffc8",
+                      "archivedSha256":  "ccc332b86554595dfad8d3d1db86745574bce145fb386e3ff2fe411b8c82ffc8"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/ELLENORZES_WIP.json",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/ELLENORZES_WIP.json",
+                      "reason":  "A személyes QA-skill történeti projektmásolata; a telepített skill külön elérhető.",
+                      "originalBytes":  2169,
+                      "originalSha256":  "889ebfedb15eb2bee2b1737b881d09fa9e5e95e93990e8640dfc95eecad1c765",
+                      "archivedSha256":  "889ebfedb15eb2bee2b1737b881d09fa9e5e95e93990e8640dfc95eecad1c765"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/SKILL.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/SKILL.md",
+                      "reason":  "A személyes QA-skill történeti projektmásolata; a telepített skill külön elérhető.",
+                      "originalBytes":  5121,
+                      "originalSha256":  "f64c041b7b7f900ff3f9604c90741dc097c3ebd2ac0a84d1425e03db57e74eef",
+                      "archivedSha256":  "5ec194cc3f8f5cd8eb93d6fe197048cbce87abc7c28013e3299f23b1183d1847"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/agents/openai.yaml",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/agents/openai.yaml",
+                      "reason":  "A személyes QA-skill történeti projektmásolata; a telepített skill külön elérhető.",
+                      "originalBytes":  307,
+                      "originalSha256":  "d54a3efcc1b998db0e93564a61df7ffd5d293c5f9a857680d214a9138dc10cb3",
+                      "archivedSha256":  "d54a3efcc1b998db0e93564a61df7ffd5d293c5f9a857680d214a9138dc10cb3"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/references/adatok-beszerzese.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/references/adatok-beszerzese.md",
+                      "reason":  "A személyes QA-skill történeti projektmásolata; a telepített skill külön elérhető.",
+                      "originalBytes":  8846,
+                      "originalSha256":  "83dd5475641859d63761bb01dc957be4eb6c2a8f7fc8391b9027bd25495ce7c4",
+                      "archivedSha256":  "83dd5475641859d63761bb01dc957be4eb6c2a8f7fc8391b9027bd25495ce7c4"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/references/mcp-es-rendszer.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/references/mcp-es-rendszer.md",
+                      "reason":  "A személyes QA-skill történeti projektmásolata; a telepített skill külön elérhető.",
+                      "originalBytes":  7935,
+                      "originalSha256":  "3e86892ec25598ba7aaf8f61e40b3a089a435ed4993239b36d24fc66067c0742",
+                      "archivedSha256":  "3e86892ec25598ba7aaf8f61e40b3a089a435ed4993239b36d24fc66067c0742"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/references/qa-peldak.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_sap-transport-qa_WIP/sap-transport-qa/references/qa-peldak.md",
+                      "reason":  "A személyes QA-skill történeti projektmásolata; a telepített skill külön elérhető.",
+                      "originalBytes":  3646,
+                      "originalSha256":  "63bd4ea5fdfa90d6f04a03e0fbcb45df013db85efd9e2f10fe7989e9024364fb",
+                      "archivedSha256":  "63bd4ea5fdfa90d6f04a03e0fbcb45df013db85efd9e2f10fe7989e9024364fb"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_sap-qa-skill-adatgyujtes_WIP.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_sap-qa-skill-adatgyujtes_WIP.md",
+                      "reason":  "Korábbi skillkészítési adatgyűjtés; az eredeti SCI/Onapsis-bemenetek aktívak maradnak.",
+                      "originalBytes":  5295,
+                      "originalSha256":  "3e51e8a9c1237e97a90c7e1b0af73dbf73aebb04bba9025837ef1715566e0b16",
+                      "archivedSha256":  "b1cae8edb74d66ea46237de8aa7f8a3c0bcb0db5d80387595e1ae9820516b269"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/playwright/.env.example",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/playwright/.env.example",
+                      "reason":  "Csak általános OData-tesztsablont tartalmaz, projektspecifikus teszt nélkül.",
+                      "originalBytes":  967,
+                      "originalSha256":  "47376cd2ff8a5b47e63258d7ae6976a813ea0486a64600b0086b884958c01465",
+                      "archivedSha256":  "47376cd2ff8a5b47e63258d7ae6976a813ea0486a64600b0086b884958c01465"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/playwright/.gitignore",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/playwright/.gitignore",
+                      "reason":  "Csak általános OData-tesztsablont tartalmaz, projektspecifikus teszt nélkül.",
+                      "originalBytes":  106,
+                      "originalSha256":  "39a15b88592713443ed2eece8c46b14879d5ac613df4fe715c6139963fb462ef",
+                      "archivedSha256":  "39a15b88592713443ed2eece8c46b14879d5ac613df4fe715c6139963fb462ef"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/playwright/package-lock.json",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/playwright/package-lock.json",
+                      "reason":  "Csak általános OData-tesztsablont tartalmaz, projektspecifikus teszt nélkül.",
+                      "originalBytes":  3899,
+                      "originalSha256":  "2ea279a12f94a66a015dfea8cf5891b1a384854c1466088ea350f744ee23e766",
+                      "archivedSha256":  "2ea279a12f94a66a015dfea8cf5891b1a384854c1466088ea350f744ee23e766"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/playwright/package.json",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/playwright/package.json",
+                      "reason":  "Csak általános OData-tesztsablont tartalmaz, projektspecifikus teszt nélkül.",
+                      "originalBytes":  501,
+                      "originalSha256":  "8fa767be2beb23ab5662d8b2dbc3e7f36a382eed7c9d46085a8eb2fc94cc0633",
+                      "archivedSha256":  "8fa767be2beb23ab5662d8b2dbc3e7f36a382eed7c9d46085a8eb2fc94cc0633"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/playwright/playwright.config.ts",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/playwright/playwright.config.ts",
+                      "reason":  "Csak általános OData-tesztsablont tartalmaz, projektspecifikus teszt nélkül.",
+                      "originalBytes":  1581,
+                      "originalSha256":  "771f74b040fe37574ecf45339743cc66930f430d8c7c0b621561452413eb041f",
+                      "archivedSha256":  "771f74b040fe37574ecf45339743cc66930f430d8c7c0b621561452413eb041f"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/playwright/README.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/playwright/README.md",
+                      "reason":  "Csak általános OData-tesztsablont tartalmaz, projektspecifikus teszt nélkül.",
+                      "originalBytes":  3307,
+                      "originalSha256":  "b196967719c753cf6cb4e2740357981f639fdc1af97d825648f051c574dcf68c",
+                      "archivedSha256":  "b196967719c753cf6cb4e2740357981f639fdc1af97d825648f051c574dcf68c"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/playwright/tsconfig.json",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/playwright/tsconfig.json",
+                      "reason":  "Csak általános OData-tesztsablont tartalmaz, projektspecifikus teszt nélkül.",
+                      "originalBytes":  357,
+                      "originalSha256":  "e46a440aeee1b66222a19efe9332ec0ed48f4a12296bbe56f71895505d0d0de4",
+                      "archivedSha256":  "e46a440aeee1b66222a19efe9332ec0ed48f4a12296bbe56f71895505d0d0de4"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/playwright/tests/_TEMPLATE.spec.ts",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/playwright/tests/_TEMPLATE.spec.ts",
+                      "reason":  "Csak általános OData-tesztsablont tartalmaz, projektspecifikus teszt nélkül.",
+                      "originalBytes":  3871,
+                      "originalSha256":  "9a57f2711efd553b4839f146e25894dc3fa4dd4d8e2358ce72ce4bbc90150f54",
+                      "archivedSha256":  "9a57f2711efd553b4839f146e25894dc3fa4dd4d8e2358ce72ce4bbc90150f54"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/playwright/utils/sap.ts",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/playwright/utils/sap.ts",
+                      "reason":  "Csak általános OData-tesztsablont tartalmaz, projektspecifikus teszt nélkül.",
+                      "originalBytes":  3649,
+                      "originalSha256":  "9578e9463792102d986f6ace8b44cc96a717a0b0d4735e3640ca75a0429756a2",
+                      "archivedSha256":  "9578e9463792102d986f6ace8b44cc96a717a0b0d4735e3640ca75a0429756a2"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/rest-client/README.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/rest-client/README.md",
+                      "reason":  "Általános REST Client minta, projektspecifikus kérés nélkül.",
+                      "originalBytes":  2925,
+                      "originalSha256":  "c7e085900268de870cfd661e46969dd059ba32b9a12a9af96eec1608151677e2",
+                      "archivedSha256":  "c7e085900268de870cfd661e46969dd059ba32b9a12a9af96eec1608151677e2"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/rest-client/_TEMPLATE.http",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/rest-client/_TEMPLATE.http",
+                      "reason":  "Általános REST Client minta, projektspecifikus kérés nélkül.",
+                      "originalBytes":  5872,
+                      "originalSha256":  "423a188b4ddc083a9b07a807fb40633d95b7f035e9528b67e725336290bff4a3",
+                      "archivedSha256":  "423a188b4ddc083a9b07a807fb40633d95b7f035e9528b67e725336290bff4a3"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/04_ASSETS/abap/README.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/04_ASSETS/abap/README.md",
+                      "reason":  "Történeti munkaforrásokat leíró, elavult ismertető; helyette aktuális kiegészítőjegyzék készül.",
+                      "originalBytes":  6070,
+                      "originalSha256":  "64ac3a59ac62880f987bd0cbec4bce8e84fbd0610f64f12cb2a338001703f030",
+                      "archivedSha256":  "27aaae4701e38dc3d4cb07eb890a20ecbfd8f30ac73df87c1d32cf208fcb7342"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/05_FINAL/README.md",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/05_FINAL/README.md",
+                      "reason":  "Általános FINAL/Unit-sablon; helyette az exportok valós státuszát jelző index készül.",
+                      "originalBytes":  1872,
+                      "originalSha256":  "5977f2f2b3fa4fad13538b82e113d0e19ebaf18a429ec48b4284ad2864e70956",
+                      "archivedSha256":  "5977f2f2b3fa4fad13538b82e113d0e19ebaf18a429ec48b4284ad2864e70956"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_close-stock-csak-riport-osztalyhivas_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_close-stock-csak-riport-osztalyhivas_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  7978,
+                      "originalSha256":  "c61734dc44ff98965e80fb5449308c5229d51e092440626498c1d3fa07633317",
+                      "archivedSha256":  "c61734dc44ff98965e80fb5449308c5229d51e092440626498c1d3fa07633317"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_close-stock-gomb-kozvetlen-osztalyhivas_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_close-stock-gomb-kozvetlen-osztalyhivas_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  1769,
+                      "originalSha256":  "aa9cab036ddc8038407c3eccdef4f50c2dd117ee384d98494095341f50cd3d92",
+                      "archivedSha256":  "aa9cab036ddc8038407c3eccdef4f50c2dd117ee384d98494095341f50cd3d92"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_close-stock-megjelenitesi-fejlec_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_close-stock-megjelenitesi-fejlec_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  9217,
+                      "originalSha256":  "b4f94d2c94cea3ad2fd11038f19b8853de9dab596267f0856d8f7fa6acf5af9d",
+                      "archivedSha256":  "b4f94d2c94cea3ad2fd11038f19b8853de9dab596267f0856d8f7fa6acf5af9d"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_close-stock-megtekintesi-uzenet_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_close-stock-megtekintesi-uzenet_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  1659,
+                      "originalSha256":  "c747a510732fb4780d9be0000b9dc84e8c89ae3e35e475bd139227788c7de07e",
+                      "archivedSha256":  "c747a510732fb4780d9be0000b9dc84e8c89ae3e35e475bd139227788c7de07e"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_close-stock-nem-qm-uzenet_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_close-stock-nem-qm-uzenet_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  2039,
+                      "originalSha256":  "d2c9dbc687a4a062b630a4d2866a76438ecc0efc1ff455b7df81490f8e80bdbd",
+                      "archivedSha256":  "d2c9dbc687a4a062b630a4d2866a76438ecc0efc1ff455b7df81490f8e80bdbd"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_close-stock-osztalyhivas-update-aktualis_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_close-stock-osztalyhivas-update-aktualis_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  70719,
+                      "originalSha256":  "336f31679e5a13228ac393aa1d3b79f2fde851c98fa473558d673b15fa3a54f8",
+                      "archivedSha256":  "336f31679e5a13228ac393aa1d3b79f2fde851c98fa473558d673b15fa3a54f8"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_close-stock-osztalyhivas-update_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_close-stock-osztalyhivas-update_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  69658,
+                      "originalSha256":  "0c689bf85700b7728214ac7b162d4636ea87b0e35a67075304b2a8255676e0f9",
+                      "archivedSha256":  "0c689bf85700b7728214ac7b162d4636ea87b0e35a67075304b2a8255676e0f9"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_close-stock-toolbar-feltetel-javitas_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_close-stock-toolbar-feltetel-javitas_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  1575,
+                      "originalSha256":  "f551333dc3e8ebffa8aef79b756f837997d4cc0c17f8ce05283b355030c52829",
+                      "archivedSha256":  "f551333dc3e8ebffa8aef79b756f837997d4cc0c17f8ce05283b355030c52829"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_close-stock-zar-lezaras-gomb_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_close-stock-zar-lezaras-gomb_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  8611,
+                      "originalSha256":  "144e7bb92951f41611a0a4ca098a675920d1a7bf87f2dcb8656df0a8b90cf48d",
+                      "archivedSha256":  "144e7bb92951f41611a0a4ca098a675920d1a7bf87f2dcb8656df0a8b90cf48d"
+                  },
+                  {
+                      "originalPath":  "[03] projects/tomeges-nyomtatas-endre/03_DRAFTS/2026-10-18_zpr-close-stock-export-wip_WIP.diff",
+                      "archivedPath":  "[99] archive/tomeges-nyomtatas-endre/2026-10-26_projekttisztitas_ARCHIVED/project/03_DRAFTS/2026-10-18_zpr-close-stock-export-wip_WIP.diff",
+                      "reason":  "Korábbi lezárási részpatch vagy alternatíva; a 2026-10-21/22-i teljes csomagok mellett történeti anyag.",
+                      "originalBytes":  37464,
+                      "originalSha256":  "645e62b44f4802197790d8c4e75523363c02d20e6021194fe14c22a2c1024605",
+                      "archivedSha256":  "645e62b44f4802197790d8c4e75523363c02d20e6021194fe14c22a2c1024605"
+                  }
+              ]
+}

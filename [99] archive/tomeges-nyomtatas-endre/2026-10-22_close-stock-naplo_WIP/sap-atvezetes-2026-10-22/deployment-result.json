@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-22",
+  "system": "DHC",
+  "client": "100",
+  "request": "DHCK906297",
+  "task": "DHCK906298",
+  "authorization": {
+    "report": true,
+    "reportTextElements": 20,
+    "class": true,
+    "classTextElements": 4,
+    "newSession": true
+  },
+  "connectionSucceeded": true,
+  "checks": [
+    {
+      "file": "check-active-program-before.json",
+      "object": "ZPR_CLOSE_STOCK",
+      "hypothetical": false,
+      "version": "active",
+      "successful": true
+    },
+    {
+      "file": "check-active-class-before.json",
+      "object": "ZCL_PR_STOCK",
+      "hypothetical": false,
+      "version": "active",
+      "successful": true
+    },
+    {
+      "file": "check-program-candidate.json",
+      "object": "ZPR_CLOSE_STOCK",
+      "hypothetical": true,
+      "version": "active",
+      "successful": true
+    },
+    {
+      "file": "check-class-candidate.json",
+      "object": "ZCL_PR_STOCK",
+      "hypothetical": true,
+      "version": "active",
+      "successful": true
+    }
+  ],
+  "initialInactiveObjectCount": 0,
+  "programTextKeysFree": 20,
+  "classTextKeysFree": 4,
+  "lastStep": "Lock ZPR_CLOSE_STOCK text symbols",
+  "lastRequestMethod": "POST",
+  "lastRequestPath": "/sap/bc/adt/textelements/programs/zpr_close_stock?_action=LOCK&accessMode=MODIFY",
+  "failureReason": "HTTP_500",
+  "failureUTC": "2026-10-22T12:43:36.526Z",
+  "failureBudapest": "2026-10-22 14:43:36",
+  "sourcesUploaded": false,
+  "textSymbolsPutSent": false,
+  "activationRequested": false,
+  "connectionClosedAfterFirstFailure": true,
+  "automaticRetryPerformed": false,
+  "newSAP401Received": false,
+  "requiresExplicitRetryAuthorization": true,
+  "backendCause": "Unknown; response body was not read after immediate first-failure stop."
+}

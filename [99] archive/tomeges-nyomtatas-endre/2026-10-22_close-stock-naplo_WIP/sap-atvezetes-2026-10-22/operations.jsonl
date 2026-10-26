@@ -1,0 +1,11 @@
+{"utc":"2026-10-22T12:41:45.469Z","tool":"ReadProgram","file":"fresh-program.json","isError":false}
+{"utc":"2026-10-22T12:41:45.915Z","tool":"ReadClass","file":"fresh-class.json","isError":false}
+{"utc":"2026-10-22T12:41:46.131Z","tool":"ScopedReadTextSymbols","file":"program-symbols-before.json","isError":false}
+{"utc":"2026-10-22T12:41:46.337Z","tool":"ScopedReadTextSymbols","file":"class-symbols-before.json","isError":false}
+{"utc":"2026-10-22T12:41:46.756Z","tool":"ScopedReadObjectState","file":"program-state-before.json","isError":true}
+{"utc":"2026-10-22T12:41:47.206Z","tool":"ScopedReadObjectState","file":"class-state-before.json","isError":true}
+{"utc":"2026-10-22T12:42:51.634Z","tool":"GetInactiveObjects","file":"inactive-before.json","isError":false}
+{"utc":"2026-10-22T12:42:51.976Z","tool":"ScopedCheckSource","file":"check-active-program-before.json","isError":false}
+{"utc":"2026-10-22T12:42:52.256Z","tool":"ScopedCheckSource","file":"check-active-class-before.json","isError":false}
+{"utc":"2026-10-22T12:42:52.627Z","tool":"ScopedCheckSource","file":"check-program-candidate.json","isError":false}
+{"utc":"2026-10-22T12:42:52.923Z","tool":"ScopedCheckSource","file":"check-class-candidate.json","isError":false}

@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "structure_name": "ZPRS_DCQM_REPORT",
+  "version": "active",
+  "structure_data": "@EndUserText.label : 'DC/QM funkciók ALV struktúra'\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\ndefine structure zprs_dcqm_report {\n\n  mandt          : mandt;\n  doc_no         : zprd_doc_no;\n  block_dc       : zprd_pr_block_dc\n    with value help zprh_dccode\n      where block_dc = zprs_dcqm_report.block_dc;\n  block_dc_text  : zprd_pr_block_dc_text;\n  block_qm_text  : zprd_pr_block_qm_text;\n  envelope       : zprd_envelope_id;\n  pymet          : pymet_kk;\n  doc_catl       : zprd_doc_cat;\n  @Semantics.amount.currencyCode : 'zprs_dcqm_report.waers'\n  amnt           : betrw_kk;\n  waers          : blwae_kk;\n  duedate        : faedn_kk;\n  bankaccountnum : zprd_banknum;\n  giro           : zecad_giro;\n  name1          : ad_name1;\n  sysid          : sysysid;\n  land1          : land1;\n  ab             : abzeitsch;\n  bis            : biszeitsch;\n  tariftyp       : tariftyp;\n  aklasse        : aklasse;\n  zbizcat        : /sapce/iu_bbhubizcat;\n  mahns          : mahns_kk;\n  mahnv          : mahnv_kk;\n  form           : zprd_inspire_formname;\n  cotyp          : cotyp_kk;\n  package_id     : zprd_package_id;\n  cheqnumbr      : zprd_pr_cheqnumbr;\n  cokey          : cokey_kk;\n  regmailnumber  : zprd_regmailnumber;\n  opbuk_pr       : zprd_pr_opbukpr;\n  aktyp          : aktyp_kk;\n  laufd          : laufd_kk;\n  laufi          : laufi_kk;\n  prdstock       : zprd_stock_id;\n  prdspool       : zedmd_prdspool;\n  prdfile        : zedmd_prdfile;\n  counter        : zprd_pr_counter;\n  changed        : flag;\n  handle_style   : lvc_t_styl;\n\n}",
+  "status": 200,
+  "status_text": "OK"
+}

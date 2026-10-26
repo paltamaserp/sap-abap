@@ -1,0 +1,206 @@
+diff --git a/ZPR_CLOSE_STOCK.abap b/ZPR_CLOSE_STOCK.abap
+index 0d56e73..996dc5c 100644
+--- a/ZPR_CLOSE_STOCK.abap
++++ b/ZPR_CLOSE_STOCK.abap
+@@ -322,6 +322,7 @@ FORM release_stock.
+   PERFORM confirm_release CHANGING lv_confirmed.
+   CHECK lv_confirmed = abap_true.
+   gv_busy = abap_true.
++  PERFORM log_now USING 'I' text-310 space.
+ 
+   PERFORM lock_stock.
+   IF gv_locked_stock IS INITIAL.
+@@ -366,7 +367,13 @@ FORM release_stock.
+       ENDIF.
+ 
+       IF gv_error = abap_false AND gv_remote_success = abap_true.
++        PERFORM log_now USING 'I' text-321 space.
+         PERFORM save_release USING lt_regmail.
++        IF gv_saved = abap_true.
++          PERFORM log_now USING 'S' text-322 space.
++        ELSE.
++          PERFORM log_now USING 'E' text-323 space.
++        ENDIF.
+       ENDIF.
+     CATCH cx_root INTO lr_error.
+       ROLLBACK WORK.
+@@ -399,6 +406,11 @@ FORM release_stock.
+   ELSE.
+     PERFORM add_message USING 'E' 'A stock nem lett lezárva:' p_stokid space.
+   ENDIF.
++  IF gv_saved = abap_true.
++    PERFORM log_now USING 'S' text-311 space.
++  ELSE.
++    PERFORM log_now USING 'E' text-312 space.
++  ENDIF.
+   PERFORM log_write.
+   PERFORM read_stock.
+   IF gv_error = abap_false.
+@@ -662,11 +674,14 @@ FORM send_priority.
+         ls_alv       TYPE zprs_dcqm_report,
+         lo_proxy     TYPE REF TO zpr_co_eon_dcqmcompleted_port,
+         lv_port      TYPE prx_logical_port_name,
++        lv_call_start TYPE timestampl,
++        lv_call_end   TYPE timestampl,
+         lr_error     TYPE REF TO cx_root.
+ 
+   "Only an explicit successful response permits local closing.
+   gv_error = abap_true.
+   CLEAR: gv_call_started, gv_remote_success.
++  PERFORM log_stock_totals.
+ 
+   LOOP AT gt_alv INTO ls_alv.
+     CLEAR ls_envelope.
+@@ -688,14 +703,25 @@ FORM send_priority.
+       IF lv_port IS INITIAL.
+         PERFORM add_message USING 'E' 'Az Inspire logikai portja üres.'
+           space space.
++        PERFORM log_now USING 'E' text-318 space.
+         RETURN.
+       ENDIF.
+       CREATE OBJECT lo_proxy EXPORTING logical_port_name = lv_port.
++      GET TIME STAMP FIELD lv_call_start.
++      PERFORM log_at USING 'I' text-313 lv_call_start lv_port.
+       gv_call_started = abap_true.
+       lo_proxy->eon_dcqmcompleted(
+         EXPORTING input = ls_input IMPORTING output = ls_output ).
++      GET TIME STAMP FIELD lv_call_end.
+ 
+     CATCH cx_ai_application_fault INTO lr_error.
++      GET TIME STAMP FIELD lv_call_end.
++      IF lv_call_start IS NOT INITIAL.
++        PERFORM log_inspire_end USING 'E' text-315
++          lv_call_start lv_call_end.
++      ELSE.
++        PERFORM log_now USING 'E' text-318 space.
++      ENDIF.
+       gv_error = abap_true.
+       CLEAR: gv_call_started, gv_remote_success.
+       PERFORM add_exception USING lr_error.
+@@ -704,6 +730,13 @@ FORM send_priority.
+         p_stokid space.
+       RETURN.
+     CATCH cx_root INTO lr_error.
++      GET TIME STAMP FIELD lv_call_end.
++      IF lv_call_start IS NOT INITIAL.
++        PERFORM log_inspire_end USING 'E' text-316
++          lv_call_start lv_call_end.
++      ELSE.
++        PERFORM log_now USING 'E' text-318 space.
++      ENDIF.
+       PERFORM add_exception USING lr_error.
+       IF gv_call_started = abap_true.
+         gv_uncertain = abap_true.
+@@ -713,10 +746,14 @@ FORM send_priority.
+       RETURN.
+   ENDTRY.
+   IF ls_output-parameters-success <> abap_true.
++    PERFORM log_inspire_end USING 'E' text-315
++      lv_call_start lv_call_end.
+     PERFORM add_message USING 'E' 'Az Inspire elutasitotta a lezárást:'
+       ls_output-parameters-error_code ls_output-parameters-info.
+     RETURN.
+   ENDIF.
++  PERFORM log_inspire_end USING 'S' text-314
++    lv_call_start lv_call_end.
+   gv_remote_success = abap_true.
+   gv_error = abap_false.
+   PERFORM add_message USING 'S' 'Inspire jóváhagyás sikeres:' p_stokid space.
+@@ -1174,4 +1211,95 @@ FORM add_header_line USING uv_text TYPE sdydo_text_element.
+   gr_header->add_text( text = uv_text
+     sap_emphasis = cl_dd_document=>strong ).
+   gr_header->new_line( ).
+-ENDFORM.
+\ No newline at end of file
++ENDFORM.
++"Logging only: use the complete stock, including allowed and excluded rows.
++FORM log_stock_totals.
++  TYPES: BEGIN OF ty_log_row,
++           package_id TYPE zprt_dcqm-package_id,
++           doc_no     TYPE zprt_dcqm-doc_no,
++         END OF ty_log_row.
++  DATA: lt_rows        TYPE STANDARD TABLE OF ty_log_row,
++        ls_row         TYPE ty_log_row,
++        lt_packages    TYPE SORTED TABLE OF zprt_dcqm-package_id
++                         WITH UNIQUE KEY table_line,
++        lt_documents   TYPE SORTED TABLE OF zprt_dcqm-doc_no
++                         WITH UNIQUE KEY table_line,
++        lv_count       TYPE i,
++        lv_no_package  TYPE i,
++        lv_no_document TYPE i,
++        lv_number      TYPE c LENGTH 20,
++        lv_error_text  TYPE string,
++        lr_error       TYPE REF TO cx_root.
++
++  PERFORM log_now USING 'I' text-307 space.
++  TRY.
++      SELECT package_id doc_no FROM zprt_dcqm INTO TABLE lt_rows
++        WHERE prd_stock_id = p_stokid.
++      LOOP AT lt_rows INTO ls_row.
++        IF ls_row-package_id IS INITIAL.
++          ADD 1 TO lv_no_package.
++        ELSE.
++          INSERT ls_row-package_id INTO TABLE lt_packages.
++        ENDIF.
++        IF ls_row-doc_no IS INITIAL.
++          ADD 1 TO lv_no_document.
++        ELSE.
++          INSERT ls_row-doc_no INTO TABLE lt_documents.
++        ENDIF.
++      ENDLOOP.
++      DESCRIBE TABLE lt_packages LINES lv_count.
++      WRITE lv_count TO lv_number LEFT-JUSTIFIED.
++      PERFORM add_message USING 'I' text-301 lv_number space.
++      DESCRIBE TABLE lt_documents LINES lv_count.
++      WRITE lv_count TO lv_number LEFT-JUSTIFIED.
++      PERFORM add_message USING 'I' text-302 lv_number space.
++      DESCRIBE TABLE lt_rows LINES lv_count.
++      WRITE lv_count TO lv_number LEFT-JUSTIFIED.
++      PERFORM add_message USING 'I' text-303 lv_number space.
++      IF lv_no_package > 0.
++        WRITE lv_no_package TO lv_number LEFT-JUSTIFIED.
++        PERFORM add_message USING 'W' text-304 lv_number space.
++      ENDIF.
++      IF lv_no_document > 0.
++        WRITE lv_no_document TO lv_number LEFT-JUSTIFIED.
++        PERFORM add_message USING 'W' text-305 lv_number space.
++      ENDIF.
++    CATCH cx_root INTO lr_error.
++      lv_error_text = lr_error->get_text( ).
++      PERFORM add_message USING 'W' text-306 p_stokid lv_error_text.
++  ENDTRY.
++ENDFORM.
++
++FORM log_now USING uv_type TYPE symsgty uv_event TYPE clike
++                   uv_detail TYPE clike.
++  DATA lv_stamp TYPE timestampl.
++  GET TIME STAMP FIELD lv_stamp.
++  PERFORM log_at USING uv_type uv_event lv_stamp uv_detail.
++ENDFORM.
++
++FORM log_at USING uv_type TYPE symsgty uv_event TYPE clike
++                  uv_stamp TYPE timestampl uv_detail TYPE clike.
++  DATA: lv_time   TYPE c LENGTH 40,
++        lv_detail TYPE c LENGTH 100.
++  lv_time = |{ uv_stamp TIMESTAMP = ISO TIMEZONE = 'UTC' } UTC|.
++  CONCATENATE p_stokid uv_detail INTO lv_detail SEPARATED BY space.
++  PERFORM add_message USING uv_type uv_event lv_time lv_detail.
++ENDFORM.
++
++FORM log_inspire_end USING uv_type TYPE symsgty uv_event TYPE clike
++                          uv_start TYPE timestampl uv_end TYPE timestampl.
++  DATA: lv_seconds TYPE p LENGTH 12 DECIMALS 3,
++        lv_number  TYPE c LENGTH 30,
++        lv_detail  TYPE c LENGTH 60.
++  "Timestamp arithmetic must use calendar-aware subtraction.
++  TRY.
++      lv_seconds = cl_abap_tstmp=>subtract(
++        tstmp1 = uv_end tstmp2 = uv_start ).
++      WRITE lv_seconds TO lv_number LEFT-JUSTIFIED
++        DECIMALS 3 NO-GROUPING.
++      CONCATENATE lv_number text-319 INTO lv_detail SEPARATED BY space.
++    CATCH cx_root.
++      lv_detail = text-320.
++  ENDTRY.
++  PERFORM log_at USING uv_type uv_event uv_end lv_detail.
++ENDFORM.

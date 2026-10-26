@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"object\":\"ZCL_PR_STOCK\",\"version\":\"active\",\"hypothetical\":true,\"data\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?><chkrun:checkRunReports xmlns:chkrun=\\\"http://www.sap.com/adt/checkrun\\\"><chkrun:checkReport chkrun:reporter=\\\"abapCheckRun\\\" chkrun:triggeringUri=\\\"/sap/bc/adt/oo/classes/zcl_pr_stock\\\" chkrun:status=\\\"processed\\\" chkrun:statusText=\\\"Object ZCL_PR_STOCK has been checked\\\"/></chkrun:checkRunReports>\",\"status\":200}"
+    }
+  ]
+}

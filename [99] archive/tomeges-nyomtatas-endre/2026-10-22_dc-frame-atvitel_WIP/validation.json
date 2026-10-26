@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-22",
+  "checks": [
+    {
+      "name": "original_QU5_and_DHC_bytes_unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "no_legacy_or_search_help_dependency_and_expected_log_class",
+      "result": "PASS"
+    },
+    {
+      "name": "four_operations_validation_lock_and_SUBMIT_preserved_from_DHC",
+      "result": "PASS"
+    },
+    {
+      "name": "business_changes_identical_except_BAL_message_handling",
+      "result": "PASS"
+    },
+    {
+      "name": "DDIC_field_references_match_local_DHC_snapshots",
+      "result": "PASS"
+    },
+    {
+      "name": "T100_and_textpool_complete_without_literal_MESSAGES",
+      "result": "PASS"
+    },
+    {
+      "name": "FINAL_log_class_pattern_commits_and_error_propagation",
+      "result": "PASS"
+    },
+    {
+      "name": "F4_limit_and_cancellation_do_not_clear_selected_stock",
+      "result": "PASS"
+    },
+    {
+      "name": "DHC-valtozasok_WIP.diff_forward_and_reverse_byte_exact",
+      "result": "PASS"
+    },
+    {
+      "name": "QU5-DHC-atultetes_WIP.diff_forward_and_reverse_byte_exact",
+      "result": "PASS"
+    }
+  ],
+  "parser": {
+    "executed": false,
+    "reason": "No local @abaplint/core supplied; no network package installation performed."
+  },
+  "sapConnectionUsed": false,
+  "sapSyntaxCheck": false,
+  "atcSci": false,
+  "guiRuntimeTest": false,
+  "note": "Local source/schema and byte-exact diff checks only. Active target state is unverified."
+}

@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"table_name\": \"ZPRT_DCQMLT\",\n  \"version\": \"active\",\n  \"table_data\": \"@EndUserText.label : 'DC/QM funkciók alaptáblája - hosszú szöveg'\\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\\n@AbapCatalog.tableCategory : #TRANSPARENT\\n@AbapCatalog.deliveryClass : #A\\n@AbapCatalog.dataMaintenance : #ALLOWED\\ndefine table zprt_dcqmlt {\\n\\n  key mandt       : mandt not null;\\n  key exbilldocno : zprd_pr_exbilldocno not null;\\n  block_dc_text   : zprd_pr_block_dc_text;\\n  block_qm_text   : zprd_pr_block_qm_text;\\n\\n}\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

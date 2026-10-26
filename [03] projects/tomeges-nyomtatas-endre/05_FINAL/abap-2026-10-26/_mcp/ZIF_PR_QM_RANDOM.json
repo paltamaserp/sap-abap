@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"interface_name\": \"ZIF_PR_QM_RANDOM\",\n  \"version\": \"active\",\n  \"interface_data\": \"INTERFACE zif_pr_qm_random PUBLIC.\\r\\n\\r\\n  METHODS get_int\\r\\n    IMPORTING\\r\\n      iv_max          TYPE i\\r\\n    RETURNING\\r\\n      VALUE(rv_value) TYPE i\\r\\n    RAISING\\r\\n      zcx_form_message_error.\\r\\n\\r\\nENDINTERFACE.\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

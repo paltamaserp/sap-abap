@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-22",
+  "source": "05_FINAL/abap-2026-10-22/ZPR_DOC_STATUS.abap",
+  "sourceSha256": "24aab1c6fd440818776c43a4e40267e4765af8efeaf4ec685d2bcef91dc13131",
+  "retrievedAt": "2026-10-22T15:06:21.921Z",
+  "checksPassed": 17,
+  "checks": [
+    "Export SHA256 matches manifest",
+    "Raw MCP hash matches manifest",
+    "Source equals raw active MCP response",
+    "All D across two packages",
+    "Missing SLOG remains CL",
+    "Non-D event remains CL",
+    "DM does not satisfy D",
+    "Empty stock remains CL",
+    "Other stock document excluded",
+    "Other client D does not satisfy local D",
+    "Historical D plus another event still delivered",
+    "Guard blocks DM stock",
+    "Guard blocks nonclosed stock",
+    "Stock filter has no OBLIGATORY",
+    "P_STAT requires stock filter",
+    "Aggregation after document loop",
+    "Aggregation without new requests"
+  ],
+  "sqlCases": [
+    {
+      "name": "All D across two packages",
+      "total": 2,
+      "missingD": 0,
+      "status": "AD"
+    },
+    {
+      "name": "Missing SLOG remains CL",
+      "total": 2,
+      "missingD": 1,
+      "status": "CL"
+    },
+    {
+      "name": "Non-D event remains CL",
+      "total": 2,
+      "missingD": 1,
+      "status": "CL"
+    },
+    {
+      "name": "DM does not satisfy D",
+      "total": 2,
+      "missingD": 2,
+      "status": "CL"
+    },
+    {
+      "name": "Empty stock remains CL",
+      "total": 0,
+      "missingD": 0,
+      "status": "CL"
+    },
+    {
+      "name": "Other stock document excluded",
+      "total": 2,
+      "missingD": 0,
+      "status": "AD"
+    },
+    {
+      "name": "Other client D does not satisfy local D",
+      "total": 2,
+      "missingD": 1,
+      "status": "CL"
+    },
+    {
+      "name": "Historical D plus another event still delivered",
+      "total": 2,
+      "missingD": 0,
+      "status": "AD"
+    },
+    {
+      "name": "Guard blocks DM stock",
+      "total": 2,
+      "missingD": 0,
+      "status": "DM"
+    },
+    {
+      "name": "Guard blocks nonclosed stock",
+      "total": 2,
+      "missingD": 0,
+      "status": "CL"
+    }
+  ],
+  "normalizedSql": [
+    "SELECT COUNT( DISTINCT dcqm.doc_no )\n    FROM (SELECT * FROM zprt_dcqm WHERE mandt = '100') AS dcqm\n    INNER JOIN (SELECT * FROM zprt_package WHERE mandt = '100') AS package\n      ON package.package_id = dcqm.package_id\n    \n    WHERE package.stock_id = :stock",
+    "SELECT COUNT( DISTINCT dcqm.doc_no )\n    FROM (SELECT * FROM zprt_dcqm WHERE mandt = '100') AS dcqm\n    INNER JOIN (SELECT * FROM zprt_package WHERE mandt = '100') AS package\n      ON package.package_id = dcqm.package_id\n    \n    WHERE package.stock_id = :stock\n      AND NOT EXISTS ( SELECT * FROM (SELECT * FROM zprt_doc_slog WHERE mandt = '100') AS slog\n        WHERE slog.exbilldocno = dcqm.doc_no\n          AND slog.status = 'D' )",
+    "UPDATE zprt_stock\n    SET status = 'AD', chuser = 'BATCH', chdate = '20261022', chtime = '120000'\n    WHERE mandt = '100' AND stock_id = :stock\n      AND status = 'CL'\n      AND closed = 'X'"
+  ],
+  "limitations": "Local source and SQLite model only. No SAP connection, actual application rows, ABAP runtime, DDIC activation, text pool, job schedule, ATC or lock/concurrency validation."
+}

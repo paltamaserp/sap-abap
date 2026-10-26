@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-22",
+  "status": "WIP",
+  "target": "ZPR_DC_FRAME",
+  "inputs": [
+    {
+      "path": "05_FINAL/abap-2026-10-17/ZPR_DC_FRAME.abap",
+      "sha256": "eac7f8ca2f5ea37ff9145a62c2e4784d03c5b3f059e2878c108b911f6c82a868"
+    },
+    {
+      "path": "01_SOURCES/QU5/ZEBF_PR_DC_FRAME.abap",
+      "sha256": "6cd368d6a28b89fb6a5c3f3378ce559526e9aba3904e8fea27826dc6dac9b84d"
+    },
+    {
+      "path": "05_FINAL/abap-2026-10-17/ZPR_CREATE_STOCK.abap",
+      "sha256": "99c57aa7a2703d2b094adef600359b72ea45bb3064f630c36cfbff8ac2a06e5e"
+    },
+    {
+      "path": "01_SOURCES/DHC/2026-10-15_doc-rip/ZPRT_DCQM.table",
+      "sha256": "84fcd0dd2aa4c3953e6b93f115cd1678a17f10ad0ce7c86a621b78c4a2edd328"
+    },
+    {
+      "path": "01_SOURCES/DHC/2026-10-15_doc-rip/ZPRT_STOCK.table",
+      "sha256": "8d34412eaab49299476228a9a0c949f537bedeb7e3d48758e300c6bcb40cb2b1"
+    },
+    {
+      "path": "01_SOURCES/DHC/ZPRT_STOCK.table",
+      "sha256": "26f433f7f009bfb8d2cbac7060258e232a64421a62afcdce15ff84b590d9b845"
+    },
+    {
+      "path": "05_FINAL/abap-2026-10-17/ZPR_DCQM_EXCLUDE.abap",
+      "sha256": "77cfc4f11e7c9013121efdec539ff338d0e861c1273ddda648c7a04fe61eafa5"
+    }
+  ],
+  "files": [
+    {
+      "path": "build.cjs",
+      "sha256": "32e27e718b39c43aebc544c1d92ff6ea7b3dc17b59e68abceac4420045d6c013"
+    },
+    {
+      "path": "check.cjs",
+      "sha256": "79de59ac6ba52f64ef0cffa9a1aa51ecc4df3881f7d6cee7bb181ea543caa46f"
+    },
+    {
+      "path": "DHC-valtozasok_WIP.diff",
+      "sha256": "1f28abadcfb98447f4d0a27e6b9a7971134284bd1a46c411431518a7055134ee"
+    },
+    {
+      "path": "QU5-DHC-atultetes_WIP.diff",
+      "sha256": "873099d9ea798a65b541caca73ae41c39cb68ecf5a872501cd513ffc53668921"
+    },
+    {
+      "path": "README.md",
+      "sha256": "2f54a36a51c1fc313e419138f295bc1f8bcc4c591e4aa4eba75202b5cb165f27"
+    },
+    {
+      "path": "validation.json",
+      "sha256": "ef53a1b71795a46501352ebaf1394027f5bd52c4ed73e6d08de2734ba90b1bfd"
+    },
+    {
+      "path": "ZPR.messages.tsv",
+      "sha256": "0011f12848b1b14ee8149d3501ccc73674cbeb16bb052363ff020609c15eca19"
+    },
+    {
+      "path": "ZPR_DC_FRAME.abap",
+      "sha256": "943497a61c5b1e16db3a6675ba732ea9815cd3702f8e17ab758e2482824007d1"
+    },
+    {
+      "path": "ZPR_DC_FRAME.texts.tsv",
+      "sha256": "093d7c51df81535415e9bf4654132e804cdd17bdd444c6113f8947e76cf42228"
+    }
+  ]
+}

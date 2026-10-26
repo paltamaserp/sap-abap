@@ -1,0 +1,196 @@
+diff --git a/ZPR_DC_FRAME.abap b/ZPR_DC_FRAME.abap
+index 559154f..5aa69c5 100644
+--- a/ZPR_DC_FRAME.abap
++++ b/ZPR_DC_FRAME.abap
+@@ -14,7 +14,7 @@ REPORT zpr_dc_frame MESSAGE-ID zpr.
+ *---------------------------------------------------------------*
+ * 2026.10.08.   <USER>        Létrehozva
+ *---------------------------------------------------------------*
+-* Tranzakció: ZPR_DC (report transaction, szelekciós kép 1000) ???
++* Local transfer package: 2026-10-22; selection screen 1000.
+ *---------------------------------------------------------------*
+ 
+ *---------------------------------------------------------------*
+@@ -47,18 +47,21 @@ CONSTANTS: gc_log_object TYPE balobj_d  VALUE 'ZPR_MASS',
+ *---------------------------------------------------------------*
+ * Globális adatok
+ *---------------------------------------------------------------*
+-DATA: gs_stock TYPE zprt_stock,
+-      gv_dummy TYPE string.
+-* LOG
+-DATA: go_log TYPE REF TO zcl_pr_log.
++TYPES: BEGIN OF ty_stock_f4,
++         stock_id TYPE zprt_stock-stock_id,
++         status   TYPE zprt_stock-status,
++         closed   TYPE zprt_stock-closed,
++         dccompl  TYPE zprt_stock-dccompl,
++         qmcompl  TYPE zprt_stock-qmcompl,
++       END OF ty_stock_f4.
++
++DATA: gs_stock TYPE zprt_stock.
+ 
+ *----------------------------------------------------------------------*
+ * SELECTION-SCREEN                                                     *
+ *----------------------------------------------------------------------*
+ SELECTION-SCREEN SKIP.
+-PARAMETERS: p_stokid TYPE zprd_stock_id
+-              OBLIGATORY
+-              MATCHCODE OBJECT zprh_stock.
++PARAMETERS: p_stokid TYPE zprd_stock_id OBLIGATORY.
+ SELECTION-SCREEN SKIP.
+ SELECTION-SCREEN BEGIN OF BLOCK b01 WITH FRAME TITLE TEXT-001.
+ PARAMETERS: p_mod  TYPE flag RADIOBUTTON GROUP gr1 DEFAULT 'X',
+@@ -79,6 +82,9 @@ AT SELECTION-SCREEN.
+ *----------------------------------------------------------------------*
+ * START-OF-SELECTION                                                   *
+ *----------------------------------------------------------------------*
++AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_stokid.
++  PERFORM stock_f4.
++
+ START-OF-SELECTION.
+ 
+   CASE abap_true.
+@@ -156,6 +162,7 @@ FORM change_dc_status
+         ls_msg       TYPE bal_s_msg,
+         lv_locked    TYPE abap_bool,
+         lv_error     TYPE abap_bool,
++        lv_log_error TYPE abap_bool,
+         lv_err_text  TYPE string,
+         lo_sql_error TYPE REF TO cx_sy_open_sql_db.
+ 
+@@ -239,7 +246,7 @@ FORM change_dc_status
+ *     Engedélyezés visszavétele sikertelen
+     ENDIF.
+   ENDIF.
+-  APPEND ls_msg TO lt_msg.
++  INSERT ls_msg INTO TABLE lt_msg.
+ 
+   IF lv_err_text IS NOT INITIAL.
+     CLEAR ls_msg.
+@@ -247,12 +254,15 @@ FORM change_dc_status
+     ls_msg-msgty = 'E'.
+     ls_msg-msgno = gc_msgno-generic.
+     ls_msg-msgv1 = lv_err_text.
+-    APPEND ls_msg TO lt_msg.
++    INSERT ls_msg INTO TABLE lt_msg.
+   ENDIF.
+ 
+   PERFORM get_count CHANGING lt_msg.
+ 
+-  PERFORM log_write USING lt_msg.
++  PERFORM log_write USING lt_msg CHANGING lv_log_error.
++  IF lv_log_error EQ abap_true.
++    RETURN.
++  ENDIF.
+ 
+ * Eredmény a státuszsorban is
+   READ TABLE lt_msg INTO ls_msg INDEX 1.
+@@ -328,7 +338,7 @@ FORM get_count CHANGING ct_msg TYPE bal_t_msg.
+   ls_msg-msgv1 = lv_enged.
+   CONDENSE ls_msg-msgv1.
+ * Engedélyezett sorok száma: &1
+-  APPEND ls_msg TO ct_msg.
++  INSERT ls_msg INTO TABLE ct_msg.
+ 
+   CLEAR ls_msg.
+   ls_msg-msgid = gc_msgid.
+@@ -337,7 +347,7 @@ FORM get_count CHANGING ct_msg TYPE bal_t_msg.
+   ls_msg-msgv1 = lv_kizart.
+   CONDENSE ls_msg-msgv1.
+ * Kizárt sorok száma: &1
+-  APPEND ls_msg TO ct_msg.
++  INSERT ls_msg INTO TABLE ct_msg.
+ 
+ ENDFORM.                    " GET_COUNT
+ *&---------------------------------------------------------------------*
+@@ -345,31 +355,64 @@ ENDFORM.                    " GET_COUNT
+ *&---------------------------------------------------------------------*
+ *       Napló létrehozása, mentése és megjelenítése
+ *----------------------------------------------------------------------*
+-FORM log_write USING ut_msg TYPE bal_t_msg.
+-
+-  DATA: ls_msg TYPE bal_s_msg.
+-
+-* ⚠️ A ZCL_PR_LOG szignatúrája ellenőrizendő (konstruktor, close,
+-* display). Ha a konstruktor fogad külső azonosítót (EXTNUMBER), adjuk
+-* át a p_stokid-t, hogy a napló SLG1-ben stock szerint kereshető legyen.
+-  CREATE OBJECT go_log
+-    EXPORTING
+-      iv_log_object    = gc_log_object
+-      iv_log_subobject = gc_log_subobj.
+-
+-  LOOP AT ut_msg INTO ls_msg.
+-    MESSAGE ID ls_msg-msgid TYPE ls_msg-msgty NUMBER ls_msg-msgno
+-            WITH ls_msg-msgv1 ls_msg-msgv2 ls_msg-msgv3 ls_msg-msgv4
+-            INTO gv_dummy.
+-    go_log->add_system_message( ).
+-  ENDLOOP.
++FORM log_write USING ut_msg TYPE bal_t_msg
++               CHANGING cv_error TYPE abap_bool.
++  DATA: lr_log TYPE REF TO zcl_pr_log,
++        lr_error TYPE REF TO cx_root,
++        ls_message TYPE bal_s_msg,
++        lv_text TYPE string,
++        lv_dummy TYPE string.
++  cv_error = abap_false.
++  CHECK ut_msg IS NOT INITIAL.
++  "Business changes have already been committed or rolled back.
++  TRY.
++      CREATE OBJECT lr_log
++        EXPORTING iv_log_object = gc_log_object
++                  iv_log_subobject = gc_log_subobj.
++      LOOP AT ut_msg INTO ls_message.
++        MESSAGE ID ls_message-msgid TYPE ls_message-msgty
++          NUMBER ls_message-msgno
++          WITH ls_message-msgv1 ls_message-msgv2
++               ls_message-msgv3 ls_message-msgv4 INTO lv_dummy.
++        lr_log->add_system_message( ).
++      ENDLOOP.
++      lr_log->close( ).
++      COMMIT WORK.
++      lr_log->display( ).
++    CATCH cx_root INTO lr_error.
++      ROLLBACK WORK.
++      cv_error = abap_true.
++      lv_text = lr_error->get_text( ).
++      MESSAGE s000 WITH text-102 lv_text
++        DISPLAY LIKE 'E'.
++  ENDTRY.
++ENDFORM.
+ 
+-* ⚠️ Feltételezés - a close( ) menti a naplót (BAL_DB_SAVE).
+-* Az üzleti COMMIT/ROLLBACK már lefutott; ez a COMMIT csak a naplót
+-* teszi tartóssá.
+-  go_log->close( ).
+-  COMMIT WORK.
++FORM stock_f4.
++  DATA: lt_stocks  TYPE STANDARD TABLE OF ty_stock_f4,
++        lt_returns TYPE STANDARD TABLE OF ddshretval,
++        ls_return  TYPE ddshretval.
+ 
+-  go_log->display( ).
++  SELECT stock_id status closed dccompl qmcompl
++    FROM zprt_stock INTO TABLE lt_stocks UP TO 5000 ROWS
++    ORDER BY stock_id DESCENDING.
+ 
+-ENDFORM.                    " LOG_WRITE
+\ No newline at end of file
++  CALL FUNCTION 'F4IF_INT_TABLE_VALUE_REQUEST'
++    EXPORTING
++      retfield        = 'STOCK_ID'
++      value_org       = 'S'
++      window_title    = text-101
++    TABLES
++      value_tab       = lt_stocks
++      return_tab      = lt_returns
++    EXCEPTIONS
++      parameter_error = 1
++      no_values_found = 2
++      OTHERS          = 3.
++  IF sy-subrc = 0.
++    READ TABLE lt_returns INTO ls_return INDEX 1.
++    IF sy-subrc = 0.
++      p_stokid = ls_return-fieldval.
++    ENDIF.
++  ENDIF.
++ENDFORM.                    " STOCK_F4
