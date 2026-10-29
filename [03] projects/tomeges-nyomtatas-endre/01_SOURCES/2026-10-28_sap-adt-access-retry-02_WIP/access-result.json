@@ -1,0 +1,37 @@
+{
+  "startedAt": "2026-10-28T15:08:37.129Z",
+  "authorization": "ellenőrizd a sap-abap-adt mcp elérést",
+  "transport": "MCP stdio",
+  "stage": "sap_read",
+  "events": [
+    {
+      "at": "2026-10-28T15:08:37.142Z",
+      "stage": "initialize",
+      "type": "ATTEMPT_STARTED"
+    },
+    {
+      "at": "2026-10-28T15:08:40.010Z",
+      "stage": "initialize",
+      "type": "INITIALIZED"
+    },
+    {
+      "at": "2026-10-28T15:08:40.055Z",
+      "stage": "list_tools",
+      "type": "TOOLS_AVAILABLE",
+      "count": 175
+    },
+    {
+      "at": "2026-10-28T15:08:40.056Z",
+      "stage": "sap_read",
+      "type": "SAP_READ_STARTED"
+    },
+    {
+      "at": "2026-10-28T15:08:41.712Z",
+      "stage": "sap_read",
+      "type": "SAP_READ_COMPLETED"
+    }
+  ],
+  "sapRead": true,
+  "status": "SUCCESS",
+  "endedAt": "2026-10-28T15:08:41.713Z"
+}

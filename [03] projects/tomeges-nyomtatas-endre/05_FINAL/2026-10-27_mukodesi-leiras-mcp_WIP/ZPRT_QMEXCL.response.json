@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"table_name\": \"ZPRT_QMEXCL\",\n  \"version\": \"active\",\n  \"table_data\": \"@EndUserText.label : 'Stock mintakategória kizárási állapota'\\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\\n@AbapCatalog.tableCategory : #TRANSPARENT\\n@AbapCatalog.deliveryClass : #A\\n@AbapCatalog.dataMaintenance : #RESTRICTED\\ndefine table zprt_qmexcl {\\n\\n  key mandt     : mandt not null;\\n  key stock_id  : zprd_stock_id not null;\\n  key qm_cat    : zprd_qm_cat not null;\\n  include zprs_create_data;\\n  include zprs_update_data;\\n  block_qm      : zprd_pr_block_qm;\\n  block_qm_text : zprd_pr_block_qm_text;\\n\\n}\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

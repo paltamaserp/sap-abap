@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"table_name\": \"ZPRC_QMCAT_FLT\",\n  \"version\": \"active\",\n  \"table_data\": \"@EndUserText.label : 'Mintakategória szűrőtételei'\\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\\n@AbapCatalog.tableCategory : #TRANSPARENT\\n@AbapCatalog.deliveryClass : #C\\n@AbapCatalog.dataMaintenance : #ALLOWED\\ndefine table zprc_qmcat_flt {\\n\\n  key mandt  : mandt not null;\\n  @AbapCatalog.foreignKey.screenCheck : false\\n  key qm_cat : zprd_qm_cat not null\\n    with foreign key [0..*,1] zprc_qmcat\\n      where mandt = zprc_qmcat_flt.mandt\\n        and qm_cat = zprc_qmcat_flt.qm_cat;\\n  key item   : zprd_qm_item not null;\\n  fieldname  : zprd_qm_field;\\n  sign       : ddsign;\\n  opti       : ddoption;\\n  low        : zprd_qm_value;\\n  high       : zprd_qm_value;\\n\\n}\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"class_name\": \"ZCL_PR_ADDRESS\",\n  \"version\": \"active\",\n  \"check_result\": {\n    \"success\": true,\n    \"status\": \"processed\",\n    \"message\": \"Object ZCL_PR_ADDRESS has been checked\",\n    \"errors\": [],\n    \"warnings\": [],\n    \"info\": [],\n    \"total_messages\": 0,\n    \"has_errors\": false,\n    \"has_warnings\": false\n  },\n  \"message\": \"Class ZCL_PR_ADDRESS has no syntax errors\",\n  \"object_name\": \"ZCL_PR_ADDRESS\"\n}"
+    }
+  ]
+}

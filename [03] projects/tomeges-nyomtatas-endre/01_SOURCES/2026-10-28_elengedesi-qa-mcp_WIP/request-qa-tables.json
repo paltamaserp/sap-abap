@@ -1,0 +1,8 @@
+{
+  "id": "qa-table-discovery",
+  "tool": "GetSqlQuery",
+  "args": {
+    "sql_query": "SELECT tabname, tabclass FROM dd02l WHERE as4local = 'A' AND ( tabname LIKE 'SATC%' OR tabname LIKE 'SCI%' OR tabname LIKE '/ONAPSIS/%' )",
+    "row_number": 300
+  }
+}

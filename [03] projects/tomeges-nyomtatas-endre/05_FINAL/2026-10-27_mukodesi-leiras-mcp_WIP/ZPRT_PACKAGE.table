@@ -1,0 +1,16 @@
+@EndUserText.label : 'Nyomtatás package'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #DISPLAY
+define table zprt_package {
+
+  key mandt      : mandt not null;
+  key package_id : zprd_package_id not null;
+  stock_id       : zprd_stock_id;
+  xml_file_name  : zprd_pr_filename;
+  include zprs_create_data;
+  include zprs_update_data;
+  status         : zprd_package_status;
+
+}

@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-27",
+  "purpose": "Működési és technikai leírás kiegészítő repository-forrásai",
+  "scope": "Repository source and definitions only; no business table rows",
+  "timestamp_note": "saved_at_utc is the local persistence time, not a server revision timestamp",
+  "objects": [
+    {
+      "object": "ZCL_PR_QM_EXCLUSION",
+      "tool": "GetClass",
+      "parameters": {
+        "class_name": "ZCL_PR_QM_EXCLUSION",
+        "version": "active"
+      },
+      "response_status": 200,
+      "saved_at_utc": "2026-10-27T12:58:43.756111+00:00",
+      "raw_file": "ZCL_PR_QM_EXCLUSION.response.json",
+      "raw_sha256": "62d9db0aebb763c03d3fc67b044381181ff2ac77446faff874948834fa93f5ef",
+      "extracted_file": "ZCL_PR_QM_EXCLUSION.abap",
+      "extracted_sha256": "93bb7a8069831099fca0e45e9d023251b14104bf41961e992cd188f1fd6e5775"
+    },
+    {
+      "object": "ZPRC_QMCAT",
+      "tool": "GetTable",
+      "parameters": {
+        "table_name": "ZPRC_QMCAT",
+        "version": "active"
+      },
+      "response_status": 200,
+      "saved_at_utc": "2026-10-27T12:59:27.054358+00:00",
+      "raw_file": "ZPRC_QMCAT.response.json",
+      "raw_sha256": "b096043d28a756b6cb6c8eb96f5daf4d38b432686f2b1234eeab76f92b4510ca",
+      "extracted_file": "ZPRC_QMCAT.table",
+      "extracted_sha256": "5bf5fece9105b82eb36ee0135c6f532ffa48899ff60d90b0bfca1b2c93605fc0"
+    },
+    {
+      "object": "ZPRC_QMCAT_FLT",
+      "tool": "GetTable",
+      "parameters": {
+        "table_name": "ZPRC_QMCAT_FLT",
+        "version": "active"
+      },
+      "response_status": 200,
+      "saved_at_utc": "2026-10-27T12:59:30.747962+00:00",
+      "raw_file": "ZPRC_QMCAT_FLT.response.json",
+      "raw_sha256": "7347289a8875e174dec8251b758d87812bacf13abdbd5873a529813562a15ab1",
+      "extracted_file": "ZPRC_QMCAT_FLT.table",
+      "extracted_sha256": "54855479b3e85354a0c262ebcf5373ad722397eab49b9f6f8ce01393935503ed"
+    },
+    {
+      "object": "ZPRT_DOC_SLOG",
+      "tool": "GetTable",
+      "parameters": {
+        "table_name": "ZPRT_DOC_SLOG",
+        "version": "active"
+      },
+      "response_status": 200,
+      "saved_at_utc": "2026-10-27T12:59:34.398696+00:00",
+      "raw_file": "ZPRT_DOC_SLOG.response.json",
+      "raw_sha256": "a387ef056fddf62e1d749235545594f0e304b16e6bf079dc2c93d97967cc6750",
+      "extracted_file": "ZPRT_DOC_SLOG.table",
+      "extracted_sha256": "e0582feac7f62ef91eed18e193a78faaeea10dcebaf1497eb71393ff8da69ed3"
+    },
+    {
+      "object": "ZPRT_PACKAGE",
+      "tool": "GetTable",
+      "parameters": {
+        "table_name": "ZPRT_PACKAGE",
+        "version": "active"
+      },
+      "response_status": 200,
+      "saved_at_utc": "2026-10-27T12:59:17.396603+00:00",
+      "raw_file": "ZPRT_PACKAGE.response.json",
+      "raw_sha256": "54bbcc584904b223bf9194d43efe4bfd652eb8d266bf2627d43ddf7f6437c5a3",
+      "extracted_file": "ZPRT_PACKAGE.table",
+      "extracted_sha256": "8635629ca8f4ede6b0a444919940fe36f34d67e62039fb1d4c347a054c64498c"
+    },
+    {
+      "object": "ZPRT_QMEXCL",
+      "tool": "GetTable",
+      "parameters": {
+        "table_name": "ZPRT_QMEXCL",
+        "version": "active"
+      },
+      "response_status": 200,
+      "saved_at_utc": "2026-10-27T12:59:23.576289+00:00",
+      "raw_file": "ZPRT_QMEXCL.response.json",
+      "raw_sha256": "73aead8097e3afce287a3b0d65a18313dcf72ab21e95a40c029469a78b0bbd38",
+      "extracted_file": "ZPRT_QMEXCL.table",
+      "extracted_sha256": "7d4dea03a2219fe1e306a3dc8df8f97638baeb9801057ce9ec4743671e2f4ada"
+    },
+    {
+      "object": "ZPRT_QMSAMPLE",
+      "tool": "GetTable",
+      "parameters": {
+        "table_name": "ZPRT_QMSAMPLE",
+        "version": "active"
+      },
+      "response_status": 200,
+      "saved_at_utc": "2026-10-27T12:59:20.652842+00:00",
+      "raw_file": "ZPRT_QMSAMPLE.response.json",
+      "raw_sha256": "53201aecc2451d15abc80722cce76249918a86f8aa8c3c77a6c93057d8f6526b",
+      "extracted_file": "ZPRT_QMSAMPLE.table",
+      "extracted_sha256": "1f038589df0731fef6ca69e35f0207989b7f0432d858d6a9c7793d7846229ea7"
+    },
+    {
+      "object": "ZPRT_STOCK",
+      "tool": "GetTable",
+      "parameters": {
+        "table_name": "ZPRT_STOCK",
+        "version": "active"
+      },
+      "response_status": 200,
+      "saved_at_utc": "2026-10-27T12:59:13.639549+00:00",
+      "raw_file": "ZPRT_STOCK.response.json",
+      "raw_sha256": "159d3083ee10c2080d7155ddaad5a65ea383501017db25ba532c4df06e31c4d3",
+      "extracted_file": "ZPRT_STOCK.table",
+      "extracted_sha256": "e8f0fab3980e72b1e7b53b477e9efd834bdf5c34110370023ec5e202c0858bd2"
+    }
+  ]
+}

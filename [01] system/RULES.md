@@ -77,3 +77,8 @@ A felhasználó kifejezett utasítása (2026-10-13): az SAP ADT-kapcsolat első 
 
 ### ABAP QA-tanulságok
 23. ABAP-forrás készítése és módosítása előtt olvasd el és alkalmazd az [ABAP-QA-CHECKLIST.md](ABAP-QA-CHECKLIST.md) szabályait: fordítható MESSAGE-szövegek, táblatípushoz illő beszúrás és a kiválasztás üzleti hatókörét megőrző index-/adatbázis-kezelés. A nyitott QA-találatokat és az SAP-ban még nem ellenőrzött javításokat külön jelezd.
+
+### Automatikus ABAP-utóellenőrzés
+24. ABAP-objektum létrehozása, módosítása vagy aktiválása után automatikusan kövesd az [ABAP-AUTO-CHECK.md](ABAP-AUTO-CHECK.md) menetét. A munka elején közöld az alkalmazható sikerfeltételeket, a végén objektumonként a tényleges ellenőrzést, a még nem futott lépést és az eredményfájl helyét. Helyi mentéshez helyi ellenőrzés tartozik; SAP-írást vagy aktiválást az ellenőrzési szabály önmagában nem engedélyez.
+25. Csak az összes kötelező feltétel igazolt teljesülése jelent sikeres ellenőrzést. A részleges vagy hibás eredményt ne jelentsd sikernek; az ellenőrzési eredmény nem automatikus WIP/REVIEW/FINAL státuszváltás. A `Check*` eredményt szintaxisellenőrzésnek nevezd; ATC/SCI/Onapsis-eredményt csak valódi, azonosított QA-futás alapján jelents.
+26. A felhasználó 2026-10-28-i kérése alapján **MCP-vel létrehozott ABAP-objektumok után egységtesztet (ABAP Unit) is futtass automatikusan**, és az eredményt objektumonként jelentsd és mentsd. A tesztkód megléte nem futási eredmény; a hiányzó vagy akadályozott teszt „nem futott”, az önálló futtatható logika nélküli objektum mentessége konkrét indokkal rögzítendő az ABAP-AUTO-CHECK.md szerint. A kapcsolati leállás továbbra is elsőbbséget élvez.

@@ -1,0 +1,8 @@
+{
+  "id": "checker-repository-discovery",
+  "tool": "GetSqlQuery",
+  "args": {
+    "sql_query": "SELECT pgmid, object, obj_name, devclass FROM tadir WHERE pgmid = 'R3TR' AND ( obj_name LIKE '%ONAPS%' OR obj_name LIKE '%VFORGE%' OR obj_name LIKE '/VFO/%' OR obj_name LIKE '%CTS%CHECK%' OR obj_name LIKE '%TRANSP%CHECK%' OR obj_name LIKE '%CODE%PROF%' )",
+    "row_number": 300
+  }
+}

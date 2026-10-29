@@ -1,0 +1,15 @@
+@EndUserText.label : 'Mintakategória (QM) fejadat'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #C
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zprc_qmcat {
+
+  key mandt   : mandt not null;
+  key qm_cat  : zprd_qm_cat not null;
+  prio        : zprd_qm_prio;
+  sample_size : zprd_qm_size;
+  active      : zprd_active;
+  descr       : text40;
+
+}

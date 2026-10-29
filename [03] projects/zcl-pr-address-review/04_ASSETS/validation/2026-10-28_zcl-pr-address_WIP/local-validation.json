@@ -1,0 +1,7 @@
+﻿{
+    "integrity":  "passed",
+    "verified_files":  11,
+    "source_matches_mcp":  true,
+    "python_validator":  "not_run",
+    "reason":  "Program \u0027python.exe\u0027 failed to run: A fájlhoz a rendszer nem férhet hozzáAt line:2 char:1021\r\n+ ... ull}; try { \u0026 python \u0027.claude/skills/abap-code-review/scripts/validat ...\r\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~."
+}

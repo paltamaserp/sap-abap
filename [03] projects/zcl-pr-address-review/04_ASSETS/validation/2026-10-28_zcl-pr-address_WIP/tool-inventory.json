@@ -1,0 +1,706 @@
+{
+  "checked_at": "2026-10-28T16:10:25.194Z",
+  "sap_tools": [
+    {
+      "name": "mcp__sap_abap_adt__ActivateBehaviorDefinition",
+      "summary": "Activate a RAP behavior definition. Use after CreateBehaviorDefinition or UpdateBehaviorDefinition if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateClass",
+      "summary": "Activate an ABAP class. Use after CreateClass or UpdateClass if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateDataElement",
+      "summary": "Activate an ABAP data element. Use after CreateDataElement or UpdateDataElement if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateDomain",
+      "summary": "Activate an ABAP domain. Use after CreateDomain or UpdateDomain if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateFunctionGroup",
+      "summary": "Activate an ABAP function group. Use after CreateFunctionGroup or UpdateFunctionGroup if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateFunctionModule",
+      "summary": "Activate an ABAP function module. Use after UpdateFunctionModule if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateInterface",
+      "summary": "Activate an ABAP interface. Use after CreateInterface or UpdateInterface if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateMetadataExtension",
+      "summary": "Activate a CDS metadata extension. Use after CreateMetadataExtension or UpdateMetadataExtension if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateObjects",
+      "summary": "Activate one or multiple ABAP repository objects. Use after Create/Update when objects remain inactive, or for group activation of related objects (e.g., domains + data elements + tables together). Works with any object type."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateProgram",
+      "summary": "Activate an ABAP program. Use after CreateProgram or UpdateProgram if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateServiceBinding",
+      "summary": "Activate an ABAP service binding. Use after CreateServiceBinding or UpdateServiceBinding if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateServiceDefinition",
+      "summary": "Activate an ABAP service definition. Use after CreateServiceDefinition or UpdateServiceDefinition if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateStructure",
+      "summary": "Activate an ABAP structure. Use after CreateStructure or UpdateStructure if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateTable",
+      "summary": "Activate an ABAP table. Use after CreateTable or UpdateTable if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ActivateView",
+      "summary": "Activate a CDS view. Use after CreateView or UpdateView if the object remains inactive."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckBehaviorDefinition",
+      "summary": "Perform syntax check on an ABAP behavior definition (BDEF). Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckClass",
+      "summary": "Perform syntax check on an ABAP class. Can check existing class (active/inactive) or validate hypothetical source code. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckDataElement",
+      "summary": "Perform syntax check on an ABAP data element. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckDomain",
+      "summary": "Perform syntax check on an ABAP domain. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckFunctionGroup",
+      "summary": "Perform syntax check on an ABAP function group. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckFunctionModule",
+      "summary": "Perform syntax check on an ABAP function module. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckInterface",
+      "summary": "Perform syntax check on an ABAP interface. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckMetadataExtension",
+      "summary": "Perform syntax check on an ABAP metadata extension (DDLX). Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckPackage",
+      "summary": "Perform syntax check on an ABAP package. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckProgram",
+      "summary": "Perform syntax check on an ABAP program. Returns syntax errors, warnings, and messages. Not available on cloud."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckStructure",
+      "summary": "Perform syntax check on an ABAP structure. Can check existing structure (active/inactive) or validate hypothetical DDL code. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckTable",
+      "summary": "Perform syntax check on an ABAP table. Can check existing table (active/inactive) or validate hypothetical DDL code. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CheckView",
+      "summary": "Perform syntax check on an ABAP CDS view. Can check existing view (active/inactive) or validate hypothetical DDL source. Returns syntax errors, warnings, and messages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateBehaviorDefinition",
+      "summary": "Operation: Create. Subject: BehaviorDefinition. Will be useful for creating behavior definition. Create a new ABAP Behavior Definition (BDEF) in SAP system. Creates the behavior definition object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateBehaviorImplementation",
+      "summary": "Create a new ABAP behavior implementation class for a behavior definition. Creates the object in initial state. Use UpdateBehaviorImplementation to set implementation code afterwards."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateCdsUnitTest",
+      "summary": "Create a CDS unit test class with CDS validation. Creates the test class in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateClass",
+      "summary": "Operation: Create. Subject: Class. Will be useful for creating class. Create a new ABAP class in SAP system. Creates the class object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateDataElement",
+      "summary": "Operation: Create. Subject: DataElement. Will be useful for creating data element. Create a new ABAP data element in SAP system. Creates the data element object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateDomain",
+      "summary": "Operation: Create. Subject: Domain. Will be useful for creating domain. Create a new ABAP domain in SAP system. Creates the domain object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateFunctionGroup",
+      "summary": "Create a new ABAP function group in SAP system. Function groups serve as containers for function modules. Uses stateful session for proper lock management."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateFunctionModule",
+      "summary": "Operation: Create. Subject: FunctionModule. Will be useful for creating function module. Create a new ABAP function module within an existing function group. Creates the function module in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateInterface",
+      "summary": "Operation: Create. Subject: Interface. Will be useful for creating interface. Create a new ABAP interface in SAP system. Creates the interface object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateMetadataExtension",
+      "summary": "Operation: Create. Subject: MetadataExtension. Will be useful for creating metadata extension. Create a new ABAP Metadata Extension (DDLX) in SAP system. Creates the metadata extension object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreatePackage",
+      "summary": "Create a new ABAP package in SAP system. Packages are containers for development objects and are essential for organizing code."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateProgram",
+      "summary": "Operation: Create. Subject: Program. Will be useful for creating program. Create a new ABAP program (report) in SAP system. Creates the program object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateServiceBinding",
+      "summary": "Operation: Create. Subject: ServiceBinding. Will be useful for creating service binding. Create a new ABAP service binding in SAP system. Creates the service binding object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateServiceDefinition",
+      "summary": "Operation: Create. Subject: ServiceDefinition. Will be useful for creating service definition. Create a new ABAP service definition in SAP system. Creates the service definition object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateStructure",
+      "summary": "Operation: Create. Subject: Structure. Will be useful for creating structure. Create a new ABAP structure in SAP system. Creates the structure object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateTable",
+      "summary": "Operation: Create. Subject: Table. Will be useful for creating table. Create a new ABAP table in SAP system. Creates the table object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateTransport",
+      "summary": "Create a new ABAP transport request in SAP system for development objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateUnitTest",
+      "summary": "Start an ABAP Unit test run for provided class test definitions. Returns run_id for status/result queries."
+    },
+    {
+      "name": "mcp__sap_abap_adt__CreateView",
+      "summary": "Operation: Create. Subject: View. Will be useful for creating view. Create a new CDS View or Classic View in SAP system. Creates the view object in initial state."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteBehaviorDefinition",
+      "summary": "Delete an ABAP behavior definition from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteBehaviorImplementation",
+      "summary": "Delete an ABAP behavior implementation from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteCdsUnitTest",
+      "summary": "Delete a CDS unit test class (global class)."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteClass",
+      "summary": "Delete an ABAP class from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteDataElement",
+      "summary": "Delete an ABAP data element from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteDomain",
+      "summary": "Delete an ABAP domain from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteFunctionGroup",
+      "summary": "Delete an ABAP function group from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteFunctionModule",
+      "summary": "Delete an ABAP function module from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteInterface",
+      "summary": "Delete an ABAP interface from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteLocalDefinitions",
+      "summary": "Delete local definitions from an ABAP class by clearing the definitions include. Manages lock, update, unlock, and optional activation."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteLocalMacros",
+      "summary": "Delete local macros from an ABAP class by clearing the macros include. Manages lock, update, unlock, and optional activation. Note: Macros are supported in older ABAP versions but not in newer ones."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteLocalTestClass",
+      "summary": "Delete a local test class from an ABAP class by clearing the testclasses include. Manages lock, update, unlock, and optional activation of parent class."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteLocalTypes",
+      "summary": "Delete local types from an ABAP class by clearing the implementations include. Manages lock, update, unlock, and optional activation."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteMetadataExtension",
+      "summary": "Delete an ABAP metadata extension from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteProgram",
+      "summary": "Delete an ABAP program from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteServiceBinding",
+      "summary": "Delete ABAP service binding via ADT Business Services endpoint."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteServiceDefinition",
+      "summary": "Delete an ABAP service definition from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteStructure",
+      "summary": "Delete an ABAP structure from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteTable",
+      "summary": "Delete an ABAP table from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteUnitTest",
+      "summary": "Delete an ABAP Unit test run. Note: ADT does not support deleting unit test runs and will return an error."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DeleteView",
+      "summary": "Delete an ABAP view from the SAP system. Includes deletion check before actual deletion. Transport request optional for $TMP objects."
+    },
+    {
+      "name": "mcp__sap_abap_adt__DescribeByList",
+      "summary": "[read-only] Batch description for a list of ABAP objects. Input: objects: Array<{ name: string, type?: string }>. Each object may be of type: PROG/P, FUGR, PROG/I, CLAS/OC, FUGR/FC, INTF/OI, TABLE, STRUCTURE, etc."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetAbapAST",
+      "summary": "[read-only] Parse ABAP code and return AST (Abstract Syntax Tree) in JSON format."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetAbapSemanticAnalysis",
+      "summary": "[read-only] Perform semantic analysis on ABAP code and return symbols, types, scopes, and dependencies."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetAbapSystemSymbols",
+      "summary": "[read-only] Resolve ABAP symbols from semantic analysis with SAP system information including types, scopes, descriptions, and packages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetAdtTypes",
+      "summary": "[read-only] Retrieve all valid ADT object types (CLAS, TABL, PROG, DEVC, FUGR, INTF, DDLS, DTEL, DOMA, SRVD, SRVB, BDEF, DDLX, etc.) or validate a specific type name."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetBehaviorDefinition",
+      "summary": "Retrieve ABAP behavior definition definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetBehaviorImplementation",
+      "summary": "Retrieve ABAP behavior implementation definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetCdsUnitTest",
+      "summary": "Retrieve CDS unit test run status and result for a previously started run_id."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetCdsUnitTestResult",
+      "summary": "Retrieve CDS unit test run result for a run_id."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetCdsUnitTestStatus",
+      "summary": "Retrieve CDS unit test run status for a run_id."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetClass",
+      "summary": "Retrieve ABAP class source code. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetDataElement",
+      "summary": "Retrieve ABAP data element definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetDomain",
+      "summary": "Retrieve ABAP domain definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetEnhancementImpl",
+      "summary": "[read-only] Retrieve source code of a specific enhancement implementation by its name and enhancement spot."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetEnhancementSpot",
+      "summary": "[read-only] Retrieve metadata and list of implementations for a specific enhancement spot."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetEnhancements",
+      "summary": "[read-only] Retrieve a list of enhancements for a given ABAP object."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetFunctionGroup",
+      "summary": "Retrieve ABAP function group definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetFunctionModule",
+      "summary": "Retrieve ABAP function module definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetInactiveObjects",
+      "summary": "[read-only] Get a list of inactive ABAP objects — modified but not yet activated, pending activation. Shows classes, tables, CDS views, and other objects awaiting activation."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetInclude",
+      "summary": "[read-only] Retrieve source code of a specific ABAP include file."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetIncludesList",
+      "summary": "[read-only] Recursively discover and list ALL include files within an ABAP program or include."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetInterface",
+      "summary": "Retrieve ABAP interface definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetLocalDefinitions",
+      "summary": "Retrieve local definitions source code from a class (definitions include). Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetLocalMacros",
+      "summary": "Retrieve local macros source code from a class (macros include). Supports reading active or inactive version. Note: Macros are supported in older ABAP versions but not in newer ones."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetLocalTestClass",
+      "summary": "Retrieve local test class source code from a class. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetLocalTypes",
+      "summary": "Retrieve local types source code from a class (implementations include). Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetMetadataExtension",
+      "summary": "Retrieve ABAP metadata extension definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetNodeStructureLow",
+      "summary": "[low-level] Fetch node structure from ADT repository. Used for object tree navigation and structure discovery. Can use session_id and session_state from GetSession to maintain the same session."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetObjectInfo",
+      "summary": "[read-only] Return ABAP object tree structure for packages (DEVC), classes (CLAS), programs (PROG), function groups (FUGR), and other objects. Shows root, group nodes, and terminal leaves up to maxDepth. Enrich each node with description and package via SearchObject if enrich=true."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetObjectNodeFromCache",
+      "summary": "[read-only] Returns a node from the in-memory objects list cache by OBJECT_TYPE, OBJECT_NAME, TECH_NAME, and expands OBJECT_URI if present."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetObjectStructure",
+      "summary": "[read-only] Retrieve ADT object structure as a compact JSON tree."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetObjectStructureLow",
+      "summary": "[low-level] Retrieve ADT object structure as compact JSON tree. Returns XML response with object structure tree. Can use session_id and session_state from GetSession to maintain the same session."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetObjectsByType",
+      "summary": "[read-only] Retrieves all ABAP objects of a specific type (classes, tables, programs, interfaces, etc.) under a given parent node. Useful for listing all objects of one type within a package or composite object."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetObjectsList",
+      "summary": "[read-only] Recursively retrieves all child ABAP repository objects for a given parent — programs (PROG), function groups (FUGR), classes (CLAS), packages (DEVC), and other composite objects — including nested includes and subcomponents."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetPackage",
+      "summary": "Retrieve ABAP package metadata (description, super-package, etc.). Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetPackageContents",
+      "summary": "[read-only] Retrieve objects inside an ABAP package as a flat list. Supports recursive traversal of subpackages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetPackageTree",
+      "summary": "[high-level] Retrieve complete package tree structure including subpackages and objects. Returns hierarchical tree with object names, types, and descriptions."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetProgFullCode",
+      "summary": "[read-only] Returns the full code for a program or function group, including all includes, in tree traversal order."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetProgram",
+      "summary": "Retrieve ABAP program definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetServiceBinding",
+      "summary": "Retrieve ABAP service binding source/metadata by name via ADT Business Services endpoint."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetServiceDefinition",
+      "summary": "Retrieve ABAP service definition definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetSession",
+      "summary": "[read-only] Get a new session ID and current session state (cookies, CSRF token) for reuse across multiple ADT operations. Use this to maintain the same session and lock handle across multiple requests."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetSqlQuery",
+      "summary": "[read-only] Execute ABAP SQL SELECT queries on database tables and CDS views via SAP ADT Data Preview API. Use for ad-hoc data retrieval, row counts, and filtered queries."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetStructure",
+      "summary": "Retrieve ABAP structure definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetTable",
+      "summary": "Retrieve ABAP table definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetTableContents",
+      "summary": "[read-only] Retrieve contents (data preview) of an ABAP database table or CDS view. Returns rows of data like SE16/SE16N."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetTransaction",
+      "summary": "[read-only] Retrieve ABAP transaction (t-code) details — program, screen, authorization object, and transaction type (dialog, report, OO)."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetTransport",
+      "summary": "[read-only] Retrieve ABAP transport request information including metadata, included objects, and status from SAP system."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetTypeInfo",
+      "summary": "[read-only] Retrieve ABAP type information for domains (DOMA), data elements (DTEL), table types, and structures. Returns field definitions, value ranges, fixed values, and DDIC metadata."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetUnitTest",
+      "summary": "Retrieve ABAP Unit test run status and result for a previously started run_id."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetUnitTestResult",
+      "summary": "Retrieve ABAP Unit test run result for a run_id."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetUnitTestStatus",
+      "summary": "Retrieve ABAP Unit test run status for a run_id."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetView",
+      "summary": "Retrieve ABAP view definition. Supports reading active or inactive version."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetVirtualFoldersLow",
+      "summary": "[low-level] Retrieve hierarchical virtual folder contents from ADT information system. Used for browsing ABAP objects by package, group, type, etc."
+    },
+    {
+      "name": "mcp__sap_abap_adt__GetWhereUsed",
+      "summary": "[read-only] Search where-used references — find all objects that reference or depend on a given ABAP object. Answers: \"where is X used\", \"who calls X\", \"what depends on X\", \"show usages of X\". Supports classes, interfaces, tables, data elements, programs, function modules, etc. Returns referencing objects with types and packages."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ListServiceBindingTypes",
+      "summary": "List available service binding types (for example ODataV2/ODataV4) from ADT Business Services endpoint."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ListTransports",
+      "summary": "[read-only] List transport requests for the current or specified user. Returns modifiable and/or released workbench and customizing requests."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadBehaviorDefinition",
+      "summary": "Operation: Read, Create, Update. Subject: BehaviorDefinition. Will be useful for reading, creating, or updating behavior definition. [read-only] Read ABAP RAP behavior definition (BDEF) source code and metadata. Answers: \"show behavior definition\", \"display BDEF source\", \"view RAP behavior X\", \"get behavior definition code\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadBehaviorImplementation",
+      "summary": "[read-only] Read ABAP RAP behavior implementation source code and metadata. Answers: \"show behavior implementation\", \"display behavior pool code\", \"view RAP implementation X\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadClass",
+      "summary": "Operation: Read, Create, Update. Subject: Class. Will be useful for reading, creating, or updating class. [read-only] Read ABAP class source code and metadata. Answers: \"show class code\", \"display class source\", \"view class definition/implementation\", \"get class X\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadDataElement",
+      "summary": "Operation: Read, Create, Update. Subject: DataElement. Will be useful for reading, creating, or updating data element. [read-only] Read ABAP data element definition and metadata. Answers: \"show data element X\", \"display data element properties\", \"view DTEL definition\", \"get data element type\". Returns definition, domain, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadDomain",
+      "summary": "Operation: Read, Create, Update. Subject: Domain. Will be useful for reading, creating, or updating domain. [read-only] Read ABAP domain definition and metadata. Answers: \"show domain X\", \"display domain fixed values\", \"view domain definition\", \"get domain properties\". Returns definition, fixed values, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadFunctionGroup",
+      "summary": "[read-only] Read ABAP function group source code and metadata. Answers: \"show function group code\", \"display FUGR source\", \"view function group X\", \"get function group includes\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadFunctionModule",
+      "summary": "Operation: Read, Create, Update. Subject: FunctionModule. Will be useful for reading, creating, or updating function module. [read-only] Read ABAP function module source code and metadata. Answers: \"show function module code\", \"display FM source\", \"view function X\", \"get function module implementation\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadInterface",
+      "summary": "Operation: Read, Create, Update. Subject: Interface. Will be useful for reading, creating, or updating interface. [read-only] Read ABAP interface source code and metadata. Answers: \"show interface code\", \"display interface definition\", \"view interface X\", \"get interface source\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadMetadataExtension",
+      "summary": "Operation: Read, Create, Update. Subject: MetadataExtension. Will be useful for reading, creating, or updating metadata extension. [read-only] Read ABAP metadata extension (DDLX) source code and metadata. Answers: \"show metadata extension\", \"display DDLX source\", \"view UI annotations\", \"get metadata extension X\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadPackage",
+      "summary": "[read-only] Read ABAP package definition and metadata. Answers: \"show package X\", \"display package properties\", \"view package contents\", \"get package info\". Returns definition, super-package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadProgram",
+      "summary": "Operation: Read, Create, Update. Subject: Program. Will be useful for reading, creating, or updating program. [read-only] Read ABAP program (report) source code and metadata. Answers: \"show program code\", \"display report source\", \"view program X\", \"get program source\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadServiceBinding",
+      "summary": "Operation: Read, Create, Update. Subject: ServiceBinding. Will be useful for reading, creating, or updating service binding. [read-only] Read ABAP service binding (SRVB) payload and metadata. Answers: \"show service binding\", \"display SRVB config\", \"view service binding X\", \"get OData service binding\". Returns payload, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadServiceDefinition",
+      "summary": "Operation: Read, Create, Update. Subject: ServiceDefinition. Will be useful for reading, creating, or updating service definition. [read-only] Read ABAP service definition (SRVD) source code and metadata. Answers: \"show service definition\", \"display SRVD source\", \"view service definition X\", \"get service exposure\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadStructure",
+      "summary": "Operation: Read, Create, Update. Subject: Structure. Will be useful for reading, creating, or updating structure. [read-only] Read ABAP structure definition and metadata. Answers: \"show structure fields\", \"display structure X\", \"view structure definition\", \"get structure components\". Returns field list, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadTable",
+      "summary": "Operation: Read, Create, Update. Subject: Table. Will be useful for reading, creating, or updating table. [read-only] Read ABAP table definition and metadata. Answers: \"show table fields\", \"display table structure\", \"view table X\", \"get table definition\". Returns field list, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ReadView",
+      "summary": "Operation: Read, Create, Update. Subject: View. Will be useful for reading, creating, or updating view. [read-only] Read ABAP CDS view source code and metadata. Answers: \"show CDS view source\", \"display view definition\", \"view CDS X\", \"get CDS code\". Returns source code, package, responsible, description."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RunUnitTest",
+      "summary": "Start an ABAP Unit test run for provided class test definitions. Returns run_id for status/result queries."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeAnalyzeProfilerTrace",
+      "summary": "[runtime] Read profiler trace view and return compact analysis summary (totals + top entries)."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeCreateProfilerTraceParameters",
+      "summary": "[runtime] Create ABAP profiler trace parameters and return profilerId (URI) for profiled execution."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeGetDumpById",
+      "summary": "[runtime] Read a specific ABAP runtime dump by its ID. First use RuntimeListFeeds to find dumps and get their IDs, then pass dump_id here to read the full dump content."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeGetGatewayErrorLog",
+      "summary": "[runtime] List SAP Gateway error log (/IWFND/ERROR_LOG) or get error detail. Returns structured entries with type, shortText, transactionId, dateTime, username. With error_url returns full detail including serviceInfo, errorContext, sourceCode, callStack."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeGetProfilerTraceData",
+      "summary": "[runtime] Read profiler trace data by trace id/uri: hitlist, statements, or db accesses. Returns parsed JSON payload."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeListFeeds",
+      "summary": "[runtime] List available ADT runtime feeds or read a specific feed type. Feed types: dumps, system_messages, gateway_errors. Without feed_type returns available feed descriptors."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeListProfilerTraceFiles",
+      "summary": "[runtime] List ABAP profiler trace files available in ADT runtime. Returns parsed JSON payload."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeListSystemMessages",
+      "summary": "[runtime] List SM02 system messages. Returns structured entries with id, title, text, severity, validity period, and author."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeRunClassWithProfiling",
+      "summary": "[runtime] Execute ABAP class with profiler enabled and return created profilerId + traceId."
+    },
+    {
+      "name": "mcp__sap_abap_adt__RuntimeRunProgramWithProfiling",
+      "summary": "[runtime] Execute ABAP program with profiler enabled and return created profilerId + traceId."
+    },
+    {
+      "name": "mcp__sap_abap_adt__SearchObject",
+      "summary": "[read-only] Search ABAP repository by object name or wildcard pattern (e.g. 'ZOK*'). Answers: \"find object X\", \"does X exist\", \"list objects matching...\", \"search for program/class/table by name\". Supports all repository object types — optionally filter by type (PROG, CLAS, INTF, DEVC, TABL, DDLS, DTEL, FUGR, SRVD, SRVB, BDEF, DDLX, etc.)."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateBehaviorDefinition",
+      "summary": "Operation: Update, Create. Subject: BehaviorDefinition. Will be useful for updating or creating behavior definition. Update source code of an existing ABAP Behavior Definition (BDEF). Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateBehaviorImplementation",
+      "summary": "Update source code of an existing ABAP behavior implementation class. Updates both main source (with FOR BEHAVIOR OF clause) and implementations include. Uses stateful session with proper lock/unlock mechanism."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateCdsUnitTest",
+      "summary": "Update a CDS unit test class local test class source code."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateClass",
+      "summary": "Operation: Update, Create. Subject: Class. Will be useful for updating or creating class. Update source code of an existing ABAP class. Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateDataElement",
+      "summary": "Operation: Update, Create. Subject: DataElement. Will be useful for updating or creating data element. Update an existing ABAP data element. Locks, updates with provided parameters (complete replacement), unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateDomain",
+      "summary": "Operation: Update, Create. Subject: Domain. Will be useful for updating or creating domain. Update an existing ABAP domain. Locks, updates with provided parameters (complete replacement), unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateFunctionGroup",
+      "summary": "Update metadata (description) of an existing ABAP function group. Function groups are containers for function modules and don't have source code to update directly. Uses stateful session with proper lock/unlock mechanism."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateFunctionModule",
+      "summary": "Operation: Update, Create. Subject: FunctionModule. Will be useful for updating or creating function module. Update source code of an existing ABAP function module. Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateInterface",
+      "summary": "Operation: Update, Create. Subject: Interface. Will be useful for updating or creating interface. Update source code of an existing ABAP interface. Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateLocalDefinitions",
+      "summary": "Update local definitions in an ABAP class (definitions include). Manages lock, check, update, unlock, and optional activation."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateLocalMacros",
+      "summary": "Update local macros in an ABAP class (macros include). Manages lock, check, update, unlock, and optional activation. Note: Macros are supported in older ABAP versions but not in newer ones."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateLocalTestClass",
+      "summary": "Update a local test class in an ABAP class. Manages lock, check, update, unlock, and optional activation of parent class."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateLocalTypes",
+      "summary": "Update local types in an ABAP class (implementations include). Manages lock, check, update, unlock, and optional activation."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateMetadataExtension",
+      "summary": "Operation: Update, Create. Subject: MetadataExtension. Will be useful for updating or creating metadata extension. Update source code of an existing ABAP Metadata Extension (DDLX). Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateProgram",
+      "summary": "Operation: Update, Create. Subject: Program. Will be useful for updating or creating program. Update source code of an existing ABAP program. Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateServiceBinding",
+      "summary": "Operation: Update, Create. Subject: ServiceBinding. Will be useful for updating or creating service binding. Update publication state of an existing ABAP service binding."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateServiceDefinition",
+      "summary": "Operation: Update, Create. Subject: ServiceDefinition. Will be useful for updating or creating service definition. Update source code of an existing ABAP service definition. Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateStructure",
+      "summary": "Operation: Update, Create. Subject: Structure. Will be useful for updating or creating structure. Update DDL source code of an existing ABAP structure. Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateTable",
+      "summary": "Operation: Update, Create. Subject: Table. Will be useful for updating or creating table. Update DDL source code of an existing ABAP table. Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateUnitTest",
+      "summary": "Update an ABAP Unit test run. Note: ADT does not support updating unit test runs and will return an error."
+    },
+    {
+      "name": "mcp__sap_abap_adt__UpdateView",
+      "summary": "Operation: Update, Create. Subject: View. Will be useful for updating or creating view. Update DDL source code of an existing CDS View or Classic View. Locks, updates, unlocks, and optionally activates."
+    },
+    {
+      "name": "mcp__sap_abap_adt__ValidateServiceBinding",
+      "summary": "Validate service binding parameters (name, service definition, package, version) via ADT validation endpoint."
+    }
+  ],
+  "dedicated_qa_tools": []
+}

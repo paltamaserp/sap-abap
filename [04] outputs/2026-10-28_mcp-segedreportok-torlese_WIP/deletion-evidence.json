@@ -1,0 +1,55 @@
+{
+  "deletions": [
+    {
+      "name": "ZPT029_FIX_TTYP_MCP",
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"program_name\": \"ZPT029_FIX_TTYP_MCP\",\n  \"transport_request\": null,\n  \"message\": \"Program ZPT029_FIX_TTYP_MCP deleted successfully.\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ZPT030_FIX_TTYP_MCP",
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"program_name\": \"ZPT030_FIX_TTYP_MCP\",\n  \"transport_request\": null,\n  \"message\": \"Program ZPT030_FIX_TTYP_MCP deleted successfully.\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ZPT032_FIX_TTYP_MCP",
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"program_name\": \"ZPT032_FIX_TTYP_MCP\",\n  \"transport_request\": null,\n  \"message\": \"Program ZPT032_FIX_TTYP_MCP deleted successfully.\"\n}"
+          }
+        ]
+      }
+    }
+  ],
+  "verification": {
+    "tadir": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"sql_query\": \"SELECT pgmid, object, obj_name, devclass FROM tadir WHERE pgmid = 'R3TR' AND ( obj_name LIKE 'Z%MCP' OR obj_name LIKE 'Y%MCP' ) ORDER BY object, obj_name\",\n  \"row_number\": 500,\n  \"execution_time\": 22.367,\n  \"total_rows\": 0,\n  \"columns\": [\n    {\n      \"name\": \"PGMID\",\n      \"type\": \"C\",\n      \"description\": \"PGMID\"\n    },\n    {\n      \"name\": \"OBJECT\",\n      \"type\": \"C\",\n      \"description\": \"OBJECT\"\n    },\n    {\n      \"name\": \"OBJ_NAME\",\n      \"type\": \"C\",\n      \"description\": \"OBJ_NAME\"\n    },\n    {\n      \"name\": \"DEVCLASS\",\n      \"type\": \"C\",\n      \"description\": \"DEVCLASS\"\n    }\n  ],\n  \"rows\": []\n}"
+        }
+      ]
+    },
+    "trdir": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"sql_query\": \"SELECT name, subc FROM trdir WHERE name = 'ZPT029_FIX_TTYP_MCP' OR name = 'ZPT030_FIX_TTYP_MCP' OR name = 'ZPT032_FIX_TTYP_MCP'\",\n  \"row_number\": 10,\n  \"execution_time\": 11.73,\n  \"total_rows\": 0,\n  \"columns\": [\n    {\n      \"name\": \"NAME\",\n      \"type\": \"C\",\n      \"description\": \"NAME\"\n    },\n    {\n      \"name\": \"SUBC\",\n      \"type\": \"C\",\n      \"description\": \"SUBC\"\n    }\n  ],\n  \"rows\": []\n}"
+        }
+      ]
+    }
+  }
+}

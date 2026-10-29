@@ -1,0 +1,15 @@
+{
+  "docx_zip": "valid",
+  "chapters": 19,
+  "clickable_toc_entries": 19,
+  "tables": 16,
+  "source_references": "all defined",
+  "new_mcp_responses_saved": 8,
+  "new_mcp_hashes": "all match",
+  "unicode_replacement_characters": 0,
+  "preview_engine": "local OOXML subset renderer and canonical render_docx.py PNG pipeline",
+  "preview_pages": 22,
+  "preview_images_visually_reviewed": 22,
+  "native_word_pagination_verified": false,
+  "native_preview_limitation": "Bundled LibreOffice unavailable; Word COM stalled and Computer Use app approval timed out. Task-owned preview processes stopped."
+}

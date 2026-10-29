@@ -1,0 +1,53 @@
+{
+  "pages": 7,
+  "page_text_lengths": [
+    1757,
+    2393,
+    2094,
+    1950,
+    2545,
+    2436,
+    1294
+  ],
+  "source": "C:\\Users\\T13214\\Documents\\work\\sap-abap-main\\[03] projects\\tomeges-nyomtatas-endre\\03_DRAFTS\\2026-10-28_elengedesi-qa-fejlesztoi-szabalyok_WIP.md",
+  "source_sha256": "a29e3010e0be4033f3b0af4cd7e7c112ec7c30b2f845a175e6acd7fc66c63a79",
+  "output": "C:\\Users\\T13214\\Documents\\work\\sap-abap-main\\[04] outputs\\2026-10-28_elengedesi-qa-fejlesztoi-utmutato_WIP.pdf",
+  "pdf_sha256": "d091d7e5602fe0c4009301b5a40342999fd40891574023afa2b97840ce8733e7",
+  "text_checks": "PASS",
+  "visual_review": "PASS - all 7 rendered pages inspected",
+  "render_tool": "Poppler pdftoppm",
+  "render_dpi": 110,
+  "page_boundary_checks": "PASS",
+  "pdf_web_links": 2,
+  "rendered_pages": [
+    {
+      "page": 1,
+      "png_sha256": "93140e52397c1fef205362dd62a9d155f0b6494f042bc479083e9047209e74ec"
+    },
+    {
+      "page": 2,
+      "png_sha256": "f27f6c434fd1289f2443d55832c04cecba4b5d6d62bef836d2d46fa452e402ca"
+    },
+    {
+      "page": 3,
+      "png_sha256": "8870421545185a6f9f1663d900921cccfff08c62d63bc07ca6ce363f6549390c"
+    },
+    {
+      "page": 4,
+      "png_sha256": "585b85484e01c39992d69b607e5a115b62eeee30c5f3594d51341f090dec1dfc"
+    },
+    {
+      "page": 5,
+      "png_sha256": "f0bdd6bca8135484f37e8b5a7c08fb8448d5c648661e773584513e980e7ec383"
+    },
+    {
+      "page": 6,
+      "png_sha256": "e5181b19ef7e2a5fc7803add323c0f231ac341aaa2e4104ad8891c547d596714"
+    },
+    {
+      "page": 7,
+      "png_sha256": "af33308d23db4777d4bf53d3a546dd6d60c9013dddc7e9207238748646b63ca9"
+    }
+  ],
+  "source_scope": "Local evidence; active SAP state not verified"
+}

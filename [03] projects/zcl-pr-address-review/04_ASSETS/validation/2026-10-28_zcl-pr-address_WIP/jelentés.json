@@ -1,0 +1,139 @@
+﻿{
+    "review_scope":  "Existing active class review; no SAP changes.",
+    "overall_result":  "RÉSZLEGES",
+    "code_review":  {
+                        "findings":  4,
+                        "priorities":  {
+                                           "P2":  3,
+                                           "P3":  1
+                                       },
+                        "business_questions":  1
+                    },
+    "objects":  [
+                    {
+                        "name":  "ZCL_PR_ADDRESS",
+                        "type":  "CLAS",
+                        "system":  null,
+                        "client":  null,
+                        "original_system_from_metadata":  "DHC",
+                        "package":  "ZPR_FUNC",
+                        "source_sha256":  "1b15aabdcc59bfc763e7674d77eed17946994709f8f2ae030565fbefa28f36fb",
+                        "source_normalization":  "CRLF to LF, terminal newline; verified against saved MCP response.",
+                        "checks":  {
+                                       "syntax":  {
+                                                      "status":  "passed",
+                                                      "source_sha256":  "1b15aabdcc59bfc763e7674d77eed17946994709f8f2ae030565fbefa28f36fb",
+                                                      "checked_at":  "2026-10-28T16:10:25.194Z",
+                                                      "errors":  0,
+                                                      "warnings":  0,
+                                                      "unresolved_warnings":  0,
+                                                      "checked_version":  "active",
+                                                      "evidence":  [
+                                                                       {
+                                                                           "sha256":  "fcec5a15f67a9326d2632adedec00dcf6f573263e4b4b6a30aa4de23c93a1f70",
+                                                                           "file":  "check-class.json"
+                                                                       },
+                                                                       {
+                                                                           "sha256":  "df63f5211f53eef01794736476571225716a887cad36fe268cafaa900713b055",
+                                                                           "file":  "read-class.json"
+                                                                       }
+                                                                   ]
+                                                  },
+                                       "active_readback":  {
+                                                               "status":  "passed",
+                                                               "source_sha256":  "1b15aabdcc59bfc763e7674d77eed17946994709f8f2ae030565fbefa28f36fb",
+                                                               "checked_at":  "2026-10-28T16:10:25.194Z",
+                                                               "version":  "active",
+                                                               "expected_file":  "ZCL_PR_ADDRESS.abap",
+                                                               "actual_file":  "active-readback.abap",
+                                                               "reason":  "Existing active version exported for review; no intended source modification.",
+                                                               "evidence":  [
+                                                                                {
+                                                                                    "sha256":  "df63f5211f53eef01794736476571225716a887cad36fe268cafaa900713b055",
+                                                                                    "file":  "read-class.json"
+                                                                                },
+                                                                                {
+                                                                                    "sha256":  "1b15aabdcc59bfc763e7674d77eed17946994709f8f2ae030565fbefa28f36fb",
+                                                                                    "file":  "active-readback.abap"
+                                                                                }
+                                                                            ]
+                                                           },
+                                       "unit":  {
+                                                    "status":  "not_run",
+                                                    "reason":  "hasTests=false; active local testclasses include contains only template comment; no test pair identified. Business logic is not exempt.",
+                                                    "evidence":  [
+                                                                     {
+                                                                         "sha256":  "1e671c544ac2bf622d91757cda886dec1787e93dc64380002fb4d76fccc7fd2d",
+                                                                         "file":  "read-tests.json"
+                                                                     },
+                                                                     {
+                                                                         "sha256":  "75631e1e331a8807f0931bf0a911b3589863085f3bdd93016bf49ae2ffa77cc6",
+                                                                         "file":  "testclasses.abap"
+                                                                     }
+                                                                 ]
+                                                },
+                                       "qa":  {
+                                                  "status":  "not_run",
+                                                  "reason":  "Current SAP tool inventory has no dedicated ATC/SCI/Onapsis runner; no confirmed variant or result for this class.",
+                                                  "evidence":  [
+                                                                   {
+                                                                       "sha256":  "cc2e3f465f9d9a416ec6129a0351c022cd9cdf2d55290d79296aeeb9d98e1c0e",
+                                                                       "file":  "tool-inventory.json"
+                                                                   }
+                                                               ]
+                                              }
+                                   }
+                    }
+                ],
+    "evidence_manifest":  [
+                              {
+                                  "sha256":  "7c3b90843e3ee5c7429f99c975cd132628cfba85cf4f46e1dc612c16710da2dc",
+                                  "file":  "2026-10-28_zcl-pr-address-ellenorzes_WIP.md"
+                              },
+                              {
+                                  "sha256":  "1b15aabdcc59bfc763e7674d77eed17946994709f8f2ae030565fbefa28f36fb",
+                                  "file":  "active-readback.abap"
+                              },
+                              {
+                                  "sha256":  "fcec5a15f67a9326d2632adedec00dcf6f573263e4b4b6a30aa4de23c93a1f70",
+                                  "file":  "check-class.json"
+                              },
+                              {
+                                  "sha256":  "3d7484e334c7b3b38fc8d526d305027f4be9401a6d0671536fbdf650cba67f3a",
+                                  "file":  "metadata.xml"
+                              },
+                              {
+                                  "sha256":  "277aaa4cd7e94bbe8d5a33273892f69b7056654c0e736bbe29c201a6c3e6dcaa",
+                                  "file":  "read-address-view.json"
+                              },
+                              {
+                                  "sha256":  "df63f5211f53eef01794736476571225716a887cad36fe268cafaa900713b055",
+                                  "file":  "read-class.json"
+                              },
+                              {
+                                  "sha256":  "1e671c544ac2bf622d91757cda886dec1787e93dc64380002fb4d76fccc7fd2d",
+                                  "file":  "read-tests.json"
+                              },
+                              {
+                                  "sha256":  "75631e1e331a8807f0931bf0a911b3589863085f3bdd93016bf49ae2ffa77cc6",
+                                  "file":  "testclasses.abap"
+                              },
+                              {
+                                  "sha256":  "cc2e3f465f9d9a416ec6129a0351c022cd9cdf2d55290d79296aeeb9d98e1c0e",
+                                  "file":  "tool-inventory.json"
+                              },
+                              {
+                                  "sha256":  "1b15aabdcc59bfc763e7674d77eed17946994709f8f2ae030565fbefa28f36fb",
+                                  "file":  "ZCL_PR_ADDRESS.abap"
+                              },
+                              {
+                                  "sha256":  "f83c6f0003f59e87413fd54f87e86925b05dd33f223f8e8ee7405c04a9642286",
+                                  "file":  "ZPRT_I_DEFAULT_BP_ADDRESS.asddls"
+                              }
+                          ],
+    "local_validator":  {
+                            "status":  "not_run",
+                            "evidence":  "local-validation.json",
+                            "reason":  "python.exe nem hozzáférhető"
+                        }
+}

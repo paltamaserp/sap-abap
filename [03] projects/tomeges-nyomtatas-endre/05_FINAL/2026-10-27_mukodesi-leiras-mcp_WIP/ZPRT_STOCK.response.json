@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"table_name\": \"ZPRT_STOCK\",\n  \"version\": \"active\",\n  \"table_data\": \"@EndUserText.label : 'Nyomtatás stock'\\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\\n@AbapCatalog.tableCategory : #TRANSPARENT\\n@AbapCatalog.deliveryClass : #A\\n@AbapCatalog.dataMaintenance : #DISPLAY\\ndefine table zprt_stock {\\n\\n  key mandt       : mandt not null;\\n  key stock_id    : zprd_stock_id not null;\\n  status          : zprd_stock_status;\\n  closed          : zprd_closed;\\n  erdat_clo       : zprd_erdat_clo;\\n  ernam_clo       : zprd_ernam_clo;\\n  ertim_clo       : zprd_erzeit_clo;\\n  priority        : zprd_priority;\\n  include zprs_create_data;\\n  include zprs_update_data;\\n  dccompl         : zprd_dccompl;\\n  qmcompl         : zprd_qmcompl;\\n  notest          : zprd_notest;\\n  stock_status_er : zprd_stock_status_er;\\n  xml_file_name   : fileextern;\\n  erdat           : erdat;\\n  ernam           : ernam;\\n  ertim           : erzeit;\\n\\n}\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

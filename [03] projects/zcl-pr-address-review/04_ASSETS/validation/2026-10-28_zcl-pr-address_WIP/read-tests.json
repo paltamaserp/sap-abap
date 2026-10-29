@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"class_name\": \"ZCL_PR_ADDRESS\",\n  \"version\": \"active\",\n  \"test_class_code\": \"*\\\"* use this source file for your ABAP unit test classes\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

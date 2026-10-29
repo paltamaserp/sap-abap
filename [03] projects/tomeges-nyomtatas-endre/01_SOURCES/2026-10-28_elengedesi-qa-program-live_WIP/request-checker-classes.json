@@ -1,0 +1,8 @@
+{
+  "id": "checker-class-discovery",
+  "tool": "GetSqlQuery",
+  "args": {
+    "sql_query": "SELECT clsname, langu, descript FROM seoclasstx WHERE langu = 'E' AND ( descript LIKE '%Onapsis%' OR descript LIKE '%Control for Code%' OR descript LIKE '%CodeProfiler%' OR clsname LIKE '/VFORGE/%CI%' OR clsname LIKE '/VFORGE/%ATC%' OR clsname LIKE '/VFORGE/%TRAN%' )",
+    "row_number": 150
+  }
+}

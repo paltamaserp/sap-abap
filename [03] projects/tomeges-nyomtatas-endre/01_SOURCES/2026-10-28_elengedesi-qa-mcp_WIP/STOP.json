@@ -1,0 +1,6 @@
+{
+  "at": "2026-10-28T12:49:43.244Z",
+  "operation": "GetSqlQuery",
+  "kind": "network",
+  "code": "EACCES"
+}

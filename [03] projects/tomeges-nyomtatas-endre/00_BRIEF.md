@@ -38,6 +38,7 @@
 - **Elsődleges munkabázis (felhasználói döntés, 2026-10-26):** [05_FINAL/abap-2026-10-26/](05_FINAL/abap-2026-10-26/README.md), 39/39 kijelölt objektum friss MCP-forrása/definíciója, 90 ellenőrzött fájl. A további elemzések és javítások ebből indulnak. Státusz WIP; nem teljes UI-/függőségmentés.
 - **Korábbi exportok:** [2026-10-22](<../../[99]%20archive/abap-2026-10-22/README.md>) és [2026-10-17](<../../[99]%20archive/abap-2026-10-17/README.md>), történeti összehasonlításhoz. A mai munkabázist nem helyettesítik.
 - 01_SOURCES/ — eredeti dokumentumok, tábladefiníciók, QU5/DHC-referenciák és SCI/Onapsis-bemenetek.
+- [Működési és technikai Word-leírás](03_DRAFTS/2026-10-27_mukodesi-technikai-leiras_WIP/README.md) — 2026-10-27, 19 fejezet; [nyolc aktív MCP-kiegészítés](01_SOURCES/2026-10-27_mukodesi-leiras-mcp_WIP/README.md) teljes helyi mentéssel. Natív Word-tördelésellenőrzés még nyitott, státusz WIP.
 - 02_NOTES/ — korábbi naplózási és DOC_STATUS-elemzések, valamint a DC ZZ-kód szerepének jegyzete. A korábbi hibalisták a mai exporttal újra ellenőrizendők.
 - [Régi draftok szerepe és összevetése](03_DRAFTS/README.md) — történeti referenciák; új javítás a mai exportból indul.
 - [Cockpit WIP](03_DRAFTS/2026-10-16_cockpit_WIP/README.md) — C01-adapter, DM/QM-integráció, kapcsolódó külön gomb-/képernyőjavítások.

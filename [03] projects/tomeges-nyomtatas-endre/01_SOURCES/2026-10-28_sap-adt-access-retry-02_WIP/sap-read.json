@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-28T15:08:41.711Z",
+  "tool": "GetSqlQuery",
+  "args": {
+    "sql_query": "SELECT component, release, extrelease FROM cvers",
+    "row_number": 5
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"sql_query\": \"SELECT component, release, extrelease FROM cvers\",\n  \"row_number\": 5,\n  \"execution_time\": 0.164,\n  \"total_rows\": 99,\n  \"columns\": [\n    {\n      \"name\": \"COMPONENT\",\n      \"type\": \"C\",\n      \"description\": \"COMPONENT\"\n    },\n    {\n      \"name\": \"RELEASE\",\n      \"type\": \"C\",\n      \"description\": \"RELEASE\"\n    },\n    {\n      \"name\": \"EXTRELEASE\",\n      \"type\": \"C\",\n      \"description\": \"EXTRELEASE\"\n    }\n  ],\n  \"rows\": [\n    {\n      \"COMPONENT\": \"ABEX\",\n      \"RELEASE\": \"708\",\n      \"EXTRELEASE\": \"1\"\n    },\n    {\n      \"COMPONENT\": \"CLOUDLM\",\n      \"RELEASE\": \"101\",\n      \"EXTRELEASE\": \"0028\"\n    },\n    {\n      \"COMPONENT\": \"EA-DFPS\",\n      \"RELEASE\": \"809\",\n      \"EXTRELEASE\": \"0001\"\n    },\n    {\n      \"COMPONENT\": \"EA-PS\",\n      \"RELEASE\": \"809\",\n      \"EXTRELEASE\": \"0001\"\n    },\n    {\n      \"COMPONENT\": \"FI-CAX\",\n      \"RELEASE\": \"809\",\n      \"EXTRELEASE\": \"0001\"\n    }\n  ]\n}"
+      }
+    ]
+  }
+}

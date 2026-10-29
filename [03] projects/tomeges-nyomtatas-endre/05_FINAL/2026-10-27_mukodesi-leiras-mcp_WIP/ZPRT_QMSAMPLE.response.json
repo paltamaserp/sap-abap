@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"table_name\": \"ZPRT_QMSAMPLE\",\n  \"version\": \"active\",\n  \"table_data\": \"@EndUserText.label : 'Stock mintakategória-hozzárendelés'\\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\\n@AbapCatalog.tableCategory : #TRANSPARENT\\n@AbapCatalog.deliveryClass : #A\\n@AbapCatalog.dataMaintenance : #RESTRICTED\\ndefine table zprt_qmsample {\\n\\n  key mandt    : mandt not null;\\n  key stock_id : zprd_stock_id not null;\\n  key qm_cat   : zprd_qm_cat not null;\\n  key doc_no   : zprd_doc_no not null;\\n  include zprs_create_data;\\n  include zprs_update_data;\\n  in_sample    : zprd_qm_sampled;\\n\\n}\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

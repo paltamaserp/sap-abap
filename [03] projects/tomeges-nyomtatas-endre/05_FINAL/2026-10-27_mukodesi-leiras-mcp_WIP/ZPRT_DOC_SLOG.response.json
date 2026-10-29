@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"table_name\": \"ZPRT_DOC_SLOG\",\n  \"version\": \"active\",\n  \"table_data\": \"@EndUserText.label : 'Nyomtatás - dokumentum státusz log'\\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\\n@AbapCatalog.tableCategory : #TRANSPARENT\\n@AbapCatalog.deliveryClass : #A\\n@AbapCatalog.dataMaintenance : #DISPLAY\\ndefine table zprt_doc_slog {\\n\\n  key mandt       : mandt not null;\\n  key exbilldocno : zprd_doc_no not null;\\n  key timestamp   : zprd_tstmp not null;\\n  key status      : zprd_status_code not null;\\n\\n}\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

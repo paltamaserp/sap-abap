@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"table_name\": \"ZPRT_PACKAGE\",\n  \"version\": \"active\",\n  \"table_data\": \"@EndUserText.label : 'Nyomtatás package'\\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\\n@AbapCatalog.tableCategory : #TRANSPARENT\\n@AbapCatalog.deliveryClass : #A\\n@AbapCatalog.dataMaintenance : #DISPLAY\\ndefine table zprt_package {\\n\\n  key mandt      : mandt not null;\\n  key package_id : zprd_package_id not null;\\n  stock_id       : zprd_stock_id;\\n  xml_file_name  : zprd_pr_filename;\\n  include zprs_create_data;\\n  include zprs_update_data;\\n  status         : zprd_package_status;\\n\\n}\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

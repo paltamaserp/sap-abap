@@ -1,0 +1,21 @@
+@EndUserText.label : 'Mintakategória szűrőtételei'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #C
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zprc_qmcat_flt {
+
+  key mandt  : mandt not null;
+  @AbapCatalog.foreignKey.screenCheck : false
+  key qm_cat : zprd_qm_cat not null
+    with foreign key [0..*,1] zprc_qmcat
+      where mandt = zprc_qmcat_flt.mandt
+        and qm_cat = zprc_qmcat_flt.qm_cat;
+  key item   : zprd_qm_item not null;
+  fieldname  : zprd_qm_field;
+  sign       : ddsign;
+  opti       : ddoption;
+  low        : zprd_qm_value;
+  high       : zprd_qm_value;
+
+}

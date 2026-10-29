@@ -12,21 +12,22 @@ Az ABAP Unit teszt **a SAP rendszerben él**, nem a lemezen fut. A repóban lév
 
 ### MCP tool-ok
 
-Mindkét rendszeren elérhető (`mcp__sap-ecc-dev__*`, `mcp__sap-crm-dev__*`):
+A jelenlegi csatlakoztatott eszközcsalád `sap-abap-adt`. A célrendszert és a pontos paramétereket az aktuális eszközleírásból és projektállapotból kell azonosítani; a régi ECC/CRM eszköznevek nem igazolnak külön kapcsolatot.
 
 | Tool | Mire |
 |---|---|
-| `CreateUnitTest` / `GetUnitTest` / `UpdateUnitTest` / `DeleteUnitTest` | teszt-objektum kezelés |
+| `CreateUnitTest` / `RunUnitTest` | tesztfutás indítása az aktuális eszközszerződés szerint; nem repository-tesztobjektum CRUD |
 | `RunUnitTest` → `GetUnitTestStatus` → `GetUnitTestResult` | futtatás (**aszinkron** — a státuszt le kell kérdezni) |
-| `CreateCdsUnitTest` / `GetCdsUnitTestResult` | CDS view tesztek |
+| `CreateCdsUnitTest` | CDS-tesztosztály létrehozása, csak engedélyezett SAP-írás részeként; a futtatási eszközt külön ellenőrizd |
 | `GetLocalTestClass` / `UpdateLocalTestClass` | beágyazott teszt-osztály a *Local Test Classes* include-ban |
 | `RuntimeRunClass` / `RuntimeRunProgram` | ad-hoc futtatás (`...WithProfiling` változat is van) |
 
 ### Workflow új osztálynál
 
 ```
-CreateClass → UpdateClass → CheckClass → ActivateClass
-            → UpdateLocalTestClass → RunUnitTest
+Engedélyezett létrehozás/módosítás → szintaxisellenőrzés
+    → engedélyezett aktiválás → aktív visszaolvasás
+    → releváns ABAP Unit befejezett eredménye → valódi QA-eredmény
 ```
 
 ### Konvenció
@@ -94,8 +95,9 @@ a **`SAP_NODE_PATH`** környezeti változót; ha nincs, a rendszer `npm`-je fut.
 
 | Eszköz | Mi | Ki indítja |
 |---|---|---|
-| **`/abap-code-review`** | **ATC + ABAP Unit kapu** — a projekt saját skillje | én felajánlom, te vagy én futtatom |
-| **ATC** (`CheckClass`, `CheckProgram`, `CheckPackage`, `CheckDdl`…) | SAP statikus ellenőrzés; az oneERP guideline szerint **kötelező** quality gate kiajánlás előtt | MCP hívás |
+| **`/abap-code-review`** | Automatikus utóellenőrzés és bizonyítékhoz kötött eredmény — a projekt saját skillje | létrehozás/módosítás/aktiválás után automatikusan |
+| **Szintaxis** (`CheckClass`, `CheckProgram`, `CheckPackage`…) | SAP-szintaxisellenőrzés; **nem teljes ATC** | MCP hívás |
+| **ATC / SCI / Onapsis** | A tényleges rendszerrel, variánssal és objektumkörrel igazolandó QA-kapu | dedikált futtató, ha elérhető; különben azonosítható átadott futáseredmény |
 | `/code-review` | helyi branch-diff review | te |
 | `/code-review ultra` | multi-agent cloud review (branch v. PR#) | **kizárólag te — billed, én nem hívhatom** |
 | `/security-review` | biztonsági review a branch változásain | te |
@@ -106,22 +108,15 @@ a **`SAP_NODE_PATH`** környezeti változót; ha nincs, a rendszer `npm`-je fut.
 
 ### A projekt kapuja: `/abap-code-review`
 
-Skill: `.claude/skills/abap-code-review/SKILL.md` (session-újraindítás után aktív).
+Skill: `.claude/skills/abap-code-review/SKILL.md`, a gyökér AGENTS.md utasítása alapján közvetlenül olvasandó.
 
-Két lépcső, tudatosan **csak ez a kettő**:
-
-1. **ATC** — objektumtípus szerinti `Check*`. Aktiválatlan objektum előbb `Activate*`
-   (az ATC az aktív verziót nézi). Error → javítás, és csak utána 2. lépcső.
-2. **ABAP Unit** — `GetLocalTestClass` → ha nincs és a logika érdemi, írj egyet →
-   `RunUnitTest` → státusz → eredmény.
+Sikerfeltételek és hatókör: [ABAP-AUTO-CHECK.md](ABAP-AUTO-CHECK.md). A menet szintaxisellenőrzésből, engedélyezett aktiválás utáni visszaolvasásból, releváns Unit-eredményből és külön QA-eredményből áll. A `Check*` lépés nem ATC. Új tesztkód írása SAP-ba és aktiválás csak az adott feladat felhatalmazásával történhet.
 
 A `/security-review` és `/simplify` **nem része** a kapunak — külön, igény szerint.
 
-Rendszerválasztás: alapból **ECC**, CRM csak kimondásra. Egy futáson belül a két
-rendszert nem keverjük. Auth hibánál: **stop és jelzés**, nem retry.
+Rendszerválasztás: a felhasználó és az aktuális projekt alapján; hiányzó SID-et vagy mandantot nem találgatunk. Egy futáson belül rendszereket nem keverünk. Az első hitelesítési/kapcsolati hiba vagy timeout után **stop és jelzés**, nincs automatikus retry.
 
-**Trigger: még nyitott.** Egyelőre manuális hívás. Az első éles próba után dől el,
-legyen-e automatikus (minden aktiválás után vs. csak `05_FINAL/`-ba kerüléskor).
+**Trigger: automatikus**, a felhasználó 2026-10-27-i kérése szerint. Az asszisztens minden engedélyezett ABAP-létrehozás/-módosítás/-aktiválás után, mentési csomagonként végrehajtja a menetet és összesíti az eredményt. Ez nem SAP-háttérjob és nem általános IDE-mentési hook. A teljes QA-futtató jelenleg nem része az MCP-eszközkészletnek; hiányában az összeredmény RÉSZLEGES, nem teljes siker.
 
 ---
 

@@ -7,6 +7,10 @@
 
 ## Mi ez a workspace
 
+**Aktuális SAP-kapcsolat (2026-10-28):** a felhasználó új kifejezett elérési ellenőrzésére **16:08:41 Budapest** időpontban az MCP-inicializálás, a 175 eszköz leltára és egy ötsoros CVERS-olvasás sikerült. A kapcsolat ismét használható a korábban engedélyezett olvasási feladathoz; az első új hiba után azonnali leállás szükséges. [Friss bizonyíték](<[03] projects/tomeges-nyomtatas-endre/01_SOURCES/2026-10-28_sap-adt-access-retry-02_WIP/README.md>). A korábbi EACCES és RequestTimeout történeti hiba marad.
+
+**Későbbi felderítési hiba:** a TADIR-olvasás még sikerült, majd **16:10:55 Budapest** időpontban az osztálykereső kérés HTTP 400 választ adott; a kliens leállította a felderítést, további hívás nem történt. Pontos alkalmazásoldali hibaüzenet nincs; a 400-at önmagában nem minősítjük hálózati/hitelesítési hibának. A programfelderítési kliens STOP-rekordja megmarad. [Bizonyíték](<[03] projects/tomeges-nyomtatas-endre/01_SOURCES/2026-10-28_elengedesi-qa-program-live_WIP/README.md>).
+
 SAP ABAP fejlesztés (ECC + CRM, on-premise, E.ON) Claude-dal támogatva.
 Az ABAP objektumokat az **ABAP ADT MCP** (`fr0ster/mcp-abap-adt`) szerveren keresztül éred el — innen olvasol/írsz reportokat, függvénymodulokat, osztályokat. A feladatkövetés **ClickUp**-ban van.
 
@@ -54,6 +58,8 @@ Egy projekt belső váza:
 
 Teszt- és review-eszközök: `[01] system/TESTING-TOOLS.md`.
 
+**Automatikus ABAP-utóellenőrzés (2026-10-27):** [sikerfeltételek és eredményjelzés](<[01] system/ABAP-AUTO-CHECK.md>). Az asszisztens minden létrehozás/módosítás/aktiválás után végrehajtja a hatókörében engedélyezett ellenőrzéseket; a Check* szintaxis nem ATC, a nem futott lépés nem siker.
+
 A `tomeges-nyomtatas-endre` projekt ABAP Unit-tesztinclude-jai a `04_ASSETS/abap/test/` almappában találhatók.
 
 **Projektfrissítés és munkabázis (2026-10-26):** a felhasználó döntése szerint a további munka a legfrissebb FINAL-mentésből indul: [05_FINAL/abap-2026-10-26/](<[03] projects/tomeges-nyomtatas-endre/05_FINAL/abap-2026-10-26/README.md>). **39/39 kijelölt objektum** friss SAP ADT MCP-forrása/definíciója mentve, 90 nyers válasz-/forrás-/metaadatfájl hash- és forrásazonosság-ellenőrzéssel. A korábban hiányzó C01 és két táblatípus, továbbá a cockpit/QM kiegészítései is megvannak. A hivatkozott helyi include-ok teljesek. A mai lekérések sikeresek voltak; nincs új SAP-elérési hiba. A kijelölt forráskör teljes, UI-/teljes függőségmentés és SAP-teszt nincs.
@@ -82,6 +88,7 @@ Adj kevesebb okot a találgatásra. Ennyi az egész.
 | Projekt        | Státusz | ClickUp |
 | -------------- | ------- | ------- |
 | `_TEMPLATE` () | WIP     |         |
+| [zcl-pr-address-review](<[03] projects/zcl-pr-address-review/README.md>) | WIP | |
 | [tomeges-nyomtatas-endre (friss mentés: 2026-10-26)](<[03] projects/tomeges-nyomtatas-endre/README.md>) | WIP | |
 
 > Tartsd ezt a táblát naprakészen — ez a leggyorsabb áttekintés rólad és Claude-nak is.

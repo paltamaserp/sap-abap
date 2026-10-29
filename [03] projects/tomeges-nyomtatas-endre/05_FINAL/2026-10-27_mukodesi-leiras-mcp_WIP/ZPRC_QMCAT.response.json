@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"table_name\": \"ZPRC_QMCAT\",\n  \"version\": \"active\",\n  \"table_data\": \"@EndUserText.label : 'Mintakategória (QM) fejadat'\\n@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE\\n@AbapCatalog.tableCategory : #TRANSPARENT\\n@AbapCatalog.deliveryClass : #C\\n@AbapCatalog.dataMaintenance : #ALLOWED\\ndefine table zprc_qmcat {\\n\\n  key mandt   : mandt not null;\\n  key qm_cat  : zprd_qm_cat not null;\\n  prio        : zprd_qm_prio;\\n  sample_size : zprd_qm_size;\\n  active      : zprd_active;\\n  descr       : text40;\\n\\n}\",\n  \"status\": 200,\n  \"status_text\": \"OK\"\n}"
+    }
+  ]
+}

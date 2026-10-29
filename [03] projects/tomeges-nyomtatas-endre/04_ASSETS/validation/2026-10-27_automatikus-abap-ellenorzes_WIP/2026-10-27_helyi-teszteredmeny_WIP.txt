@@ -1,0 +1,19 @@
+test_checkclass_is_not_atc (__main__.ReportTests.test_checkclass_is_not_atc) ... ok
+test_cli_exit_codes_and_saved_summary (__main__.ReportTests.test_cli_exit_codes_and_saved_summary) ... ok
+test_complete_evidence_passes (__main__.ReportTests.test_complete_evidence_passes) ... ok
+test_ddic_can_explain_no_unit_but_qa_cannot_be_skipped (__main__.ReportTests.test_ddic_can_explain_no_unit_but_qa_cannot_be_skipped) ... ok
+test_evidence_cannot_escape_report_folder (__main__.ReportTests.test_evidence_cannot_escape_report_folder) ... ok
+test_evidence_tampering_fails (__main__.ReportTests.test_evidence_tampering_fails) ... ok
+test_failed_gate_dominates_missing_gate (__main__.ReportTests.test_failed_gate_dominates_missing_gate) ... ok
+test_missing_gate_is_partial (__main__.ReportTests.test_missing_gate_is_partial) ... ok
+test_old_source_fingerprint_is_partial (__main__.ReportTests.test_old_source_fingerprint_is_partial) ... ok
+test_pending_qa_does_not_pass (__main__.ReportTests.test_pending_qa_does_not_pass) ... ok
+test_unknown_scope_and_no_tests_are_not_full_success (__main__.ReportTests.test_unknown_scope_and_no_tests_are_not_full_success) ... ok
+test_unresolved_warning_is_partial (__main__.ReportTests.test_unresolved_warning_is_partial) ... ok
+test_wrong_active_source_fails (__main__.ReportTests.test_wrong_active_source_fails) ... ok
+test_zero_tests_and_pending_runs_do_not_pass (__main__.ReportTests.test_zero_tests_and_pending_runs_do_not_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.672s
+
+OK

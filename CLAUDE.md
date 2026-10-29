@@ -28,6 +28,27 @@ Magyar nyelven dolgozunk: válaszok és dokumentáció magyarul; kód-komment a 
 - Meglévő funkció bővítésénél inkább bővítsd a logikát, mint átírd (kisebb regressziós
   kockázat).
 
+## ABAP: új osztályhoz mindig lokális unit teszt
+- Ha új globális osztályt hozol létre (ZCL_*), ugyanabban a lépésben hozd létre
+  a lokális tesztosztályt is az osztály teszt-includjában (ADT: „Test Classes” fül,
+  SE24: Local Test Classes / CCAU). A teszt **egybe kerül az osztállyal** (ugyanaz
+  az objektum, együtt aktiválódik és transzportálódik) — ne hozz létre külön globális
+  tesztosztályt (pl. `ZCL_*_TEST`).
+- Forma: `CLASS ltc_<téma> DEFINITION FINAL FOR TESTING RISK LEVEL HARMLESS
+  DURATION SHORT.` — a vizsgált osztály `mo_cut` példányként, `setup` metódusban jön létre.
+- Minden publikus metódusra legalább egy teszt: normál eset + legalább egy hibaág /
+  szélsőérték. Ellenőrzés `cl_abap_unit_assert=>assert_equals` / `assert_bound` /
+  `fail` hívással, érthető `msg`-gel.
+- Nincs DB-írás, COMMIT vagy külső hívás a tesztben; a függőségeket interfészen
+  keresztül add át, és a tesztben test double-lel helyettesítsd.
+- ECC/CRM-kompatibilis szintaxis (nincs template string, explicit típusozás),
+  a meglévő kódbázis stílusában.
+- Meglévő osztály módosításakor a meglévő tesztosztályt bővítsd, ne írd újra.
+- Létrehozás után futtasd az ABAP Unitot (MCP-n / `/abap-code-review`), és jelezd
+  az eredményt; piros teszttel ne jelentsd késznek.
+- Kézi futtatás: ADT-ben `Ctrl+Shift+F10` (coverage-dzsel `Ctrl+Shift+F11`),
+  SAP GUI SE24/SE80-ban `Ctrl+Shift+F10`.
+
 ## Térkép (rövid)
 `[00] inbox` · `[01] system` · `[02] context` · `[03] projects` · `[04] outputs` · `[99] archive`
 Részletek és olvasási sorrend: `_START-HERE.md`.

@@ -1,0 +1,16 @@
+@EndUserText.label : 'Stock mintakategória kizárási állapota'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zprt_qmexcl {
+
+  key mandt     : mandt not null;
+  key stock_id  : zprd_stock_id not null;
+  key qm_cat    : zprd_qm_cat not null;
+  include zprs_create_data;
+  include zprs_update_data;
+  block_qm      : zprd_pr_block_qm;
+  block_qm_text : zprd_pr_block_qm_text;
+
+}
