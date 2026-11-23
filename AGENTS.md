@@ -1,5 +1,11 @@
 # SAP ADT kapcsolat használata
 
+## Elsődleges fejlesztőeszköz
+
+A felhasználó 2026-10-29-i döntése: elsődlegesen az **ABAP Development Tools for VS Code** (`SAPSE.adt-vscode`) bővítményt és annak saját **ADT MCP Server** szolgáltatását használjuk. A workspace-ben az `adt.mcpServer.enabled` beállítás `true`.
+
+A korábbi `sap-abap-adt` MCP (`fr0ster/mcp-abap-adt`) felhasználói és projektkonfigurációjában `enabled = false`; a kapcsolati adatok megmaradnak későbbi használatra. Csak a felhasználó kifejezett kérésére engedélyezhető újra. Az alábbi kapcsolati leállási szabály a VS Code-bővítmény használatakor is érvényes; az eszközváltás önmagában nem engedély SAP-elérési próbát.
+
 A felhasználó 2026-10-13-án rögzített utasítása:
 
 - Az SAP ADT-kapcsolat első sikertelen elérési kísérlete után ne használd tovább az érintett kapcsolatot. Hitelesítési hiba (például HTTP 401), kapcsolati hiba vagy elérési timeout után ne próbálkozz automatikusan újra, más SAP-eszközzel vagy közvetett kerülőúton sem.

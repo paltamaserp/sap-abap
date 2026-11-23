@@ -26,6 +26,7 @@
 # include_only = ["PATH", "HOME", "TERM"]
 
 [mcp_servers.sap-abap-adt]
+enabled = false
 command = 'C:\Users\T13214\Documents\work\CS HANA\runtimes\node-v22.22.2-win-x64\node.exe'
 args = ['C:\Users\T13214\Documents\work\CS HANA\mcp\mcp-abap-adt\bin\mcp-abap-adt.js', "--transport=stdio", '--env-path=C:\Users\T13214\Documents\work\CS HANA\mcp\mcp-abap-adt\.env']
 startup_timeout_sec = 30.0

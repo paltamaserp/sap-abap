@@ -12,7 +12,7 @@
 **Későbbi felderítési hiba:** a TADIR-olvasás még sikerült, majd **16:10:55 Budapest** időpontban az osztálykereső kérés HTTP 400 választ adott; a kliens leállította a felderítést, további hívás nem történt. Pontos alkalmazásoldali hibaüzenet nincs; a 400-at önmagában nem minősítjük hálózati/hitelesítési hibának. A programfelderítési kliens STOP-rekordja megmarad. [Bizonyíték](<[03] projects/tomeges-nyomtatas-endre/01_SOURCES/2026-10-28_elengedesi-qa-program-live_WIP/README.md>).
 
 SAP ABAP fejlesztés (ECC + CRM, on-premise, E.ON) Claude-dal támogatva.
-Az ABAP objektumokat az **ABAP ADT MCP** (`fr0ster/mcp-abap-adt`) szerveren keresztül éred el — innen olvasol/írsz reportokat, függvénymodulokat, osztályokat. A feladatkövetés **ClickUp**-ban van.
+**Elsődleges SAP-eszköz (2026-10-29):** az **ABAP Development Tools for VS Code** (`SAPSE.adt-vscode`) bővítmény és saját **ADT MCP Server** szolgáltatása. A workspace-ben `adt.mcpServer.enabled = true`. A korábbi **`sap-abap-adt` MCP** (`fr0ster/mcp-abap-adt`) `enabled = false` beállítással megmarad, kapcsolati adatai változatlanok. Újraengedélyezéséhez külön felhasználói kérés szükséges. A beállításváltás során SAP-elérési próba nem történt; a fentiek történeti kapcsolati adatok, és a kapcsolati leállási szabály továbbra is érvényes. A feladatkövetés **ClickUp**-ban van.
 
 **Nyelv:** minden interakció és dokumentáció magyarul. Kód-kommentek a kódbázis konvenciója szerint.
 

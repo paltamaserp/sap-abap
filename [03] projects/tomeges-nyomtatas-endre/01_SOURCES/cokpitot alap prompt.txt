@@ -1,0 +1,12 @@
+Szeretnék készíteni egy cokpitot, amiből funkciók indíthatóak.
+Jelenleg a z_pr_cockpit függvény indításával betöltődik a 0100-as 
+screen amin betölt egy inputmező és  egy tabstrip.
+-az inputmezőbe Stock azonosító adható meg, majd ez kerül átadásra a többi fülre,
+- ha megadott egyet és enterrel elfogadta,
+- ellenőrizzük, hogy létezik -e 
+- módosítani kell, hogy teljes képernyő szélességben legyen,
+- alakítsuk ki az első fülön a "DM tétel ell."-en a ZPR_DC_EXCLUDE riportot kellene meghívni, de ne lépjen el innen.
+
+Ellenőrizd a rendszerbe, mert vannak részek amik már megvannak.
+
+

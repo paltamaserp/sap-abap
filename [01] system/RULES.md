@@ -11,9 +11,9 @@
 2. A kérést a feldolgozás elején fordítsd le **angolra**, úgy dolgozz, majd a választ fordítsd **vissza magyarra**.
 3. Kód-kommentek a kódbázis konvenciója szerint (production ABAP-nál angolul — lásd `NAMING.md` / oneERP guideline).
 
-## SAP munkamenet (ABAP ADT MCP)
+## SAP munkamenet (ABAP Development Tools for VS Code)
 
-4. SAP repository olvasáshoz/íráshoz/aktiváláshoz a **`sap-abap-adt` MCP** szervert használd (`fr0ster/mcp-abap-adt`).
+4. A felhasználó 2026-10-29-i döntése szerint SAP repository olvasáshoz/íráshoz/aktiváláshoz elsődlegesen az **ABAP Development Tools for VS Code** (`SAPSE.adt-vscode`) bővítményt és saját **ADT MCP Server** szolgáltatását használd. A korábbi **`sap-abap-adt` MCP** (`fr0ster/mcp-abap-adt`) `enabled = false` beállítással, változatlan kapcsolati adatokkal megmarad; újraengedélyezése külön felhasználói kéréshez kötött. Az eszközváltás nem oldja fel a kapcsolati leállást.
 5. SAP objektum módosítása után **olvasd vissza** / igazold az aktív állapotot, ha lehetséges.
 6. A lokális `.abap` másolatokat tartsd szinkronban az aktív SAP objektummal, ha a workspace tartalmaz ilyet.
 7. **Konzervatív, SAP-kompatibilis** ABAP-mintákat használj, hacsak nem kérek újabb szintaxist vagy konkrét release-célt.
